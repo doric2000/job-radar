@@ -93,6 +93,26 @@ DEFAULTS: dict = {
         # Add handles you verified yourself, e.g. ["some_junior_jobs_channel"].
         "telegram_channels": [],
         "max_age_hours": 48,
+        # LinkedIn public (logged-out) job search. Queries were measured against the Classifier:
+        # role keyword + f_E (1 = internship, 2 = entry level) gave ~45 title matches a day in Israel.
+        "linkedin": {
+            "enabled": False,           # switched on in config.yaml
+            "tier": 1,
+            "geo_id": "101620260",      # Israel
+            "time_window": "r86400",    # posted in the last 24h; sorted newest first
+            "pages": 1,                 # 10 results per page
+            "gap_seconds": 5,           # LinkedIn returns 429 on bursts faster than this
+            "cooldown_seconds": 25,
+            "queries": [
+                {"keywords": "software engineer", "f_E": "1,2", "pages": 2},
+                {"keywords": "backend", "f_E": "1,2"},
+                {"keywords": "full stack OR fullstack", "f_E": "1,2"},
+                {"keywords": "developer", "f_E": "2"},
+                {"keywords": 'security analyst OR SOC OR "security researcher" OR cyber', "f_E": "1,2"},
+                {"keywords": "software OR security OR developer", "f_E": "1"},
+                {"keywords": 'junior OR graduate OR "entry level"'},
+            ],
+        },
     },
 }
 

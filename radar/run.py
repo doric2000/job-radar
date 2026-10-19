@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -26,6 +27,8 @@ REGION_RANK = {"israel": 0, "remote": 1, "relocation": 2}
 
 def dedupe_key(job: Job) -> str:
     first_loc = (job.location or "").split(",")[0].split("|")[0]
+    # LinkedIn writes "Tel Aviv-Yafo" where company boards write "Tel Aviv"
+    first_loc = re.sub(r"[\s-]*(yafo|jaffa)\s*$", "", first_loc, flags=re.I)
     return f"{norm(job.company)}|{norm(job.title)[:80]}|{norm(first_loc)[:20]}"
 
 
@@ -53,6 +56,9 @@ class Radar:
     def with_channels(self) -> list[dict]:
         extra = [{"id": f"tg-{h}", "name": f"טלגרם · {h}", "ats": "tgchannel", "token": h, "tier": 1, "cat": "lead"}
                  for h in self.cfg["leads"]["telegram_channels"]]
+        li = self.cfg["leads"].get("linkedin") or {}
+        if li.get("enabled"):
+            extra.append({**li, "id": "linkedin", "name": "LinkedIn", "ats": "linkedin", "cat": "lead"})
         return self.companies + extra
 
     # ---------------------------------------------------------------- one company

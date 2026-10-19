@@ -33,7 +33,7 @@ def age_text(dt: datetime | None, now: datetime) -> str:
 
 def format_alert(job: Job, v: Verdict, company: dict, now: datetime, tz: str = "Asia/Jerusalem") -> str:
     e = html.escape
-    star = " ⭐" if company.get("tier") == 1 else ""
+    star = " ⭐" if company.get("tier") == 1 and company.get("cat") != "lead" else ""
     lines = [f"🔔 <b>{e(job.title[:140])}</b>", f"🏢 {e(job.company)}{star}"]
     loc = job.location[:100] if job.location else "לא צוין"
     lines.append(f"📍 {e(loc)} · {REGION_HE.get(v.region, v.region)}")
@@ -53,6 +53,8 @@ def format_alert(job: Job, v: Verdict, company: dict, now: datetime, tz: str = "
         tags.append("🧪 התמחות")
     if job.source == "tgchannel":
         tags.append("🧭 ליד מטלגרם: לאמת במקור")
+    if job.source == "linkedin":
+        tags.append("🔗 LinkedIn")
     if tags:
         lines.append(" · ".join(tags))
     for w in v.warnings:

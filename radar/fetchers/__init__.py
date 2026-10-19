@@ -8,6 +8,7 @@ from .ashby import Ashby
 from .comeet import Comeet
 from .greenhouse import Greenhouse
 from .lever import Lever
+from .linkedin import LinkedIn
 from .recruitee import Recruitee
 from .smartrecruiters import SmartRecruiters
 from .workable import Workable
@@ -22,4 +23,5 @@ FETCHERS = {
     "workable": Workable,
     "recruitee": Recruitee,
     "workday": Workday,
+    "linkedin": LinkedIn,
 }
