@@ -10,27 +10,27 @@
 # plus data/discovery_report.md (resolved / needs review / not found). Fix or add entries freely.
 
 - {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1}
-- {name: "CyberArk", domain: cyberark.com, cat: cyber, tier: 1}
+- {name: "CyberArk", domain: cyberark.com, cat: cyber, tier: 1}   # acquired by Palo Alto Networks: jobs appear on the Palo Alto board
 - {name: "Wiz", domain: wiz.io, cat: cyber, tier: 1, slugs: [wizinc, wiz]}
 - {name: "Palo Alto Networks", domain: paloaltonetworks.com, cat: cyber, tier: 1}
 - {name: "Cato Networks", domain: catonetworks.com, cat: cyber, tier: 1}
 - {name: "Armis", domain: armis.com, cat: cyber, tier: 1}
 - {name: "Cyera", domain: cyera.io, cat: cyber, tier: 1}
 - {name: "Island", domain: island.io, cat: cyber, tier: 1}
-- {name: "Silverfort", domain: silverfort.com, cat: cyber, tier: 1}
+- {name: "Silverfort", domain: silverfort.com, cat: cyber, tier: 1, ats: comeet, uid: "54.007", token: 45715B315B38AE22B8D051A0A457D051E61}
 - {name: "Axonius", domain: axonius.com, cat: cyber, tier: 1}
 - {name: "Orca Security", domain: orca.security, cat: cyber, tier: 1}
-- {name: "Aqua Security", domain: aquasec.com, cat: cyber, tier: 1}
-- {name: "Pentera", domain: pentera.io, cat: cyber, tier: 1}
-- {name: "Claroty", domain: claroty.com, cat: cyber, tier: 1}
+- {name: "Aqua Security", domain: aquasec.com, cat: cyber, tier: 1, ats: comeet, uid: "91.001", token: 191644966966644E194B3191644644}
+- {name: "Pentera", domain: pentera.io, cat: cyber, tier: 1, ats: comeet, uid: "C5.00D", token: 5CD1D013435289B343501D012E682E68289B}
+- {name: "Claroty", domain: claroty.com, cat: cyber, tier: 1, ats: comeet, uid: "F2.004", token: 2F4EC42F42F45E814AC1A945E814AC5E8}
 - {name: "SentinelOne", domain: sentinelone.com, cat: cyber, tier: 1, slugs: [sentinellabs, sentinelone]}
 - {name: "Snyk", domain: snyk.io, cat: cyber, tier: 1}
-- {name: "Upwind", domain: upwind.io, cat: cyber, tier: 1}
+- {name: "Upwind", domain: upwind.io, cat: cyber, tier: 1, ats: comeet, uid: "49.004", token: 94440DC0944094401BCC12882510}
 - {name: "Zenity", domain: zenity.io, cat: cyber, tier: 1}
 - {name: "Noma Security", domain: noma.security, cat: cyber, tier: 1}
-- {name: "Oligo Security", domain: oligo.security, cat: cyber, tier: 1}
+- {name: "Oligo Security", domain: oligo.security, cat: cyber, tier: 1, ats: ashby, token: oligo}
 - {name: "OX Security", domain: ox.security, cat: cyber, tier: 1}
-- {name: "Legit Security", domain: legitsecurity.com, cat: cyber, tier: 1}
+- {name: "Legit Security", domain: legitsecurity.com, cat: cyber, tier: 1, ats: comeet, uid: "37.004", token: 7342B38159C159C40D41CD0073440D42404}
 - {name: "Apiiro", domain: apiiro.com, cat: cyber, tier: 1}
 - {name: "Transmit Security", domain: transmitsecurity.com, cat: cyber, tier: 1}
 - {name: "Cynet", domain: cynet.com, cat: cyber, tier: 1}
@@ -44,9 +44,9 @@
 - {name: "Cycode", domain: cycode.com, cat: cyber, tier: 1}
 - {name: "Guardio", domain: guard.io, cat: cyber, tier: 1}
 - {name: "Cymulate", domain: cymulate.com, cat: cyber, tier: 1}
-- {name: "XM Cyber", domain: xmcyber.com, cat: cyber, tier: 1}
+- {name: "XM Cyber", domain: xmcyber.com, cat: cyber, tier: 1, ats: comeet, uid: "15.005", token: 51519692393A2A1454A2A145423930F3F}
 - {name: "SafeBreach", domain: safebreach.com, cat: cyber, tier: 2}
-- {name: "Hunters", domain: hunters.security, cat: cyber, tier: 2}
+- {name: "Hunters", domain: hunters.security, cat: cyber, tier: 2, ats: comeet, uid: "67.007", token: 7672C6A163533D11D9C429F33D10250333D1}
 - {name: "Backslash Security", domain: backslash.security, cat: cyber, tier: 2}
 - {name: "Jit", domain: jit.io, cat: cyber, tier: 2}
 - {name: "Zero Networks", domain: zeronetworks.com, cat: cyber, tier: 2}
@@ -56,31 +56,31 @@
 - {name: "Token Security", domain: token.security, cat: cyber, tier: 2}
 - {name: "Reco", domain: reco.ai, cat: cyber, tier: 2}
 - {name: "Pillar Security", domain: pillar.security, cat: cyber, tier: 2}
-- {name: "Lasso Security", domain: lasso.security, cat: cyber, tier: 2}
+- {name: "Lasso Security", domain: lasso.security, cat: cyber, tier: 2, ats: comeet, uid: "F9.008", token: 9F845C81DE813F045C84FC031D845C89F89F8}
 - {name: "Gambit Security", domain: gambit.security, cat: cyber, tier: 2}
 - {name: "Orchid Security", domain: orchid.security, cat: cyber, tier: 2}
 - {name: "Entro Security", domain: entro.security, cat: cyber, tier: 2}
-- {name: "Seemplicity", domain: seemplicity.io, cat: cyber, tier: 2}
+- {name: "Seemplicity", domain: seemplicity.io, cat: cyber, tier: 2, ats: comeet, uid: "67.00D", token: 76D2C8E164733FB33FB1DB442D5042D5EDA}
 - {name: "Salt Security", domain: salt.security, cat: cyber, tier: 2}
 - {name: "Nagomi Security", domain: nagomisecurity.com, cat: cyber, tier: 2}
 - {name: "Veriti", domain: veriti.ai, cat: cyber, tier: 2}
-- {name: "Eureka Security", domain: eurekasecurity.io, cat: cyber, tier: 2}
+- {name: "Eureka Security", domain: eurekasecurity.io, cat: cyber, tier: 2}   # acquired by Tenable
 - {name: "Spera Security", domain: spera.security, cat: cyber, tier: 2}
 - {name: "Cyolo", domain: cyolo.io, cat: cyber, tier: 2}
 - {name: "Otorio", domain: otorio.com, cat: cyber, tier: 2}
-- {name: "Sola Security", domain: sola.security, cat: cyber, tier: 2}
+- {name: "Sola Security", domain: sola.security, cat: cyber, tier: 2, ats: comeet, uid: "A9.003", token: 9A343759A343751CE91CE939D24D1813469A3}
 - {name: "Guardz", domain: guardz.com, cat: cyber, tier: 2}
 - {name: "Memcyco", domain: memcyco.com, cat: cyber, tier: 2}
-- {name: "Perception Point", domain: perception-point.io, cat: cyber, tier: 2}
+- {name: "Perception Point", domain: perception-point.io, cat: cyber, tier: 2}   # acquired by Fortinet (Oracle Cloud careers site)
 - {name: "CyCognito", domain: cycognito.com, cat: cyber, tier: 2}
-- {name: "Cybereason", domain: cybereason.com, cat: cyber, tier: 2}
+- {name: "Cybereason", domain: cybereason.com, cat: cyber, tier: 2}   # merged into LevelBlue
 - {name: "Deep Instinct", domain: deepinstinct.com, cat: cyber, tier: 2}
 - {name: "Cyberbit", domain: cyberbit.com, cat: cyber, tier: 2}
-- {name: "Sygnia", domain: sygnia.co, cat: cyber, tier: 2}
+- {name: "Sygnia", domain: sygnia.co, cat: cyber, tier: 2, ats: comeet, uid: "78.00A", token: 87A32DC3B5687A196E2A6210F43B5610F43B56}
 - {name: "Team8", domain: team8.vc, cat: cyber, tier: 2}
 - {name: "ActiveFence", domain: activefence.com, cat: cyber, tier: 2}
 - {name: "Karamba Security", domain: karambasecurity.com, cat: cyber, tier: 2}
-- {name: "Source Defense", domain: sourcedefense.com, cat: cyber, tier: 2}
+- {name: "Source Defense", domain: sourcedefense.com, cat: cyber, tier: 2}   # slug probe matched an unrelated 'source' board
 - {name: "Tufin", domain: tufin.com, cat: cyber, tier: 2}
 - {name: "Nokod Security", domain: nokodsecurity.com, cat: cyber, tier: 2}
 - {name: "Hub Security", domain: hubsecurity.com, cat: cyber, tier: 2}
@@ -92,12 +92,12 @@
 - {name: "Akamai", domain: akamai.com, cat: cyber, tier: 2}
 - {name: "Allot", domain: allot.com, cat: cyber, tier: 3}
 - {name: "F5", domain: f5.com, cat: cyber, tier: 3}
-- {name: "Cyberint", domain: cyberint.com, cat: cyber, tier: 3}
+- {name: "Cyberint", domain: cyberint.com, cat: cyber, tier: 3}   # acquired by Check Point
 - {name: "monday.com", domain: monday.com, cat: tech, tier: 1, slugs: [mondaycom, monday]}
 - {name: "Wix", domain: wix.com, cat: tech, tier: 1}
 - {name: "Fireblocks", domain: fireblocks.com, cat: tech, tier: 1}
-- {name: "Gong", domain: gong.io, cat: tech, tier: 1}
-- {name: "Mobileye", domain: mobileye.com, cat: tech, tier: 1}
+- {name: "Gong", domain: gong.io, cat: tech, tier: 1, ats: greenhouse, token: gongio}
+- {name: "Mobileye", domain: mobileye.com, cat: tech, tier: 1, ats: lever, token: mobileye, region: eu}
 - {name: "JFrog", domain: jfrog.com, cat: tech, tier: 2}
 - {name: "Fiverr", domain: fiverr.com, cat: tech, tier: 2}
 - {name: "Similarweb", domain: similarweb.com, cat: tech, tier: 2}
@@ -110,17 +110,17 @@
 - {name: "Melio", domain: melio.com, cat: tech, tier: 2}
 - {name: "Rapyd", domain: rapyd.net, cat: tech, tier: 2}
 - {name: "Global-e", domain: global-e.com, cat: tech, tier: 2}
-- {name: "Lightricks", domain: lightricks.com, cat: tech, tier: 2}
+- {name: "Lightricks", domain: lightricks.com, cat: tech, tier: 2, ats: greenhouse, token: ltx}
 - {name: "HiBob", domain: hibob.com, cat: tech, tier: 2}
 - {name: "AppsFlyer", domain: appsflyer.com, cat: tech, tier: 2}
 - {name: "Cloudinary", domain: cloudinary.com, cat: tech, tier: 2}
 - {name: "Tipalti", domain: tipalti.com, cat: tech, tier: 2}
 - {name: "eToro", domain: etoro.com, cat: tech, tier: 2}
 - {name: "Forter", domain: forter.com, cat: tech, tier: 2}
-- {name: "Elementor", domain: elementor.com, cat: tech, tier: 2}
-- {name: "Redis", domain: redis.io, cat: tech, tier: 2}
-- {name: "VAST Data", domain: vastdata.com, cat: tech, tier: 2}
-- {name: "DriveNets", domain: drivenets.com, cat: tech, tier: 2}
+- {name: "Elementor", domain: elementor.com, cat: tech, tier: 2, ats: comeet, uid: "A3.00F", token: 3AF126BB0D161A3AF161A00B0D126B}
+- {name: "Redis", domain: redis.io, cat: tech, tier: 2, ats: ashby, token: redis}
+- {name: "VAST Data", domain: vastdata.com, cat: tech, tier: 2}   # slug probe matched an unrelated 'vast' board
+- {name: "DriveNets", domain: drivenets.com, cat: tech, tier: 2, ats: comeet, uid: "72.006", token: 2769D81626762C4E762762C4EC4E1626}
 - {name: "Coralogix", domain: coralogix.com, cat: tech, tier: 2}
 - {name: "Mend.io", domain: mend.io, cat: tech, tier: 2}
 - {name: "Sapiens", domain: sapiens.com, cat: tech, tier: 2}
@@ -128,7 +128,7 @@
 - {name: "NICE", domain: nice.com, cat: tech, tier: 2}
 - {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 2}
 - {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}
-- {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3}
+- {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3, ats: ashby, token: lemonade}
 - {name: "Nayax", domain: nayax.com, cat: tech, tier: 3}
 - {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3}
 - {name: "Papaya Global", domain: papayaglobal.com, cat: tech, tier: 3}
@@ -150,7 +150,7 @@
 - {name: "Ceragon", domain: ceragon.com, cat: tech, tier: 3}
 - {name: "Gilat", domain: gilat.com, cat: tech, tier: 3}
 - {name: "Camtek", domain: camtek.com, cat: tech, tier: 3}
-- {name: "Nova", domain: novami.com, cat: tech, tier: 3}
+- {name: "Nova", domain: novami.com, cat: tech, tier: 3, ats: comeet, uid: "A5.007", token: 5A71C4332DFB4E10F532DFB4E32DF0B4E}
 - {name: "Moon Active", domain: moonactive.com, cat: tech, tier: 3}
 - {name: "Plarium", domain: plarium.com, cat: tech, tier: 3}
 - {name: "Verbit", domain: verbit.ai, cat: tech, tier: 3}
@@ -160,17 +160,17 @@
 - {name: "Google Israel", domain: google.com, cat: multinational, tier: 2}
 - {name: "Amazon Israel", domain: amazon.jobs, cat: multinational, tier: 2}
 - {name: "Apple Israel", domain: apple.com, cat: multinational, tier: 3}
-- {name: "Cisco Israel", domain: cisco.com, cat: multinational, tier: 3}
+- {name: "Cisco Israel", domain: cisco.com, cat: multinational, tier: 3, ats: workday, host: cisco.wd5.myworkdayjobs.com, tenant: cisco, site: Cisco_Careers, search: Israel}
 - {name: "Qualcomm Israel", domain: qualcomm.com, cat: multinational, tier: 3}
-- {name: "Marvell Israel", domain: marvell.com, cat: multinational, tier: 3}
+- {name: "Marvell Israel", domain: marvell.com, cat: multinational, tier: 3, ats: workday, host: marvell.wd1.myworkdayjobs.com, tenant: marvell, site: MarvellCareers, search: Israel}
 - {name: "AMD Israel", domain: amd.com, cat: multinational, tier: 3}
 - {name: "Oracle Israel", domain: oracle.com, cat: multinational, tier: 3}
 - {name: "SAP Israel", domain: sap.com, cat: multinational, tier: 3}
 - {name: "IBM Israel", domain: ibm.com, cat: multinational, tier: 3}
 - {name: "Elbit Systems", domain: elbitsystems.com, cat: defense, tier: 1}
 - {name: "Rafael", domain: rafael.co.il, cat: defense, tier: 1}
-- {name: "Israel Aerospace Industries", domain: iai.co.il, cat: defense, tier: 1}
-- {name: "Israel National Cyber Directorate", domain: cyber.gov.il, cat: gov, tier: 2}
+- {name: "Israel Aerospace Industries", domain: iai.co.il, cat: defense, tier: 1}   # custom careers site; slug probe matched an unrelated 'iai' board
+- {name: "Israel National Cyber Directorate", domain: cyber.gov.il, cat: gov, tier: 2}   # government tenders site; slug probe matched an unrelated board
 - {name: "Israel Security Agency", domain: shabak.gov.il, cat: gov, tier: 3}
 - {name: "Bank Leumi", domain: leumi.co.il, cat: bank, tier: 3}
 - {name: "Bank Hapoalim", domain: bankhapoalim.co.il, cat: bank, tier: 3}

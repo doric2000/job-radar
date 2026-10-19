@@ -3,7 +3,7 @@ from unittest import mock
 
 import requests
 
-from radar.discover import Discoverer
+from radar.discover import Discoverer, candidates_from_html
 from radar.http import Http, HttpError
 from tests.test_fetchers_and_run import FakeHttp
 
@@ -62,6 +62,10 @@ class TestDiscover(unittest.TestCase):
         self.assertEqual(r["status"], "review")
         r = Discoverer(FakeHttp({"v1/boards/acme/jobs": self.GH})).resolve({"id": "acme", "name": "Acme", "domain": "acme.io"})
         self.assertEqual((r["status"], r["ats"]), ("ok", "greenhouse"))
+
+    def test_comeet_wordpress_plugin_vars(self):
+        page = '<script>var comeetvar = {"comeet_token":"45715B315B38AE22B8","comeet_uid":"54.007"};</script>'
+        self.assertIn({"ats": "comeet", "uid": "54.007", "token": "45715B315B38AE22B8"}, candidates_from_html(page))
 
     def test_nothing_found(self):
         r = Discoverer(FakeHttp({})).resolve({"id": "acme", "name": "Acme", "domain": "acme.io"})

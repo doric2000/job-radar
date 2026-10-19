@@ -40,7 +40,8 @@ PATTERNS = [
 ]
 WORKDAY = re.compile(r"([\w-]+)\.(wd\d+)\.myworkdayjobs\.com/(?:[a-z]{2}-[A-Z]{2}/)?([\w-]+)", re.I)
 COMEET_URL = re.compile(r"comeet\.com/jobs/([\w-]+)/([0-9A-Fa-f.]+)", re.I)
-COMEET_UID = re.compile(r"""["']?company-uid["']?\s*[:=]\s*["']([\w.]+)["']""", re.I)
+# "company-uid" is the embed snippet; "comeet_uid" is what the Comeet WordPress plugin prints (var comeetvar)
+COMEET_UID = re.compile(r"""["']?(?:company-uid|comeet_uid)["']?\s*[:=]\s*["']([\w.]+)["']""", re.I)
 COMEET_TOKEN = re.compile(r"""["']?token["']?\s*[:=]\s*["']([0-9A-Fa-f]{8,})["']""", re.I)
 
 CAREER_PATHS = ["/careers", "/careers/", "/jobs", "/company/careers", "/about/careers", "/join-us", "/careers/jobs"]
