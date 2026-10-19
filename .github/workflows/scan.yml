@@ -2,7 +2,7 @@ name: scan
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # GitHub may delay scheduled runs by several minutes under load
+    - cron: "1-59/5 * * * *"   # every 5 min, offset from :00 when GitHub is busiest; GitHub may delay scheduled runs by several minutes under load
   workflow_dispatch:
     inputs:
       all:
