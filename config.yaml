@@ -1,0 +1,34 @@
+# הגדרות אישיות. כל ערך כאן דורס את ברירת המחדל שבקוד (radar/config.py).
+# הקובץ הזה נמצא במאגר ציבורי: אל תכתוב בו פרטים אישיים.
+
+timezone: Asia/Jerusalem
+
+scan:
+  # tier 1 נסרק בכל ריצה (~כל 5 דקות), tier 2 כל ריצה שנייה, tier 3 כל ריצה שישית (~30 דקות)
+  tier_every_n_runs: {1: 1, 2: 2, 3: 6}
+  # בסריקה הראשונה של חברה: מתריעים רק על משרות שתאריך המקור שלהן טרי (שעות), כדי לא להציף
+  baseline_alert_within_hours: 48
+  # משרה חדשה-לנו שתאריך המקור שלה ישן מזה לא תתריע (משרה שחזרה או לוח שנוסף)
+  max_age_days: 30
+
+match:
+  # מה לכלול מעבר לברירת המחדל (מתחילים במפורש / עד שנה / עד שנתיים ניסיון):
+  include_unspecified_experience: false   # כותרת גנרית בלי שום ציון ותק. true = יותר התראות, יותר רעש
+  include_internships: true
+  include_student_parttime: false         # "משרת סטודנט" / חלקית
+  max_years_accept: 2
+
+location:
+  israel: true
+  remote: true          # מרחוק: רק אם ההיקף עולמי / EMEA / ישראל / לא מוגבל למדינה אחרת
+  relocation: true      # חו"ל: רק אם המשרה מציינת רילוקיישן או חסות ויזה
+
+notify:
+  telegram: true
+  max_alerts_per_run: 25
+  daily_digest_hour: 8   # הודעת "הבוט חי" אחת ביום + רשימת לוחות שנכשלים
+
+leads:
+  # ערוצי טלגרם ציבוריים (בלי התחברות, דרך https://t.me/s/<handle>). הוסף ידיות שבדקת בעצמך.
+  # תמצא קישורים לערוצי משרות לג'וניורים באתר Goozali. הערוצים נחשבים "לידים": לאמת במקור.
+  telegram_channels: []

@@ -1,0 +1,190 @@
+# Company registry. YAML list; one company per line.
+#   name / domain : used for discovery (careers page + slug probing)
+#   cat           : cyber | tech | multinational | defense | gov | bank
+#   tier          : 1 scanned every run (~5 min) | 2 every 2nd run | 3 every 6th run (see config.yaml scan.tier_every_n_runs)
+#   slugs         : optional ATS board-name hints for discovery
+#   ats + token/...: optional MANUAL config (wins over data/resolved.json); ats: greenhouse|lever|ashby|comeet|
+#                    smartrecruiters|workable|recruitee|workday
+# Everything below is a SEED: domains are written from memory and have NOT been verified from the build
+# environment. The "discover" workflow checks each one against live services and writes data/resolved.json
+# plus data/discovery_report.md (resolved / needs review / not found). Fix or add entries freely.
+
+- {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1}
+- {name: "CyberArk", domain: cyberark.com, cat: cyber, tier: 1}
+- {name: "Wiz", domain: wiz.io, cat: cyber, tier: 1, slugs: [wizinc, wiz]}
+- {name: "Palo Alto Networks", domain: paloaltonetworks.com, cat: cyber, tier: 1}
+- {name: "Cato Networks", domain: catonetworks.com, cat: cyber, tier: 1}
+- {name: "Armis", domain: armis.com, cat: cyber, tier: 1}
+- {name: "Cyera", domain: cyera.io, cat: cyber, tier: 1}
+- {name: "Island", domain: island.io, cat: cyber, tier: 1}
+- {name: "Silverfort", domain: silverfort.com, cat: cyber, tier: 1}
+- {name: "Axonius", domain: axonius.com, cat: cyber, tier: 1}
+- {name: "Orca Security", domain: orca.security, cat: cyber, tier: 1}
+- {name: "Aqua Security", domain: aquasec.com, cat: cyber, tier: 1}
+- {name: "Pentera", domain: pentera.io, cat: cyber, tier: 1}
+- {name: "Claroty", domain: claroty.com, cat: cyber, tier: 1}
+- {name: "SentinelOne", domain: sentinelone.com, cat: cyber, tier: 1, slugs: [sentinellabs, sentinelone]}
+- {name: "Snyk", domain: snyk.io, cat: cyber, tier: 1}
+- {name: "Upwind", domain: upwind.io, cat: cyber, tier: 1}
+- {name: "Zenity", domain: zenity.io, cat: cyber, tier: 1}
+- {name: "Noma Security", domain: noma.security, cat: cyber, tier: 1}
+- {name: "Oligo Security", domain: oligo.security, cat: cyber, tier: 1}
+- {name: "OX Security", domain: ox.security, cat: cyber, tier: 1}
+- {name: "Legit Security", domain: legitsecurity.com, cat: cyber, tier: 1}
+- {name: "Apiiro", domain: apiiro.com, cat: cyber, tier: 1}
+- {name: "Transmit Security", domain: transmitsecurity.com, cat: cyber, tier: 1}
+- {name: "Cynet", domain: cynet.com, cat: cyber, tier: 1}
+- {name: "Torq", domain: torq.io, cat: cyber, tier: 1}
+- {name: "Panorays", domain: panorays.com, cat: cyber, tier: 1}
+- {name: "Varonis", domain: varonis.com, cat: cyber, tier: 1}
+- {name: "Checkmarx", domain: checkmarx.com, cat: cyber, tier: 1}
+- {name: "Zafran", domain: zafran.io, cat: cyber, tier: 1}
+- {name: "Mitiga", domain: mitiga.io, cat: cyber, tier: 1}
+- {name: "Sweet Security", domain: sweet.security, cat: cyber, tier: 1}
+- {name: "Cycode", domain: cycode.com, cat: cyber, tier: 1}
+- {name: "Guardio", domain: guard.io, cat: cyber, tier: 1}
+- {name: "Cymulate", domain: cymulate.com, cat: cyber, tier: 1}
+- {name: "XM Cyber", domain: xmcyber.com, cat: cyber, tier: 1}
+- {name: "SafeBreach", domain: safebreach.com, cat: cyber, tier: 2}
+- {name: "Hunters", domain: hunters.security, cat: cyber, tier: 2}
+- {name: "Backslash Security", domain: backslash.security, cat: cyber, tier: 2}
+- {name: "Jit", domain: jit.io, cat: cyber, tier: 2}
+- {name: "Zero Networks", domain: zeronetworks.com, cat: cyber, tier: 2}
+- {name: "Semperis", domain: semperis.com, cat: cyber, tier: 2}
+- {name: "Oasis Security", domain: oasis.security, cat: cyber, tier: 2}
+- {name: "Astrix Security", domain: astrix.security, cat: cyber, tier: 2}
+- {name: "Token Security", domain: token.security, cat: cyber, tier: 2}
+- {name: "Reco", domain: reco.ai, cat: cyber, tier: 2}
+- {name: "Pillar Security", domain: pillar.security, cat: cyber, tier: 2}
+- {name: "Lasso Security", domain: lasso.security, cat: cyber, tier: 2}
+- {name: "Gambit Security", domain: gambit.security, cat: cyber, tier: 2}
+- {name: "Orchid Security", domain: orchid.security, cat: cyber, tier: 2}
+- {name: "Entro Security", domain: entro.security, cat: cyber, tier: 2}
+- {name: "Seemplicity", domain: seemplicity.io, cat: cyber, tier: 2}
+- {name: "Salt Security", domain: salt.security, cat: cyber, tier: 2}
+- {name: "Nagomi Security", domain: nagomisecurity.com, cat: cyber, tier: 2}
+- {name: "Veriti", domain: veriti.ai, cat: cyber, tier: 2}
+- {name: "Eureka Security", domain: eurekasecurity.io, cat: cyber, tier: 2}
+- {name: "Spera Security", domain: spera.security, cat: cyber, tier: 2}
+- {name: "Cyolo", domain: cyolo.io, cat: cyber, tier: 2}
+- {name: "Otorio", domain: otorio.com, cat: cyber, tier: 2}
+- {name: "Sola Security", domain: sola.security, cat: cyber, tier: 2}
+- {name: "Guardz", domain: guardz.com, cat: cyber, tier: 2}
+- {name: "Memcyco", domain: memcyco.com, cat: cyber, tier: 2}
+- {name: "Perception Point", domain: perception-point.io, cat: cyber, tier: 2}
+- {name: "CyCognito", domain: cycognito.com, cat: cyber, tier: 2}
+- {name: "Cybereason", domain: cybereason.com, cat: cyber, tier: 2}
+- {name: "Deep Instinct", domain: deepinstinct.com, cat: cyber, tier: 2}
+- {name: "Cyberbit", domain: cyberbit.com, cat: cyber, tier: 2}
+- {name: "Sygnia", domain: sygnia.co, cat: cyber, tier: 2}
+- {name: "Team8", domain: team8.vc, cat: cyber, tier: 2}
+- {name: "ActiveFence", domain: activefence.com, cat: cyber, tier: 2}
+- {name: "Karamba Security", domain: karambasecurity.com, cat: cyber, tier: 2}
+- {name: "Source Defense", domain: sourcedefense.com, cat: cyber, tier: 2}
+- {name: "Tufin", domain: tufin.com, cat: cyber, tier: 2}
+- {name: "Nokod Security", domain: nokodsecurity.com, cat: cyber, tier: 2}
+- {name: "Hub Security", domain: hubsecurity.com, cat: cyber, tier: 2}
+- {name: "Cognyte", domain: cognyte.com, cat: cyber, tier: 2}
+- {name: "Cellebrite", domain: cellebrite.com, cat: cyber, tier: 2}
+- {name: "Imperva", domain: imperva.com, cat: cyber, tier: 2}
+- {name: "Rapid7", domain: rapid7.com, cat: cyber, tier: 2}
+- {name: "Radware", domain: radware.com, cat: cyber, tier: 2}
+- {name: "Akamai", domain: akamai.com, cat: cyber, tier: 2}
+- {name: "Allot", domain: allot.com, cat: cyber, tier: 3}
+- {name: "F5", domain: f5.com, cat: cyber, tier: 3}
+- {name: "Cyberint", domain: cyberint.com, cat: cyber, tier: 3}
+- {name: "monday.com", domain: monday.com, cat: tech, tier: 1, slugs: [mondaycom, monday]}
+- {name: "Wix", domain: wix.com, cat: tech, tier: 1}
+- {name: "Fireblocks", domain: fireblocks.com, cat: tech, tier: 1}
+- {name: "Gong", domain: gong.io, cat: tech, tier: 1}
+- {name: "Mobileye", domain: mobileye.com, cat: tech, tier: 1}
+- {name: "JFrog", domain: jfrog.com, cat: tech, tier: 2}
+- {name: "Fiverr", domain: fiverr.com, cat: tech, tier: 2}
+- {name: "Similarweb", domain: similarweb.com, cat: tech, tier: 2}
+- {name: "Taboola", domain: taboola.com, cat: tech, tier: 2}
+- {name: "Teads", domain: teads.com, cat: tech, tier: 2}
+- {name: "Playtika", domain: playtika.com, cat: tech, tier: 2}
+- {name: "Riskified", domain: riskified.com, cat: tech, tier: 2}
+- {name: "Payoneer", domain: payoneer.com, cat: tech, tier: 2}
+- {name: "Pagaya", domain: pagaya.com, cat: tech, tier: 2}
+- {name: "Melio", domain: melio.com, cat: tech, tier: 2}
+- {name: "Rapyd", domain: rapyd.net, cat: tech, tier: 2}
+- {name: "Global-e", domain: global-e.com, cat: tech, tier: 2}
+- {name: "Lightricks", domain: lightricks.com, cat: tech, tier: 2}
+- {name: "HiBob", domain: hibob.com, cat: tech, tier: 2}
+- {name: "AppsFlyer", domain: appsflyer.com, cat: tech, tier: 2}
+- {name: "Cloudinary", domain: cloudinary.com, cat: tech, tier: 2}
+- {name: "Tipalti", domain: tipalti.com, cat: tech, tier: 2}
+- {name: "eToro", domain: etoro.com, cat: tech, tier: 2}
+- {name: "Forter", domain: forter.com, cat: tech, tier: 2}
+- {name: "Elementor", domain: elementor.com, cat: tech, tier: 2}
+- {name: "Redis", domain: redis.io, cat: tech, tier: 2}
+- {name: "VAST Data", domain: vastdata.com, cat: tech, tier: 2}
+- {name: "DriveNets", domain: drivenets.com, cat: tech, tier: 2}
+- {name: "Coralogix", domain: coralogix.com, cat: tech, tier: 2}
+- {name: "Mend.io", domain: mend.io, cat: tech, tier: 2}
+- {name: "Sapiens", domain: sapiens.com, cat: tech, tier: 2}
+- {name: "Amdocs", domain: amdocs.com, cat: tech, tier: 2}
+- {name: "NICE", domain: nice.com, cat: tech, tier: 2}
+- {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 2}
+- {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}
+- {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3}
+- {name: "Nayax", domain: nayax.com, cat: tech, tier: 3}
+- {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3}
+- {name: "Papaya Global", domain: papayaglobal.com, cat: tech, tier: 3}
+- {name: "Yotpo", domain: yotpo.com, cat: tech, tier: 3}
+- {name: "Lusha", domain: lusha.com, cat: tech, tier: 3}
+- {name: "Via", domain: ridewithvia.com, cat: tech, tier: 3}
+- {name: "Bringg", domain: bringg.com, cat: tech, tier: 3}
+- {name: "Plus500", domain: plus500.com, cat: tech, tier: 3}
+- {name: "Verint", domain: verint.com, cat: tech, tier: 3}
+- {name: "Hilan", domain: hilan.co.il, cat: tech, tier: 3}
+- {name: "One1", domain: one1.co.il, cat: tech, tier: 3}
+- {name: "Bynet", domain: bynet.co.il, cat: tech, tier: 3}
+- {name: "Kaltura", domain: kaltura.com, cat: tech, tier: 3}
+- {name: "Optimove", domain: optimove.com, cat: tech, tier: 3}
+- {name: "Sisense", domain: sisense.com, cat: tech, tier: 3}
+- {name: "Lightrun", domain: lightrun.com, cat: tech, tier: 3}
+- {name: "WEKA", domain: weka.io, cat: tech, tier: 3}
+- {name: "Pliops", domain: pliops.com, cat: tech, tier: 3}
+- {name: "Ceragon", domain: ceragon.com, cat: tech, tier: 3}
+- {name: "Gilat", domain: gilat.com, cat: tech, tier: 3}
+- {name: "Camtek", domain: camtek.com, cat: tech, tier: 3}
+- {name: "Nova", domain: novami.com, cat: tech, tier: 3}
+- {name: "Moon Active", domain: moonactive.com, cat: tech, tier: 3}
+- {name: "Plarium", domain: plarium.com, cat: tech, tier: 3}
+- {name: "Verbit", domain: verbit.ai, cat: tech, tier: 3}
+- {name: "Hailo", domain: hailo.ai, cat: tech, tier: 3}
+- {name: "Innoviz", domain: innoviz.tech, cat: tech, tier: 3}
+- {name: "Microsoft Israel", domain: microsoft.com, cat: multinational, tier: 2}
+- {name: "Google Israel", domain: google.com, cat: multinational, tier: 2}
+- {name: "Amazon Israel", domain: amazon.jobs, cat: multinational, tier: 2}
+- {name: "Apple Israel", domain: apple.com, cat: multinational, tier: 3}
+- {name: "Cisco Israel", domain: cisco.com, cat: multinational, tier: 3}
+- {name: "Qualcomm Israel", domain: qualcomm.com, cat: multinational, tier: 3}
+- {name: "Marvell Israel", domain: marvell.com, cat: multinational, tier: 3}
+- {name: "AMD Israel", domain: amd.com, cat: multinational, tier: 3}
+- {name: "Oracle Israel", domain: oracle.com, cat: multinational, tier: 3}
+- {name: "SAP Israel", domain: sap.com, cat: multinational, tier: 3}
+- {name: "IBM Israel", domain: ibm.com, cat: multinational, tier: 3}
+- {name: "Elbit Systems", domain: elbitsystems.com, cat: defense, tier: 1}
+- {name: "Rafael", domain: rafael.co.il, cat: defense, tier: 1}
+- {name: "Israel Aerospace Industries", domain: iai.co.il, cat: defense, tier: 1}
+- {name: "Israel National Cyber Directorate", domain: cyber.gov.il, cat: gov, tier: 2}
+- {name: "Israel Security Agency", domain: shabak.gov.il, cat: gov, tier: 3}
+- {name: "Bank Leumi", domain: leumi.co.il, cat: bank, tier: 3}
+- {name: "Bank Hapoalim", domain: bankhapoalim.co.il, cat: bank, tier: 3}
+- {name: "Israel Discount Bank", domain: discountbank.co.il, cat: bank, tier: 3}
+- {name: "Mizrahi Tefahot", domain: mizrahi-tefahot.co.il, cat: bank, tier: 3}
+- {name: "First International Bank", domain: fibi.co.il, cat: bank, tier: 3}
+- {name: "Harel", domain: harel-group.co.il, cat: bank, tier: 3}
+- {name: "The Phoenix", domain: fnx.co.il, cat: bank, tier: 3}
+- {name: "Migdal", domain: migdal.co.il, cat: bank, tier: 3}
+- {name: "Clal Insurance", domain: clalbit.co.il, cat: bank, tier: 3}
+- {name: "Cellcom", domain: cellcom.co.il, cat: bank, tier: 3}
+- {name: "Partner", domain: partner.co.il, cat: bank, tier: 3}
+- {name: "Bezeq", domain: bezeq.co.il, cat: bank, tier: 3}
+
+# --- manual ATS config written from memory (UNVERIFIED: confirm with `python -m radar.run --healthcheck`) ---
+- {name: "NVIDIA", domain: nvidia.com, cat: multinational, tier: 1, ats: workday, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite, search: Israel}
+- {name: "Intel", domain: intel.com, cat: multinational, tier: 1, ats: workday, host: intel.wd1.myworkdayjobs.com, tenant: intel, site: External, search: Israel}

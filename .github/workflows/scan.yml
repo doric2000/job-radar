@@ -1,0 +1,67 @@
+name: scan
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # GitHub may delay scheduled runs by several minutes under load
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Scan every company now (ignore tier schedule)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write            # needed only to store state.json on the `state` branch
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Restore state
+        run: |
+          mkdir -p state
+          if git fetch --depth=1 origin state 2>/dev/null; then
+            git show FETCH_HEAD:state.json > state/state.json
+            echo "state restored: $(wc -c < state/state.json) bytes"
+          else
+            echo "no state branch yet - first run will build the baseline silently"
+          fi
+          cp -f state/state.json state/state.before.json 2>/dev/null || true
+
+      - name: Scan
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m radar.run --state state/state.json ${{ inputs.all && '--all' || '' }}
+
+      - name: Save state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f state/state.json ] && ! cmp -s state/state.json state/state.before.json; then
+            rm -rf /tmp/st && mkdir /tmp/st && cp state/state.json /tmp/st/state.json
+            cd /tmp/st
+            git init -q -b state
+            git config user.name "job-radar"
+            git config user.email "job-radar@users.noreply.github.com"
+            git add state.json
+            git commit -qm "state $(date -u +%FT%TZ)"
+            git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" state
+            echo "state saved"
+          else
+            echo "state unchanged"
+          fi
