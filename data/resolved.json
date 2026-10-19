@@ -1,0 +1,1499 @@
+{
+ "companies": {
+  "activefence": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:53:54Z",
+   "evidence": "link on https://activefence.com/careers",
+   "israel_jobs": 20,
+   "jobs": 43,
+   "name": "ActiveFence",
+   "status": "ok",
+   "token": "5D51D29347D2EA828D3347DBAA2EA85D522FE",
+   "uid": "D5.005"
+  },
+  "akamai": {
+   "checked_at": "2026-10-19T16:54:43Z",
+   "evidence": "",
+   "name": "Akamai",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "allot": {
+   "checked_at": "2026-10-19T16:54:43Z",
+   "evidence": "",
+   "name": "Allot",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "amazon-israel": {
+   "checked_at": "2026-10-19T17:00:33Z",
+   "evidence": "",
+   "name": "Amazon Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "amd-israel": {
+   "checked_at": "2026-10-19T17:00:46Z",
+   "evidence": "",
+   "name": "AMD Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "amdocs": {
+   "checked_at": "2026-10-19T16:56:57Z",
+   "evidence": "",
+   "name": "Amdocs",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "apiiro": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:50:57Z",
+   "evidence": "slug probe",
+   "israel_jobs": 4,
+   "jobs": 5,
+   "name": "Apiiro",
+   "status": "ok",
+   "token": "apiiro"
+  },
+  "apple-israel": {
+   "checked_at": "2026-10-19T17:00:35Z",
+   "evidence": "",
+   "name": "Apple Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "appsflyer": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:56:06Z",
+   "evidence": "slug probe",
+   "israel_jobs": 24,
+   "jobs": 50,
+   "name": "AppsFlyer",
+   "status": "ok",
+   "token": "appsflyer"
+  },
+  "aqua-security": {
+   "checked_at": "2026-10-19T16:50:09Z",
+   "evidence": "",
+   "name": "Aqua Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "armis": {
+   "ats": "smartrecruiters",
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "link on https://armis.com/careers",
+   "israel_jobs": 16,
+   "jobs": 705,
+   "name": "Armis",
+   "status": "ok",
+   "token": "ServiceNow"
+  },
+  "astrix-security": {
+   "checked_at": "2026-10-19T16:52:07Z",
+   "evidence": "",
+   "name": "Astrix Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "axonius": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:50:07Z",
+   "evidence": "slug probe",
+   "israel_jobs": 6,
+   "jobs": 21,
+   "name": "Axonius",
+   "status": "ok",
+   "token": "axonius"
+  },
+  "backslash-security": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:51:42Z",
+   "evidence": "link on https://backslash.security/careers",
+   "israel_jobs": 2,
+   "jobs": 4,
+   "name": "Backslash Security",
+   "status": "ok",
+   "token": "89433783C0C22503378337889419BC33782AE4",
+   "uid": "98.004"
+  },
+  "bank-hapoalim": {
+   "checked_at": "2026-10-19T17:01:16Z",
+   "evidence": "",
+   "name": "Bank Hapoalim",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "bank-leumi": {
+   "checked_at": "2026-10-19T17:01:14Z",
+   "evidence": "",
+   "name": "Bank Leumi",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "bezeq": {
+   "checked_at": "2026-10-19T17:02:22Z",
+   "evidence": "",
+   "name": "Bezeq",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "bringg": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:57:44Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 2,
+   "name": "Bringg",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "bringg"
+  },
+  "bynet": {
+   "checked_at": "2026-10-19T16:58:01Z",
+   "evidence": "",
+   "name": "Bynet",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "camtek": {
+   "checked_at": "2026-10-19T16:59:48Z",
+   "evidence": "",
+   "name": "Camtek",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cato-networks": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "link on https://catonetworks.com/careers",
+   "israel_jobs": 39,
+   "jobs": 108,
+   "name": "Cato Networks",
+   "status": "ok",
+   "token": "catonetworks"
+  },
+  "cellcom": {
+   "checked_at": "2026-10-19T17:02:18Z",
+   "evidence": "",
+   "name": "Cellcom",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cellebrite": {
+   "checked_at": "2026-10-19T16:54:23Z",
+   "evidence": "",
+   "name": "Cellebrite",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "ceragon": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:58:34Z",
+   "evidence": "link on https://ceragon.com/careers",
+   "israel_jobs": 13,
+   "jobs": 47,
+   "name": "Ceragon",
+   "status": "ok",
+   "token": "3D3131FF4C01AC57A61AC51E98131FF4C",
+   "uid": "D3.003"
+  },
+  "check-point": {
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "",
+   "name": "Check Point",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "checkmarx": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:51:18Z",
+   "evidence": "link on https://checkmarx.com/careers",
+   "israel_jobs": 5,
+   "jobs": 31,
+   "name": "Checkmarx",
+   "status": "ok",
+   "token": "C8320190002581902584B0708",
+   "uid": "C0.008"
+  },
+  "cisco-israel": {
+   "checked_at": "2026-10-19T17:00:40Z",
+   "evidence": "",
+   "name": "Cisco Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "clal-insurance": {
+   "checked_at": "2026-10-19T17:02:11Z",
+   "evidence": "",
+   "name": "Clal Insurance",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "claroty": {
+   "checked_at": "2026-10-19T16:50:16Z",
+   "evidence": "",
+   "name": "Claroty",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cloudinary": {
+   "ats": "lever",
+   "checked_at": "2026-10-19T16:56:14Z",
+   "evidence": "slug probe",
+   "israel_jobs": 6,
+   "jobs": 10,
+   "name": "Cloudinary",
+   "status": "ok",
+   "token": "cloudinary"
+  },
+  "cognyte": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:54:21Z",
+   "evidence": "link on https://cognyte.com/careers",
+   "israel_jobs": 14,
+   "jobs": 45,
+   "name": "Cognyte",
+   "status": "ok",
+   "token": "2F9EDD2F92F911D61AC12F914CF11D62F9",
+   "uid": "F2.009"
+  },
+  "coralogix": {
+   "checked_at": "2026-10-19T16:56:43Z",
+   "evidence": "",
+   "name": "Coralogix",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cyberark": {
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "",
+   "name": "CyberArk",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cyberbit": {
+   "checked_at": "2026-10-19T16:53:41Z",
+   "evidence": "",
+   "name": "Cyberbit",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cybereason": {
+   "checked_at": "2026-10-19T16:53:34Z",
+   "evidence": "",
+   "name": "Cybereason",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cyberint": {
+   "checked_at": "2026-10-19T16:54:57Z",
+   "evidence": "",
+   "name": "Cyberint",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "cycode": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:51:23Z",
+   "evidence": "link on https://cycode.com/careers",
+   "israel_jobs": 2,
+   "jobs": 5,
+   "name": "Cycode",
+   "status": "ok",
+   "token": "8AD340E3CBB3CBB22B445680340E22B44568",
+   "uid": "A8.00D"
+  },
+  "cycognito": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:53:33Z",
+   "evidence": "link on https://cycognito.com/company/careers",
+   "israel_jobs": 0,
+   "jobs": 1,
+   "name": "CyCognito",
+   "status": "ok",
+   "token": "41A148210681CB61CB68341CB624EAC4E1482",
+   "uid": "14.00A"
+  },
+  "cyera": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "link on https://cyera.io/careers",
+   "israel_jobs": 29,
+   "jobs": 249,
+   "name": "Cyera",
+   "status": "ok",
+   "token": "7182A90154871823783FD838C031A802378",
+   "uid": "17.008"
+  },
+  "cymulate": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:51:32Z",
+   "evidence": "slug probe",
+   "israel_jobs": 3,
+   "jobs": 18,
+   "name": "Cymulate",
+   "status": "ok",
+   "token": "cymulate"
+  },
+  "cynet": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:50:59Z",
+   "evidence": "link on https://cynet.com/careers",
+   "israel_jobs": 2,
+   "jobs": 9,
+   "name": "Cynet",
+   "status": "ok",
+   "token": "33D103133D19E8136E1D25103133D10311D25",
+   "uid": "33.00D"
+  },
+  "cyolo": {
+   "checked_at": "2026-10-19T16:53:06Z",
+   "evidence": "",
+   "name": "Cyolo",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "deep-instinct": {
+   "checked_at": "2026-10-19T16:53:35Z",
+   "evidence": "",
+   "name": "Deep Instinct",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "drivenets": {
+   "checked_at": "2026-10-19T16:56:42Z",
+   "evidence": "",
+   "name": "DriveNets",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "elbit-systems": {
+   "checked_at": "2026-10-19T17:00:51Z",
+   "evidence": "",
+   "name": "Elbit Systems",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "elementor": {
+   "checked_at": "2026-10-19T16:56:26Z",
+   "evidence": "",
+   "name": "Elementor",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "entro-security": {
+   "ats": "workday",
+   "checked_at": "2026-10-19T16:52:39Z",
+   "evidence": "link on https://entro.security/careers",
+   "host": "sailpoint.wd1.myworkdayjobs.com",
+   "israel_jobs": 0,
+   "jobs": 1,
+   "name": "Entro Security",
+   "site": "SailPoint",
+   "status": "ok",
+   "tenant": "sailpoint"
+  },
+  "etoro": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:56:22Z",
+   "evidence": "link on https://etoro.com/careers",
+   "israel_jobs": 4,
+   "jobs": 23,
+   "name": "eToro",
+   "status": "ok",
+   "token": "14952452466D3DB7B61495240B91",
+   "uid": "41.009"
+  },
+  "eureka-security": {
+   "checked_at": "2026-10-19T16:52:55Z",
+   "evidence": "",
+   "name": "Eureka Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "f5": {
+   "ats": "workday",
+   "checked_at": "2026-10-19T16:54:53Z",
+   "evidence": "link on https://f5.com/careers",
+   "host": "ffive.wd5.myworkdayjobs.com",
+   "israel_jobs": 1,
+   "jobs": 4,
+   "name": "F5",
+   "site": "f5jobs",
+   "status": "ok",
+   "tenant": "ffive"
+  },
+  "fireblocks": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:03Z",
+   "evidence": "link on https://fireblocks.com/careers",
+   "israel_jobs": 0,
+   "jobs": 26,
+   "name": "Fireblocks",
+   "status": "ok",
+   "token": "fireblocks"
+  },
+  "first-international-bank": {
+   "checked_at": "2026-10-19T17:01:39Z",
+   "evidence": "",
+   "name": "First International Bank",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "fiverr": {
+   "ats": "smartrecruiters",
+   "checked_at": "2026-10-19T16:55:18Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 3,
+   "name": "Fiverr",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "fiverr"
+  },
+  "forter": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:56:25Z",
+   "evidence": "slug probe",
+   "israel_jobs": 4,
+   "jobs": 22,
+   "name": "Forter",
+   "status": "ok",
+   "token": "forter"
+  },
+  "gambit-security": {
+   "checked_at": "2026-10-19T16:52:29Z",
+   "evidence": "",
+   "name": "Gambit Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "gilat": {
+   "checked_at": "2026-10-19T16:58:51Z",
+   "evidence": "",
+   "name": "Gilat",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "global-e": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:55:51Z",
+   "evidence": "link on https://global-e.com/careers",
+   "israel_jobs": 19,
+   "jobs": 49,
+   "name": "Global-e",
+   "status": "ok",
+   "token": "262988131015727264C41572E4C10AE10AE",
+   "uid": "62.002"
+  },
+  "gong": {
+   "ats": "smartrecruiters",
+   "checked_at": "2026-10-19T16:55:09Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 7,
+   "name": "Gong",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "gong"
+  },
+  "google-israel": {
+   "checked_at": "2026-10-19T17:00:28Z",
+   "evidence": "",
+   "name": "Google Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "guardio": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:51:30Z",
+   "evidence": "link on https://guard.io/careers",
+   "israel_jobs": 18,
+   "jobs": 18,
+   "name": "Guardio",
+   "status": "ok",
+   "token": "7502BE015F0249041D01D40EA03A801D40EA0",
+   "uid": "57.000"
+  },
+  "guardz": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:53:19Z",
+   "evidence": "slug probe",
+   "israel_jobs": 3,
+   "jobs": 4,
+   "name": "Guardz",
+   "status": "ok",
+   "token": "guardz"
+  },
+  "hailo": {
+   "checked_at": "2026-10-19T17:00:10Z",
+   "evidence": "",
+   "name": "Hailo",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "harel": {
+   "checked_at": "2026-10-19T17:01:46Z",
+   "evidence": "",
+   "name": "Harel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "hibob": {
+   "ats": "smartrecruiters",
+   "checked_at": "2026-10-19T16:56:05Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 1,
+   "name": "HiBob",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "hibob"
+  },
+  "hilan": {
+   "checked_at": "2026-10-19T16:57:55Z",
+   "evidence": "",
+   "name": "Hilan",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "hub-security": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:54:13Z",
+   "evidence": "link on https://www.hubsecurity.com/careers",
+   "israel_jobs": 0,
+   "jobs": 0,
+   "name": "Hub Security",
+   "status": "ok",
+   "token": "70F2A5A152D70F70F316903F8770F3169",
+   "uid": "07.00F"
+  },
+  "hunters": {
+   "checked_at": "2026-10-19T16:51:41Z",
+   "evidence": "",
+   "name": "Hunters",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "ibm-israel": {
+   "checked_at": "2026-10-19T17:00:50Z",
+   "evidence": "",
+   "name": "IBM Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "imperva": {
+   "checked_at": "2026-10-19T16:54:24Z",
+   "evidence": "",
+   "name": "Imperva",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "innoviz": {
+   "checked_at": "2026-10-19T17:00:16Z",
+   "evidence": "",
+   "name": "Innoviz",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "island": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "slug probe",
+   "israel_jobs": 9,
+   "jobs": 29,
+   "name": "Island",
+   "status": "ok",
+   "token": "island"
+  },
+  "israel-aerospace-industries": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T17:00:58Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 3,
+   "name": "Israel Aerospace Industries",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "iai"
+  },
+  "israel-discount-bank": {
+   "checked_at": "2026-10-19T17:01:20Z",
+   "evidence": "",
+   "name": "Israel Discount Bank",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "israel-national-cyber-directorate": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T17:01:12Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 3,
+   "name": "Israel National Cyber Directorate",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "national"
+  },
+  "israel-security-agency": {
+   "checked_at": "2026-10-19T17:01:14Z",
+   "evidence": "",
+   "name": "Israel Security Agency",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "jfrog": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:13Z",
+   "evidence": "slug probe",
+   "israel_jobs": 18,
+   "jobs": 63,
+   "name": "JFrog",
+   "status": "ok",
+   "token": "jfrog"
+  },
+  "jit": {
+   "checked_at": "2026-10-19T16:51:50Z",
+   "evidence": "",
+   "name": "Jit",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "kaltura": {
+   "ats": "smartrecruiters",
+   "checked_at": "2026-10-19T16:58:04Z",
+   "evidence": "slug probe",
+   "israel_jobs": 3,
+   "jobs": 4,
+   "name": "Kaltura",
+   "status": "ok",
+   "token": "kalturainc"
+  },
+  "karamba-security": {
+   "checked_at": "2026-10-19T16:53:54Z",
+   "evidence": "",
+   "name": "Karamba Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "lasso-security": {
+   "checked_at": "2026-10-19T16:52:26Z",
+   "evidence": "",
+   "name": "Lasso Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "legit-security": {
+   "checked_at": "2026-10-19T16:50:55Z",
+   "evidence": "",
+   "name": "Legit Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "lemonade": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:57:10Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 41,
+   "name": "Lemonade",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "lemonade"
+  },
+  "lightricks": {
+   "checked_at": "2026-10-19T16:56:00Z",
+   "evidence": "",
+   "name": "Lightricks",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "lightrun": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:58:33Z",
+   "evidence": "slug probe",
+   "israel_jobs": 1,
+   "jobs": 1,
+   "name": "Lightrun",
+   "status": "ok",
+   "token": "lightrun"
+  },
+  "lusha": {
+   "checked_at": "2026-10-19T16:57:40Z",
+   "evidence": "",
+   "name": "Lusha",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "malam-team": {
+   "checked_at": "2026-10-19T16:57:08Z",
+   "evidence": "",
+   "name": "Malam Team",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "marvell-israel": {
+   "checked_at": "2026-10-19T17:00:46Z",
+   "evidence": "",
+   "name": "Marvell Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "matrix-it": {
+   "checked_at": "2026-10-19T16:57:04Z",
+   "evidence": "",
+   "name": "Matrix IT",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "melio": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:47Z",
+   "evidence": "slug probe",
+   "israel_jobs": 9,
+   "jobs": 23,
+   "name": "Melio",
+   "status": "ok",
+   "token": "melio"
+  },
+  "memcyco": {
+   "checked_at": "2026-10-19T16:53:28Z",
+   "evidence": "",
+   "name": "Memcyco",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "mend-io": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:56:48Z",
+   "evidence": "link on https://mend.io/careers",
+   "israel_jobs": 2,
+   "jobs": 9,
+   "name": "Mend.io",
+   "status": "ok",
+   "token": "mend-io"
+  },
+  "microsoft-israel": {
+   "checked_at": "2026-10-19T17:00:17Z",
+   "evidence": "",
+   "name": "Microsoft Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "migdal": {
+   "checked_at": "2026-10-19T17:02:08Z",
+   "evidence": "",
+   "name": "Migdal",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "mitiga": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:51:21Z",
+   "evidence": "link on https://mitiga.io/careers",
+   "israel_jobs": 2,
+   "jobs": 2,
+   "name": "Mitiga",
+   "status": "ok",
+   "token": "62B250262B012811ED718AC128112813158",
+   "uid": "26.00B"
+  },
+  "mizrahi-tefahot": {
+   "checked_at": "2026-10-19T17:01:38Z",
+   "evidence": "",
+   "name": "Mizrahi Tefahot",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "mobileye": {
+   "checked_at": "2026-10-19T16:55:09Z",
+   "evidence": "",
+   "name": "Mobileye",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "monday-com": {
+   "checked_at": "2026-10-19T16:54:58Z",
+   "evidence": "",
+   "name": "monday.com",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "moon-active": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:59:51Z",
+   "evidence": "slug probe",
+   "israel_jobs": 25,
+   "jobs": 34,
+   "name": "Moon Active",
+   "status": "ok",
+   "token": "moonactive"
+  },
+  "nagomi-security": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:52:50Z",
+   "evidence": "link on https://nagomisecurity.com/careers",
+   "israel_jobs": 5,
+   "jobs": 6,
+   "name": "Nagomi Security",
+   "status": "ok",
+   "token": "98B42CD98B98B4C5855E3262C262C262C3942",
+   "uid": "89.00B"
+  },
+  "nayax": {
+   "checked_at": "2026-10-19T16:57:10Z",
+   "evidence": "",
+   "name": "Nayax",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "next-insurance": {
+   "checked_at": "2026-10-19T16:57:22Z",
+   "evidence": "",
+   "name": "Next Insurance",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "nice": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:57:00Z",
+   "evidence": "slug probe",
+   "israel_jobs": 18,
+   "jobs": 180,
+   "name": "NICE",
+   "status": "ok",
+   "token": "nice"
+  },
+  "nokod-security": {
+   "checked_at": "2026-10-19T16:54:08Z",
+   "evidence": "",
+   "name": "Nokod Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "noma-security": {
+   "checked_at": "2026-10-19T16:50:36Z",
+   "evidence": "",
+   "name": "Noma Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "nova": {
+   "checked_at": "2026-10-19T16:59:51Z",
+   "evidence": "",
+   "name": "Nova",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "oasis-security": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:52:01Z",
+   "evidence": "link on https://oasis.security/careers",
+   "israel_jobs": 0,
+   "jobs": 0,
+   "name": "Oasis Security",
+   "status": "ok",
+   "token": "oasissecurity"
+  },
+  "oligo-security": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:50:50Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 4,
+   "name": "Oligo Security",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "oligo"
+  },
+  "one1": {
+   "checked_at": "2026-10-19T16:58:00Z",
+   "evidence": "",
+   "name": "One1",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "optimove": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:58:07Z",
+   "evidence": "slug probe",
+   "israel_jobs": 3,
+   "jobs": 11,
+   "name": "Optimove",
+   "status": "ok",
+   "token": "optimove"
+  },
+  "oracle-israel": {
+   "checked_at": "2026-10-19T17:00:47Z",
+   "evidence": "",
+   "name": "Oracle Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "orca-security": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:50:08Z",
+   "evidence": "slug probe",
+   "israel_jobs": 2,
+   "jobs": 10,
+   "name": "Orca Security",
+   "status": "ok",
+   "token": "orcasecurity"
+  },
+  "orchid-security": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:52:36Z",
+   "evidence": "link on https://orchid.security/careers",
+   "israel_jobs": 0,
+   "jobs": 3,
+   "name": "Orchid Security",
+   "status": "ok",
+   "token": "A4147C72904A41A410A41047C7A41",
+   "uid": "4A.001"
+  },
+  "otorio": {
+   "ats": "smartrecruiters",
+   "checked_at": "2026-10-19T16:53:09Z",
+   "evidence": "link on https://otorio.com/careers",
+   "israel_jobs": 16,
+   "jobs": 705,
+   "name": "Otorio",
+   "status": "ok",
+   "token": "ServiceNow"
+  },
+  "ox-security": {
+   "checked_at": "2026-10-19T16:50:53Z",
+   "evidence": "",
+   "name": "OX Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "pagaya": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:46Z",
+   "evidence": "link on https://pagaya.com/careers",
+   "israel_jobs": 0,
+   "jobs": 15,
+   "name": "Pagaya",
+   "status": "ok",
+   "token": "pagaya"
+  },
+  "palo-alto-networks": {
+   "ats": "workday",
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "link on https://jobs.paloaltonetworks.com",
+   "host": "paloaltonetworks.wd5.myworkdayjobs.com",
+   "israel_jobs": 133,
+   "jobs": 135,
+   "name": "Palo Alto Networks",
+   "site": "panwexternalcareers",
+   "status": "ok",
+   "tenant": "paloaltonetworks"
+  },
+  "panorays": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:51:18Z",
+   "evidence": "link on https://panorays.com/careers",
+   "israel_jobs": 1,
+   "jobs": 3,
+   "name": "Panorays",
+   "status": "ok",
+   "token": "79D2DAE1E7479D1E742DAE3CE802DAE1E74",
+   "uid": "97.00D"
+  },
+  "papaya-global": {
+   "checked_at": "2026-10-19T16:57:36Z",
+   "evidence": "",
+   "name": "Papaya Global",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "partner": {
+   "checked_at": "2026-10-19T17:02:20Z",
+   "evidence": "",
+   "name": "Partner",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "payoneer": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:39Z",
+   "evidence": "slug probe",
+   "israel_jobs": 20,
+   "jobs": 99,
+   "name": "Payoneer",
+   "status": "ok",
+   "token": "payoneer"
+  },
+  "pentera": {
+   "checked_at": "2026-10-19T16:50:15Z",
+   "evidence": "",
+   "name": "Pentera",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "perception-point": {
+   "checked_at": "2026-10-19T16:53:31Z",
+   "evidence": "",
+   "name": "Perception Point",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "pillar-security": {
+   "checked_at": "2026-10-19T16:52:25Z",
+   "evidence": "",
+   "name": "Pillar Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "plarium": {
+   "checked_at": "2026-10-19T16:59:51Z",
+   "evidence": "",
+   "name": "Plarium",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "playtika": {
+   "checked_at": "2026-10-19T16:55:25Z",
+   "evidence": "",
+   "name": "Playtika",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "pliops": {
+   "checked_at": "2026-10-19T16:58:34Z",
+   "evidence": "",
+   "name": "Pliops",
+   "note": "comeet uid=05.004 found but token not found - add manually",
+   "status": "none"
+  },
+  "plus500": {
+   "checked_at": "2026-10-19T16:57:47Z",
+   "evidence": "",
+   "name": "Plus500",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "qualcomm-israel": {
+   "checked_at": "2026-10-19T17:00:45Z",
+   "evidence": "",
+   "name": "Qualcomm Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "radware": {
+   "checked_at": "2026-10-19T16:54:39Z",
+   "evidence": "",
+   "name": "Radware",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "rafael": {
+   "checked_at": "2026-10-19T17:00:56Z",
+   "evidence": "",
+   "name": "Rafael",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "rapid7": {
+   "checked_at": "2026-10-19T16:54:32Z",
+   "evidence": "",
+   "name": "Rapid7",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "rapyd": {
+   "checked_at": "2026-10-19T16:55:51Z",
+   "evidence": "",
+   "name": "Rapyd",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "reco": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:52:21Z",
+   "evidence": "link on https://reco.ai/careers",
+   "israel_jobs": 1,
+   "jobs": 6,
+   "name": "Reco",
+   "status": "ok",
+   "token": "A3D47AB28F405C2505C2551E8333151E8",
+   "uid": "3A.00D"
+  },
+  "redis": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:56:29Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 28,
+   "name": "Redis",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "redis"
+  },
+  "riskified": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:39Z",
+   "evidence": "slug probe",
+   "israel_jobs": 12,
+   "jobs": 30,
+   "name": "Riskified",
+   "status": "ok",
+   "token": "riskified"
+  },
+  "safebreach": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:51:39Z",
+   "evidence": "link on https://safebreach.com/careers",
+   "israel_jobs": 3,
+   "jobs": 8,
+   "name": "SafeBreach",
+   "status": "ok",
+   "token": "safebreach"
+  },
+  "salt-security": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:52:50Z",
+   "evidence": "link on https://salt.security/careers",
+   "israel_jobs": 4,
+   "jobs": 14,
+   "name": "Salt Security",
+   "status": "ok",
+   "token": "saltsecurity"
+  },
+  "sap-israel": {
+   "checked_at": "2026-10-19T17:00:48Z",
+   "evidence": "",
+   "name": "SAP Israel",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "sapiens": {
+   "checked_at": "2026-10-19T16:56:49Z",
+   "evidence": "",
+   "name": "Sapiens",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "seemplicity": {
+   "checked_at": "2026-10-19T16:52:41Z",
+   "evidence": "",
+   "name": "Seemplicity",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "semperis": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:51:58Z",
+   "evidence": "link on https://semperis.com/careers/",
+   "israel_jobs": 3,
+   "jobs": 24,
+   "name": "Semperis",
+   "status": "ok",
+   "token": "semperis"
+  },
+  "sentinelone": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:50:16Z",
+   "evidence": "slug probe",
+   "israel_jobs": 17,
+   "jobs": 270,
+   "name": "SentinelOne",
+   "status": "ok",
+   "token": "sentinellabs"
+  },
+  "silverfort": {
+   "checked_at": "2026-10-19T16:49:59Z",
+   "evidence": "",
+   "name": "Silverfort",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "similarweb": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:20Z",
+   "evidence": "link on https://similarweb.com/careers",
+   "israel_jobs": 28,
+   "jobs": 69,
+   "name": "Similarweb",
+   "status": "ok",
+   "token": "similarweb"
+  },
+  "sisense": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:58:33Z",
+   "evidence": "link on https://sisense.com/careers",
+   "israel_jobs": 2,
+   "jobs": 4,
+   "name": "Sisense",
+   "status": "ok",
+   "token": "sisense"
+  },
+  "snyk": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:50:21Z",
+   "evidence": "slug probe",
+   "israel_jobs": 1,
+   "jobs": 27,
+   "name": "Snyk",
+   "status": "ok",
+   "token": "snyk"
+  },
+  "sola-security": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:53:09Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 5,
+   "name": "Sola Security",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "sola"
+  },
+  "source-defense": {
+   "ats": "lever",
+   "checked_at": "2026-10-19T16:53:59Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 3,
+   "name": "Source Defense",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "source"
+  },
+  "spera-security": {
+   "checked_at": "2026-10-19T16:52:59Z",
+   "evidence": "",
+   "name": "Spera Security",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "sweet-security": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:51:21Z",
+   "evidence": "slug probe",
+   "israel_jobs": 1,
+   "jobs": 2,
+   "name": "Sweet Security",
+   "status": "ok",
+   "token": "sweetsecurity"
+  },
+  "sygnia": {
+   "checked_at": "2026-10-19T16:53:47Z",
+   "evidence": "",
+   "name": "Sygnia",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "taboola": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:55:23Z",
+   "evidence": "slug probe",
+   "israel_jobs": 24,
+   "jobs": 87,
+   "name": "Taboola",
+   "status": "ok",
+   "token": "taboola"
+  },
+  "teads": {
+   "checked_at": "2026-10-19T16:55:24Z",
+   "evidence": "",
+   "name": "Teads",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "team8": {
+   "checked_at": "2026-10-19T16:53:51Z",
+   "evidence": "",
+   "name": "Team8",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "the-phoenix": {
+   "checked_at": "2026-10-19T17:02:02Z",
+   "evidence": "",
+   "name": "The Phoenix",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "tipalti": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:56:22Z",
+   "evidence": "link on https://tipalti.com/jobs",
+   "israel_jobs": 7,
+   "jobs": 21,
+   "name": "Tipalti",
+   "status": "ok",
+   "token": "tipaltisolutions"
+  },
+  "token-security": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:52:16Z",
+   "evidence": "link on https://token.security/company/careers",
+   "israel_jobs": 4,
+   "jobs": 6,
+   "name": "Token Security",
+   "status": "ok",
+   "token": "tokensecurity"
+  },
+  "torq": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:50:59Z",
+   "evidence": "link on https://torq.io/careers",
+   "israel_jobs": 5,
+   "jobs": 25,
+   "name": "Torq",
+   "status": "ok",
+   "token": "torq"
+  },
+  "transmit-security": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:50:58Z",
+   "evidence": "link on https://transmitsecurity.com/careers",
+   "israel_jobs": 12,
+   "jobs": 14,
+   "name": "Transmit Security",
+   "status": "ok",
+   "token": "transmitsecurity"
+  },
+  "tufin": {
+   "checked_at": "2026-10-19T16:54:00Z",
+   "evidence": "",
+   "name": "Tufin",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "upwind": {
+   "checked_at": "2026-10-19T16:50:29Z",
+   "evidence": "",
+   "name": "Upwind",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "varonis": {
+   "checked_at": "2026-10-19T16:51:18Z",
+   "evidence": "",
+   "name": "Varonis",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "vast-data": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:56:29Z",
+   "evidence": "slug probe",
+   "israel_jobs": 0,
+   "jobs": 186,
+   "name": "VAST Data",
+   "note": "board has no job located in Israel - confirm it is the right company",
+   "status": "review",
+   "token": "vast"
+  },
+  "verbit": {
+   "checked_at": "2026-10-19T16:59:52Z",
+   "evidence": "",
+   "name": "Verbit",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "verint": {
+   "checked_at": "2026-10-19T16:57:51Z",
+   "evidence": "",
+   "name": "Verint",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "veriti": {
+   "checked_at": "2026-10-19T16:52:54Z",
+   "evidence": "",
+   "name": "Veriti",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "via": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:57:41Z",
+   "evidence": "slug probe",
+   "israel_jobs": 9,
+   "jobs": 180,
+   "name": "Via",
+   "status": "ok",
+   "token": "via"
+  },
+  "weka": {
+   "checked_at": "2026-10-19T16:58:33Z",
+   "evidence": "",
+   "name": "WEKA",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "wix": {
+   "checked_at": "2026-10-19T16:54:58Z",
+   "evidence": "",
+   "name": "Wix",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "wiz": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:49:54Z",
+   "evidence": "slug probe",
+   "israel_jobs": 23,
+   "jobs": 122,
+   "name": "Wiz",
+   "status": "ok",
+   "token": "wizinc"
+  },
+  "xm-cyber": {
+   "checked_at": "2026-10-19T16:51:39Z",
+   "evidence": "",
+   "name": "XM Cyber",
+   "note": "no ATS found (custom careers site?)",
+   "status": "none"
+  },
+  "yotpo": {
+   "ats": "greenhouse",
+   "checked_at": "2026-10-19T16:57:36Z",
+   "evidence": "slug probe",
+   "israel_jobs": 5,
+   "jobs": 15,
+   "name": "Yotpo",
+   "status": "ok",
+   "token": "yotpo"
+  },
+  "zafran": {
+   "ats": "ashby",
+   "checked_at": "2026-10-19T16:51:20Z",
+   "evidence": "link on https://zafran.io/careers",
+   "israel_jobs": 9,
+   "jobs": 25,
+   "name": "Zafran",
+   "status": "ok",
+   "token": "zafran-security"
+  },
+  "zenity": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:50:33Z",
+   "evidence": "link on https://zenity.io/careers",
+   "israel_jobs": 13,
+   "jobs": 30,
+   "name": "Zenity",
+   "status": "ok",
+   "token": "9103660519012202D5024401B3091024403660",
+   "uid": "19.000"
+  },
+  "zero-networks": {
+   "ats": "comeet",
+   "checked_at": "2026-10-19T16:51:57Z",
+   "evidence": "link on https://zeronetworks.com/careers",
+   "israel_jobs": 6,
+   "jobs": 11,
+   "name": "Zero Networks",
+   "status": "ok",
+   "token": "93F40B9001BBD49F824FC49F824FC377A",
+   "uid": "39.00F"
+  }
+ },
+ "generated_at": "2026-10-19T17:15:07.117460+00:00"
+}
