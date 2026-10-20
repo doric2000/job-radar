@@ -5,6 +5,9 @@ from radar.config import load_config
 from radar.fetchers.amazon import Amazon
 from radar.fetchers.checkpoint import CheckPoint
 from radar.fetchers.eightfold import Eightfold
+from radar.fetchers.htmllinks import HtmlLinks
+from radar.fetchers.manatal import Manatal
+from radar.fetchers.wordpress import WordPress
 from radar.run import Radar
 from radar.state import State
 from tests.test_fetchers_and_run import NOW, FakeHttp
@@ -68,6 +71,27 @@ class TestCompanySites(unittest.TestCase):
         jobs = CheckPoint(http).list_jobs({"id": "check-point", "name": "Check Point"})
         self.assertEqual([(j.job_id, j.title) for j in jobs], [("0001", "Junior Backend Developer"), ("0002", "Senior Pipeline Engineer")])
         self.assertEqual((jobs[0].location, jobs[0].employment), ("Tel Aviv-Yafo, Israel", "Full-time"))
+
+    def test_wordpress_pages_until_short_page(self):
+        post = {"id": 7, "title": {"rendered": "Full-Stack Developer &#8211; Junior"}, "link": "https://x.co.il/careers/7/",
+                "content": {"rendered": "<p>No experience required</p>"}, "date_gmt": "2026-10-19T15:50:09"}
+        http = ParamHttp({"page=1&": [post] * 100, "page=2&": [dict(post, id=8)]})
+        jobs = WordPress(http).list_jobs({"id": "comblack", "name": "Comblack", "host": "x.co.il", "rest_base": "careers"})
+        self.assertEqual(sorted(j.job_id for j in jobs), ["7", "8"])
+        self.assertEqual((jobs[0].title, jobs[0].location, jobs[0].date_kind), ("Full-Stack Developer – Junior", "Israel", "published"))
+        self.assertEqual(jobs[0].posted_at.isoformat(), "2026-10-19T15:50:09+00:00")
+
+    def test_manatal(self):
+        data = {"next": None, "results": [{"id": 1, "hash": "QWR35XXW", "position_name": "Full Stack Engineer",
+                                           "location_display": "Tel Aviv, Israel", "description": "<p>React</p>"}]}
+        [j] = Manatal(FakeHttp({"career-page/cydome/jobs": data})).list_jobs({"id": "cydome", "name": "Cydome", "token": "cydome"})
+        self.assertEqual((j.url, j.location, j.description), ("https://www.careers-page.com/cydome/job/QWR35XXW", "Tel Aviv, Israel", "React"))
+
+    def test_htmllinks_takes_first_non_empty_link_text(self):
+        page = '<a href="/job-offer/full-stack/"><img></a><a href="/job-offer/full-stack/">Full-Stack Engineer</a><a href="/about/">x</a>'
+        c = {"id": "m", "name": "M", "list_url": "https://m.ai/careers/", "link_pattern": "/job-offer/([^/]+)/?$"}
+        [j] = HtmlLinks(FakeHttp({"m.ai/careers": page})).list_jobs(c)
+        self.assertEqual((j.job_id, j.title, j.url), ("full-stack", "Full-Stack Engineer", "https://m.ai/job-offer/full-stack/"))
 
     def test_bad_job_does_not_stop_the_run(self):
         http = ParamHttp({"start=10": EF_PAGE2, "pcsx/search": EF_PAGE, "position_details": EF_DETAIL})

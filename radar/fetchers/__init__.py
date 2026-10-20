@@ -11,11 +11,14 @@ from .comeet import Comeet
 from .eightfold import Eightfold
 from .elad import Elad
 from .greenhouse import Greenhouse
+from .htmllinks import HtmlLinks
 from .lever import Lever
 from .linkedin import LinkedIn
+from .manatal import Manatal
 from .recruitee import Recruitee
 from .smartrecruiters import SmartRecruiters
 from .workable import Workable
+from .wordpress import WordPress
 from .workday import Workday
 
 FETCHERS = {
@@ -32,4 +35,7 @@ FETCHERS = {
     "eightfold": Eightfold,
     "checkpoint": CheckPoint,
     "elad": Elad,
+    "wordpress": WordPress,
+    "manatal": Manatal,
+    "htmllinks": HtmlLinks,
 }
