@@ -20,7 +20,7 @@ DEFAULTS: dict = {
     "match": {
         # title must match one of these (role families: backend/systems/full-stack + security)
         "role_include": [
-            r"back[\s-]?end", r"full[\s-]?stack", r"software\s+(engineer|developer|dev)\b",
+            r"back[\s-]?end", r"full[\s-]?stack", r"\b(software|sw)\s+(engineer|developer|dev)\b",
             r"\bdeveloper\b", r"\bsde\b", r"\bprogrammer\b",
             r"secur", r"cyber", r"appsec", r"\bsoc\b", r"threat", r"vulnerab", r"penetration",
             r"pen[\s-]?test", r"red[\s-]?team", r"\bdfir\b", r"incident\s+response", r"malware",
@@ -29,7 +29,15 @@ DEFAULTS: dict = {
             r"infrastructure\s+(software\s+)?engineer", r"platform\s+engineer",
             r"front[\s-]?end", r"\breact\b", r"\bangular\b", r"\bvue(\.?js)?\b", r"web\s+(developer|engineer)",
             r"\bc\+\+", r"\bgolang\b", r"\brust\b", r"\bpython\b", r"\bjava\b", r"\.net\b", r"\bnode(\.?js)?\b",
+            # integration / implementation (incl. AI solutions)
+            r"integrat(ion|or)", r"implementation", r"\bai\s+(solutions?|engineer|developer|specialist|implementation)",
+            # DevOps / cloud
+            r"\bdevops\b", r"\bcloud\s+(engineer|developer|specialist)", r"\bsre\b", r"site\s+reliability",
+            # QA / test automation
+            r"\bqa\b", r"quality\s+assurance", r"\btest(ing)?\s+(engineer|automation|developer)", r"automation\s+(engineer|developer)",
+            r"validation\s+engineer", r"\bsdet\b",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן)\s*תוכנה",
+            r"אינטגרציה", r"אינטגרטור", r"בודק(ת)?\s+תוכנה", r"אוטומציה",
         ],
         "role_exclude": [
             r"\bsales\b", r"account\s+(executive|manager)", r"marketing", r"recruit", r"talent\s+acqui",
@@ -46,10 +54,10 @@ DEFAULTS: dict = {
         "role_exclude_soft": [
             r"data\s+scien", r"machine\s+learning", r"\bml\b", r"data\s+analyst",
             r"solutions?\s+(architect|engineer|consultant)", r"\bios\b", r"android", r"\bmobile\b",
-            r"\bqa\b", r"quality\s+assurance", r"\bdevops\b(?!.*secur)", r"\bsre\b", r"site\s+reliability",
+            r"manual\s+(qa|test)",
         ],
         "role_core": [
-            r"software\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",
+            r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",
             r"full[\s-]?stack", r"front[\s-]?end", r"מפתח", r"מפתחת", r"הנדס(ת|ן)\s*תוכנה",
         ],
         "seniority_exclude": [
@@ -130,6 +138,8 @@ DEFAULTS: dict = {
                 {"keywords": "python OR java OR node OR golang"},
                 {"keywords": "react OR angular OR mobile OR iOS"},
                 {"keywords": "ג'וניור OR מפתח OR מפתחת OR סטודנט"},
+                {"keywords": "integration OR implementation OR integrator"},
+                {"keywords": "devops OR cloud OR QA OR automation"},
             ],
         },
     },

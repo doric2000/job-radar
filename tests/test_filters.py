@@ -107,18 +107,27 @@ class TestClassifier(unittest.TestCase):
 
     def test_role_exclusions(self):
         for t in ["Junior Sales Development Rep", "Junior Product Manager", "Junior UX Designer",
-                  "Junior Data Scientist", "Security Guard", "Junior QA Engineer"]:
+                  "Junior Data Scientist", "Security Guard", "Manual QA Tester"]:
             self.assertFalse(self.c.classify(J(t)).accept, t)
 
     def test_experienced_and_expert_titles_are_senior(self):
         for t in ["Experienced Backend Engineer", "Expert Frontend Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
 
+    def test_sw_abbreviation(self):
+        for t in ["Junior SW Engineer - Virtual Platforms", "SW Engineer - Enterprise Browser team"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+
     def test_adjacent_field_with_core_dev_role_passes(self):
         for t in ["Software developer and DevOps engineer", "iOS Developer", "React Native Developer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
-        for t in ["DevOps Engineer", "Junior QA Engineer", "Junior Data Scientist", "Sales Engineer"]:
+        for t in ["Junior iOS Engineer", "Junior Data Scientist", "Sales Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
+
+    def test_integration_devops_and_qa_families(self):
+        for t in ["Integration Specialist", "AI Solutions & Implementation Specialist", "System Integrator",
+                  "DevOps Engineer", "Cloud Engineer", "Junior QA Engineer", "QA Automation Engineer", "Validation Engineer"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
 
     def test_frontend_included(self):
         for t in ["Junior Frontend Developer", "Angular Developer", "Junior React Engineer",
