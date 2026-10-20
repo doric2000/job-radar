@@ -141,12 +141,15 @@ DEFAULTS: dict = {
             "enabled": False,           # switched on in config.yaml
             "tier": 1,
             "geo_id": "101620260",      # Israel
-            "time_window": "r86400",    # posted in the last 24h; sorted newest first
-            "pages": 1,                 # 10 results per page
+            # The guest search ignores sortBy=DD: with a 24h window page 1 held 21h-old postings and a job
+            # posted 30 minutes earlier was not on it. So each run reads the whole last-hour window
+            # (typically 6-25 results per query), page by page until a short page.
+            "time_window": "r3600",
+            "pages": 4,                 # 10 results per page; stops early at the first short page
             "gap_seconds": 5,           # LinkedIn returns 429 on bursts faster than this
             "cooldown_seconds": 25,
             "queries": [
-                {"keywords": "software engineer OR software developer", "pages": 2},
+                {"keywords": "software engineer OR software developer"},
                 {"keywords": "backend OR back end"},
                 {"keywords": "full stack OR fullstack OR frontend OR front end"},
                 {"keywords": "developer"},
