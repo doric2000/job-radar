@@ -92,10 +92,14 @@ _EN_YEARS = re.compile(
     r"(?:years?|yrs?)\b",
     re.I,
 )
+_HE_NUM = r"\d{1,2}|שלוש|ארבע|חמש|שש|שבע|שמונה|תשע|עשר"
+# qualifiers that may sit between "ניסיון" and the number: "ניסיון של מעל 3 שנים", "ניסיון של כ-4 שנים"
+_HE_QUAL = r"(?:(?:מעל|לפחות|מינימום|יותר\s+מ[-־]?|כ[-־]?|בן|בת)\s*)*"
 _HE_YEARS = re.compile(
-    r"(?:(?P<a>\d{1,2})\s*(?:\+|[-–]\s*(?P<b>\d{1,2}))?\s*\+?\s*(?:שנות|שנים|שנה)(?:\s+של)?\s*ניסיון)"
-    r"|(?:ניסיון\s+(?:של\s+)?(?:לפחות\s+)?(?P<c>\d{1,2})\s*(?:\+|[-–]\s*(?P<d>\d{1,2}))?\s*\+?\s*(?:שנות|שנים|שנה))"
-    r"|(?P<w>שנתיים|שנת)\s*ניסיון",
+    rf"(?:(?P<a>{_HE_NUM})\s*(?:\+|[-–]\s*(?P<b>\d{{1,2}}))?\s*\+?\s*(?:שנות|שנים|שנה)(?:\s+של)?\s*ניסיון)"
+    rf"|(?:ניסיון\s+(?:של\s+)?{_HE_QUAL}(?P<c>{_HE_NUM})\s*(?:\+|[-–]\s*(?P<d>\d{{1,2}}))?\s*\+?\s*(?:שנות|שנים|שנה))"
+    rf"|(?:ניסיון\s+(?:של\s+)?{_HE_QUAL}(?P<w2>שנתיים|שנה)(?=\s|$|[.,;]))"
+    r"|(?P<w>שנתיים|שנת|שנה)\s*ניסיון",
     re.U,
 )
 _EXP_CONTEXT = re.compile(
@@ -109,7 +113,85 @@ _OPTIONAL = re.compile(
     re.I | re.U,
 )
 _OPT_HEADER = re.compile(r"^\W*(nice\s+to\s+have|preferred|bonus|advantages?|plus(es)?|desirable|יתרון|יתרונות|דרישות\s+רשות)\b", re.I | re.U)
-_REQ_HEADER = re.compile(r"^\W*(requirements?|qualifications?|must[\s-]?have|what\s+you(?:'ll|\s+will)?\s+(?:need|bring)|basic\s+qualifications|דרישות|דרישות\s+התפקיד|נדרש)\b", re.I | re.U)
+_REQ_HEADER = re.compile(
+    r"^\W*(requirements?|qualifications?|must[\s-]?have|what\s+you(?:'ll|\s+will)?\s+(?:need|bring)|basic\s+qualifications|"
+    r"what\s+we(?:'re|\s+are)\s+looking\s+for|who\s+you\s+are|about\s+you|you\s+(?:have|bring|should\s+have)|"
+    r"דרישות|דרישות\s+התפקיד|נדרש|מה\s+אנחנו\s+מחפשים|מה\s+נדרש|מי\s+את[הן]?|כישורים)\b", re.I | re.U)
+# a short line ending with ':' or '?' is a section header (used to stop the requirements excerpt)
+_ANY_HEADER = re.compile(r"^.{2,60}[:?]\s*$", re.U)
+# call-to-action lines end the requirements section
+_CTA = re.compile(r"שלחו|קורות\s+חיים|מעוניינ|\bapply\b|send\s+(?:us\s+)?your|interested\?|equal\s+opportunity|about\s+(?:us|the\s+company)", re.I | re.U)
+
+
+_ROLE_HEADER = re.compile(
+    r"^\W*(about\s+the\s+(?:role|position|job)|the\s+role|role\s+overview|what\s+you(?:'ll|\s+will)\s+do|"
+    r"responsibilities|your\s+(?:role|mission|impact)|in\s+this\s+role|job\s+description|"
+    r"קצת\s+על\s+התפקיד|על\s+התפקיד|תיאור\s+(?:ה)?תפקיד|התפקיד\s+כולל|תחומי\s+אחריות|מה\s+(?:ת|י)עש(?:ה|ו)|במסגרת\s+התפקיד)\b",
+    re.I | re.U)
+# company marketing that says nothing about the job itself
+_BOILERPLATE = re.compile(r"\b(?:leading|leader|world[\s-]class|trusted\s+by|founded|backed\s+by|unicorn|we\s+are\s+(?:a|the)|"
+                          r"our\s+(?:mission|customers)|join\s+(?:us|our)|about\s+us)\b|חברה\s+מובילה|מובילה\s+בתחום|הצטרפו", re.I | re.U)
+
+
+# "Location: ...", "Position Type: ..." - metadata, not a description
+_META_LINE = re.compile(r"^(?:location|position\s+type|employment\s+type|job\s+type|company|department|מיקום|היקף\s+משרה|סוג\s+משרה)\s*:", re.I | re.U)
+
+
+def extract_summary(text: str, max_lines: int = 4, max_chars: int = 450) -> list[str]:
+    """A few lines that say what the job is: the role/responsibilities section if there is one, otherwise
+    the first lines of the posting that are not company marketing. Stops at the requirements section."""
+    lines = [ln.strip(" \t•-–*·✔️✓▪") for ln in (text or "").splitlines()]
+    lines = [ln for ln in lines if ln]
+    out: list[str] = []
+    for i, ln in enumerate(lines):
+        if len(ln) <= 60 and _ROLE_HEADER.search(ln):
+            for nxt in lines[i + 1:]:
+                if (len(nxt) <= 60 and (_REQ_HEADER.search(nxt) or _OPT_HEADER.search(nxt) or _ANY_HEADER.match(nxt))) \
+                        or _CTA.search(nxt) or len(out) >= max_lines:
+                    break
+                out.append(nxt[:180])
+            break
+    if not out:
+        for ln in lines:
+            if len(ln) <= 60 and (_REQ_HEADER.search(ln) or _OPT_HEADER.search(ln)):
+                break
+            if len(ln) < 25 or _BOILERPLATE.search(ln) or _CTA.search(ln) or _META_LINE.match(ln):
+                continue
+            out.append(ln[:180])
+            if len(out) >= max_lines:
+                break
+    total, kept = 0, []
+    for ln in out:
+        total += len(ln)
+        if total > max_chars:
+            break
+        kept.append(ln)
+    return kept
+
+
+def extract_requirements(text: str, max_lines: int = 6, max_chars: int = 600) -> list[str]:
+    """The first lines of the job's requirements section, for the alert. Falls back to lines that
+    mention experience/years when the posting has no recognizable requirements header."""
+    lines = [ln.strip(" \t•-–*·✔️✓▪") for ln in (text or "").splitlines()]
+    lines = [ln for ln in lines if ln]
+    out: list[str] = []
+    for i, ln in enumerate(lines):
+        if len(ln) <= 60 and _REQ_HEADER.search(ln):
+            for nxt in lines[i + 1:]:
+                if ((len(nxt) <= 60 and (_OPT_HEADER.search(nxt) or _ANY_HEADER.match(nxt)))
+                        or _CTA.search(nxt) or len(out) >= max_lines):
+                    break
+                out.append(nxt[:160])
+            break
+    if not out:
+        out = [ln[:160] for ln in lines if (_EN_YEARS.search(ln) or _HE_YEARS.search(ln)) and _EXP_CONTEXT.search(ln)][:3]
+    total, kept = 0, []
+    for ln in out:
+        total += len(ln)
+        if total > max_chars:
+            break
+        kept.append(ln)
+    return kept
 
 
 def _num(tok: Optional[str]) -> Optional[int]:
@@ -119,6 +201,36 @@ def _num(tok: Optional[str]) -> Optional[int]:
     if tok.isdigit():
         return int(tok)
     return _WORDNUM.get(tok)
+
+
+_MANDATORY = re.compile(r"\bmust\b|\brequired\b|mandatory|חובה", re.I | re.U)
+# a clause that is nothing but "an advantage" / "a plus" / "יתרון"
+_BARE_OPTIONAL = re.compile(
+    r"^(?:(?:is|are|will\s+be|would\s+be)\s+)?(?:an?\s+)?(?:big\s+|strong\s+)?(?:advantage|plus|bonus|preferred|desirable|nice\s+to\s+have)$"
+    r"|^(?:יהווה\s+)?(?:יתרון(?:\s+משמעותי)?|רצוי)$", re.I | re.U)
+_CLAUSE_SPLIT = re.compile(r"[,;]|\s[-–—]\s|\s+(?:and|while|but|ו?יתרון)\s+", re.I | re.U)
+
+
+def _is_optional(sent: str, pos: int, mode: str) -> bool:
+    """Is the years mention at `pos` optional? Only the clause that contains it counts, and text in
+    parentheses is ignored: in "4+ years of Linux (Debian preferred)" or "5 years managing switches,
+    Cisco an advantage" the years are still required. An explicit must/חובה in the sentence wins."""
+    if _MANDATORY.search(sent):
+        return False
+    if mode == "opt":
+        return True
+    splits = list(_CLAUSE_SPLIT.finditer(sent))
+    start = max([0] + [m.end() for m in splits if m.end() <= pos])
+    after = [m for m in splits if m.start() > pos]
+    end = after[0].start() if after else len(sent)
+    clause = sent[start:end]
+    if after:
+        # a short trailing clause that is only "an advantage" / "a plus" qualifies the clause before it
+        nxt_end = after[1].start() if len(after) > 1 else len(sent)
+        tail = sent[after[0].end():nxt_end].strip(" .!")
+        if _BARE_OPTIONAL.match(tail):
+            clause += " " + tail
+    return bool(_OPTIONAL.search(re.sub(r"\([^)]*\)", " ", clause)))
 
 
 def extract_experience(text: str) -> tuple[Optional[int], str, list]:
@@ -144,8 +256,9 @@ def extract_experience(text: str) -> tuple[Optional[int], str, list]:
         for sent in re.split(r"(?<=[.;!?])\s+", line):
             if not sent:
                 continue
-            sent_opt = mode == "opt" or bool(_OPTIONAL.search(sent))
-            found: list = []
+            if not _EXP_CONTEXT.search(sent):
+                continue
+            found: list = []  # (years, is_optional)
             for m in _EN_YEARS.finditer(sent):
                 a = _num(m.group("a"))
                 if a is None:
@@ -153,22 +266,17 @@ def extract_experience(text: str) -> tuple[Optional[int], str, list]:
                 if "up to" in sent[max(0, m.start() - 8):m.end()].lower():
                     # "up to 2 years" is a ceiling, not a requirement
                     continue
-                found.append(a)
+                found.append((a, _is_optional(sent, m.start(), mode)))
             for m in _HE_YEARS.finditer(sent):
-                if m.group("w"):
-                    found.append(2 if m.group("w") == "שנתיים" else 1)
-                    continue
-                a = m.group("a") or m.group("c")
-                if a:
-                    found.append(int(a))
-            if not found or not _EXP_CONTEXT.search(sent):
-                continue
-            if sent_opt:
-                optional.extend(found)
-            else:
-                required.extend(found)
-                v = max(found)
-                if not best_snip or v >= max(required):
+                w = m.group("w") or m.group("w2")
+                a = (2 if w == "שנתיים" else 1) if w else _num(m.group("a") or m.group("c"))
+                if a is not None:
+                    found.append((a, _is_optional(sent, m.start(), mode)))
+            optional.extend(a for a, opt in found if opt)
+            req_here = [a for a, opt in found if not opt]
+            if req_here:
+                required.extend(req_here)
+                if not best_snip or max(req_here) >= max(required):
                     best_snip = sent.strip()[:220]
     return (max(required) if required else None), best_snip, optional
 

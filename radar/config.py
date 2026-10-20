@@ -71,6 +71,8 @@ DEFAULTS: dict = {
             r"data\s+scien", r"machine\s+learning", r"\bml\b", r"data\s+analyst",
             r"solutions?\s+(architect|engineer|consultant)", r"\bios\b", r"android", r"\bmobile\b",
             r"manual\s+(qa|test)",
+            # network administration (switches/routers) is IT, not software
+            r"\bnetwork(ing)?\s+(engineer|administrator|admin|specialist|technician)", r"תקשורת",
         ],
         "role_core": [
             r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",

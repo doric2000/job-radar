@@ -61,6 +61,20 @@ class TestFeedback(unittest.TestCase):
         self.assertEqual((meta["tg_offset"], tg.answered), (8, ["c1"]))
         self.assertIn("לא רלוונטי", tg.edited[0][1]["inline_keyboard"][0][0]["text"])
 
+    def test_reactions_count_as_feedback(self):
+        meta = {}
+        sid = feedback.sent_id(job())
+        feedback.record_sent(meta, sid, job(), Verdict(True), 101, NOW)
+        chat = {"id": 42}
+        react = lambda uid, emo: {"update_id": uid, "message_reaction": {"chat": chat, "message_id": 101,
+                                  "new_reaction": [{"type": "emoji", "emoji": emo}] if emo else []}}
+        tg = FakeTg([react(1, "👎")])
+        self.assertEqual(feedback.collect(meta, tg, NOW), 1)
+        self.assertEqual(meta["feedback"][sid]["v"], 0)
+        feedback.collect(meta, FakeTg([react(2, "🔥")]), NOW)
+        self.assertEqual(meta["feedback"][sid]["v"], 1)
+        self.assertEqual(feedback.collect(meta, FakeTg([react(3, None)]), NOW), 0)  # removing a reaction keeps the last vote
+
     def test_prune_drops_old_entries(self):
         meta = {}
         feedback.record_sent(meta, "old", job(), Verdict(True), 1, NOW - timedelta(days=40))

@@ -9,6 +9,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
+from .filters import extract_requirements, extract_summary
 from .models import Job, Verdict
 
 KIND_HE = {
@@ -60,7 +61,15 @@ def format_alert(job: Job, v: Verdict, company: dict, now: datetime, tz: str = "
         lines.append(" · ".join(tags))
     for w in v.warnings:
         lines.append(f"⚠️ {e(w)}")
-    if v.exp_snippet:
+    summary = extract_summary(job.description)
+    if summary:
+        lines.append("📄 <b>על התפקיד:</b>")
+        lines += [f"• {e(html.unescape(s))}" for s in summary]
+    reqs = extract_requirements(job.description)
+    if reqs:
+        lines.append("📝 <b>דרישות:</b>")
+        lines += [f"• {e(html.unescape(r))}" for r in reqs]
+    elif v.exp_snippet:
         lines.append(f"📋 {e(v.exp_snippet[:200])}")
     lines.append(f'<a href="{e(job.url, quote=True)}">פתח משרה</a>')
     return "\n".join(lines)
@@ -112,7 +121,7 @@ class Telegram:
 
     def get_updates(self, offset: int):
         res = self._call("getUpdates", {"offset": offset, "timeout": 0,
-                                        "allowed_updates": json.dumps(["message", "callback_query"])})
+                                        "allowed_updates": json.dumps(["message", "callback_query", "message_reaction"])})
         return res if isinstance(res, list) else None
 
     def answer_callback(self, callback_id: str, text: str) -> None:

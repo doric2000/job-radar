@@ -1,7 +1,7 @@
 import unittest
 
 from radar.config import load_config
-from radar.filters import Classifier, extract_experience
+from radar.filters import Classifier, extract_experience, extract_requirements, extract_summary
 from radar.models import Job
 
 
@@ -50,6 +50,39 @@ class TestExperience(unittest.TestCase):
     def test_up_to_is_ceiling(self):
         yrs, _, _ = extract_experience("Suitable for candidates with up to 2 years of experience")
         self.assertIsNone(yrs)
+
+
+class TestHebrewYearsAndRequirements(unittest.TestCase):
+    def test_hebrew_year_phrasings(self):
+        cases = {"✔️ ניסיון של מעל 3 שנים לפחות בתפקיד DevOps בארגון גדול.": 3, "ניסיון של שנה ומעלה בפיתוח WEB – חובה.": 1,
+                 "שלוש שנות ניסיון בפיתוח Java": 3, "ניסיון של כ-5 שנים בפיתוח": 5, "ניסיון של יותר מ-3 שנים בפיתוח": 3,
+                 "לפחות שנה ניסיון מעשי בתחום ה-SOC": 1, "ניסיון של שנתיים לפחות ב-Python": 2, "ניסיון בעבודה עם Linux": None}
+        for text, years in cases.items():
+            self.assertEqual(extract_experience(text)[0], years, text)
+
+    def test_advantage_applies_only_to_its_own_clause(self):
+        cases = {"4+ years of proven experience working with Linux (Debian/Ubuntu preferred).": 4,
+                 "לפחות 5 שנות ניסיון בניהול והגדרת מתגים ונתבים, יתרון ל-Cisco - חובה": 5,
+                 "3 years of experience with Kubernetes - an advantage": None,
+                 "ניסיון של שנתיים ב-Python יהווה יתרון": None,
+                 "2+ years of experience in Python, Java is a plus": 2,
+                 "5+ years of experience in backend development, an advantage for Go": 5}
+        for text, years in cases.items():
+            self.assertEqual(extract_experience(text)[0], years, text)
+
+    def test_summary_prefers_role_section_and_skips_marketing(self):
+        desc = ("Acme is a leading provider of cloud security.\nAbout the role:\nBuild detection pipelines in Python\n"
+                "Own services end to end\nRequirements:\n- BSc in CS")
+        self.assertEqual(extract_summary(desc), ["Build detection pipelines in Python", "Own services end to end"])
+        plain = "Location: Tel Aviv\nWe are a leading company in fintech.\nYou will build backend services in Go for payments."
+        self.assertEqual(extract_summary(plain), ["You will build backend services in Go for payments."])
+
+    def test_requirements_section(self):
+        desc = ("חברת X מגייסת DevOps\nמה אנחנו מחפשים?\n✔️ 2+ שנות ניסיון ב-AWS\n✔️ ניסיון ב-Kubernetes\n"
+                "מעוניינים? שלחו קורות חיים!")
+        self.assertEqual(extract_requirements(desc), ["2+ שנות ניסיון ב-AWS", "ניסיון ב-Kubernetes"])
+        en = "About\nWe build.\nRequirements:\n- BSc in CS\n- 1+ years with Go\nBenefits:\n- Food"
+        self.assertEqual(extract_requirements(en), ["BSc in CS", "1+ years with Go"])
 
 
 class TestClassifier(unittest.TestCase):
@@ -142,6 +175,9 @@ class TestClassifier(unittest.TestCase):
                   "Signal Processing & AI Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         self.assertTrue(self.c.stage1(J("Junior SOC Analyst")).accept)
+        for t in ["מומחה/ית תקשורת ואבטחת מידע", "Network Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        self.assertTrue(self.c.stage1(J("Network Security Researcher")).accept)
 
     def test_integration_with_hardware_text_rejected(self):
         desc = "Integrate electronic boards in the lab, work with oscilloscope and wiring harness, read schematics."

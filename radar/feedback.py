@@ -1,7 +1,7 @@
 """User feedback on alerts, for the twice-daily review.
 
 Every alert is logged in state meta["sent"] under a short id and carries two Telegram buttons
-(relevant / not relevant). Each scan reads the bot's pending updates: a button press is stored in
+(relevant / not relevant). Each scan reads the bot's pending updates: a button press or an emoji reaction on the alert is stored in
 meta["feedback"][sid]; a text reply to an alert is stored there as a note. Any other message in the
 chat is ignored: the chat may be a group, and the state lives in a public repo, so only replies that
 point at a specific alert are kept - never other messages or metadata such as names or usernames."""
@@ -14,6 +14,9 @@ from .models import Job, Verdict
 from .state import iso
 
 KEEP_DAYS = 30
+# Telegram reactions on an alert count like the buttons (the set of allowed reaction emoji is fixed by Telegram)
+POSITIVE = {"👍", "❤", "❤️", "🔥", "👏", "🥰", "😍", "🤩", "💯", "⚡", "🏆", "❤‍🔥", "💘", "🙏", "👌", "🎉", "😎", "🤝", "✍"}
+NEGATIVE = {"👎", "💩", "🤮", "😡", "🤬", "😢", "🥱", "🤡", "🙈", "😴", "😐", "🤨", "💔", "🗿"}
 
 
 def sent_id(job: Job) -> str:
@@ -52,6 +55,15 @@ def collect(meta: dict, tg, now: datetime) -> int:
                 tg.answer_callback(cq.get("id"), "נרשם, תודה")
                 tg.edit_buttons(cq["message"]["message_id"], {"inline_keyboard": [[{
                     "text": "✅ סומן רלוונטי" if good else "❌ סומן לא רלוונטי", "callback_data": cq["data"]}]]})
+            continue
+        mr = u.get("message_reaction")
+        if mr and str(mr.get("chat", {}).get("id")) == str(tg.chat_id):
+            sid = by_mid.get(str(mr.get("message_id")))
+            emojis = {r.get("emoji") for r in mr.get("new_reaction") or [] if r.get("type") == "emoji"}
+            v = 1 if emojis & POSITIVE else 0 if emojis & NEGATIVE else None
+            if sid and v is not None:
+                fb.setdefault(sid, {}).update({"v": v, "ts": iso(now), "via": "reaction"})
+                n += 1
             continue
         msg = u.get("message")
         if not msg or str(msg.get("chat", {}).get("id")) != str(tg.chat_id) or not msg.get("text"):
