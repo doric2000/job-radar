@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
@@ -83,6 +84,20 @@ class State:
         if c.get("first_scan") is None:
             c["first_scan"] = iso(now)
         c["jobs"][job_id] = {"t": title[:70], "fs": iso(now), "ls": iso(now), "a": 1 if alerted else 0, "r": note[:60]}
+
+    def forget_rejections(self, since: datetime, notes: str) -> int:
+        """Drop jobs rejected since `since` whose reject note matches the regex `notes`, so the next scan
+        re-evaluates them under changed filters. Only jobs that appeared after the company's first scan
+        are dropped: jobs recorded by the baseline were already open, and must not come back as new."""
+        cut, rx, n = iso(since), re.compile(notes, re.I), 0
+        for c in self.d["companies"].values():
+            first = c.get("first_scan") or ""
+            for jid, j in list(c["jobs"].items()):
+                fs = j.get("fs", "")
+                if not j.get("a") and fs >= cut and fs > first and rx.search(j.get("r", "")):
+                    del c["jobs"][jid]
+                    n += 1
+        return n
 
     # -- cross-source dedupe ---------------------------------------------------------
     def was_alerted(self, key: str) -> bool:

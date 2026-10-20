@@ -6,12 +6,12 @@ import re
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 from .config import load_config
 from .fetchers import FETCHERS
-from .filters import Classifier
+from .filters import FILTERS_VERSION, RECHECK_NOTES, Classifier
 from .http import Http, HttpError
 from .leads import TgChannel
 from .models import Job, Verdict
@@ -223,6 +223,10 @@ def main(argv=None) -> int:
     cfg = load_config(a.config)
     companies = load_registry(a.companies, a.resolved)
     state = State.load(a.state)
+    if state.d["meta"].get("filters_version") != FILTERS_VERSION:
+        n = state.forget_rejections(datetime.now(timezone.utc) - timedelta(hours=72), RECHECK_NOTES)
+        state.d["meta"]["filters_version"] = FILTERS_VERSION
+        print(f"filters changed: re-evaluating {n} recent rejections")
     notifier = Telegram.from_env() if cfg["notify"]["telegram"] else None
     if notifier is None and not a.dry_run and not a.healthcheck:
         print("WARNING: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set - alerts will only be printed", file=sys.stderr)

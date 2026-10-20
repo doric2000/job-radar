@@ -14,6 +14,11 @@ from typing import Optional
 
 from .models import Job, Verdict
 
+# Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
+# whose reject note matches RECHECK_NOTES (the rejections the change can flip).
+FILTERS_VERSION = 2
+RECHECK_NOTES = r"^no experience signal$|^role excluded: .*(front|angular|react|vue|web)"
+
 _FLAGS = re.I | re.U
 
 

@@ -3,6 +3,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 
 from radar.config import load_config
+from radar.filters import RECHECK_NOTES
 from radar.discover import candidates_from_html, slug_variants
 from radar.http import HttpError
 from radar.notify import format_alert
@@ -215,6 +216,16 @@ class TestFetchers(unittest.TestCase):
 
 
 class TestMisc(unittest.TestCase):
+    def test_forget_rejections_only_new_jobs_with_matching_notes(self):
+        s = State()
+        s.record("acme", NOW - timedelta(hours=10), "0", "baseline job", False, "no experience signal")
+        for jid, alerted, note in [("1", False, "no experience signal"), ("2", True, "ok"), ("3", False, "seniority: Senior"),
+                                   ("4", False, "role excluded: Frontend"), ("5", False, "role excluded: Sales")]:
+            s.record("acme", NOW, jid, "t", alerted, note)
+        s.company("acme")["first_scan"] = iso(NOW - timedelta(hours=10))
+        self.assertEqual(s.forget_rejections(NOW - timedelta(hours=72), RECHECK_NOTES), 2)
+        self.assertEqual(sorted(s.company("acme")["jobs"]), ["0", "2", "3", "5"])
+
     def test_html_to_text_bullets(self):
         t = html_to_text("&lt;p&gt;Intro&lt;/p&gt;&lt;ul&gt;&lt;li&gt;3 years&lt;/li&gt;&lt;li&gt;BSc&lt;/li&gt;&lt;/ul&gt;")
         self.assertEqual(t.splitlines(), ["Intro", "• 3 years", "• BSc"])
