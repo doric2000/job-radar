@@ -55,9 +55,9 @@ class TestFeedback(unittest.TestCase):
             {"update_id": 7, "message": {"chat": chat, "text": "more cyber please"}},
             {"update_id": 8, "message": {"chat": {"id": 999}, "text": "stranger"}},
         ])
-        self.assertEqual(feedback.collect(meta, tg, NOW), 3)
+        self.assertEqual(feedback.collect(meta, tg, NOW), 2)
         self.assertEqual((meta["feedback"][sid]["v"], meta["feedback"][sid]["note"]), (0, "too much C#"))
-        self.assertEqual([n["text"] for n in meta["notes"]], ["more cyber please"])
+        self.assertNotIn("notes", meta)  # other chat messages are never stored (public repo)
         self.assertEqual((meta["tg_offset"], tg.answered), (8, ["c1"]))
         self.assertIn("לא רלוונטי", tg.edited[0][1]["inline_keyboard"][0][0]["text"])
 
@@ -66,7 +66,9 @@ class TestFeedback(unittest.TestCase):
         feedback.record_sent(meta, "old", job(), Verdict(True), 1, NOW - timedelta(days=40))
         feedback.record_sent(meta, "new", job("2"), Verdict(True), 2, NOW)
         meta["feedback"] = {"old": {"v": 1}, "new": {"v": 0}}
+        meta["notes"] = [{"text": "chat message from an older version"}]
         feedback.prune(meta, NOW)
+        self.assertNotIn("notes", meta)
         self.assertEqual((list(meta["sent"]), list(meta["feedback"])), (["new"], ["new"]))
 
 

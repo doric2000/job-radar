@@ -2,9 +2,9 @@
 
 Every alert is logged in state meta["sent"] under a short id and carries two Telegram buttons
 (relevant / not relevant). Each scan reads the bot's pending updates: a button press is stored in
-meta["feedback"][sid]; a text reply to an alert is stored there as a note; any other text message to
-the bot goes to meta["notes"]. The state is in a public repo, so only job titles/links and the user's
-verdicts are kept - never message metadata such as names or usernames."""
+meta["feedback"][sid]; a text reply to an alert is stored there as a note. Any other message in the
+chat is ignored: the chat may be a group, and the state lives in a public repo, so only replies that
+point at a specific alert are kept - never other messages or metadata such as names or usernames."""
 from __future__ import annotations
 
 import hashlib
@@ -62,14 +62,12 @@ def collect(meta: dict, tg, now: datetime) -> int:
         sid = by_mid.get(str((msg.get("reply_to_message") or {}).get("message_id")))
         if sid:
             fb.setdefault(sid, {}).update({"note": text, "ts": iso(now)})
-        else:
-            meta.setdefault("notes", []).append({"ts": iso(now), "text": text})
-            meta["notes"] = meta["notes"][-100:]
-        n += 1
+            n += 1
     return n
 
 
 def prune(meta: dict, now: datetime) -> None:
+    meta.pop("notes", None)  # free-text chat messages were stored by an earlier version; never keep them
     cut = iso(now - timedelta(days=KEEP_DAYS))
     meta["sent"] = {k: v for k, v in meta.get("sent", {}).items() if v.get("ts", "") >= cut}
     meta["feedback"] = {k: v for k, v in meta.get("feedback", {}).items() if k in meta["sent"]}
