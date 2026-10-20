@@ -188,3 +188,5 @@
 # --- manual ATS config written from memory (UNVERIFIED: confirm with `python -m radar.run --healthcheck`) ---
 - {name: "NVIDIA", domain: nvidia.com, cat: multinational, tier: 1, ats: workday, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite, search: Israel}
 - {name: "Intel", domain: intel.com, cat: multinational, tier: 1, ats: workday, host: intel.wd1.myworkdayjobs.com, tenant: intel, site: External, search: Israel}
+- {name: "Elad Software", domain: eladsoft.com, cat: tech, tier: 2, ats: elad}   # staffing; many junior roles at client companies
+- {name: "Earnix", domain: earnix.com, cat: tech, tier: 2, ats: comeet, uid: "93.00B", token: 39B1207AD1AD1736736120739B193D736}

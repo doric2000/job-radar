@@ -9,6 +9,7 @@ from .ashby import Ashby
 from .checkpoint import CheckPoint
 from .comeet import Comeet
 from .eightfold import Eightfold
+from .elad import Elad
 from .greenhouse import Greenhouse
 from .lever import Lever
 from .linkedin import LinkedIn
@@ -30,4 +31,5 @@ FETCHERS = {
     "amazon": Amazon,
     "eightfold": Eightfold,
     "checkpoint": CheckPoint,
+    "elad": Elad,
 }

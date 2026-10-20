@@ -114,6 +114,11 @@ class TestClassifier(unittest.TestCase):
         for t in ["Experienced Backend Engineer", "Expert Frontend Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
 
+    def test_hebrew_and_ops_titles(self):
+        for t in ["בודק/ת תוכנה DIGITAL", "איש/אשת SecOps", "AI FDE", "מפתח/ת תוכנה Full Stack ג'וניור"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        self.assertFalse(self.c.stage1(J("מפתח/ת הדרכה ולמידה דיגיטלית")).accept)
+
     def test_sw_abbreviation(self):
         for t in ["Junior SW Engineer - Virtual Platforms", "SW Engineer - Enterprise Browser team"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)

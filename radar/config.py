@@ -39,7 +39,7 @@ DEFAULTS: dict = {
             r"\bqa\b", r"quality\s+assurance", r"\b(software|sw)\s+(test|testing|validation|verification)",
             r"\btest(ing)?\s+(engineer|automation|developer)", r"(qa|test)\s+automation", r"automation\s+developer", r"\bsdet\b",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן)\s*תוכנה",
-            r"בודק(ת)?\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)",
+            r"בודק[./]?ת?\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
         ],
         "role_exclude": [
             r"\bsales\b", r"account\s+(executive|manager)", r"marketing", r"recruit", r"talent\s+acqui",
@@ -55,7 +55,7 @@ DEFAULTS: dict = {
             r"\bradar\b", r"lidar", r"camera\s+system", r"\bgtm\b", r"go[\s-]to[\s-]market", r"strategist",
             r"\bsoc\s+(design|verification|validation|architect)", r"signal\s+processing", r"\bdsp\b",
             r"מכירות", r"שיווק", r"גיוס", r"משאבי\s+אנוש", r"שירות\s+לקוחות", r"מנהל\s+מוצר",
-            r"אינטגרטור", r"אלקטרוניקה", r"חשמל",
+            r"אינטגרטור", r"אלקטרוניקה", r"חשמל", r"הדרכה",
         ],
         # Integration / QA titles whose text is about hardware are electronics roles, not software:
         # rejected when at least two of these appear in the description.
