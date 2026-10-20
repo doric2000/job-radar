@@ -47,7 +47,7 @@ DEFAULTS: dict = {
         "seniority_exclude": [
             r"\bsenior\b", r"\bsr\b\.?", r"\bstaff\b", r"\bprincipal\b", r"\blead\b", r"\bhead\b",
             r"\bdirector\b", r"\bvp\b", r"vice\s+president", r"\bchief\b", r"\bmanager\b", r"\barchitect\b",
-            r"\bdistinguished\b", r"\bfellow\b", r"\biii\b", r"\biv\b", r"\blevel\s*[3-9]\b", r"\bl[4-9]\b",
+            r"\bdistinguished\b", r"\bfellow\b", r"\bexperienced\b", r"\bexpert\b", r"\biii\b", r"\biv\b", r"\blevel\s*[3-9]\b", r"\bl[4-9]\b",
             r"בכיר", r"בכירה", r"ראש\s+צוות", r"מנהל", r"מנהלת", r"ארכיטקט",
         ],
         "entry_signals": [

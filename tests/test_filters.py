@@ -110,6 +110,10 @@ class TestClassifier(unittest.TestCase):
                   "Junior Data Scientist", "Security Guard", "Junior QA Engineer"]:
             self.assertFalse(self.c.classify(J(t)).accept, t)
 
+    def test_experienced_and_expert_titles_are_senior(self):
+        for t in ["Experienced Backend Engineer", "Expert Frontend Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+
     def test_frontend_included(self):
         for t in ["Junior Frontend Developer", "Angular Developer", "Junior React Engineer",
                   "Junior Full Stack Developer (Frontend focus)"]:
