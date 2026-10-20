@@ -188,6 +188,8 @@ class Classifier:
         self.student = _compile(m["student_signals"])
         self.desc_entry = _compile(m["desc_entry_signals"])
         self.clearance = _compile(m["clearance_signals"])
+        self.hw_desc = _compile(m["hardware_desc_signals"])
+        self.hw_titles = _compile(m["hardware_check_titles"])
         self.max_years = int(m["max_years_accept"])
 
     # -- stage 1: title/location only -------------------------------------------------
@@ -238,6 +240,12 @@ class Classifier:
             region, warns = classify_location(job, self.cfg)
             if region:
                 v.region, v.warnings = region, warns
+
+        if _any(self.hw_titles, t) and not _any(self.role_core, t):
+            hw = {rx.pattern for rx in self.hw_desc if rx.search(desc)}
+            if len(hw) >= 2:
+                v.accept, v.reject_reason = False, "hardware/electronics role"
+                return v
 
         if _any(self.clearance, f"{t}\n{desc}"):
             v.tags.append("clearance")

@@ -29,15 +29,17 @@ DEFAULTS: dict = {
             r"infrastructure\s+(software\s+)?engineer", r"platform\s+engineer",
             r"front[\s-]?end", r"\breact\b", r"\bangular\b", r"\bvue(\.?js)?\b", r"web\s+(developer|engineer)",
             r"\bc\+\+", r"\bgolang\b", r"\brust\b", r"\bpython\b", r"\bjava\b", r"\.net\b", r"\bnode(\.?js)?\b",
-            # integration / implementation (incl. AI solutions)
-            r"integrat(ion|or)", r"implementation", r"\bai\s+(solutions?|engineer|developer|specialist|implementation)",
+            # software integration / implementation (incl. AI solutions); hardware integrators are excluded below
+            r"integration\s+(engineer|specialist|developer|consultant)",
+            r"\b(software|api|saas|data|cloud|platform|backend|crm|erp)\s+integration", r"implementation",
+            r"\bai\s+(solutions?|engineer|developer|specialist|implementation)",
             # DevOps / cloud
             r"\bdevops\b", r"\bcloud\s+(engineer|developer|specialist)", r"\bsre\b", r"site\s+reliability",
-            # QA / test automation
-            r"\bqa\b", r"quality\s+assurance", r"\btest(ing)?\s+(engineer|automation|developer)", r"automation\s+(engineer|developer)",
-            r"validation\s+engineer", r"\bsdet\b",
+            # QA / test automation (software only: industrial "automation engineer" and silicon validation are not)
+            r"\bqa\b", r"quality\s+assurance", r"\b(software|sw)\s+(test|testing|validation|verification)",
+            r"\btest(ing)?\s+(engineer|automation|developer)", r"(qa|test)\s+automation", r"automation\s+developer", r"\bsdet\b",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן)\s*תוכנה",
-            r"אינטגרציה", r"אינטגרטור", r"בודק(ת)?\s+תוכנה", r"אוטומציה",
+            r"בודק(ת)?\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)",
         ],
         "role_exclude": [
             r"\bsales\b", r"account\s+(executive|manager)", r"marketing", r"recruit", r"talent\s+acqui",
@@ -47,8 +49,21 @@ DEFAULTS: dict = {
             r"office\s+manager", r"assistant", r"developer\s+(advocate|relations)", r"evangelist",
             r"pre[\s-]?sales", r"technical\s+writer", r"security\s+guard", r"\bguard\b", r"\bgrc\b", r"compliance",
             r"mechanical", r"electrical", r"hardware", r"\bfpga\b", r"\basic\b", r"physical\s+security",
+            # hardware / electronics (the user is after computer-science roles only)
+            r"\bintegrator\b", r"electronic", r"\bpcb\b", r"\brf\b", r"avionic", r"silicon", r"physical\s+design",
+            r"field\s+(service\s+)?engineer", r"\bplc\b", r"\bpcie\b", r"\bddr\b", r"\bclocks?\b", r"design\s+automation",
+            r"\bsoc\s+(design|verification|validation|architect)", r"signal\s+processing", r"\bdsp\b",
             r"מכירות", r"שיווק", r"גיוס", r"משאבי\s+אנוש", r"שירות\s+לקוחות", r"מנהל\s+מוצר",
+            r"אינטגרטור", r"אלקטרוניקה", r"חשמל",
         ],
+        # Integration / QA titles whose text is about hardware are electronics roles, not software:
+        # rejected when at least two of these appear in the description.
+        "hardware_desc_signals": [
+            r"oscilloscope", r"solder", r"\bpcb\b", r"electronic\s+(boards?|lab|components|systems|circuits?)",
+            r"electrical\s+engineering", r"\bharness", r"wiring", r"multimeter", r"signal\s+generator",
+            r"\brf\b", r"avionics", r"lab\s+equipment", r"schematics?", r"אלקטרוניקה", r"כרטיסים", r"חיווט", r"הנדסת\s+חשמל",
+        ],
+        "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification"],
         # Adjacent fields: excluded only when the title names no core development role, so
         # "Software developer and DevOps engineer" passes while "DevOps Engineer" does not.
         "role_exclude_soft": [
@@ -138,7 +153,7 @@ DEFAULTS: dict = {
                 {"keywords": "python OR java OR node OR golang"},
                 {"keywords": "react OR angular OR mobile OR iOS"},
                 {"keywords": "ג'וניור OR מפתח OR מפתחת OR סטודנט"},
-                {"keywords": "integration OR implementation OR integrator"},
+                {"keywords": "\"integration engineer\" OR \"integration specialist\" OR implementation"},
                 {"keywords": "devops OR cloud OR QA OR automation"},
             ],
         },

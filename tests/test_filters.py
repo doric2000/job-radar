@@ -125,9 +125,25 @@ class TestClassifier(unittest.TestCase):
             self.assertFalse(self.c.stage1(J(t)).accept, t)
 
     def test_integration_devops_and_qa_families(self):
-        for t in ["Integration Specialist", "AI Solutions & Implementation Specialist", "System Integrator",
-                  "DevOps Engineer", "Cloud Engineer", "Junior QA Engineer", "QA Automation Engineer", "Validation Engineer"]:
+        for t in ["Integration Specialist", "Integration Engineer", "AI Solutions & Implementation Specialist",
+                  "API Integration Developer", "DevOps Engineer", "Cloud Engineer", "Junior QA Engineer",
+                  "QA Automation Engineer", "Software Validation Engineer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
+
+    def test_hardware_integrators_excluded(self):
+        for t in ["System Integrator", "Network & Linux Integrator", "Field Engineering and Integration",
+                  "אינטגרטור.ית בתחום האלקטרוניקה", "Embedded Integrator - Temporary", "Silicon Validation Engineer",
+                  "Automation Engineer", "PCIe System Integration Engineer", "SoC Clocks Design Automation Engineer",
+                  "Signal Processing & AI Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        self.assertTrue(self.c.stage1(J("Junior SOC Analyst")).accept)
+
+    def test_integration_with_hardware_text_rejected(self):
+        desc = "Integrate electronic boards in the lab, work with oscilloscope and wiring harness, read schematics."
+        v = self.c.classify(J("Integration Engineer", desc=desc))
+        self.assertEqual((v.accept, v.reject_reason), (False, "hardware/electronics role"))
+        v = self.c.classify(J("Junior Integration Engineer", desc="Build REST API integrations between our SaaS platform and customer CRMs."))
+        self.assertTrue(v.accept, v.reject_reason)
 
     def test_frontend_included(self):
         for t in ["Junior Frontend Developer", "Angular Developer", "Junior React Engineer",
