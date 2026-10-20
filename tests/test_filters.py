@@ -56,6 +56,17 @@ class TestClassifier(unittest.TestCase):
     def setUp(self):
         self.c = Classifier(load_config(None))
 
+    def test_graduates_welcome_to_apply_in_description(self):
+        desc = ("EyeContact is looking for a Software Engineer to join our team full-time, on-site in Rehovot. "
+                "Talented graduates and junior engineers are welcome to apply and help build a meaningful product.")
+        v = self.c.classify(J("Software Engineer", loc="Rehovot, Center District, Israel", desc=desc))
+        self.assertTrue(v.accept, v.reject_reason)
+        self.assertEqual(v.tier, "A")
+
+    def test_mentoring_juniors_is_not_an_entry_signal(self):
+        v = self.c.classify(J("Software Engineer", desc="You will mentor junior engineers and own our backend."))
+        self.assertFalse(v.accept)
+
     def test_junior_title(self):
         v = self.c.classify(J("Junior Backend Engineer"))
         self.assertTrue(v.accept)

@@ -60,6 +60,11 @@ DEFAULTS: dict = {
             r"no\s+(prior\s+)?(professional\s+|work\s+)?experience\s+(is\s+)?(required|needed|necessary)",
             r"fresh(ly)?\s+graduates?", r"recent\s+graduates?", r"new\s+graduates?", r"0\s*[-–to]+\s*1\s+years?",
             r"entry[\s-]?level", r"ללא\s+ניסיון", r"בוגרי\s+תואר", r"בוגרים\s+טריים", r"לא\s+נדרש\s+ניסיון",
+            # "Talented graduates and junior engineers are welcome to apply" (EyeContact, Oct 2026)
+            r"(graduates?|juniors?|junior\s+(engineers?|developers?))\b[^.]{0,40}\b(are\s+)?(welcome|encouraged|invited)\s+to\s+apply",
+            r"(welcome|encourage)s?\s+(applications\s+from\s+)?[^.]{0,30}\b(graduates?|juniors?)\b",
+            r"suitable\s+for\s+(recent\s+)?(graduates?|juniors?)",
+            r"מתאים\s+(גם\s+)?ל(בוגרים|ג['׳]?וניורים|מתחילים)", r"ג['׳]?וניורים\s+(מוזמנים|יתקבלו)",
         ],
         "clearance_signals": [
             r"security\s+clearance", r"\bclearance\b", r"סיווג\s*(ביטחוני|בטחוני)?", r"אישור\s+(ביטחוני|בטחוני)",
