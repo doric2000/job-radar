@@ -3,7 +3,6 @@ import unittest
 from datetime import datetime, timedelta, timezone
 
 from radar.config import load_config
-from radar.filters import RECHECK_NOTES
 from radar.discover import candidates_from_html, slug_variants
 from radar.http import HttpError
 from radar.notify import format_alert
@@ -223,7 +222,7 @@ class TestMisc(unittest.TestCase):
                                    ("4", False, "role excluded: Frontend"), ("5", False, "role excluded: Sales")]:
             s.record("acme", NOW, jid, "t", alerted, note)
         s.company("acme")["first_scan"] = iso(NOW - timedelta(hours=10))
-        self.assertEqual(s.forget_rejections(NOW - timedelta(hours=72), RECHECK_NOTES), 2)
+        self.assertEqual(s.forget_rejections(NOW - timedelta(hours=72), r"^no experience signal$|^role excluded: .*front"), 2)
         self.assertEqual(sorted(s.company("acme")["jobs"]), ["0", "2", "3", "5"])
 
     def test_html_to_text_bullets(self):
