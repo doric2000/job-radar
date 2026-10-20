@@ -90,7 +90,10 @@ class Radar:
                 except Exception:  # noqa: BLE001
                     continue  # not recorded -> retried on the next run
             if v.accept:
-                v = self.clf.classify(j)
+                try:
+                    v = self.clf.classify(j)
+                except Exception:  # noqa: BLE001 - one malformed job must not stop the whole run
+                    continue  # not recorded -> retried on the next run
             alert, note = v.accept, v.reject_reason
             if alert:
                 age_h = (self.now - j.posted_at).total_seconds() / 3600 if j.posted_at else None

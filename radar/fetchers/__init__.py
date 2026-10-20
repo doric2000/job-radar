@@ -4,8 +4,11 @@ Contract:  Fetcher(http).list_jobs(company_cfg) -> list[Job]      (cheap, one or
            Fetcher(http).enrich(job, company_cfg) -> Job          (detail request, only for new jobs)
 Date semantics are recorded in Job.date_kind so alerts never present a refresh as a first publication.
 """
+from .amazon import Amazon
 from .ashby import Ashby
+from .checkpoint import CheckPoint
 from .comeet import Comeet
+from .eightfold import Eightfold
 from .greenhouse import Greenhouse
 from .lever import Lever
 from .linkedin import LinkedIn
@@ -24,4 +27,7 @@ FETCHERS = {
     "recruitee": Recruitee,
     "workday": Workday,
     "linkedin": LinkedIn,
+    "amazon": Amazon,
+    "eightfold": Eightfold,
+    "checkpoint": CheckPoint,
 }

@@ -9,7 +9,7 @@
 # environment. The "discover" workflow checks each one against live services and writes data/resolved.json
 # plus data/discovery_report.md (resolved / needs review / not found). Fix or add entries freely.
 
-- {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1}
+- {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1, ats: checkpoint}
 - {name: "CyberArk", domain: cyberark.com, cat: cyber, tier: 1}   # acquired by Palo Alto Networks: jobs appear on the Palo Alto board
 - {name: "Wiz", domain: wiz.io, cat: cyber, tier: 1, slugs: [wizinc, wiz]}
 - {name: "Palo Alto Networks", domain: paloaltonetworks.com, cat: cyber, tier: 1}
@@ -93,8 +93,8 @@
 - {name: "Allot", domain: allot.com, cat: cyber, tier: 3}
 - {name: "F5", domain: f5.com, cat: cyber, tier: 3}
 - {name: "Cyberint", domain: cyberint.com, cat: cyber, tier: 3}   # acquired by Check Point
-- {name: "monday.com", domain: monday.com, cat: tech, tier: 1, slugs: [mondaycom, monday]}
-- {name: "Wix", domain: wix.com, cat: tech, tier: 1}
+- {name: "monday.com", domain: monday.com, cat: tech, tier: 1, ats: ashby, token: monday.com}
+- {name: "Wix", domain: wix.com, cat: tech, tier: 1, ats: smartrecruiters, token: Wix2}
 - {name: "Fireblocks", domain: fireblocks.com, cat: tech, tier: 1}
 - {name: "Gong", domain: gong.io, cat: tech, tier: 1, ats: greenhouse, token: gongio}
 - {name: "Mobileye", domain: mobileye.com, cat: tech, tier: 1, ats: lever, token: mobileye, region: eu}
@@ -124,7 +124,7 @@
 - {name: "Coralogix", domain: coralogix.com, cat: tech, tier: 2}
 - {name: "Mend.io", domain: mend.io, cat: tech, tier: 2}
 - {name: "Sapiens", domain: sapiens.com, cat: tech, tier: 2}
-- {name: "Amdocs", domain: amdocs.com, cat: tech, tier: 2}
+- {name: "Amdocs", domain: amdocs.com, cat: tech, tier: 2, ats: eightfold, host: jobs.amdocs.com}
 - {name: "NICE", domain: nice.com, cat: tech, tier: 2}
 - {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 2}
 - {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}
@@ -156,12 +156,12 @@
 - {name: "Verbit", domain: verbit.ai, cat: tech, tier: 3}
 - {name: "Hailo", domain: hailo.ai, cat: tech, tier: 3}
 - {name: "Innoviz", domain: innoviz.tech, cat: tech, tier: 3}
-- {name: "Microsoft Israel", domain: microsoft.com, cat: multinational, tier: 2}
+- {name: "Microsoft Israel", domain: microsoft.com, cat: multinational, tier: 1, ats: eightfold, host: apply.careers.microsoft.com}
 - {name: "Google Israel", domain: google.com, cat: multinational, tier: 2}
-- {name: "Amazon Israel", domain: amazon.jobs, cat: multinational, tier: 2}
+- {name: "Amazon Israel", domain: amazon.jobs, cat: multinational, tier: 1, ats: amazon}
 - {name: "Apple Israel", domain: apple.com, cat: multinational, tier: 3}
 - {name: "Cisco Israel", domain: cisco.com, cat: multinational, tier: 3, ats: workday, host: cisco.wd5.myworkdayjobs.com, tenant: cisco, site: Cisco_Careers, search: Israel}
-- {name: "Qualcomm Israel", domain: qualcomm.com, cat: multinational, tier: 3}
+- {name: "Qualcomm Israel", domain: qualcomm.com, cat: multinational, tier: 3, ats: eightfold, host: careers.qualcomm.com}
 - {name: "Marvell Israel", domain: marvell.com, cat: multinational, tier: 3, ats: workday, host: marvell.wd1.myworkdayjobs.com, tenant: marvell, site: MarvellCareers, search: Israel}
 - {name: "AMD Israel", domain: amd.com, cat: multinational, tier: 3}
 - {name: "Oracle Israel", domain: oracle.com, cat: multinational, tier: 3}
