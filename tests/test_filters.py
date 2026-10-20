@@ -106,12 +106,14 @@ class TestClassifier(unittest.TestCase):
         self.assertTrue(v.warnings)
 
     def test_role_exclusions(self):
-        for t in ["Junior Sales Development Rep", "Junior Product Manager", "Junior Frontend Developer",
+        for t in ["Junior Sales Development Rep", "Junior Product Manager", "Junior UX Designer",
                   "Junior Data Scientist", "Security Guard", "Junior QA Engineer"]:
             self.assertFalse(self.c.classify(J(t)).accept, t)
 
-    def test_fullstack_not_excluded_by_frontend_rule(self):
-        self.assertTrue(self.c.classify(J("Junior Full Stack Developer (Frontend focus)")).accept)
+    def test_frontend_included(self):
+        for t in ["Junior Frontend Developer", "Angular Developer", "Junior React Engineer",
+                  "Junior Full Stack Developer (Frontend focus)"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
 
     def test_internship_included(self):
         v = self.c.classify(J("Security Research Intern"))

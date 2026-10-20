@@ -9,7 +9,7 @@
 # environment. The "discover" workflow checks each one against live services and writes data/resolved.json
 # plus data/discovery_report.md (resolved / needs review / not found). Fix or add entries freely.
 
-- {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1, ats: checkpoint}
+- {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1}   # careers.checkpoint.com answers 403 to GitHub runners; radar/fetchers/checkpoint.py works from a home connection (ats: checkpoint). Covered via LinkedIn meanwhile.
 - {name: "CyberArk", domain: cyberark.com, cat: cyber, tier: 1}   # acquired by Palo Alto Networks: jobs appear on the Palo Alto board
 - {name: "Wiz", domain: wiz.io, cat: cyber, tier: 1, slugs: [wizinc, wiz]}
 - {name: "Palo Alto Networks", domain: paloaltonetworks.com, cat: cyber, tier: 1}

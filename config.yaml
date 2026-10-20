@@ -13,7 +13,7 @@ scan:
 
 match:
   # מה לכלול מעבר לברירת המחדל (מתחילים במפורש / עד שנה / עד שנתיים ניסיון):
-  include_unspecified_experience: false   # כותרת גנרית בלי שום ציון ותק. true = יותר התראות, יותר רעש
+  include_unspecified_experience: true    # משרה בלי ציון ותק מתריעה עם האזהרה "ותק לא צוין". false = רק משרות שמציינות ותק
   include_internships: true
   include_student_parttime: false         # "משרת סטודנט" / חלקית
   max_years_accept: 2
