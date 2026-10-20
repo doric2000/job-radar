@@ -1,22 +1,18 @@
 # Discovery report
 
-- ok: 65
-- review: 12
-- none: 98
+- ok: 73
+- review: 8
+- none: 81
 
 
 ## Needs review (found but ambiguous)
 
 - **Bringg** (`bringg`) greenhouse bringg board has no job located in Israel - confirm it is the right company
 - **Fiverr** (`fiverr`) smartrecruiters fiverr board has no job located in Israel - confirm it is the right company
-- **Gong** (`gong`) smartrecruiters gong board has no job located in Israel - confirm it is the right company
 - **HiBob** (`hibob`) smartrecruiters hibob board has no job located in Israel - confirm it is the right company
 - **Israel Aerospace Industries** (`israel-aerospace-industries`) greenhouse iai board has no job located in Israel - confirm it is the right company
 - **Israel National Cyber Directorate** (`israel-national-cyber-directorate`) greenhouse national board has no job located in Israel - confirm it is the right company
-- **Lemonade** (`lemonade`) ashby lemonade board has no job located in Israel - confirm it is the right company
-- **Oligo Security** (`oligo-security`) ashby oligo board has no job located in Israel - confirm it is the right company
-- **Redis** (`redis`) ashby redis board has no job located in Israel - confirm it is the right company
-- **Sola Security** (`sola-security`) ashby sola board has no job located in Israel - confirm it is the right company
+- **Quantum Art** (`quantum-art`) ashby quantum board has no job located in Israel - confirm it is the right company
 - **Source Defense** (`source-defense`) lever source board has no job located in Israel - confirm it is the right company
 - **VAST Data** (`vast-data`) greenhouse vast board has no job located in Israel - confirm it is the right company
 
@@ -24,11 +20,8 @@
 
 - **Akamai** (`akamai`)   no ATS found (custom careers site?)
 - **Allot** (`allot`)   no ATS found (custom careers site?)
-- **Amazon Israel** (`amazon-israel`)   no ATS found (custom careers site?)
 - **AMD Israel** (`amd-israel`)   no ATS found (custom careers site?)
-- **Amdocs** (`amdocs`)   no ATS found (custom careers site?)
 - **Apple Israel** (`apple-israel`)   no ATS found (custom careers site?)
-- **Aqua Security** (`aqua-security`)   no ATS found (custom careers site?)
 - **Astrix Security** (`astrix-security`)   no ATS found (custom careers site?)
 - **Bank Hapoalim** (`bank-hapoalim`)   no ATS found (custom careers site?)
 - **Bank Leumi** (`bank-leumi`)   no ATS found (custom careers site?)
@@ -38,19 +31,19 @@
 - **Cellcom** (`cellcom`)   no ATS found (custom careers site?)
 - **Cellebrite** (`cellebrite`)   no ATS found (custom careers site?)
 - **Check Point** (`check-point`)   no ATS found (custom careers site?)
-- **Cisco Israel** (`cisco-israel`)   no ATS found (custom careers site?)
 - **Clal Insurance** (`clal-insurance`)   no ATS found (custom careers site?)
-- **Claroty** (`claroty`)   no ATS found (custom careers site?)
+- **Comblack** (`comblack`)   no ATS found (custom careers site?)
+- **Conntour** (`conntour`)   no ATS found (custom careers site?)
 - **Coralogix** (`coralogix`)   no ATS found (custom careers site?)
 - **CyberArk** (`cyberark`)   no ATS found (custom careers site?)
 - **Cyberbit** (`cyberbit`)   no ATS found (custom careers site?)
 - **Cybereason** (`cybereason`)   no ATS found (custom careers site?)
 - **Cyberint** (`cyberint`)   no ATS found (custom careers site?)
+- **Cydome** (`cydome`)   no ATS found (custom careers site?)
 - **Cyolo** (`cyolo`)   no ATS found (custom careers site?)
 - **Deep Instinct** (`deep-instinct`)   no ATS found (custom careers site?)
-- **DriveNets** (`drivenets`)   no ATS found (custom careers site?)
+- **Draftt** (`draftt`)   no ATS found (custom careers site?)
 - **Elbit Systems** (`elbit-systems`)   no ATS found (custom careers site?)
-- **Elementor** (`elementor`)   no ATS found (custom careers site?)
 - **Eureka Security** (`eureka-security`)   no ATS found (custom careers site?)
 - **First International Bank** (`first-international-bank`)   no ATS found (custom careers site?)
 - **Gambit Security** (`gambit-security`)   no ATS found (custom careers site?)
@@ -58,8 +51,8 @@
 - **Google Israel** (`google-israel`)   no ATS found (custom careers site?)
 - **Hailo** (`hailo`)   no ATS found (custom careers site?)
 - **Harel** (`harel`)   no ATS found (custom careers site?)
+- **High Sec Labs** (`high-sec-labs`)   no ATS found (custom careers site?)
 - **Hilan** (`hilan`)   no ATS found (custom careers site?)
-- **Hunters** (`hunters`)   no ATS found (custom careers site?)
 - **IBM Israel** (`ibm-israel`)   no ATS found (custom careers site?)
 - **Imperva** (`imperva`)   no ATS found (custom careers site?)
 - **Innoviz** (`innoviz`)   no ATS found (custom careers site?)
@@ -67,59 +60,45 @@
 - **Israel Security Agency** (`israel-security-agency`)   no ATS found (custom careers site?)
 - **Jit** (`jit`)   no ATS found (custom careers site?)
 - **Karamba Security** (`karamba-security`)   no ATS found (custom careers site?)
-- **Lasso Security** (`lasso-security`)   no ATS found (custom careers site?)
-- **Legit Security** (`legit-security`)   no ATS found (custom careers site?)
-- **Lightricks** (`lightricks`)   no ATS found (custom careers site?)
 - **Lusha** (`lusha`)   no ATS found (custom careers site?)
 - **Malam Team** (`malam-team`)   no ATS found (custom careers site?)
-- **Marvell Israel** (`marvell-israel`)   no ATS found (custom careers site?)
 - **Matrix IT** (`matrix-it`)   no ATS found (custom careers site?)
 - **Memcyco** (`memcyco`)   no ATS found (custom careers site?)
-- **Microsoft Israel** (`microsoft-israel`)   no ATS found (custom careers site?)
 - **Migdal** (`migdal`)   no ATS found (custom careers site?)
+- **Milestone** (`milestone`)   no ATS found (custom careers site?)
 - **Mizrahi Tefahot** (`mizrahi-tefahot`)   no ATS found (custom careers site?)
-- **Mobileye** (`mobileye`)   no ATS found (custom careers site?)
-- **monday.com** (`monday-com`)   no ATS found (custom careers site?)
 - **Nayax** (`nayax`)   no ATS found (custom careers site?)
+- **NewCore** (`newcore`)   no ATS found (custom careers site?)
 - **Next Insurance** (`next-insurance`)   no ATS found (custom careers site?)
 - **Nokod Security** (`nokod-security`)   no ATS found (custom careers site?)
 - **Noma Security** (`noma-security`)   no ATS found (custom careers site?)
-- **Nova** (`nova`)   no ATS found (custom careers site?)
 - **One1** (`one1`)   no ATS found (custom careers site?)
 - **Oracle Israel** (`oracle-israel`)   no ATS found (custom careers site?)
 - **OX Security** (`ox-security`)   no ATS found (custom careers site?)
 - **Papaya Global** (`papaya-global`)   no ATS found (custom careers site?)
 - **Partner** (`partner`)   no ATS found (custom careers site?)
-- **Pentera** (`pentera`)   no ATS found (custom careers site?)
 - **Perception Point** (`perception-point`)   no ATS found (custom careers site?)
 - **Pillar Security** (`pillar-security`)   no ATS found (custom careers site?)
 - **Plarium** (`plarium`)   no ATS found (custom careers site?)
 - **Playtika** (`playtika`)   no ATS found (custom careers site?)
 - **Pliops** (`pliops`)   comeet uid=05.004 found but token not found - add manually
 - **Plus500** (`plus500`)   no ATS found (custom careers site?)
-- **Qualcomm Israel** (`qualcomm-israel`)   no ATS found (custom careers site?)
 - **Radware** (`radware`)   no ATS found (custom careers site?)
 - **Rafael** (`rafael`)   no ATS found (custom careers site?)
 - **Rapid7** (`rapid7`)   no ATS found (custom careers site?)
 - **Rapyd** (`rapyd`)   no ATS found (custom careers site?)
 - **SAP Israel** (`sap-israel`)   no ATS found (custom careers site?)
 - **Sapiens** (`sapiens`)   no ATS found (custom careers site?)
-- **Seemplicity** (`seemplicity`)   no ATS found (custom careers site?)
-- **Silverfort** (`silverfort`)   no ATS found (custom careers site?)
 - **Spera Security** (`spera-security`)   no ATS found (custom careers site?)
-- **Sygnia** (`sygnia`)   no ATS found (custom careers site?)
 - **Teads** (`teads`)   no ATS found (custom careers site?)
 - **Team8** (`team8`)   no ATS found (custom careers site?)
 - **The Phoenix** (`the-phoenix`)   no ATS found (custom careers site?)
 - **Tufin** (`tufin`)   no ATS found (custom careers site?)
-- **Upwind** (`upwind`)   no ATS found (custom careers site?)
 - **Varonis** (`varonis`)   no ATS found (custom careers site?)
 - **Verbit** (`verbit`)   no ATS found (custom careers site?)
 - **Verint** (`verint`)   no ATS found (custom careers site?)
 - **Veriti** (`veriti`)   no ATS found (custom careers site?)
 - **WEKA** (`weka`)   no ATS found (custom careers site?)
-- **Wix** (`wix`)   no ATS found (custom careers site?)
-- **XM Cyber** (`xm-cyber`)   no ATS found (custom careers site?)
 
 ## Resolved
 
@@ -129,11 +108,13 @@
 - Armis: smartrecruiters `ServiceNow` jobs=705 israel=16
 - Axonius: greenhouse `axonius` jobs=21 israel=6
 - Backslash Security: comeet `89433783C0C22503378337889419BC33782AE4` jobs=4 israel=2
+- BrainPOP: greenhouse `brainpop` jobs=1 israel=1
 - Cato Networks: greenhouse `catonetworks` jobs=108 israel=39
 - Ceragon: comeet `3D3131FF4C01AC57A61AC51E98131FF4C` jobs=47 israel=13
 - Checkmarx: comeet `C8320190002581902584B0708` jobs=31 israel=5
 - Cloudinary: lever `cloudinary` jobs=10 israel=6
 - Cognyte: comeet `2F9EDD2F92F911D61AC12F914CF11D62F9` jobs=45 israel=14
+- Connecteam: greenhouse `connecteam` jobs=58 israel=19
 - Cycode: comeet `8AD340E3CBB3CBB22B445680340E22B44568` jobs=5 israel=2
 - CyCognito: comeet `41A148210681CB61CB68341CB624EAC4E1482` jobs=1 israel=0
 - Cyera: comeet `7182A90154871823783FD838C031A802378` jobs=249 israel=29
@@ -152,12 +133,15 @@
 - JFrog: greenhouse `jfrog` jobs=63 israel=18
 - Kaltura: smartrecruiters `kalturainc` jobs=4 israel=3
 - Lightrun: greenhouse `lightrun` jobs=1 israel=1
+- Linx Security: comeet `99C434499C300C300C99C300C133839A84CE0` jobs=15 israel=6
 - Melio: greenhouse `melio` jobs=23 israel=9
 - Mend.io: ashby `mend-io` jobs=9 israel=2
 - Mitiga: comeet `62B250262B012811ED718AC128112813158` jobs=2 israel=2
 - Moon Active: ashby `moonactive` jobs=34 israel=25
 - Nagomi Security: comeet `98B42CD98B98B4C5855E3262C262C262C3942` jobs=6 israel=5
+- Ness Technologies: smartrecruiters `nesstechnologies` jobs=1 israel=1
 - NICE: greenhouse `nice` jobs=180 israel=18
+- Novee Security: comeet `AA84A983FF0002AA01FF8155035483FF0` jobs=17 israel=7
 - Oasis Security: greenhouse `oasissecurity` jobs=0 israel=0
 - Optimove: greenhouse `optimove` jobs=11 israel=3
 - Orca Security: greenhouse `orcasecurity` jobs=10 israel=2
@@ -167,10 +151,12 @@
 - Palo Alto Networks: workday `paloaltonetworks` jobs=135 israel=133
 - Panorays: comeet `79D2DAE1E7479D1E742DAE3CE802DAE1E74` jobs=3 israel=1
 - Payoneer: greenhouse `payoneer` jobs=99 israel=20
+- Quicklizard: comeet `9C4445C13881D4C1D4C445C57E43A98445C1388` jobs=8 israel=7
 - Reco: comeet `A3D47AB28F405C2505C2551E8333151E8` jobs=6 israel=1
 - Riskified: greenhouse `riskified` jobs=30 israel=12
 - SafeBreach: greenhouse `safebreach` jobs=8 israel=3
 - Salt Security: greenhouse `saltsecurity` jobs=14 israel=4
+- SecondNature: comeet `AFC4CE44CE4AFC20F4AFC36EC57E057E057E0` jobs=7 israel=7
 - Semperis: ashby `semperis` jobs=24 israel=3
 - SentinelOne: greenhouse `sentinellabs` jobs=270 israel=17
 - Similarweb: greenhouse `similarweb` jobs=69 israel=28
@@ -182,6 +168,7 @@
 - Token Security: greenhouse `tokensecurity` jobs=6 israel=4
 - Torq: greenhouse `torq` jobs=25 israel=5
 - Transmit Security: greenhouse `transmitsecurity` jobs=14 israel=12
+- Unframe: greenhouse `unframe` jobs=35 israel=14
 - Via: greenhouse `via` jobs=180 israel=9
 - Wiz: greenhouse `wizinc` jobs=122 israel=23
 - Yotpo: greenhouse `yotpo` jobs=15 israel=5

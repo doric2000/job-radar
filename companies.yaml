@@ -133,7 +133,7 @@
 - {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3}
 - {name: "Papaya Global", domain: papayaglobal.com, cat: tech, tier: 3}
 - {name: "Yotpo", domain: yotpo.com, cat: tech, tier: 3}
-- {name: "Lusha", domain: lusha.com, cat: tech, tier: 3}
+- {name: "Lusha", domain: lusha.com, cat: tech, tier: 1, ats: comeet, uid: "73.00B", token: 37B11676F61F53DEC6F606F61BD8185D}
 - {name: "Via", domain: ridewithvia.com, cat: tech, tier: 3}
 - {name: "Bringg", domain: bringg.com, cat: tech, tier: 3}
 - {name: "Plus500", domain: plus500.com, cat: tech, tier: 3}
@@ -190,3 +190,20 @@
 - {name: "Intel", domain: intel.com, cat: multinational, tier: 1, ats: workday, host: intel.wd1.myworkdayjobs.com, tenant: intel, site: External, search: Israel}
 - {name: "Elad Software", domain: eladsoft.com, cat: tech, tier: 2, ats: elad}   # staffing; many junior roles at client companies
 - {name: "Earnix", domain: earnix.com, cat: tech, tier: 2, ats: comeet, uid: "93.00B", token: 39B1207AD1AD1736736120739B193D736}
+# Added 2026-10-20 from the user's job-feed sources
+- {name: "Novee Security", domain: novee.security, cat: cyber, tier: 1}
+- {name: "Cydome", domain: cydome.io, cat: cyber, tier: 1}
+- {name: "Ness Technologies", domain: ness-tech.co.il, cat: tech, tier: 1}
+- {name: "Linx Security", domain: linx.security, cat: cyber, tier: 1}
+- {name: "Conntour", domain: conntour.com, cat: tech, tier: 1}
+- {name: "Comblack", domain: comblack.com, cat: tech, tier: 1}
+- {name: "Quantum Art", domain: quantum-art.tech, cat: tech, tier: 1}
+- {name: "Quicklizard", domain: quicklizard.com, cat: tech, tier: 1}
+- {name: "Connecteam", domain: connecteam.com, cat: tech, tier: 1}
+- {name: "High Sec Labs", domain: highseclabs.com, cat: cyber, tier: 1}
+- {name: "Draftt", domain: draftt.io, cat: tech, tier: 1}
+- {name: "Unframe", domain: unframe.ai, cat: tech, tier: 1}
+- {name: "Milestone", domain: mstone.ai, cat: tech, tier: 1}
+- {name: "BrainPOP", domain: brainpop.com, cat: tech, tier: 1}
+- {name: "NewCore", domain: newcore.ai, cat: tech, tier: 1}
+- {name: "SecondNature", domain: secondnature.ai, cat: tech, tier: 1}
