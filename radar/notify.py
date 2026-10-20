@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import json
 import os
 import time
 from datetime import datetime, timezone
@@ -74,19 +75,20 @@ class Telegram:
         t, c = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
         return cls(t, c) if t and c else None
 
-    def send(self, text: str, silent: bool = False) -> bool:
-        url = f"https://api.telegram.org/bot{self.token}/sendMessage"
+    def _call(self, method: str, data: dict, timeout: int = 20):
+        """POST to the Bot API with retries. Returns the parsed `result`, or None on failure."""
+        url = f"https://api.telegram.org/bot{self.token}/{method}"
         for attempt in range(3):
             try:
-                r = requests.post(url, data={
-                    "chat_id": self.chat_id, "text": text[:4000], "parse_mode": "HTML",
-                    "disable_web_page_preview": "true", "disable_notification": "true" if silent else "false",
-                }, timeout=20)
+                r = requests.post(url, data=data, timeout=timeout)
             except requests.RequestException:
                 time.sleep(2)
                 continue
             if r.status_code == 200:
-                return True
+                try:
+                    return r.json().get("result")
+                except ValueError:
+                    return None
             if r.status_code == 429:
                 try:
                     wait = int(r.json().get("parameters", {}).get("retry_after", 5))
@@ -94,7 +96,28 @@ class Telegram:
                     wait = 5
                 time.sleep(min(wait, 30))
                 continue
-            # Never print the URL (it contains the bot token); status code only.
-            print(f"telegram: HTTP {r.status_code}")
-            return False
-        return False
+            # Never print the URL (it contains the bot token); method and status code only.
+            print(f"telegram {method}: HTTP {r.status_code}")
+            return None
+        return None
+
+    def send(self, text: str, silent: bool = False, markup: dict | None = None):
+        """Returns the sent message_id (truthy) or None."""
+        data = {"chat_id": self.chat_id, "text": text[:4000], "parse_mode": "HTML",
+                "disable_web_page_preview": "true", "disable_notification": "true" if silent else "false"}
+        if markup:
+            data["reply_markup"] = json.dumps(markup)
+        res = self._call("sendMessage", data)
+        return res.get("message_id") if isinstance(res, dict) else None
+
+    def get_updates(self, offset: int):
+        res = self._call("getUpdates", {"offset": offset, "timeout": 0,
+                                        "allowed_updates": json.dumps(["message", "callback_query"])})
+        return res if isinstance(res, list) else None
+
+    def answer_callback(self, callback_id: str, text: str) -> None:
+        self._call("answerCallbackQuery", {"callback_query_id": callback_id, "text": text})
+
+    def edit_buttons(self, message_id: int, markup: dict) -> None:
+        self._call("editMessageReplyMarkup", {"chat_id": self.chat_id, "message_id": message_id,
+                                              "reply_markup": json.dumps(markup)})

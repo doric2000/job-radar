@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import re
 import sys
 import time
@@ -9,6 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
+from . import feedback
 from .config import load_config
 from .fetchers import FETCHERS
 from .filters import FILTERS_VERSION, RECHECK_NOTES, Classifier
@@ -147,12 +149,83 @@ class Radar:
             if self.dry_run or self.notifier is None:
                 print("----- ALERT (not sent) -----\n" + text)
             else:
-                self.notifier.send(text)
+                sid = feedback.sent_id(j)
+                mid = self.notifier.send(text, markup=feedback.buttons(sid))
+                feedback.record_sent(self.state.d["meta"], sid, j, v, mid, self.now)
                 time.sleep(0.4)
         if len(alerts) > cap:
             msg = f"➕ עוד {len(alerts) - cap} משרות מתאימות בריצה הזו. פתח את state/ או הפעל ריצה ידנית."
             if not self.dry_run and self.notifier:
                 self.notifier.send(msg)
+
+    # ---------------------------------------------------------------- backlog
+    def backlog(self) -> list[tuple[Job, Verdict, dict]]:
+        """Jobs recorded by a company's first (baseline) scan are never alerted, so postings that were
+        already open when the bot started, or that only fit after a rule change, stay silent. This
+        re-classifies them under the current rules and returns the ones that fit (sent as one digest)."""
+        def one(c):
+            st = self.state.company(c["id"])
+            if not st or not st.get("first_scan"):
+                return []
+            fetcher, out = self.fetchers.get(c["ats"]), []
+            try:
+                jobs = fetcher.list_jobs(c)
+            except Exception:  # noqa: BLE001
+                return []
+            for j in jobs:
+                k = st["jobs"].get(j.job_id)
+                if not k or k.get("a") or k.get("fs") != st["first_scan"] or k.get("r") in ("dup", "stale"):
+                    continue
+                if not self.clf.stage1(j).accept:
+                    continue
+                try:
+                    if not j.description:
+                        j = fetcher.enrich(j, c)
+                    v = self.clf.classify(j)
+                except Exception:  # noqa: BLE001
+                    continue
+                if v.accept:  # still listed = still open, however long ago it was first published
+                    out.append((j, v, c))
+            return out
+
+        pool = [c for c in self.companies if c.get("ats") and c.get("cat") != "lead"]
+        with ThreadPoolExecutor(max_workers=self.cfg["scan"]["threads"]) as ex:
+            found = [x for r in ex.map(one, pool) for x in r]
+        fresh, seen = [], set()
+        for j, v, c in found:
+            self.state.company(c["id"])["jobs"][j.job_id].update({"a": 1, "r": "backlog"})
+            same = (norm(j.company), norm(j.title))  # one line per role, not per location
+            if self.state.was_alerted(dedupe_key(j)) or same in seen:
+                continue
+            seen.add(same)
+            self.state.add_alerted(dedupe_key(j), self.now)
+            fresh.append((j, v, c))
+        fresh.sort(key=lambda a: (TIER_RANK.get(a[1].tier, 9), a[0].company))
+        return fresh
+
+    def send_backlog(self, items) -> None:
+        e = html.escape
+        head = f"📚 משרות שכבר היו פתוחות כשהבוט התחיל ומתאימות לכללים הנוכחיים ({len(items)}):"
+        def age(j):
+            if not j.posted_at or (self.now - j.posted_at).days < 30:
+                return ""
+            return f" · פתוחה {(self.now - j.posted_at).days // 30} חודשים"
+
+        lines = [f'• <a href="{e(j.url, quote=True)}">{e(j.title[:80])}</a> · {e(j.company[:30])}'
+                 + (f" · {e(v.reasons[0][:40])}" if v.reasons else "") + age(j) for j, v, _ in items]
+        chunks, cur = [], [head]
+        for ln in lines:
+            if len("\n".join(cur + [ln])) > 3800:
+                chunks.append(cur)
+                cur = ["📚 (המשך)"]
+            cur.append(ln)
+        chunks.append(cur)
+        for ch in chunks:
+            if self.dry_run or self.notifier is None:
+                print("----- BACKLOG (not sent) -----\n" + "\n".join(ch))
+            else:
+                self.notifier.send("\n".join(ch))
+                time.sleep(0.4)
 
     def maybe_digest(self, summary: dict) -> None:
         """Once a day: proof of life + broken boards. Silent if everything is fine except the heartbeat."""
@@ -218,6 +291,7 @@ def main(argv=None) -> int:
     ap.add_argument("--all", action="store_true", help="ignore tier schedule, scan everything")
     ap.add_argument("--only", default="", help="comma separated company ids")
     ap.add_argument("--healthcheck", action="store_true")
+    ap.add_argument("--backlog", action="store_true", help="one digest of already-open jobs that fit the current rules")
     a = ap.parse_args(argv)
 
     cfg = load_config(a.config)
@@ -235,6 +309,17 @@ def main(argv=None) -> int:
 
     if a.healthcheck:
         return healthcheck(radar, only)
+    if notifier is not None and not a.dry_run:
+        n = feedback.collect(state.d["meta"], notifier, radar.now)
+        if n:
+            print(f"feedback: {n} new item(s)")
+    if a.backlog:
+        items = radar.backlog()
+        radar.send_backlog(items)
+        print(f"backlog: {len(items)} job(s)")
+        if not a.dry_run:
+            state.save(a.state)
+        return 0
 
     run_index = int(time.time() // (60 * cfg["scan"]["run_interval_minutes"]))
     summary = radar.run(run_index, force_all=a.all, only=only)
@@ -243,6 +328,7 @@ def main(argv=None) -> int:
           f"new_jobs={summary['new_jobs']} alerts={len(summary['alerts'])}")
     for name, err, streak in summary["errors"][:15]:
         print(f"  ! {name} (x{streak}): {err}")
+    feedback.prune(state.d["meta"], radar.now)
     if not a.dry_run:
         state.save(a.state)
     return 0
