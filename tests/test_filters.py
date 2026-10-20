@@ -114,6 +114,12 @@ class TestClassifier(unittest.TestCase):
         for t in ["Experienced Backend Engineer", "Expert Frontend Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
 
+    def test_adjacent_field_with_core_dev_role_passes(self):
+        for t in ["Software developer and DevOps engineer", "iOS Developer", "React Native Developer"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        for t in ["DevOps Engineer", "Junior QA Engineer", "Junior Data Scientist", "Sales Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+
     def test_frontend_included(self):
         for t in ["Junior Frontend Developer", "Angular Developer", "Junior React Engineer",
                   "Junior Full Stack Developer (Frontend focus)"]:

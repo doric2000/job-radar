@@ -16,8 +16,8 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 2
-RECHECK_NOTES = r"^no experience signal$|^role excluded: .*(front|angular|react|vue|web)"
+FILTERS_VERSION = 3
+RECHECK_NOTES = r"^role excluded: .*(devops|qa|quality|ios|android|mobile|data|ml|machine|solution|sre|site)"
 
 _FLAGS = re.I | re.U
 
@@ -180,6 +180,8 @@ class Classifier:
         m = cfg["match"]
         self.role_inc = _compile(m["role_include"])
         self.role_exc = _compile(m["role_exclude"])
+        self.role_exc_soft = _compile(m["role_exclude_soft"])
+        self.role_core = _compile(m["role_core"])
         self.sen_exc = _compile(m["seniority_exclude"])
         self.entry = _compile(m["entry_signals"])
         self.intern = _compile(m["internship_signals"])
@@ -193,6 +195,8 @@ class Classifier:
         t = job.title or ""
         m = self.cfg["match"]
         if (hit := _any(self.role_exc, t)):
+            return Verdict(False, reject_reason=f"role excluded: {hit}", stage=1)
+        if (hit := _any(self.role_exc_soft, t)) and not _any(self.role_core, t):
             return Verdict(False, reject_reason=f"role excluded: {hit}", stage=1)
         if not _any(self.role_inc, t):
             return Verdict(False, reject_reason="title not in role families", stage=1)

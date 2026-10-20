@@ -36,13 +36,21 @@ DEFAULTS: dict = {
             r"\bhr\b", r"human\s+resources", r"\bpeople\b", r"finance", r"accountant", r"\blegal\b", r"counsel",
             r"customer\s+(success|support)", r"support\s+engineer", r"product\s+manager", r"product\s+design",
             r"\bux\b", r"\bui\b", r"designer", r"business\s+develop", r"\bbdr\b", r"\bsdr\b",
-            r"office\s+manager", r"assistant", r"data\s+scien", r"machine\s+learning", r"\bml\b",
-            r"data\s+analyst", r"developer\s+(advocate|relations)", r"evangelist", r"solutions?\s+(architect|engineer|consultant)",
+            r"office\s+manager", r"assistant", r"developer\s+(advocate|relations)", r"evangelist",
             r"pre[\s-]?sales", r"technical\s+writer", r"security\s+guard", r"\bguard\b", r"\bgrc\b", r"compliance",
-            r"\bios\b", r"android", r"\bmobile\b",
-            r"\bqa\b", r"quality\s+assurance", r"\bdevops\b(?!.*secur)", r"\bsre\b", r"site\s+reliability",
             r"mechanical", r"electrical", r"hardware", r"\bfpga\b", r"\basic\b", r"physical\s+security",
             r"מכירות", r"שיווק", r"גיוס", r"משאבי\s+אנוש", r"שירות\s+לקוחות", r"מנהל\s+מוצר",
+        ],
+        # Adjacent fields: excluded only when the title names no core development role, so
+        # "Software developer and DevOps engineer" passes while "DevOps Engineer" does not.
+        "role_exclude_soft": [
+            r"data\s+scien", r"machine\s+learning", r"\bml\b", r"data\s+analyst",
+            r"solutions?\s+(architect|engineer|consultant)", r"\bios\b", r"android", r"\bmobile\b",
+            r"\bqa\b", r"quality\s+assurance", r"\bdevops\b(?!.*secur)", r"\bsre\b", r"site\s+reliability",
+        ],
+        "role_core": [
+            r"software\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",
+            r"full[\s-]?stack", r"front[\s-]?end", r"מפתח", r"מפתחת", r"הנדס(ת|ן)\s*תוכנה",
         ],
         "seniority_exclude": [
             r"\bsenior\b", r"\bsr\b\.?", r"\bstaff\b", r"\bprincipal\b", r"\blead\b", r"\bhead\b",
@@ -99,8 +107,10 @@ DEFAULTS: dict = {
         # Add handles you verified yourself, e.g. ["some_junior_jobs_channel"].
         "telegram_channels": [],
         "max_age_hours": 48,
-        # LinkedIn public (logged-out) job search. Queries were measured against the Classifier:
-        # role keyword + f_E (1 = internship, 2 = entry level) gave ~45 title matches a day in Israel.
+        # LinkedIn public (logged-out) job search. A 24h study (Oct 2026) of 373 Israeli tech postings found
+        # that queries narrowed with f_E (LinkedIn's entry/internship label) reached only 21 of 65 jobs whose
+        # titles fit: posters often label junior roles "Not Applicable" or "Mid-Senior". So queries are broad
+        # and unfiltered, newest first, and the Classifier decides seniority from the title and text.
         "linkedin": {
             "enabled": False,           # switched on in config.yaml
             "tier": 1,
@@ -110,14 +120,16 @@ DEFAULTS: dict = {
             "gap_seconds": 5,           # LinkedIn returns 429 on bursts faster than this
             "cooldown_seconds": 25,
             "queries": [
-                {"keywords": "software engineer", "f_E": "1,2", "pages": 2},
-                {"keywords": "backend", "f_E": "1,2"},
-                {"keywords": "full stack OR fullstack", "f_E": "1,2"},
-                {"keywords": "frontend OR front end OR react OR angular", "f_E": "1,2"},
-                {"keywords": "developer", "f_E": "2"},
-                {"keywords": 'security analyst OR SOC OR "security researcher" OR cyber', "f_E": "1,2"},
-                {"keywords": "software OR security OR developer", "f_E": "1"},
-                {"keywords": 'junior OR graduate OR "entry level"'},
+                {"keywords": "software engineer OR software developer", "pages": 2},
+                {"keywords": "backend OR back end"},
+                {"keywords": "full stack OR fullstack OR frontend OR front end"},
+                {"keywords": "developer"},
+                {"keywords": "security OR cyber OR SOC OR penetration"},
+                {"keywords": 'junior OR graduate OR "entry level" OR student OR intern'},
+                {"keywords": "embedded OR firmware OR C++ OR Linux"},
+                {"keywords": "python OR java OR node OR golang"},
+                {"keywords": "react OR angular OR mobile OR iOS"},
+                {"keywords": "ג'וניור OR מפתח OR מפתחת OR סטודנט"},
             ],
         },
     },
