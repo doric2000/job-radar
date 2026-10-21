@@ -17,6 +17,7 @@ from .linkedin import LinkedIn
 from .manatal import Manatal
 from .recruitee import Recruitee
 from .smartrecruiters import SmartRecruiters
+from .topmatch import TopMatch
 from .workable import Workable
 from .wordpress import WordPress
 from .workday import Workday
@@ -38,4 +39,5 @@ FETCHERS = {
     "wordpress": WordPress,
     "manatal": Manatal,
     "htmllinks": HtmlLinks,
+    "topmatch": TopMatch,
 }

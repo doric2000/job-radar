@@ -7,6 +7,7 @@ from radar.fetchers.checkpoint import CheckPoint
 from radar.fetchers.eightfold import Eightfold
 from radar.fetchers.htmllinks import HtmlLinks
 from radar.fetchers.manatal import Manatal
+from radar.fetchers.topmatch import TopMatch
 from radar.fetchers.wordpress import WordPress
 from radar.run import Radar
 from radar.state import State
@@ -92,6 +93,18 @@ class TestCompanySites(unittest.TestCase):
         c = {"id": "m", "name": "M", "list_url": "https://m.ai/careers/", "link_pattern": "/job-offer/([^/]+)/?$"}
         [j] = HtmlLinks(FakeHttp({"m.ai/careers": page})).list_jobs(c)
         self.assertEqual((j.job_id, j.title, j.url), ("full-stack", "Full-Stack Engineer", "https://m.ai/job-offer/full-stack/"))
+
+    def test_topmatch(self):
+        data = {"positions": [{"compPositionID": 199462, "jobTitleText": "מפתח.ת AI ג׳וניור ", "activationDate": "2026-10-21T09:29:15.23",
+                               "description": "<p>Python, SQL</p>", "displayLocation": "איכילוב"}], "responseStatus": 1}
+        c = {"id": "ichilov", "name": "Ichilov", "token": "GUID", "site": "ichilovEmployeeReferral"}
+        [j] = TopMatch(FakeHttp({"position/Search/GUID": data})).list_jobs(c)
+        self.assertEqual((j.title, j.location, j.description, j.date_kind), ("מפתח.ת AI ג׳וניור", "איכילוב, Israel", "Python, SQL", "published"))
+        self.assertEqual(j.posted_at.isoformat(), "2026-10-21T09:29:15+03:00")
+        self.assertIn("compPositionID=199462&affiliateGUID=GUID", j.url)
+        bad = {"positions": [], "responseStatus": 2, "errorDescription": "Execution error"}
+        with self.assertRaises(ValueError):
+            TopMatch(FakeHttp({"position/Search/GUID": bad})).list_jobs(c)
 
     def test_bad_job_does_not_stop_the_run(self):
         http = ParamHttp({"start=10": EF_PAGE2, "pcsx/search": EF_PAGE, "position_details": EF_DETAIL})
