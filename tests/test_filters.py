@@ -70,6 +70,14 @@ class TestHebrewYearsAndRequirements(unittest.TestCase):
         for text, years in cases.items():
             self.assertEqual(extract_experience(text)[0], years, text)
 
+    def test_graduate_alternative_path(self):
+        text = "At least 3 years of hands-on backend experience, or a strong graduate with serious side projects."
+        self.assertIsNone(extract_experience(text)[0])
+        v = Classifier(load_config(None)).classify(J("Software Engineer – GCS Team", desc=text))
+        self.assertTrue(v.accept, v.reject_reason)
+        self.assertEqual(v.tier, "A")
+        self.assertEqual(extract_experience("3+ years of Python or Go experience")[0], 3)
+
     def test_summary_prefers_role_section_and_skips_marketing(self):
         desc = ("Acme is a leading provider of cloud security.\nAbout the role:\nBuild detection pipelines in Python\n"
                 "Own services end to end\nRequirements:\n- BSc in CS")

@@ -204,6 +204,10 @@ def _num(tok: Optional[str]) -> Optional[int]:
 
 
 _MANDATORY = re.compile(r"\bmust\b|\brequired\b|mandatory|חובה", re.I | re.U)
+# "At least 3 years of backend experience, or a strong graduate with serious side projects" (Flytrex)
+_GRAD_ALTERNATIVE = re.compile(
+    r"\bor\b[^.;]{0,50}\b(?:graduates?|students?|bootcamp|side[\s-]projects|personal\s+projects|equivalent\s+(?:academic|projects?))\b"
+    r"|או\s+(?:בוגר|סטודנט|ניסיון\s+(?:אקדמי|בפרויקטים|אישי))", re.I | re.U)
 # a clause that is nothing but "an advantage" / "a plus" / "יתרון"
 _BARE_OPTIONAL = re.compile(
     r"^(?:(?:is|are|will\s+be|would\s+be)\s+)?(?:an?\s+)?(?:big\s+|strong\s+)?(?:advantage|plus|bonus|preferred|desirable|nice\s+to\s+have)$"
@@ -214,7 +218,10 @@ _CLAUSE_SPLIT = re.compile(r"[,;]|\s[-–—]\s|\s+(?:and|while|but|ו?יתרו�
 def _is_optional(sent: str, pos: int, mode: str) -> bool:
     """Is the years mention at `pos` optional? Only the clause that contains it counts, and text in
     parentheses is ignored: in "4+ years of Linux (Debian preferred)" or "5 years managing switches,
-    Cisco an advantage" the years are still required. An explicit must/חובה in the sentence wins."""
+    Cisco an advantage" the years are still required. An explicit must/חובה in the sentence wins,
+    except over an alternative path for graduates ("3 years ..., or a strong graduate with side projects")."""
+    if _GRAD_ALTERNATIVE.search(sent):
+        return True
     if _MANDATORY.search(sent):
         return False
     if mode == "opt":

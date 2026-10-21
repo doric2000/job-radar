@@ -208,3 +208,4 @@
 - {name: "NewCore", domain: newcore.ai, cat: tech, tier: 1}
 - {name: "SecondNature", domain: secondnature.ai, cat: tech, tier: 1}
 - {name: "Ichilov (Tel Aviv Medical Center)", domain: tasmc.org.il, cat: gov, tier: 1, ats: topmatch, token: 3E23F063-3B75-4290-871F-4F2234BB991C, site: ichilovEmployeeReferral}   # IT division hires junior developers
+- {name: "Flytrex", domain: flytrex.com, cat: tech, tier: 1, ats: comeet, uid: "77.003", token: 7732CB216593B987732CB21DCC3B987731DCC}   # drone delivery

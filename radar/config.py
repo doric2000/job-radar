@@ -99,6 +99,7 @@ DEFAULTS: dict = {
             r"(graduates?|juniors?|junior\s+(engineers?|developers?))\b[^.]{0,40}\b(are\s+)?(welcome|encouraged|invited)\s+to\s+apply",
             r"(welcome|encourage)s?\s+(applications\s+from\s+)?[^.]{0,30}\b(graduates?|juniors?)\b",
             r"suitable\s+for\s+(recent\s+)?(graduates?|juniors?)",
+            r"\bor\s+an?\s+(?:strong\s+|recent\s+|talented\s+|exceptional\s+)?(?:graduate|student)",
             r"מתאים\s+(גם\s+)?ל(בוגרים|ג['׳]?וניורים|מתחילים)", r"ג['׳]?וניורים\s+(מוזמנים|יתקבלו)",
         ],
         "clearance_signals": [
