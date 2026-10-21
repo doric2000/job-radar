@@ -209,3 +209,6 @@
 - {name: "SecondNature", domain: secondnature.ai, cat: tech, tier: 1}
 - {name: "Ichilov (Tel Aviv Medical Center)", domain: tasmc.org.il, cat: gov, tier: 1, ats: topmatch, token: 3E23F063-3B75-4290-871F-4F2234BB991C, site: ichilovEmployeeReferral}   # IT division hires junior developers
 - {name: "Flytrex", domain: flytrex.com, cat: tech, tier: 1, ats: comeet, uid: "77.003", token: 7732CB216593B987732CB21DCC3B987731DCC}   # drone delivery
+- {name: "Meitav", domain: meitav.co.il, cat: tech, tier: 2, ats: topmatch, token: 05C69BAD-26F0-48EE-A059-4961B79987F1, site: Meitav}
+- {name: "Bar-Ilan University", domain: biu.ac.il, cat: gov, tier: 2, ats: topmatch, token: D8D6FFC7-31E2-46C1-94B4-985C99B9A913, site: biu}
+- {name: "Bank Yahav", domain: bank-yahav.co.il, cat: bank, tier: 2, ats: topmatch, token: 776224a4-40cc-4875-b130-1bafee686c91, site: yahav}
