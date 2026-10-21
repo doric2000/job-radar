@@ -33,6 +33,8 @@ DEFAULTS: dict = {
             r"integration\s+(engineer|specialist|developer|consultant)",
             r"\b(software|api|saas|data|cloud|platform|backend|crm|erp)\s+integration", r"implementation",
             r"\bai\s+(solutions?|engineer|developer|specialist|implementation)",
+            # any AI/LLM/agent role title: "AI Productivity Engineer", "AI Automation Developer", "LLM Agents Engineer"
+            r"\b(?:ai|llm|genai|gen[\s-]?ai|agentic)\b[\w\s&/,.-]{0,30}\b(?:engineer|developer|specialist)\b",
             # DevOps / cloud
             r"\bdevops\b", r"\bcloud\s+(engineer|developer|specialist)", r"\bsre\b", r"site\s+reliability",
             # QA / test automation (software only: industrial "automation engineer" and silicon validation are not)

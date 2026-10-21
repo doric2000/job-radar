@@ -176,6 +176,12 @@ class TestClassifier(unittest.TestCase):
                   "QA Automation Engineer", "Software Validation Engineer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
 
+    def test_ai_role_titles(self):
+        for t in ["AI Productivity Engineer", "AI Automation Developer", "LLM Agents Engineer", "GenAI Specialist"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        for t in ["AI Sales Engineer", "AI Data Scientist", "Senior AI Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+
     def test_hardware_integrators_excluded(self):
         for t in ["System Integrator", "Network & Linux Integrator", "Field Engineering and Integration",
                   "אינטגרטור.ית בתחום האלקטרוניקה", "Embedded Integrator - Temporary", "Silicon Validation Engineer",
