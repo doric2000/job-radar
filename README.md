@@ -1,5 +1,7 @@
 # Job Radar: בוט שמזהה משרות ג'וניור ראשון
 
+> **English summary:** Job Radar is a Python bot that runs on GitHub Actions every ~5 minutes, polls public job-board APIs (Greenhouse, Lever, Ashby, Comeet and others) of Israeli tech companies, filters for junior roles by seniority, role and location rules, deduplicates, and sends Telegram alerts. It does not apply to jobs. Covered by unit tests; some parsers are best-effort (see "What was not verified" below).
+
 הבוט סורק כל ~5 דקות את לוחות המשרות הציבוריים של כ־180 חברות ישראליות (סייבר, Backend/תשתיות, בנקים, תעשיות ביטחוניות, חברות רב־לאומיות), מסנן לפי הפרופיל שלך, ושולח התראה בטלגרם **ברגע שמשרה חדשה מופיעה**.
 
 הוא לא מגיש מועמדות. הוא מתריע ומציג למה המשרה מתאימה, כדי שתגיש אתה בקליק אחד.
