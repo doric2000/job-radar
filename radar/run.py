@@ -60,7 +60,8 @@ class Radar:
                  for h in self.cfg["leads"]["telegram_channels"]]
         li = self.cfg["leads"].get("linkedin") or {}
         if li.get("enabled"):
-            extra.append({**li, "id": "linkedin", "name": "LinkedIn", "ats": "linkedin", "cat": "lead"})
+            extra.append({**li, "id": "linkedin", "name": "LinkedIn", "ats": "linkedin", "cat": "lead",
+                          "recheck_ids": self.state.d["meta"].get("li_recheck", [])})
         return self.companies + extra
 
     # ---------------------------------------------------------------- one company
@@ -133,6 +134,8 @@ class Radar:
                     alerts.append((j, v, c))
             self.state.ensure_company(c["id"], self.now)
             self.state.mark_ok(c["id"], self.now, r["present"])
+            if c["id"] == "linkedin":
+                self.state.d["meta"].pop("li_recheck", None)
 
         alerts.sort(key=lambda a: (TIER_RANK.get(a[1].tier, 9), REGION_RANK.get(a[1].region, 9), a[2].get("tier", 2)))
         self._notify(alerts)
@@ -298,7 +301,15 @@ def main(argv=None) -> int:
     companies = load_registry(a.companies, a.resolved)
     state = State.load(a.state)
     if state.d["meta"].get("filters_version") != FILTERS_VERSION:
-        n = state.forget_rejections(datetime.now(timezone.utc) - timedelta(hours=72), RECHECK_NOTES)
+        removed: list = []
+        n = state.forget_rejections(datetime.now(timezone.utc) - timedelta(hours=72), RECHECK_NOTES, removed)
+        # LinkedIn jobs leave the last-hour search window, so they are re-fetched by id on the next scan
+        # (only those whose stored title now passes the title stage, to keep the next run short)
+        clf = Classifier(cfg)
+        state.d["meta"]["li_recheck"] = [
+            jid for cid, jid, title in removed
+            if cid == "linkedin" and clf.stage1(Job(company_id=cid, company="", job_id=jid, title=title, url="",
+                                                    location="Israel")).accept][:40]
         state.d["meta"]["filters_version"] = FILTERS_VERSION
         print(f"filters changed: re-evaluating {n} recent rejections")
     notifier = Telegram.from_env() if cfg["notify"]["telegram"] else None

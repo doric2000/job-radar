@@ -31,6 +31,8 @@ DEFAULTS: dict = {
             r"\bc\+\+", r"\bgolang\b", r"\brust\b", r"\bpython\b", r"\bjava\b", r"\.net\b", r"\bnode(\.?js)?\b",
             # software integration / implementation (incl. AI solutions); hardware integrators are excluded below
             r"integration\s+(engineer|specialist|developer|consultant)",
+            # customer-facing technical delivery at software/cyber companies (deploy, configure, integrate)
+            r"professional\s+services\s+(engineer|consultant|specialist)", r"(deployment|onboarding|technical\s+services)\s+engineer",
             r"\b(software|api|saas|data|cloud|platform|backend|crm|erp)\s+integration", r"implementation",
             r"\bai\s+(solutions?|engineer|developer|specialist|implementation)",
             # any AI/LLM/agent role title: "AI Productivity Engineer", "AI Automation Developer", "LLM Agents Engineer"

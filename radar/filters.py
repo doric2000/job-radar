@@ -16,7 +16,7 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 5
+FILTERS_VERSION = 6
 RECHECK_NOTES = r"^title not in role families$"
 
 _FLAGS = re.I | re.U

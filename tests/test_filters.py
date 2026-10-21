@@ -177,7 +177,8 @@ class TestClassifier(unittest.TestCase):
             self.assertTrue(self.c.stage1(J(t)).accept, t)
 
     def test_ai_role_titles(self):
-        for t in ["AI Productivity Engineer", "AI Automation Developer", "LLM Agents Engineer", "GenAI Specialist"]:
+        for t in ["AI Productivity Engineer", "AI Automation Developer", "LLM Agents Engineer", "GenAI Specialist",
+                  "Junior Professional Services Engineer", "Deployment Engineer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
         for t in ["AI Sales Engineer", "AI Data Scientist", "Senior AI Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)

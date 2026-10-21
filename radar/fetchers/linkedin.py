@@ -114,11 +114,38 @@ class LinkedIn:
                     )
                 if len(cards) < 10:
                     break
+        # jobs rejected under older rules have usually left the last-hour window: fetch them by id
+        for jid in c.get("recheck_ids") or []:
+            if jid in out:
+                continue
+            try:
+                out[jid] = self.fetch_one(jid, c, now)
+            except Blocked:
+                break
+            except Exception:  # noqa: BLE001 - closed or removed posting
+                continue
         return list(out.values())
+
+    def fetch_one(self, jid: str, c: dict, now: datetime) -> Job:
+        """A single posting from its detail page (title, company, location, date and description)."""
+        html = self._get(DETAIL.format(id=jid), float(c.get("gap_seconds", 5)), float(c.get("cooldown_seconds", 25)))
+        soup = BeautifulSoup(html, "html.parser")
+        txt = lambda sel: soup.select_one(sel).get_text(" ", strip=True) if soup.select_one(sel) else ""  # noqa: E731
+        title = txt("h2.top-card-layout__title") or txt(".topcard__title")
+        if not title:
+            raise ValueError("LinkedIn posting without a title (closed?)")
+        when, kind = parse_ago(txt(".posted-time-ago__text"), "", now)
+        job = Job(company_id=c["id"], company=txt("a.topcard__org-name-link") or txt(".topcard__flavor") or "LinkedIn",
+                  job_id=jid, title=title, url=f"https://www.linkedin.com/jobs/view/{jid}/",
+                  location=txt(".topcard__flavor--bullet"), posted_at=when, date_kind=kind,
+                  date_source="linkedin.detail", source=self.name)
+        return self._fill_detail(job, soup)
 
     def enrich(self, job: Job, c: dict) -> Job:
         html = self._get(DETAIL.format(id=job.job_id), float(c.get("gap_seconds", 5)), float(c.get("cooldown_seconds", 25)))
-        soup = BeautifulSoup(html, "html.parser")
+        return self._fill_detail(job, BeautifulSoup(html, "html.parser"))
+
+    def _fill_detail(self, job: Job, soup) -> Job:
         body = soup.select_one(".show-more-less-html__markup")
         job.description = html_to_text(str(body)) if body else ""
         for li in soup.select("li.description__job-criteria-item"):

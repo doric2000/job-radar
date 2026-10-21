@@ -69,6 +69,15 @@ class TestLinkedIn(unittest.TestCase):
         self.assertIn("BSc in Computer Science", job.description)
         self.assertEqual((job.employment, job.level), ("Full-time", ""))
 
+    def test_recheck_ids_are_fetched_by_id(self):
+        detail = ('<h2 class="top-card-layout__title">Junior Professional Services Engineer</h2>'
+                  '<a class="topcard__org-name-link">MazeBolt</a><span class="topcard__flavor--bullet">Ramat Gan, Israel</span>'
+                  '<span class="posted-time-ago__text">2 hours ago</span>' + DETAIL)
+        http = FakeHttp({"seeMoreJobPostings": "", "jobPosting/77": detail})
+        jobs = LinkedIn(http).list_jobs(dict(LI, recheck_ids=["77"]))
+        self.assertEqual([(j.job_id, j.title, j.company) for j in jobs], [("77", "Junior Professional Services Engineer", "MazeBolt")])
+        self.assertIn("BSc in Computer Science", jobs[0].description)
+
     def test_run_alerts_junior_and_tags_linkedin(self):
         http = FakeHttp({
             "keywords=backend": card(1, "Junior Backend Engineer") + card(2, "Senior Backend Engineer"),
