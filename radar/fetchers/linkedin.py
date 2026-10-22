@@ -59,6 +59,7 @@ class LinkedIn:
     def __init__(self, http):
         self.http = http
         self.blocked = False
+        self.rate_limited = 0  # 429/999 answers this run (logged by the run)
 
     def _get(self, url: str, gap: float, cooldown: float) -> str:
         if self.blocked:
@@ -75,10 +76,19 @@ class LinkedIn:
             except HttpError as e:
                 if e.status not in (429, 999):
                     raise
+                self.rate_limited += 1
                 if attempt == 0:
                     time.sleep(cooldown)
         self.blocked = True
         raise Blocked("LinkedIn rate limit (HTTP 429/999)")
+
+    def split(self, c: dict) -> list[dict]:
+        """One part per query (then the re-checks), scanned in order, so each query's alerts go out as soon
+        as that query is read instead of after all of them (a full pass takes ~3-4 minutes)."""
+        parts = [{**c, "queries": [q], "recheck_ids": []} for q in c.get("queries") or []]
+        if c.get("recheck_ids"):
+            parts.append({**c, "queries": []})
+        return parts or [c]
 
     def list_jobs(self, c: dict) -> list[Job]:
         gap, cooldown = float(c.get("gap_seconds", 5)), float(c.get("cooldown_seconds", 25))

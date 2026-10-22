@@ -189,12 +189,13 @@ DEFAULTS: dict = {
             "gap_seconds": 5,           # LinkedIn returns 429 on bursts faster than this
             "cooldown_seconds": 25,
             "queries": [
+                # explicit junior wording first: each query's alerts are sent as soon as it is read
+                {"keywords": 'junior OR graduate OR "entry level" OR student OR intern'},
                 {"keywords": "software engineer OR software developer"},
                 {"keywords": "backend OR back end"},
                 {"keywords": "full stack OR fullstack OR frontend OR front end"},
                 {"keywords": "developer"},
                 {"keywords": "security OR cyber OR SOC OR penetration"},
-                {"keywords": 'junior OR graduate OR "entry level" OR student OR intern'},
                 {"keywords": "embedded OR firmware OR C++ OR Linux"},
                 {"keywords": "python OR java OR node OR golang"},
                 {"keywords": "react OR angular OR mobile OR iOS"},

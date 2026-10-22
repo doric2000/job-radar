@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import queue
 import re
 import sys
 import time
@@ -65,7 +66,30 @@ class Radar:
         return self.companies + extra
 
     # ---------------------------------------------------------------- one company
-    def scan_company(self, c: dict) -> dict:
+    def scan_source(self, c: dict, emit) -> None:
+        """Scans one source and emits its results as they come. A fetcher with split() (LinkedIn: one part
+        per query) emits one result per part, so its alerts go out without waiting for the remaining parts."""
+        fetcher = self.fetchers.get(c["ats"])
+        split = getattr(fetcher, "split", None)
+        parts = split(c) if split else [c]
+        first, seen, started, read = self.state.is_first_scan(c["id"]), set(), time.monotonic(), 0
+        for i, part in enumerate(parts):
+            res = self.scan_company(part, first=first, seen=seen)
+            res["c"], res["last"] = c, i == len(parts) - 1
+            if res["ok"]:
+                read += 1
+            elif read:
+                # keep what the earlier parts found; say where and why the source stopped
+                print(f"{c['name']}: stopped at part {i + 1}/{len(parts)}: {res['error']}")
+                res.update(ok=True, error="", last=True)
+            emit(res)
+            if res["last"] or not res["ok"]:
+                break
+        if split:
+            print(f"{c['name']}: {read}/{len(parts)} parts read in {time.monotonic() - started:.0f}s,"
+                  f" rate-limited {getattr(fetcher, 'rate_limited', 0)} time(s)")
+
+    def scan_company(self, c: dict, first: bool | None = None, seen: set | None = None) -> dict:
         res = {"c": c, "ok": False, "error": "", "present": set(), "items": [], "n_jobs": 0}
         fetcher = self.fetchers.get(c["ats"])
         if fetcher is None:
@@ -79,13 +103,15 @@ class Radar:
         res["ok"], res["n_jobs"] = True, len(jobs)
         st = self.state.company(c["id"])
         known = st["jobs"] if st else {}
-        first = self.state.is_first_scan(c["id"])
+        first = self.state.is_first_scan(c["id"]) if first is None else first
         res["first"] = first
         res["present"] = {j.job_id for j in jobs}
         sc = self.cfg["scan"]
+        seen = set() if seen is None else seen  # shared by the parts of a split source (a job can match two queries)
         for j in jobs:
-            if j.job_id in known:
+            if j.job_id in known or j.job_id in seen:
                 continue
+            seen.add(j.job_id)
             v = self.clf.stage1(j)
             if v.accept and not j.description:
                 try:
@@ -114,40 +140,69 @@ class Radar:
         if only:
             pool = [c for c in pool if c["id"] in only]
         todo = self.due(pool, run_index, force_all)
-        with ThreadPoolExecutor(max_workers=self.cfg["scan"]["threads"]) as ex:
-            results = list(ex.map(self.scan_company, todo))
+        # Results are handled (state + alerts) on this thread as each source finishes, so a job found by a
+        # fast board is sent at once instead of waiting for the slowest source (LinkedIn takes minutes).
+        q: queue.Queue = queue.Queue()
+
+        def work(c):
+            try:
+                self.scan_source(c, q.put)
+            except Exception as e:  # noqa: BLE001 - one broken source must never stop the run
+                q.put({"c": c, "ok": False, "error": f"{e.__class__.__name__}: {e}"[:160], "items": [], "last": True})
+            finally:
+                q.put(None)
 
         alerts: list[tuple[Job, Verdict, dict]] = []
         errors: list[tuple[str, str, int]] = []
-        for r in results:
-            c = r["c"]
-            if not r["ok"]:
-                self.state.mark_fail(c["id"], self.now, r["error"])
-                errors.append((c["name"], r["error"], self.state.company(c["id"])["fail_streak"]))
-                continue
-            for j, v, alert, note in r["items"]:
-                if alert and self.state.was_alerted(dedupe_key(j)):
-                    alert, note = False, "dup"
-                self.state.record(c["id"], self.now, j.job_id, j.title, alert, note or "ok")
-                if alert:
-                    self.state.add_alerted(dedupe_key(j), self.now)
-                    alerts.append((j, v, c))
-            self.state.ensure_company(c["id"], self.now)
-            self.state.mark_ok(c["id"], self.now, r["present"])
-            if c["id"] == "linkedin":
-                self.state.d["meta"].pop("li_recheck", None)
+        self._sent_count, self._overflow = 0, 0
+        ok = new_jobs = 0
+        with ThreadPoolExecutor(max_workers=self.cfg["scan"]["threads"]) as ex:
+            for c in todo:
+                ex.submit(work, c)
+            pending = len(todo)
+            while pending:
+                r = q.get()
+                if r is None:
+                    pending -= 1
+                    continue
+                c = r["c"]
+                new_jobs += len(r["items"])
+                if not r["ok"]:
+                    self.state.mark_fail(c["id"], self.now, r["error"])
+                    errors.append((c["name"], r["error"], self.state.company(c["id"])["fail_streak"]))
+                    continue
+                batch = []
+                for j, v, alert, note in r["items"]:
+                    if alert and self.state.was_alerted(dedupe_key(j)):
+                        alert, note = False, "dup"
+                    self.state.record(c["id"], self.now, j.job_id, j.title, alert, note or "ok")
+                    if alert:
+                        self.state.add_alerted(dedupe_key(j), self.now)
+                        batch.append((j, v, c))
+                self.state.ensure_company(c["id"], self.now)
+                self.state.mark_ok(c["id"], self.now, r["present"])
+                if r.get("last", True):
+                    ok += 1
+                    if c["id"] == "linkedin":
+                        self.state.d["meta"].pop("li_recheck", None)
+                batch.sort(key=lambda a: (TIER_RANK.get(a[1].tier, 9), REGION_RANK.get(a[1].region, 9)))
+                self._notify(batch)
+                alerts += batch
 
+        if self._overflow and not self.dry_run and self.notifier:
+            self.notifier.send(f"➕ עוד {self._overflow} משרות מתאימות בריצה הזו. פתח את state/ או הפעל ריצה ידנית.")
         alerts.sort(key=lambda a: (TIER_RANK.get(a[1].tier, 9), REGION_RANK.get(a[1].region, 9), a[2].get("tier", 2)))
-        self._notify(alerts)
         self.state.prune(self.now)
-        return {"scanned": len(todo), "ok": sum(r["ok"] for r in results), "errors": errors,
-                "alerts": alerts, "new_jobs": sum(len(r["items"]) for r in results)}
+        return {"scanned": len(todo), "ok": ok, "errors": errors, "alerts": alerts, "new_jobs": new_jobs}
 
     # ---------------------------------------------------------------- notify
     def _notify(self, alerts) -> None:
-        cap = self.cfg["notify"]["max_alerts_per_run"]
+        """Sends one source's alerts; the per-run cap counts across sources, the rest become one summary line."""
+        room = max(0, self.cfg["notify"]["max_alerts_per_run"] - self._sent_count)
+        self._overflow += max(0, len(alerts) - room)
+        self._sent_count += min(room, len(alerts))
         tz = self.cfg["timezone"]
-        for j, v, c in alerts[:cap]:
+        for j, v, c in alerts[:room]:
             text = format_alert(j, v, c, self.now, tz)
             if self.dry_run or self.notifier is None:
                 print("----- ALERT (not sent) -----\n" + text)
@@ -156,10 +211,6 @@ class Radar:
                 mid = self.notifier.send(text)
                 feedback.record_sent(self.state.d["meta"], sid, j, v, mid, self.now)
                 time.sleep(0.4)
-        if len(alerts) > cap:
-            msg = f"➕ עוד {len(alerts) - cap} משרות מתאימות בריצה הזו. פתח את state/ או הפעל ריצה ידנית."
-            if not self.dry_run and self.notifier:
-                self.notifier.send(msg)
 
     # ---------------------------------------------------------------- backlog
     def backlog(self) -> list[tuple[Job, Verdict, dict]]:

@@ -1,4 +1,7 @@
+import io
+import threading
 import unittest
+from contextlib import redirect_stdout
 from datetime import timedelta
 
 from radar.config import load_config
@@ -94,6 +97,39 @@ class TestLinkedIn(unittest.TestCase):
         text = format_alert(j, v, c, NOW)
         self.assertIn("LinkedIn", text)
         self.assertNotIn("⭐", text)
+
+    def radar(self, http, notifier=None):
+        cfg = load_config(None)
+        cfg["leads"]["linkedin"].update(enabled=True, gap_seconds=0, cooldown_seconds=0, queries=LI["queries"])
+        return Radar(cfg, [], State(), http, notifier=notifier, now=NOW, dry_run=notifier is None)
+
+    def test_each_query_alerts_before_the_next_is_read(self):
+        sent = threading.Event()
+
+        class Tg:
+            def send(self, text, silent=False, markup=None):
+                sent.set()
+                return 1
+
+        def second_query(url):  # holds the second query until the first query's alert went out
+            self.assertTrue(sent.wait(5), "the first query's alert waited for the second query")
+            return ""
+
+        http = FakeHttp({"keywords=backend": card(1, "Junior Backend Engineer"), "keywords=security": second_query,
+                         "jobPosting/1": DETAIL})
+        out = self.radar(http, Tg()).run(0)
+        self.assertEqual(([a[0].job_id for a in out["alerts"]], out["ok"], out["errors"]), (["1"], 1, []))
+
+    def test_rate_limit_mid_run_keeps_earlier_queries_and_is_logged(self):
+        http = FakeHttp({"keywords=backend": card(1, "Junior Backend Engineer"), "keywords=security": limited,
+                         "jobPosting/1": DETAIL})
+        log = io.StringIO()
+        with redirect_stdout(log):
+            out = self.radar(http).run(0)
+        self.assertEqual(([a[0].job_id for a in out["alerts"]], out["errors"]), (["1"], []))
+        self.assertIn("LinkedIn: stopped at part 2/2: Blocked", log.getvalue())
+        self.assertIn("LinkedIn: 1/2 parts read", log.getvalue())
+        self.assertIn("rate-limited 2 time(s)", log.getvalue())
 
 
 if __name__ == "__main__":
