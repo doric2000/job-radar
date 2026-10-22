@@ -34,17 +34,17 @@ def job(jid="1"):
 
 
 class TestFeedback(unittest.TestCase):
-    def test_alerts_carry_buttons_and_are_logged(self):
+    def test_alerts_have_no_buttons_and_are_logged(self):
         tg = FakeTg()
         r = Radar(load_config(None), [dict(COMPANY)], State(), FakeHttp({"/jobs/": lambda u: GH_DETAIL[u.rsplit("/", 1)[1]],
                                                                         "/jobs": GH_LIST}), notifier=tg, now=NOW)
         r.run(0)
         self.assertTrue(tg.sent)
         text, markup = tg.sent[0]
-        sid = markup["inline_keyboard"][0][0]["callback_data"].split("|")[1]
-        self.assertEqual(r.state.d["meta"]["sent"][sid]["mid"], 101)
+        self.assertIsNone(markup)
+        self.assertEqual([s["mid"] for s in r.state.d["meta"]["sent"].values()][0], 101)
 
-    def test_collect_buttons_replies_and_notes(self):
+    def test_collect_ignores_buttons_keeps_replies(self):
         meta = {}
         sid = feedback.sent_id(job())
         feedback.record_sent(meta, sid, job(), Verdict(True, tier="A"), 101, NOW)
@@ -55,11 +55,19 @@ class TestFeedback(unittest.TestCase):
             {"update_id": 7, "message": {"chat": chat, "text": "more cyber please"}},
             {"update_id": 8, "message": {"chat": {"id": 999}, "text": "stranger"}},
         ])
-        self.assertEqual(feedback.collect(meta, tg, NOW), 2)
-        self.assertEqual((meta["feedback"][sid]["v"], meta["feedback"][sid]["note"]), (0, "too much C#"))
+        self.assertEqual(feedback.collect(meta, tg, NOW), 1)
+        self.assertEqual(meta["feedback"][sid], {"note": "too much C#", "ts": meta["feedback"][sid]["ts"]})  # no vote from a button
         self.assertNotIn("notes", meta)  # other chat messages are never stored (public repo)
         self.assertEqual((meta["tg_offset"], tg.answered), (8, ["c1"]))
-        self.assertIn("לא רלוונטי", tg.edited[0][1]["inline_keyboard"][0][0]["text"])
+
+    def test_old_buttons_removed_once(self):
+        meta = {}
+        feedback.record_sent(meta, "a", job(), Verdict(True), 101, NOW)
+        feedback.record_sent(meta, "b", job("2"), Verdict(True), None, NOW)
+        tg = FakeTg()
+        self.assertEqual(feedback.remove_old_buttons(meta, tg), 1)
+        self.assertEqual(tg.edited, [(101, {"inline_keyboard": []})])
+        self.assertEqual(feedback.remove_old_buttons(meta, tg), 0)
 
     def test_reactions_count_as_feedback(self):
         meta = {}

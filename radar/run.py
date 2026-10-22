@@ -153,7 +153,7 @@ class Radar:
                 print("----- ALERT (not sent) -----\n" + text)
             else:
                 sid = feedback.sent_id(j)
-                mid = self.notifier.send(text, markup=feedback.buttons(sid))
+                mid = self.notifier.send(text)
                 feedback.record_sent(self.state.d["meta"], sid, j, v, mid, self.now)
                 time.sleep(0.4)
         if len(alerts) > cap:
@@ -324,6 +324,9 @@ def main(argv=None) -> int:
         n = feedback.collect(state.d["meta"], notifier, radar.now)
         if n:
             print(f"feedback: {n} new item(s)")
+        removed = feedback.remove_old_buttons(state.d["meta"], notifier)
+        if removed:
+            print(f"feedback: removed buttons from {removed} old alert(s)")
     if a.backlog:
         items = radar.backlog()
         radar.send_backlog(items)

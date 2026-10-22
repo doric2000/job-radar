@@ -1,7 +1,7 @@
 """User feedback on alerts, for the twice-daily review.
 
-Every alert is logged in state meta["sent"] under a short id and carries two Telegram buttons
-(relevant / not relevant). Each scan reads the bot's pending updates: a button press or an emoji reaction on the alert is stored in
+Every alert is logged in state meta["sent"] under a short id. Each scan reads the bot's pending updates:
+an emoji reaction on the alert (👍 ❤ 🔥 ... = relevant, 👎 ... = not relevant) is stored in
 meta["feedback"][sid]; a text reply to an alert is stored there as a note. Any other message in the
 chat is ignored: the chat may be a group, and the state lives in a public repo, so only replies that
 point at a specific alert are kept - never other messages or metadata such as names or usernames."""
@@ -23,11 +23,6 @@ def sent_id(job: Job) -> str:
     return hashlib.sha1(f"{job.company_id}:{job.job_id}".encode()).hexdigest()[:10]
 
 
-def buttons(sid: str) -> dict:
-    return {"inline_keyboard": [[{"text": "👍 רלוונטי", "callback_data": f"fb|{sid}|1"},
-                                 {"text": "👎 לא רלוונטי", "callback_data": f"fb|{sid}|0"}]]}
-
-
 def record_sent(meta: dict, sid: str, job: Job, v: Verdict, message_id, now: datetime) -> None:
     meta.setdefault("sent", {})[sid] = {
         "ts": iso(now), "t": job.title[:90], "co": job.company[:40], "url": job.url, "src": job.source,
@@ -46,15 +41,9 @@ def collect(meta: dict, tg, now: datetime) -> int:
     for u in updates:
         meta["tg_offset"] = max(meta.get("tg_offset", 0), int(u.get("update_id", 0)))
         cq = u.get("callback_query")
-        if cq and str((cq.get("message") or {}).get("chat", {}).get("id")) == str(tg.chat_id):
-            parts = (cq.get("data") or "").split("|")
-            if len(parts) == 3 and parts[0] == "fb" and parts[1] in meta.get("sent", {}):
-                good = parts[2] == "1"
-                fb.setdefault(parts[1], {}).update({"v": 1 if good else 0, "ts": iso(now)})
-                n += 1
-                tg.answer_callback(cq.get("id"), "נרשם, תודה")
-                tg.edit_buttons(cq["message"]["message_id"], {"inline_keyboard": [[{
-                    "text": "✅ סומן רלוונטי" if good else "❌ סומן לא רלוונטי", "callback_data": cq["data"]}]]})
+        if cq:
+            # buttons were removed (feedback is emoji reactions only); just stop the client's spinner
+            tg.answer_callback(cq.get("id"), "סמנו 👍 או 👎 כריאקשן על ההודעה")
             continue
         mr = u.get("message_reaction")
         if mr and str(mr.get("chat", {}).get("id")) == str(tg.chat_id):
@@ -75,6 +64,19 @@ def collect(meta: dict, tg, now: datetime) -> int:
         if sid:
             fb.setdefault(sid, {}).update({"note": text, "ts": iso(now)})
             n += 1
+    return n
+
+
+def remove_old_buttons(meta: dict, tg) -> int:
+    """Once: strip the relevant / not-relevant buttons from alerts sent before feedback moved to reactions."""
+    if meta.get("buttons_removed"):
+        return 0
+    n = 0
+    for s in meta.get("sent", {}).values():
+        if s.get("mid"):
+            tg.edit_buttons(s["mid"], {"inline_keyboard": []})
+            n += 1
+    meta["buttons_removed"] = True
     return n
 
 
