@@ -84,8 +84,11 @@ DEFAULTS: dict = {
         # Researcher": "strong ... expertise", "a track record of owning research end-to-end"). At least
         # `senior_desc_threshold` distinct phrases reject the job; measured on 38 alerts, no 👍 job scored 3+.
         "senior_desc_signals": [
-            r"\bexpertise\b", r"track\s+record", r"proven\s+(experience|ability|track)", r"extensive\s+(experience|knowledge|background)",
-            r"deep\s+(knowledge|expertise|understanding|experience)", r"in[\s-]depth\s+(knowledge|experience|understanding)",
+            r"\bexpertise\b", r"track\s+record", r"proven\s+(\w+\s+){0,2}(experience|ability|track|record)",
+            r"extensive\s+(experience|knowledge|background)",
+            r"deep\s+(\w+\s+){0,2}(knowledge|expertise|understanding|experience)", r"in[\s-]depth\s+(knowledge|experience|understanding)",
+            # "Deep production experience", "Strong professional experience", "production-grade" (Nisha Pro full stack, 4+ yrs Java)
+            r"strong\s+professional\s+experience", r"production[\s-]grade",
             r"strong\s+(background|expertise)", r"\bseasoned\b", r"senior[\s-]level",
             r"end[\s-]to[\s-]end\s+ownership|owning\s+[^.]{0,30}end[\s-]to[\s-]end", r"\bmentor", r"lead\s+(the\s+)?(design|architecture|research|projects?)",
             r"ניסיון\s+מוכח", r"ניסיון\s+(רב|נרחב|עשיר)", r"ידע\s+(נרחב|מעמיק|רחב)", r"היכרות\s+מעמיקה", r"מומחיות", r"שליטה\s+מלאה",

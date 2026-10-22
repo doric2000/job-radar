@@ -134,6 +134,9 @@ class TestClassifier(unittest.TestCase):
         self.assertTrue(v.reject_reason.startswith("senior wording"), v.reject_reason)
         v = Classifier(cfg).classify(J("Security Researcher", desc="Requirements:\n- Strong background in networking\n- Python"))
         self.assertTrue(v.accept, v.reject_reason)
+        nisha = ("Core Qualifications\nDeep production experience with Java and Spring Boot.\n"
+                 "Strong professional experience with React and TypeScript.\nBuild production-grade fullstack applications.")
+        self.assertFalse(Classifier(cfg).classify(J("Full Stack Engineer", desc=nisha)).accept)
 
     def test_mentoring_juniors_is_not_an_entry_signal(self):
         v = self.c.classify(J("Software Engineer", desc="You will mentor junior engineers and own our backend."))
