@@ -119,6 +119,21 @@ class TestClassifier(unittest.TestCase):
         self.assertTrue(v.accept, v.reject_reason)
         self.assertEqual(v.tier, "A")
 
+    def test_experienced_intro_and_freelance(self):
+        cfg = load_config(None)
+        cfg["match"]["include_unspecified_experience"] = True
+        c = Classifier(cfg)
+        cv = ("CodeValue is looking for an experienced Cybersecurity Consultant to provide professional consulting.\n"
+              "The engagement will be on a freelance basis.")
+        v = c.classify(J("Cybersecurity Consultant", desc=cv))
+        self.assertFalse(v.accept)
+        v = c.classify(J("Security Analyst", desc="We are seeking an experienced analyst to join our SOC.\nRequirements:\n- 1 year SOC"))
+        self.assertTrue(v.reject_reason.startswith("asks for experienced"), v.reject_reason)
+        v = c.classify(J("Junior Security Analyst", desc="We are looking for an experienced mentor's apprentice"))
+        self.assertTrue(v.accept, v.reject_reason)  # explicit junior title wins
+        v = c.classify(J("Software Engineer (AI Training)", desc="This is a contract role, fully remote within Israel."))
+        self.assertTrue(v.accept, v.reject_reason)
+
     def test_platform_specific_titles_excluded(self):
         for t in ["Junior Salesforce Developer", "ERP developer", "Microsoft Copilot Studio Developer", "Cobol Developer",
                   "מפתח/ת Dynamics CRM", "SAP Implementation Specialist", "Founding Software Engineer"]:

@@ -309,6 +309,8 @@ class Classifier:
         self.hw_desc = _compile(m["hardware_desc_signals"])
         self.hw_titles = _compile(m["hardware_check_titles"])
         self.senior_desc = _compile(m["senior_desc_signals"])
+        self.experienced_intro = _compile(m["experienced_intro_signals"])
+        self.freelance = _compile(m["freelance_signals"])
         self.max_years = int(m["max_years_accept"])
 
     # -- stage 1: title/location only -------------------------------------------------
@@ -365,6 +367,13 @@ class Classifier:
             if len(hw) >= 2:
                 v.accept, v.reject_reason = False, "hardware/electronics role"
                 return v
+
+        if (hit := _any(self.freelance, desc)):
+            v.accept, v.reject_reason = False, f"freelance: {hit}"
+            return v
+        if not _any(self.entry, t) and "internship" not in v.tags and (hit := _any(self.experienced_intro, desc)):
+            v.accept, v.reject_reason = False, f"asks for experienced: {hit}"[:60]
+            return v
 
         if _any(self.clearance, f"{t}\n{desc}"):
             v.tags.append("clearance")

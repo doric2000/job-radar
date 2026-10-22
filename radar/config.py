@@ -94,6 +94,14 @@ DEFAULTS: dict = {
             r"ניסיון\s+מוכח", r"ניסיון\s+(רב|נרחב|עשיר)", r"ידע\s+(נרחב|מעמיק|רחב)", r"היכרות\s+מעמיקה", r"מומחיות", r"שליטה\s+מלאה",
         ],
         "senior_desc_threshold": 3,
+        # "CodeValue is looking for an experienced Cybersecurity Consultant": an opening that asks for an experienced /
+        # senior person rejects the job (6 past alerts matched: 2 marked 👎, none 👍)
+        "experienced_intro_signals": [
+            r"(looking\s+for|seeking|hiring|searching\s+for|in\s+search\s+of)\s+(an?\s+)?(highly\s+|very\s+)?(experienced|senior|seasoned)\b",
+            r"(דרוש|מחפשים|מגייסים|מחפשת|מגייסת)[^.\n]{0,25}(מנוסה|מנוסים|בכיר|בכירה)",
+        ],
+        # freelance / hourly consulting is not a job; "contract role" stays (two liked Alignerr roles were contracts)
+        "freelance_signals": [r"\bfreelance(r)?\b", r"פרילנס"],
         # Adjacent fields: excluded only when the title names no core development role, so
         # "Software developer and DevOps engineer" passes while "DevOps Engineer" does not.
         "role_exclude_soft": [
