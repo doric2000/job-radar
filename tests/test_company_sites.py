@@ -7,6 +7,7 @@ from radar.fetchers.checkpoint import CheckPoint
 from radar.fetchers.eightfold import Eightfold
 from radar.fetchers.htmllinks import HtmlLinks
 from radar.fetchers.manatal import Manatal
+from radar.fetchers.radancy import Radancy
 from radar.fetchers.topmatch import TopMatch
 from radar.fetchers.wordpress import WordPress
 from radar.run import Radar
@@ -105,6 +106,16 @@ class TestCompanySites(unittest.TestCase):
         bad = {"positions": [], "responseStatus": 2, "errorDescription": "Execution error"}
         with self.assertRaises(ValueError):
             TopMatch(FakeHttp({"position/Search/GUID": bad})).list_jobs(c)
+
+    def test_radancy_keeps_israel_cards_including_multiple_locations(self):
+        card = '<a class="sr-item" href="/job/{city}/{slug}/27595/{id}"><h2>{t}</h2><span class="job-location">{loc}</span></a>'
+        html = "".join([card.format(city="petah-tikva", slug="be", id=1, t="Back End Engineer 1", loc="Multiple Locations"),
+                        card.format(city="petah-tikva", slug="pm", id=2, t="Product Manager", loc="Petach Tikva, Israel"),
+                        card.format(city="mountain-view", slug="x", id=3, t="Engineer", loc="Mountain View, California")])
+        jobs = Radancy(FakeHttp({"search-jobs/results": {"results": html}})).list_jobs({"id": "intuit", "name": "Intuit", "host": "jobs.intuit.com"})
+        self.assertEqual([(j.job_id, j.location) for j in jobs],
+                         [("1", "Petah Tikva, Israel (Multiple Locations)"), ("2", "Petach Tikva, Israel")])
+        self.assertEqual(jobs[0].url, "https://jobs.intuit.com/job/petah-tikva/be/27595/1")
 
     def test_bad_job_does_not_stop_the_run(self):
         http = ParamHttp({"start=10": EF_PAGE2, "pcsx/search": EF_PAGE, "position_details": EF_DETAIL})

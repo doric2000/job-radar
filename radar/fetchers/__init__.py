@@ -15,6 +15,7 @@ from .htmllinks import HtmlLinks
 from .lever import Lever
 from .linkedin import LinkedIn
 from .manatal import Manatal
+from .radancy import Radancy
 from .recruitee import Recruitee
 from .smartrecruiters import SmartRecruiters
 from .topmatch import TopMatch
@@ -40,4 +41,5 @@ FETCHERS = {
     "manatal": Manatal,
     "htmllinks": HtmlLinks,
     "topmatch": TopMatch,
+    "radancy": Radancy,
 }
