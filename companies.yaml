@@ -127,7 +127,7 @@
 - {name: "Amdocs", domain: amdocs.com, cat: tech, tier: 2, ats: eightfold, host: jobs.amdocs.com}
 - {name: "NICE", domain: nice.com, cat: tech, tier: 2}
 - {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 2}
-- {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}
+- {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}   # malamteam.com is behind a Cloudflare bot challenge; not scraped. Its jobs arrive via LinkedIn only.
 - {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3, ats: ashby, token: lemonade}
 - {name: "Nayax", domain: nayax.com, cat: tech, tier: 3}
 - {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3}
