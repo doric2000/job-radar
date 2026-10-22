@@ -113,6 +113,12 @@ class TestClassifier(unittest.TestCase):
         self.assertTrue(v.accept, v.reject_reason)
         self.assertEqual(v.tier, "A")
 
+    def test_candidates_welcome_heading(self):
+        desc = "Full-Time | On-Site | Netanya\nJunior & Early-Career Candidates Welcome\nAbout us"
+        v = self.c.classify(J("Vibe Coder / AI Web Developer", desc=desc))
+        self.assertTrue(v.accept, v.reject_reason)
+        self.assertEqual(v.tier, "A")
+
     def test_mentoring_juniors_is_not_an_entry_signal(self):
         v = self.c.classify(J("Software Engineer", desc="You will mentor junior engineers and own our backend."))
         self.assertFalse(v.accept)

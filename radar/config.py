@@ -108,6 +108,8 @@ DEFAULTS: dict = {
             r"entry[\s-]?level", r"ללא\s+ניסיון", r"בוגרי\s+תואר", r"בוגרים\s+טריים", r"לא\s+נדרש\s+ניסיון",
             # "Talented graduates and junior engineers are welcome to apply" (EyeContact, Oct 2026)
             r"(graduates?|juniors?|junior\s+(engineers?|developers?))\b[^.]{0,40}\b(are\s+)?(welcome|encouraged|invited)\s+to\s+apply",
+            # "Junior & Early-Career Candidates Welcome" (a heading, no "to apply")
+            r"\b(junior|early[\s-]career|entry[\s-]level|graduates?)\b[^.\n]{0,30}\b(candidates?|applicants?)\s+(are\s+)?welcome\b",
             r"(welcome|encourage)s?\s+(applications\s+from\s+)?[^.]{0,30}\b(graduates?|juniors?)\b",
             r"suitable\s+for\s+(recent\s+)?(graduates?|juniors?)",
             r"\bor\s+an?\s+(?:strong\s+|recent\s+|talented\s+|exceptional\s+)?(?:graduate|student)",
