@@ -10,6 +10,7 @@ from .checkpoint import CheckPoint
 from .comeet import Comeet
 from .eightfold import Eightfold
 from .elad import Elad
+from .elbit import Elbit
 from .greenhouse import Greenhouse
 from .htmllinks import HtmlLinks
 from .lever import Lever
@@ -42,4 +43,5 @@ FETCHERS = {
     "htmllinks": HtmlLinks,
     "topmatch": TopMatch,
     "radancy": Radancy,
+    "elbit": Elbit,
 }

@@ -5,6 +5,7 @@ from radar.config import load_config
 from radar.fetchers.amazon import Amazon
 from radar.fetchers.checkpoint import CheckPoint
 from radar.fetchers.eightfold import Eightfold
+from radar.fetchers.elbit import Elbit
 from radar.fetchers.htmllinks import HtmlLinks
 from radar.fetchers.manatal import Manatal
 from radar.fetchers.radancy import Radancy
@@ -116,6 +117,17 @@ class TestCompanySites(unittest.TestCase):
         self.assertEqual([(j.job_id, j.location) for j in jobs],
                          [("1", "Petah Tikva, Israel (Multiple Locations)"), ("2", "Petach Tikva, Israel")])
         self.assertEqual(jobs[0].url, "https://jobs.intuit.com/job/petah-tikva/be/27595/1")
+
+    def test_elbit_feed(self):
+        feed = [{"jobId": 19831, "jobTitle": "Junior QA Engineer", "openDate": "2026-10-20T08:46:00", "status": 1,
+                 "description": "&lt;p&gt;Test our C2 software&lt;/p&gt;", "requirements": "&lt;p&gt;BSc in CS&lt;/p&gt;",
+                 "employerName": "יבשה", "area": "Sharon", "extendedProperties": [{"PropertyName": "Cities", "Value": "966"}]},
+                {"jobId": 2, "jobTitle": "Closed", "status": 0}]
+        [j] = Elbit(FakeHttp({"cron/jobs.json": feed})).list_jobs({"id": "elbit", "name": "Elbit Systems"})
+        self.assertEqual((j.title, j.company, j.location), ("Junior QA Engineer", "Elbit Systems · יבשה", "Sharon, Israel"))
+        self.assertEqual(j.url, "https://elbitsystemscareer.com/job/?jid=19831")
+        self.assertIn("BSc in CS", j.description)
+        self.assertEqual(j.posted_at.isoformat(), "2026-10-20T08:46:00+03:00")
 
     def test_bad_job_does_not_stop_the_run(self):
         http = ParamHttp({"start=10": EF_PAGE2, "pcsx/search": EF_PAGE, "position_details": EF_DETAIL})

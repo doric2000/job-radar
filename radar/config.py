@@ -57,6 +57,7 @@ DEFAULTS: dict = {
             r"\bintegrator\b", r"electronic", r"\bpcb\b", r"\brf\b", r"avionic", r"silicon", r"physical\s+design",
             r"field\s+(service\s+)?engineer", r"\bplc\b", r"\bpcie\b", r"\bddr\b", r"\bclocks?\b", r"design\s+automation",
             r"\bradar\b", r"lidar", r"camera\s+system", r"\bgtm\b", r"go[\s-]to[\s-]market", r"strategist",
+            r"flight\s+test", r"\besm\b",
             r"\bsoc\s+(design|verification|validation|architect)", r"signal\s+processing", r"\bdsp\b",
             r"מכירות", r"שיווק", r"גיוס", r"משאבי\s+אנוש", r"שירות\s+לקוחות", r"מנהל\s+מוצר",
             r"אינטגרטור", r"אלקטרוניקה", r"חשמל", r"הדרכה",
@@ -67,8 +68,12 @@ DEFAULTS: dict = {
             r"oscilloscope", r"solder", r"\bpcb\b", r"electronic\s+(boards?|lab|components|systems|circuits?)",
             r"electrical\s+engineering", r"\bharness", r"wiring", r"multimeter", r"signal\s+generator",
             r"\brf\b", r"avionics", r"lab\s+equipment", r"schematics?", r"אלקטרוניקה", r"כרטיסים", r"חיווט", r"הנדסת\s+חשמל",
+            r"antenna", r"electronic\s+warfare", r"\bew\b", r"electro[\s-]?optic", r"mechanical", r"payload", r"\bsonar\b",
+            r"airborne", r"\bsensors?\b",
         ],
-        "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification"],
+        # defense "System Engineer" is usually multidisciplinary hardware systems engineering
+        "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification",
+                                  r"\bsystems?\s+engineer"],
         # Adjacent fields: excluded only when the title names no core development role, so
         # "Software developer and DevOps engineer" passes while "DevOps Engineer" does not.
         "role_exclude_soft": [

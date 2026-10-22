@@ -194,6 +194,12 @@ class TestClassifier(unittest.TestCase):
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         self.assertTrue(self.c.stage1(J("Network Security Researcher")).accept)
 
+    def test_hardware_system_engineer_rejected(self):
+        desc = "System engineering for naval electronic warfare suites: antenna arrays, RF receivers and airborne sensors."
+        v = self.c.classify(J("System Engineer - Naval Systems", desc=desc))
+        self.assertEqual((v.accept, v.reject_reason), (False, "hardware/electronics role"))
+        self.assertFalse(self.c.stage1(J("Flight Test Engineer")).accept)
+
     def test_integration_with_hardware_text_rejected(self):
         desc = "Integrate electronic boards in the lab, work with oscilloscope and wiring harness, read schematics."
         v = self.c.classify(J("Integration Engineer", desc=desc))
