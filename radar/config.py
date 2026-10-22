@@ -71,6 +71,7 @@ DEFAULTS: dict = {
             r"antenna", r"electronic\s+warfare", r"\bew\b", r"electro[\s-]?optic", r"mechanical", r"payload", r"\bsonar\b",
             r"airborne", r"\bsensors?\b",
             r"communications?\s+systems",
+            r"טילים", r"כלי\s+טיס", r"מוטס", r"תעופתי", r"אוויוניקה", r"מכ\"?ם",
         ],
         # defense "System Engineer" is usually multidisciplinary hardware systems engineering
         "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification",

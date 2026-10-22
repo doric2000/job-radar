@@ -74,6 +74,11 @@ class TestHebrewYearsAndRequirements(unittest.TestCase):
         for text, years in cases.items():
             self.assertEqual(extract_experience(text)[0], years, text)
 
+    def test_hebrew_adjective_before_years(self):
+        for text, years in {"ניסיון מוכח של כ- 5 שנים בתפקידים מערכתיים בפרויקטים מולטי דיסציפלינריים": 5,
+                            "ניסיון מעשי של 3 שנים בפיתוח": 3, "ניסיון רלוונטי של שנתיים לפחות": 2}.items():
+            self.assertEqual(extract_experience(text)[0], years, text)
+
     def test_graduate_alternative_path(self):
         text = "At least 3 years of hands-on backend experience, or a strong graduate with serious side projects."
         self.assertIsNone(extract_experience(text)[0])
