@@ -61,6 +61,10 @@ DEFAULTS: dict = {
             r"\bsoc\s+(design|verification|validation|architect)", r"signal\s+processing", r"\bdsp\b",
             r"מכירות", r"שיווק", r"גיוס", r"משאבי\s+אנוש", r"שירות\s+לקוחות", r"מנהל\s+מוצר",
             r"אינטגרטור", r"אלקטרוניקה", r"חשמל", r"הדרכה",
+            # platform-specific enterprise roles (not general software engineering; Dynamics/COBOL got 👎)
+            r"salesforce", r"\bsap\b", r"\babap\b", r"\berp\b", r"dynamics", r"copilot\s+studio", r"power\s+(apps|platform|automate|bi)",
+            r"servicenow", r"\bpriority\b", r"sharepoint", r"outsystems", r"\brpg\b", r"cobol", r"magento", r"oracle\s+forms",
+            r"wordpress",
         ],
         # Integration / QA titles whose text is about hardware are electronics roles, not software:
         # rejected when at least two of these appear in the description.
@@ -76,6 +80,17 @@ DEFAULTS: dict = {
         # defense "System Engineer" is usually multidisciplinary hardware systems engineering
         "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification",
                                   r"\bsystems?\s+engineer"],
+        # When a posting states no years, senior wording still gives it away (Clover Security's "Security
+        # Researcher": "strong ... expertise", "a track record of owning research end-to-end"). At least
+        # `senior_desc_threshold` distinct phrases reject the job; measured on 38 alerts, no 👍 job scored 3+.
+        "senior_desc_signals": [
+            r"\bexpertise\b", r"track\s+record", r"proven\s+(experience|ability|track)", r"extensive\s+(experience|knowledge|background)",
+            r"deep\s+(knowledge|expertise|understanding|experience)", r"in[\s-]depth\s+(knowledge|experience|understanding)",
+            r"strong\s+(background|expertise)", r"\bseasoned\b", r"senior[\s-]level",
+            r"end[\s-]to[\s-]end\s+ownership|owning\s+[^.]{0,30}end[\s-]to[\s-]end", r"\bmentor", r"lead\s+(the\s+)?(design|architecture|research|projects?)",
+            r"ניסיון\s+מוכח", r"ניסיון\s+(רב|נרחב|עשיר)", r"ידע\s+(נרחב|מעמיק|רחב)", r"היכרות\s+מעמיקה", r"מומחיות", r"שליטה\s+מלאה",
+        ],
+        "senior_desc_threshold": 3,
         # Adjacent fields: excluded only when the title names no core development role, so
         # "Software developer and DevOps engineer" passes while "DevOps Engineer" does not.
         "role_exclude_soft": [
@@ -92,7 +107,7 @@ DEFAULTS: dict = {
         "seniority_exclude": [
             r"\bsenior\b", r"\bsr\b\.?", r"\bstaff\b", r"\bprincipal\b", r"\blead\b", r"\bhead\b",
             r"\bdirector\b", r"\bvp\b", r"vice\s+president", r"\bchief\b", r"\bmanager\b", r"\barchitect\b",
-            r"\bdistinguished\b", r"\bfellow\b", r"\bexperienced\b", r"\bexpert\b", r"\biii\b", r"\biv\b", r"\blevel\s*[3-9]\b", r"\bl[4-9]\b",
+            r"\bdistinguished\b", r"\bfellow\b", r"\bexperienced\b", r"\bexpert\b", r"\bfounding\b", r"\biii\b", r"\biv\b", r"\blevel\s*[3-9]\b", r"\bl[4-9]\b",
             r"בכיר", r"בכירה", r"ראש\s+צוות", r"מנהל", r"מנהלת", r"ארכיטקט",
         ],
         "entry_signals": [

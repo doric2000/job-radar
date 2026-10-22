@@ -308,6 +308,7 @@ class Classifier:
         self.clearance = _compile(m["clearance_signals"])
         self.hw_desc = _compile(m["hardware_desc_signals"])
         self.hw_titles = _compile(m["hardware_check_titles"])
+        self.senior_desc = _compile(m["senior_desc_signals"])
         self.max_years = int(m["max_years_accept"])
 
     # -- stage 1: title/location only -------------------------------------------------
@@ -403,6 +404,13 @@ class Classifier:
         if desc_entry:
             v.tier = "A"
             v.reasons.append(f"בתיאור: {desc_entry}")
+            return v
+
+        # no years stated: senior wording ("expertise", "track record", "ידע נרחב"...) still gives seniority away
+        senior = sorted({h.group(0) for rx in self.senior_desc for h in [rx.search(desc)] if h})
+        if len(senior) >= int(m.get("senior_desc_threshold", 3)):
+            v.accept = False
+            v.reject_reason = f"senior wording, no years: {', '.join(senior[:3])}"[:60]
             return v
 
         if m["include_unspecified_experience"]:

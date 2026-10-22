@@ -119,6 +119,22 @@ class TestClassifier(unittest.TestCase):
         self.assertTrue(v.accept, v.reject_reason)
         self.assertEqual(v.tier, "A")
 
+    def test_platform_specific_titles_excluded(self):
+        for t in ["Junior Salesforce Developer", "ERP developer", "Microsoft Copilot Studio Developer", "Cobol Developer",
+                  "מפתח/ת Dynamics CRM", "SAP Implementation Specialist", "Founding Software Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+
+    def test_senior_wording_without_years(self):
+        desc = ("Requirements:\n- Strong application security expertise\n- A track record of owning research end-to-end\n"
+                "- Threat modeling with OWASP")
+        cfg = load_config(None)
+        cfg["match"]["include_unspecified_experience"] = True
+        v = Classifier(cfg).classify(J("Security Researcher", desc=desc))
+        self.assertFalse(v.accept)
+        self.assertTrue(v.reject_reason.startswith("senior wording"), v.reject_reason)
+        v = Classifier(cfg).classify(J("Security Researcher", desc="Requirements:\n- Strong background in networking\n- Python"))
+        self.assertTrue(v.accept, v.reject_reason)
+
     def test_mentoring_juniors_is_not_an_entry_signal(self):
         v = self.c.classify(J("Software Engineer", desc="You will mentor junior engineers and own our backend."))
         self.assertFalse(v.accept)
