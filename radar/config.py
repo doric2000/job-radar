@@ -70,7 +70,7 @@ DEFAULTS: dict = {
             r"\brf\b", r"avionics", r"lab\s+equipment", r"schematics?", r"אלקטרוניקה", r"כרטיסים", r"חיווט", r"הנדסת\s+חשמל",
             r"antenna", r"electronic\s+warfare", r"\bew\b", r"electro[\s-]?optic", r"mechanical", r"payload", r"\bsonar\b",
             r"airborne", r"\bsensors?\b",
-            r"communications?s+systems",
+            r"communications?\s+systems",
         ],
         # defense "System Engineer" is usually multidisciplinary hardware systems engineering
         "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification",
