@@ -15,6 +15,10 @@ class TestExperience(unittest.TestCase):
         self.assertEqual(yrs, 3)
         self.assertIn("3+ years", snip)
 
+    def test_hebrew_years_without_adjacent_experience_word(self):
+        self.assertEqual(extract_experience("ניסיון מוכח של מעל 3 שנים בפיתוח תוכנה – חובה.")[0], 3)
+        self.assertEqual(extract_experience("ניסיון מעשי של לפחות 4 שנים בפיתוח Java")[0], 4)
+
     def test_range_uses_lower_bound(self):
         yrs, _, _ = extract_experience("1-3 years of experience in software development")
         self.assertEqual(yrs, 1)

@@ -16,8 +16,8 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 6
-RECHECK_NOTES = r"^title not in role families$"
+FILTERS_VERSION = 7
+RECHECK_NOTES = r"^title not in role families$"  # v7 only tightens (no new alerts), nothing to recheck
 
 _FLAGS = re.I | re.U
 
@@ -98,6 +98,7 @@ _HE_QUAL = r"(?:(?:מעל|לפחות|מינימום|יותר\s+מ[-־]?|כ[-־]?
 _HE_YEARS = re.compile(
     rf"(?:(?P<a>{_HE_NUM})\s*(?:\+|[-–]\s*(?P<b>\d{{1,2}}))?\s*\+?\s*(?:שנות|שנים|שנה)(?:\s+של)?\s*ניסיון)"
     rf"|(?:ניסיון\s+(?:של\s+)?{_HE_QUAL}(?P<c>{_HE_NUM})\s*(?:\+|[-–]\s*(?P<d>\d{{1,2}}))?\s*\+?\s*(?:שנות|שנים|שנה))"
+    rf"|(?:(?:מעל|לפחות|מינימום|יותר\s+מ[-־]?)\s*(?P<e>{_HE_NUM})\s*\+?\s*(?:שנות|שנים))"
     rf"|(?:ניסיון\s+(?:של\s+)?{_HE_QUAL}(?P<w2>שנתיים|שנה)(?=\s|$|[.,;]))"
     r"|(?P<w>שנתיים|שנת|שנה)\s*ניסיון",
     re.U,
@@ -276,7 +277,7 @@ def extract_experience(text: str) -> tuple[Optional[int], str, list]:
                 found.append((a, _is_optional(sent, m.start(), mode)))
             for m in _HE_YEARS.finditer(sent):
                 w = m.group("w") or m.group("w2")
-                a = (2 if w == "שנתיים" else 1) if w else _num(m.group("a") or m.group("c"))
+                a = (2 if w == "שנתיים" else 1) if w else _num(m.group("a") or m.group("c") or m.group("e"))
                 if a is not None:
                     found.append((a, _is_optional(sent, m.start(), mode)))
             optional.extend(a for a, opt in found if opt)
