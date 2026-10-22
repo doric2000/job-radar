@@ -171,6 +171,10 @@ DEFAULTS: dict = {
                 {"keywords": "ג'וניור OR מפתח OR מפתחת OR סטודנט"},
                 {"keywords": "\"integration engineer\" OR \"integration specialist\" OR implementation"},
                 {"keywords": "devops OR cloud OR QA OR automation"},
+                # employers whose own career sites are behind bot challenges (Reblaze / Cloudflare): every new post
+                {"keywords": '"Rafael Advanced Defense Systems"'},
+                {"keywords": '"Israel Aerospace Industries" OR Elta'},
+                {"keywords": '"Malam Team" OR MalamTeam'},
             ],
         },
     },
