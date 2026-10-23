@@ -19,6 +19,11 @@ class TestExperience(unittest.TestCase):
         self.assertEqual(extract_experience("ניסיון מוכח של מעל 3 שנים בפיתוח תוכנה – חובה.")[0], 3)
         self.assertEqual(extract_experience("ניסיון מעשי של לפחות 4 שנים בפיתוח Java")[0], 4)
 
+    def test_company_history_is_not_a_requirement(self):
+        text = ("With over 40 years of semiconductor process control experience, chipmakers around the globe rely on KLA.\n"
+                "Mandatory:\n• software design skills\n• 2+ years of C# experience")
+        self.assertEqual(extract_experience(text)[0], 2)
+
     def test_range_uses_lower_bound(self):
         yrs, _, _ = extract_experience("1-3 years of experience in software development")
         self.assertEqual(yrs, 1)
@@ -248,6 +253,12 @@ class TestClassifier(unittest.TestCase):
         v = self.c.classify(J("System Engineer - Naval Systems", desc=desc))
         self.assertEqual((v.accept, v.reject_reason), (False, "hardware/electronics role"))
         self.assertFalse(self.c.stage1(J("Flight Test Engineer")).accept)
+
+    def test_spare_parts_integration_is_hardware(self):
+        desc = ("Build and qualify spare parts for the semiconductor industry. Work in a clean-room environment.\n"
+                "Minimum Qualifications\n• Practical Engineer in Opto-Mechanical or Electrical fields.")
+        v = self.c.classify(J("Spare Parts Integration Engineer", desc=desc))
+        self.assertEqual((v.accept, v.reject_reason), (False, "hardware/electronics role"))
 
     def test_integration_with_hardware_text_rejected(self):
         desc = "Integrate electronic boards in the lab, work with oscilloscope and wiring harness, read schematics."

@@ -199,6 +199,31 @@ class TestFetchers(unittest.TestCase):
         self.assertEqual(jobs[1].date_kind, "unknown")
         self.assertIsNone(jobs[1].posted_at)
 
+    def test_workday_uses_israel_facet_and_reads_every_page(self):
+        from radar.fetchers.workday import Workday
+        facets = [{"facetParameter": "locationMainGroup", "values": [{"facetParameter": "locations", "values": [
+            {"descriptor": "India, Bangalore", "id": "in"}, {"descriptor": "Israel, Haifa", "id": "hf"},
+            {"descriptor": "Israel, Petah-Tikva", "id": "pt"}]}]}]
+
+        class Http:
+            bodies = []
+
+            def get_json(self, url, method="GET", json=None, **kw):
+                self.bodies.append(json)
+                if json["limit"] == 1:
+                    return {"total": 900, "facets": facets, "jobPostings": []}
+                off = json["offset"]
+                posts = [{"title": f"Job {i}", "externalPath": f"/job/{i}", "postedOn": "Posted Today"}
+                         for i in range(off, min(off + 20, 45))]
+                return {"total": 45 if off == 0 else 0, "jobPostings": posts}  # later pages report total=0
+
+        http = Http()
+        jobs = Workday(http).list_jobs({"id": "x", "name": "X", "host": "x.wd1.myworkdayjobs.com", "tenant": "x", "site": "S"})
+        self.assertEqual(len(jobs), 45)
+        self.assertEqual(http.bodies[1]["appliedFacets"], {"locations": ["hf", "pt"]})
+        self.assertEqual(Workday.country_facet([{"facetParameter": "Country", "values": [
+            {"descriptor": "Israel", "id": "il"}]}] + facets, "Israel"), {"Country": ["il"]})
+
     def test_telegram_channel(self):
         html = '''<div class="tgme_widget_message_wrap"><div class="tgme_widget_message" data-post="jobs_il/42">
         <div class="tgme_widget_message_text js-message_text">Junior Backend Developer at Acme<br/>Tel Aviv <a href="https://acme.com/careers/7">apply</a></div>

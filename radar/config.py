@@ -74,6 +74,13 @@ DEFAULTS: dict = {
             r"\brf\b", r"avionics", r"lab\s+equipment", r"schematics?", r"אלקטרוניקה", r"כרטיסים", r"חיווט", r"הנדסת\s+חשמל",
             r"antenna", r"electronic\s+warfare", r"\bew\b", r"electro[\s-]?optic", r"mechanical", r"payload", r"\bsonar\b",
             r"airborne", r"\bsensors?\b",
+            # KLA "Spare Parts Integration Engineer": practical engineer, opto-mechanical, clean room
+            r"clean[\s-]?room", r"spare[\s-]?parts?", r"practical\s+engineer", r"הנדסאי",
+            # KLA "System Engineer" (mechanics, motion, robotics), NVIDIA lab infrastructure (racking, cabling,
+            # liquid cooling) and "IC Test Engineer" (IC test). Not "HW": Intel's liked "System Validation and
+            # Integration Engineer" debugs "across HW/SW/FW boundaries"
+            r"\bmechanics\b", r"\brobotics\b", r"\bcabling\b", r"\bracking\b", r"liquid\s+cooling",
+            r"\b(ic|asic|fpga)\b",
             r"communications?\s+systems",
             r"טילים", r"כלי\s+טיס", r"מוטס", r"תעופתי", r"אוויוניקה", r"מכ\"?ם",
         ],

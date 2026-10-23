@@ -16,8 +16,11 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 7
-RECHECK_NOTES = r"^title not in role families$"  # v7 only tightens (no new alerts), nothing to recheck
+FILTERS_VERSION = 8
+# v8: "N+ years" above MAX_PLAUSIBLE_YEARS is company history, not a requirement (KLA "over 40 years of ... experience")
+RECHECK_NOTES = r"^requires (1[6-9]|[2-9]\d|\d{3,})\+ years$"
+# No posting asks for more than this; a larger number next to "experience" describes the company
+MAX_PLAUSIBLE_YEARS = 15
 
 _FLAGS = re.I | re.U
 
@@ -118,6 +121,8 @@ _OPTIONAL = re.compile(
 _OPT_HEADER = re.compile(r"^\W*(nice\s+to\s+have|preferred|bonus|advantages?|plus(es)?|desirable|יתרון|יתרונות|דרישות\s+רשות)\b", re.I | re.U)
 _REQ_HEADER = re.compile(
     r"^\W*(requirements?|qualifications?|must[\s-]?have|what\s+you(?:'ll|\s+will)?\s+(?:need|bring)|basic\s+qualifications|"
+    # KLA: "Mandatory:" ... "Advantages:" ... "Minimum Qualifications" (5 years with a BSc)
+    r"(?:minimum|required|mandatory)\s+(?:qualifications|requirements)|mandatory|"
     r"what\s+we(?:'re|\s+are)\s+looking\s+for|who\s+you\s+are|about\s+you|you\s+(?:have|bring|should\s+have)|"
     r"דרישות|דרישות\s+התפקיד|נדרש|מה\s+אנחנו\s+מחפשים|מה\s+נדרש|מי\s+את[הן]?|כישורים)\b", re.I | re.U)
 # a short line ending with ':' or '?' is a section header (used to stop the requirements excerpt)
@@ -282,6 +287,8 @@ def extract_experience(text: str) -> tuple[Optional[int], str, list]:
                 a = (2 if w == "שנתיים" else 1) if w else _num(m.group("a") or m.group("c") or m.group("e"))
                 if a is not None:
                     found.append((a, _is_optional(sent, m.start(), mode)))
+            # company history, not a requirement: KLA's "With over 40 years of ... experience, chipmakers ..."
+            found = [(a, opt) for a, opt in found if a <= MAX_PLAUSIBLE_YEARS]
             optional.extend(a for a, opt in found if opt)
             req_here = [a for a, opt in found if not opt]
             if req_here:

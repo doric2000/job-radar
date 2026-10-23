@@ -163,6 +163,7 @@
 - {name: "Cisco Israel", domain: cisco.com, cat: multinational, tier: 3, ats: workday, host: cisco.wd5.myworkdayjobs.com, tenant: cisco, site: Cisco_Careers, search: Israel}
 - {name: "Qualcomm Israel", domain: qualcomm.com, cat: multinational, tier: 3, ats: eightfold, host: careers.qualcomm.com}
 - {name: "Marvell Israel", domain: marvell.com, cat: multinational, tier: 3, ats: workday, host: marvell.wd1.myworkdayjobs.com, tenant: marvell, site: MarvellCareers, search: Israel}
+- {name: "KLA Israel", domain: kla.com, cat: multinational, tier: 2, ats: workday, host: kla.wd1.myworkdayjobs.com, tenant: kla, site: search, search: Israel}   # Migdal HaEmek + Yavne (added 2026-10-23 from the user's example)
 - {name: "AMD Israel", domain: amd.com, cat: multinational, tier: 3}
 - {name: "Oracle Israel", domain: oracle.com, cat: multinational, tier: 3}
 - {name: "SAP Israel", domain: sap.com, cat: multinational, tier: 3}
