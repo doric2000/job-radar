@@ -164,6 +164,7 @@
 - {name: "Qualcomm Israel", domain: qualcomm.com, cat: multinational, tier: 3, ats: eightfold, host: careers.qualcomm.com}
 - {name: "Marvell Israel", domain: marvell.com, cat: multinational, tier: 3, ats: workday, host: marvell.wd1.myworkdayjobs.com, tenant: marvell, site: MarvellCareers, search: Israel}
 - {name: "KLA Israel", domain: kla.com, cat: multinational, tier: 2, ats: workday, host: kla.wd1.myworkdayjobs.com, tenant: kla, site: search, search: Israel}   # Migdal HaEmek + Yavne (added 2026-10-23 from the user's example)
+- {name: "Medtronic Israel", domain: medtronic.com, cat: multinational, tier: 2, ats: workday, host: medtronic.wd1.myworkdayjobs.com, tenant: medtronic, site: MedtronicCareers, search: Israel}   # Kfar Saba, Herzliya, Caesarea (added 2026-10-23 from the user's example; "redeployment..." is the internal-transfer copy of the same board)
 - {name: "AMD Israel", domain: amd.com, cat: multinational, tier: 3}
 - {name: "Oracle Israel", domain: oracle.com, cat: multinational, tier: 3}
 - {name: "SAP Israel", domain: sap.com, cat: multinational, tier: 3}
