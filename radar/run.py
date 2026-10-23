@@ -14,7 +14,7 @@ from zoneinfo import ZoneInfo
 from . import feedback
 from .config import load_config
 from .fetchers import FETCHERS
-from .filters import FILTERS_VERSION, RECHECK_NOTES, Classifier
+from .filters import FILTERS_VERSION, RECHECK_NOTES, Classifier, _any
 from .http import Http, HttpError
 from .leads import TgChannel
 from .models import Job, Verdict
@@ -201,16 +201,18 @@ class Radar:
         room = max(0, self.cfg["notify"]["max_alerts_per_run"] - self._sent_count)
         self._overflow += max(0, len(alerts) - room)
         self._sent_count += min(room, len(alerts))
-        tz = self.cfg["timezone"]
         for j, v, c in alerts[:room]:
-            text = format_alert(j, v, c, self.now, tz)
-            if self.dry_run or self.notifier is None:
-                print("----- ALERT (not sent) -----\n" + text)
-            else:
-                sid = feedback.sent_id(j)
-                mid = self.notifier.send(text)
-                feedback.record_sent(self.state.d["meta"], sid, j, v, mid, self.now)
-                time.sleep(0.4)
+            self._send_alert(j, v, c)
+
+    def _send_alert(self, j: Job, v: Verdict, c: dict) -> None:
+        text = format_alert(j, v, c, self.now, self.cfg["timezone"])
+        if self.dry_run or self.notifier is None:
+            print("----- ALERT (not sent) -----\n" + text)
+        else:
+            sid = feedback.sent_id(j)
+            mid = self.notifier.send(text)
+            feedback.record_sent(self.state.d["meta"], sid, j, v, mid, self.now)
+            time.sleep(0.4)
 
     # ---------------------------------------------------------------- backlog
     def backlog(self) -> list[tuple[Job, Verdict, dict]]:
@@ -258,6 +260,14 @@ class Radar:
         return fresh
 
     def send_backlog(self, items) -> None:
+        # explicit junior/graduate/intern titles get a full alert (a line in a long list is easy to miss:
+        # Elad's "Full Stack Junior" was line 15 of 28); the rest go in one list
+        full = [x for x in items if _any(self.clf.entry, x[0].title)]
+        for j, v, c in full:
+            self._send_alert(j, v, c)
+        items = [x for x in items if x not in full]
+        if not items:
+            return
         e = html.escape
         head = f"📚 משרות שכבר היו פתוחות כשהבוט התחיל ומתאימות לכללים הנוכחיים ({len(items)}):"
         def age(j):

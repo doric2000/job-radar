@@ -108,6 +108,18 @@ class TestBacklog(unittest.TestCase):
         self.assertTrue(all(jobs[j.job_id]["r"] == "backlog" for j, _, _ in items))
         self.assertEqual(r.backlog(), [])
 
+    def test_junior_backlog_jobs_get_a_full_alert(self):
+        tg = FakeTg()
+        r = Radar(load_config(None), [dict(COMPANY)], State(), FakeHttp({}), notifier=tg, now=NOW)
+        other = Job(company_id="acme", company="Acme", job_id="2", title="Backend Engineer", url="https://x/2", source="greenhouse")
+        r.send_backlog([(job(), Verdict(True, tier="A"), COMPANY), (other, Verdict(True, tier="C"), COMPANY)])
+        self.assertEqual(len(tg.sent), 2)
+        self.assertIn("<b>Junior Backend Engineer</b>", tg.sent[0][0])  # full alert, logged for feedback
+        self.assertEqual(len(r.state.d["meta"]["sent"]), 1)
+        self.assertIn("📚", tg.sent[1][0])
+        self.assertIn("Backend Engineer", tg.sent[1][0])
+        self.assertNotIn("Junior", tg.sent[1][0])
+
 
 if __name__ == "__main__":
     unittest.main()
