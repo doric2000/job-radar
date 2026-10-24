@@ -203,6 +203,7 @@
 - {name: "Quicklizard", domain: quicklizard.com, cat: tech, tier: 1}
 - {name: "Connecteam", domain: connecteam.com, cat: tech, tier: 1}
 - {name: "High Sec Labs", domain: highseclabs.com, cat: cyber, tier: 1, ats: wordpress, host: highseclabs.com, rest_base: jobs}
+- {name: "UCL Group", domain: ucl-group.co.il, cat: tech, tier: 1, ats: wordpress, host: ucl-group.co.il, rest_base: jobs, dates: false}   # staffing; many junior roles at client companies. Posts are re-dated in bulk (added 2026-10-24 from the user's example)
 - {name: "Draftt", domain: draftt.io, cat: tech, tier: 1}
 - {name: "Unframe", domain: unframe.ai, cat: tech, tier: 1}
 - {name: "Milestone", domain: mstone.ai, cat: tech, tier: 1, ats: htmllinks, list_url: "https://mstone.ai/careers/", link_pattern: "/job-offer/([^/]+)/?$"}

@@ -83,6 +83,9 @@ class TestCompanySites(unittest.TestCase):
         self.assertEqual(sorted(j.job_id for j in jobs), ["7", "8"])
         self.assertEqual((jobs[0].title, jobs[0].location, jobs[0].date_kind), ("Full-Stack Developer – Junior", "Israel", "published"))
         self.assertEqual(jobs[0].posted_at.isoformat(), "2026-10-19T15:50:09+00:00")
+        # UCL re-dates every post at once: its dates are ignored
+        jobs = WordPress(http).list_jobs({"id": "ucl", "name": "UCL", "host": "x.co.il", "rest_base": "jobs", "dates": False})
+        self.assertEqual((jobs[0].posted_at, jobs[0].date_kind), (None, "unknown"))
 
     def test_manatal(self):
         data = {"next": None, "results": [{"id": 1, "hash": "QWR35XXW", "position_name": "Full Stack Engineer",

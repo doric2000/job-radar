@@ -29,15 +29,18 @@ class WordPress:
                 break
             if not isinstance(posts, list) or not posts:
                 break
+            # dates: false - the site re-publishes every post at once (UCL: all 101 jobs dated the same minute)
+            dated = c.get("dates", True)
             for p in posts:
                 jid = str(p.get("id"))
+                when = parse_iso((p.get("date_gmt") or "") + "Z" if p.get("date_gmt") else None) if dated else None
                 out[jid] = Job(
                     company_id=c["id"], company=c["name"], job_id=jid,
                     title=html.unescape((p.get("title") or {}).get("rendered", "")).strip(),
                     url=p.get("link", ""), location=c.get("location", "Israel"),
                     description=html_to_text((p.get("content") or {}).get("rendered")),
-                    posted_at=parse_iso((p.get("date_gmt") or "") + "Z" if p.get("date_gmt") else None),
-                    date_kind="published", date_source="wordpress.date_gmt", source=self.name,
+                    posted_at=when, date_kind="published" if when else "unknown",
+                    date_source="wordpress.date_gmt" if when else "", source=self.name,
                 )
             if len(posts) < 100:
                 break
