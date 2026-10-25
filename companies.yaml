@@ -170,6 +170,7 @@
 - {name: "SAP Israel", domain: sap.com, cat: multinational, tier: 3}
 - {name: "IBM Israel", domain: ibm.com, cat: multinational, tier: 3}
 - {name: "Elbit Systems", domain: elbitsystems.com, cat: defense, tier: 1, ats: elbit}   # cron/jobs.json, ~550 jobs
+- {name: "RADA (Leonardo DRS)", domain: drs-rada.com, cat: defense, tier: 1, ats: comeet, uid: "73.009", token: 379115D6F21BC81F411F41A6BDE46F2A6B}   # Netanya, Beit Shean (added 2026-10-25 from the user's example)
 - {name: "Rafael", domain: rafael.co.il, cat: defense, tier: 1}   # career.rafael.co.il is behind a Reblaze bot challenge; not scraped (LinkedIn only)
 - {name: "Israel Aerospace Industries", domain: iai.co.il, cat: defense, tier: 1}   # jobs.iai.co.il (incl. Elta) is behind a Reblaze bot challenge; not scraped (LinkedIn only)
 - {name: "Israel National Cyber Directorate", domain: cyber.gov.il, cat: gov, tier: 2}   # government tenders site; slug probe matched an unrelated board
