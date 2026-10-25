@@ -1,8 +1,8 @@
 # Discovery report
 
-- ok: 73
+- ok: 75
 - review: 8
-- none: 81
+- none: 73
 
 
 ## Needs review (found but ambiguous)
@@ -32,18 +32,15 @@
 - **Cellebrite** (`cellebrite`)   no ATS found (custom careers site?)
 - **Check Point** (`check-point`)   no ATS found (custom careers site?)
 - **Clal Insurance** (`clal-insurance`)   no ATS found (custom careers site?)
-- **Comblack** (`comblack`)   no ATS found (custom careers site?)
 - **Conntour** (`conntour`)   no ATS found (custom careers site?)
 - **Coralogix** (`coralogix`)   no ATS found (custom careers site?)
 - **CyberArk** (`cyberark`)   no ATS found (custom careers site?)
 - **Cyberbit** (`cyberbit`)   no ATS found (custom careers site?)
 - **Cybereason** (`cybereason`)   no ATS found (custom careers site?)
 - **Cyberint** (`cyberint`)   no ATS found (custom careers site?)
-- **Cydome** (`cydome`)   no ATS found (custom careers site?)
 - **Cyolo** (`cyolo`)   no ATS found (custom careers site?)
 - **Deep Instinct** (`deep-instinct`)   no ATS found (custom careers site?)
 - **Draftt** (`draftt`)   no ATS found (custom careers site?)
-- **Elbit Systems** (`elbit-systems`)   no ATS found (custom careers site?)
 - **Eureka Security** (`eureka-security`)   no ATS found (custom careers site?)
 - **First International Bank** (`first-international-bank`)   no ATS found (custom careers site?)
 - **Gambit Security** (`gambit-security`)   no ATS found (custom careers site?)
@@ -51,21 +48,17 @@
 - **Google Israel** (`google-israel`)   no ATS found (custom careers site?)
 - **Hailo** (`hailo`)   no ATS found (custom careers site?)
 - **Harel** (`harel`)   no ATS found (custom careers site?)
-- **High Sec Labs** (`high-sec-labs`)   no ATS found (custom careers site?)
 - **Hilan** (`hilan`)   no ATS found (custom careers site?)
 - **IBM Israel** (`ibm-israel`)   no ATS found (custom careers site?)
 - **Imperva** (`imperva`)   no ATS found (custom careers site?)
-- **Innoviz** (`innoviz`)   no ATS found (custom careers site?)
 - **Israel Discount Bank** (`israel-discount-bank`)   no ATS found (custom careers site?)
 - **Israel Security Agency** (`israel-security-agency`)   no ATS found (custom careers site?)
 - **Jit** (`jit`)   no ATS found (custom careers site?)
 - **Karamba Security** (`karamba-security`)   no ATS found (custom careers site?)
-- **Lusha** (`lusha`)   no ATS found (custom careers site?)
 - **Malam Team** (`malam-team`)   no ATS found (custom careers site?)
 - **Matrix IT** (`matrix-it`)   no ATS found (custom careers site?)
 - **Memcyco** (`memcyco`)   no ATS found (custom careers site?)
 - **Migdal** (`migdal`)   no ATS found (custom careers site?)
-- **Milestone** (`milestone`)   no ATS found (custom careers site?)
 - **Mizrahi Tefahot** (`mizrahi-tefahot`)   no ATS found (custom careers site?)
 - **Nayax** (`nayax`)   no ATS found (custom careers site?)
 - **NewCore** (`newcore`)   no ATS found (custom careers site?)
@@ -74,7 +67,6 @@
 - **Noma Security** (`noma-security`)   no ATS found (custom careers site?)
 - **One1** (`one1`)   no ATS found (custom careers site?)
 - **Oracle Israel** (`oracle-israel`)   no ATS found (custom careers site?)
-- **OX Security** (`ox-security`)   no ATS found (custom careers site?)
 - **Papaya Global** (`papaya-global`)   no ATS found (custom careers site?)
 - **Partner** (`partner`)   no ATS found (custom careers site?)
 - **Perception Point** (`perception-point`)   no ATS found (custom careers site?)
@@ -102,76 +94,78 @@
 
 ## Resolved
 
-- ActiveFence: comeet `5D51D29347D2EA828D3347DBAA2EA85D522FE` jobs=43 israel=20
+- ActiveFence: comeet `5D51D29347D2EA828D3347DBAA2EA85D522FE` jobs=43 israel=24
 - Apiiro: greenhouse `apiiro` jobs=5 israel=4
-- AppsFlyer: greenhouse `appsflyer` jobs=50 israel=24
-- Armis: smartrecruiters `ServiceNow` jobs=705 israel=16
-- Axonius: greenhouse `axonius` jobs=21 israel=6
+- AppsFlyer: greenhouse `appsflyer` jobs=49 israel=22
+- Armis: smartrecruiters `ServiceNow` jobs=715 israel=18
+- Axonius: greenhouse `axonius` jobs=20 israel=5
 - Backslash Security: comeet `89433783C0C22503378337889419BC33782AE4` jobs=4 israel=2
-- BrainPOP: greenhouse `brainpop` jobs=1 israel=1
+- BrainPOP: greenhouse `brainpop` jobs=3 israel=1
 - Cato Networks: greenhouse `catonetworks` jobs=108 israel=39
-- Ceragon: comeet `3D3131FF4C01AC57A61AC51E98131FF4C` jobs=47 israel=13
-- Checkmarx: comeet `C8320190002581902584B0708` jobs=31 israel=5
-- Cloudinary: lever `cloudinary` jobs=10 israel=6
+- Ceragon: comeet `3D3131FF4C01AC57A61AC51E98131FF4C` jobs=46 israel=12
+- Checkmarx: comeet `C8320190002581902584B0708` jobs=30 israel=6
+- Cloudinary: lever `cloudinary` jobs=11 israel=7
 - Cognyte: comeet `2F9EDD2F92F911D61AC12F914CF11D62F9` jobs=45 israel=14
 - Connecteam: greenhouse `connecteam` jobs=58 israel=19
-- Cycode: comeet `8AD340E3CBB3CBB22B445680340E22B44568` jobs=5 israel=2
+- Cycode: comeet `8AD340E3CBB3CBB22B445680340E22B44568` jobs=4 israel=2
 - CyCognito: comeet `41A148210681CB61CB68341CB624EAC4E1482` jobs=1 israel=0
-- Cyera: comeet `7182A90154871823783FD838C031A802378` jobs=249 israel=29
+- Cyera: comeet `7182A90154871823783FD838C031A802378` jobs=254 israel=32
 - Cymulate: greenhouse `cymulate` jobs=18 israel=3
 - Cynet: comeet `33D103133D19E8136E1D25103133D10311D25` jobs=9 israel=2
 - Entro Security: workday `sailpoint` jobs=1 israel=0
-- eToro: comeet `14952452466D3DB7B61495240B91` jobs=23 israel=4
-- F5: workday `ffive` jobs=4 israel=1
-- Fireblocks: greenhouse `fireblocks` jobs=26 israel=0
-- Forter: greenhouse `forter` jobs=22 israel=4
-- Global-e: comeet `262988131015727264C41572E4C10AE10AE` jobs=49 israel=19
-- Guardio: comeet `7502BE015F0249041D01D40EA03A801D40EA0` jobs=18 israel=18
-- Guardz: greenhouse `guardz` jobs=4 israel=3
+- eToro: comeet `14952452466D3DB7B61495240B91` jobs=20 israel=3
+- F5: workday `ffive` jobs=3 israel=0
+- Fireblocks: greenhouse `fireblocks` jobs=27 israel=0
+- Forter: greenhouse `forter` jobs=22 israel=5
+- Global-e: comeet `262988131015727264C41572E4C10AE10AE` jobs=50 israel=19
+- Guardio: comeet `7502BE015F0249041D01D40EA03A801D40EA0` jobs=19 israel=19
+- Guardz: greenhouse `guardz` jobs=3 israel=2
 - Hub Security: comeet `70F2A5A152D70F70F316903F8770F3169` jobs=0 israel=0
-- Island: greenhouse `island` jobs=29 israel=9
-- JFrog: greenhouse `jfrog` jobs=63 israel=18
+- Innoviz: comeet `25495012A0104C012A0104C6FCBA40` jobs=3 israel=3
+- Island: greenhouse `island` jobs=34 israel=9
+- JFrog: greenhouse `jfrog` jobs=69 israel=20
 - Kaltura: smartrecruiters `kalturainc` jobs=4 israel=3
 - Lightrun: greenhouse `lightrun` jobs=1 israel=1
-- Linx Security: comeet `99C434499C300C300C99C300C133839A84CE0` jobs=15 israel=6
-- Melio: greenhouse `melio` jobs=23 israel=9
+- Linx Security: comeet `99C434499C300C300C99C300C133839A84CE0` jobs=14 israel=5
+- Melio: greenhouse `melio` jobs=22 israel=9
 - Mend.io: ashby `mend-io` jobs=9 israel=2
 - Mitiga: comeet `62B250262B012811ED718AC128112813158` jobs=2 israel=2
-- Moon Active: ashby `moonactive` jobs=34 israel=25
+- Moon Active: ashby `moonactive` jobs=33 israel=24
 - Nagomi Security: comeet `98B42CD98B98B4C5855E3262C262C262C3942` jobs=6 israel=5
 - Ness Technologies: smartrecruiters `nesstechnologies` jobs=1 israel=1
-- NICE: greenhouse `nice` jobs=180 israel=18
-- Novee Security: comeet `AA84A983FF0002AA01FF8155035483FF0` jobs=17 israel=7
+- NICE: greenhouse `nice` jobs=189 israel=23
+- Novee Security: comeet `AA84A983FF0002AA01FF8155035483FF0` jobs=16 israel=6
 - Oasis Security: greenhouse `oasissecurity` jobs=0 israel=0
-- Optimove: greenhouse `optimove` jobs=11 israel=3
-- Orca Security: greenhouse `orcasecurity` jobs=10 israel=2
-- Orchid Security: comeet `A4147C72904A41A410A41047C7A41` jobs=3 israel=0
-- Otorio: smartrecruiters `ServiceNow` jobs=705 israel=16
+- Optimove: greenhouse `optimove` jobs=10 israel=2
+- Orca Security: greenhouse `orcasecurity` jobs=8 israel=2
+- Orchid Security: comeet `A4147C72904A41A410A41047C7A41` jobs=4 israel=0
+- Otorio: smartrecruiters `ServiceNow` jobs=715 israel=18
+- OX Security: comeet `8F635C447B035C42CCE2CCE23D83EBA35C48F6` jobs=39 israel=7
 - Pagaya: greenhouse `pagaya` jobs=15 israel=0
-- Palo Alto Networks: workday `paloaltonetworks` jobs=135 israel=133
+- Palo Alto Networks: workday `paloaltonetworks` jobs=128 israel=127
 - Panorays: comeet `79D2DAE1E7479D1E742DAE3CE802DAE1E74` jobs=3 israel=1
-- Payoneer: greenhouse `payoneer` jobs=99 israel=20
+- Payoneer: greenhouse `payoneer` jobs=100 israel=24
 - Quicklizard: comeet `9C4445C13881D4C1D4C445C57E43A98445C1388` jobs=8 israel=7
-- Reco: comeet `A3D47AB28F405C2505C2551E8333151E8` jobs=6 israel=1
-- Riskified: greenhouse `riskified` jobs=30 israel=12
+- Reco: comeet `A3D47AB28F405C2505C2551E8333151E8` jobs=11 israel=1
+- Riskified: greenhouse `riskified` jobs=37 israel=12
 - SafeBreach: greenhouse `safebreach` jobs=8 israel=3
-- Salt Security: greenhouse `saltsecurity` jobs=14 israel=4
-- SecondNature: comeet `AFC4CE44CE4AFC20F4AFC36EC57E057E057E0` jobs=7 israel=7
-- Semperis: ashby `semperis` jobs=24 israel=3
+- Salt Security: greenhouse `saltsecurity` jobs=13 israel=3
+- SecondNature: comeet `AFC4CE44CE4AFC20F4AFC36EC57E057E057E0` jobs=6 israel=6
+- Semperis: ashby `semperis` jobs=25 israel=4
 - SentinelOne: greenhouse `sentinellabs` jobs=270 israel=17
-- Similarweb: greenhouse `similarweb` jobs=69 israel=28
-- Sisense: ashby `sisense` jobs=4 israel=2
-- Snyk: ashby `snyk` jobs=27 israel=1
+- Similarweb: greenhouse `similarweb` jobs=72 israel=31
+- Sisense: ashby `sisense` jobs=3 israel=2
+- Snyk: ashby `snyk` jobs=33 israel=1
 - Sweet Security: greenhouse `sweetsecurity` jobs=2 israel=1
-- Taboola: greenhouse `taboola` jobs=87 israel=24
-- Tipalti: greenhouse `tipaltisolutions` jobs=21 israel=7
-- Token Security: greenhouse `tokensecurity` jobs=6 israel=4
-- Torq: greenhouse `torq` jobs=25 israel=5
-- Transmit Security: greenhouse `transmitsecurity` jobs=14 israel=12
-- Unframe: greenhouse `unframe` jobs=35 israel=14
-- Via: greenhouse `via` jobs=180 israel=9
-- Wiz: greenhouse `wizinc` jobs=122 israel=23
-- Yotpo: greenhouse `yotpo` jobs=15 israel=5
-- Zafran: ashby `zafran-security` jobs=25 israel=9
-- Zenity: comeet `9103660519012202D5024401B3091024403660` jobs=30 israel=13
+- Taboola: greenhouse `taboola` jobs=84 israel=26
+- Tipalti: greenhouse `tipaltisolutions` jobs=21 israel=8
+- Token Security: greenhouse `tokensecurity` jobs=5 israel=3
+- Torq: greenhouse `torq` jobs=22 israel=4
+- Transmit Security: greenhouse `transmitsecurity` jobs=16 israel=14
+- Unframe: greenhouse `unframe` jobs=36 israel=14
+- Via: greenhouse `via` jobs=183 israel=9
+- Wiz: greenhouse `wizinc` jobs=123 israel=23
+- Yotpo: greenhouse `yotpo` jobs=18 israel=6
+- Zafran: ashby `zafran-security` jobs=29 israel=10
+- Zenity: comeet `9103660519012202D5024401B3091024403660` jobs=27 israel=12
 - Zero Networks: comeet `93F40B9001BBD49F824FC49F824FC377A` jobs=11 israel=6
