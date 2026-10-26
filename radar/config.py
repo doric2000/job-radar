@@ -65,7 +65,11 @@ DEFAULTS: dict = {
             r"salesforce", r"\bsap\b", r"\babap\b", r"\berp\b", r"dynamics", r"copilot\s+studio", r"power\s+(apps|platform|automate|bi)",
             r"servicenow", r"\bpriority\b", r"sharepoint", r"outsystems", r"\brpg\b", r"cobol", r"magento", r"oracle\s+forms",
             r"wordpress",
+            # 👎 Oct 2026: lecturer at Shenkar, CNC programmer, BI developer (data), propulsion (aerospace hardware)
+            r"lectur", r"מרצה", r"\bcnc\b", r"numerical\s+control", r"\bbi\s+(developer|analyst|engineer)", r"propulsion",
         ],
+        # Companies the user asked never to see (InfinityLabs career-path programs: "תוכנית זבל", Oct 2026)
+        "company_exclude": [r"infinity\s*labs"],
         # Integration / QA titles whose text is about hardware are electronics roles, not software:
         # rejected when at least two of these appear in the description.
         "hardware_desc_signals": [

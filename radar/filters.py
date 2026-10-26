@@ -319,11 +319,14 @@ class Classifier:
         self.experienced_intro = _compile(m["experienced_intro_signals"])
         self.freelance = _compile(m["freelance_signals"])
         self.max_years = int(m["max_years_accept"])
+        self.company_exc = _compile(m.get("company_exclude", []))
 
     # -- stage 1: title/location only -------------------------------------------------
     def stage1(self, job: Job) -> Verdict:
         t = job.title or ""
         m = self.cfg["match"]
+        if (hit := _any(self.company_exc, job.company or "")):
+            return Verdict(False, reject_reason=f"company excluded: {hit}", stage=1)
         if (hit := _any(self.role_exc, t)):
             return Verdict(False, reject_reason=f"role excluded: {hit}", stage=1)
         if (hit := _any(self.role_exc_soft, t)) and not _any(self.role_core, t):

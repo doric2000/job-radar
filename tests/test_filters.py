@@ -311,6 +311,14 @@ class TestClassifier(unittest.TestCase):
         self.assertTrue(v.accept)
         self.assertEqual(v.tier, "A")
 
+    def test_feedback_exclusions_oct_2026(self):
+        for title in ["Lecturer in Software Engineering", "מרצה במחלקה להנדסת תוכנה", "Computer Numerical Control Programmer",
+                      "Junior BI Developer - Position No. 1760", "Propulsion Systems Engineer"]:
+            self.assertFalse(self.c.classify(J(title, desc="Junior, 1 year")).accept, title)
+        job = Job(company_id="il", company="InfinityLabs R&D", job_id="1", title="Junior Software Engineer",
+                  url="http://x", location="Tel Aviv, Israel", description="")
+        self.assertEqual(self.c.classify(job).reject_reason.split(":")[0], "company excluded")
+
     def test_source_level_senior_rejected(self):
         v = self.c.classify(J("Software Engineer", level="Mid-Senior level", desc="1 year"))
         self.assertFalse(v.accept)
