@@ -11,6 +11,7 @@ from .comeet import Comeet
 from .eightfold import Eightfold
 from .elad import Elad
 from .elbit import Elbit
+from .rss import Rss
 from .greenhouse import Greenhouse
 from .htmllinks import HtmlLinks
 from .lever import Lever
@@ -44,4 +45,5 @@ FETCHERS = {
     "topmatch": TopMatch,
     "radancy": Radancy,
     "elbit": Elbit,
+    "rss": Rss,
 }

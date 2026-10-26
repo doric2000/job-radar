@@ -9,6 +9,7 @@ from radar.fetchers.elbit import Elbit
 from radar.fetchers.htmllinks import HtmlLinks
 from radar.fetchers.manatal import Manatal
 from radar.fetchers.radancy import Radancy
+from radar.fetchers.rss import Rss
 from radar.fetchers.topmatch import TopMatch
 from radar.fetchers.wordpress import WordPress
 from radar.run import Radar
@@ -86,6 +87,18 @@ class TestCompanySites(unittest.TestCase):
         # UCL re-dates every post at once: its dates are ignored
         jobs = WordPress(http).list_jobs({"id": "ucl", "name": "UCL", "host": "x.co.il", "rest_base": "jobs", "dates": False})
         self.assertEqual((jobs[0].posted_at, jobs[0].date_kind), (None, "unknown"))
+
+    def test_rss_feed_and_job_page(self):
+        item = ("<item><title>דרוש/ה מפתח/ת C# ג&#8217;וניור</title><link>https://b.x.com/job/junior-csharp/</link>"
+                "<guid isPermaLink=\"false\">https://b.x.com/?post_type=job&#038;p=20632</guid>"
+                "<pubDate>Sun, 25 Oct 2026 14:13:28 +0000</pubDate></item>")
+        page = '<div class="jobs-slider">other jobs</div><div class="job"><ul><li>עד שנתיים ניסיון ב-C#</li></ul></div>'
+        http = FakeHttp({"paged=2": "<rss></rss>", "feed/": f"<rss>{item}</rss>", "/job/junior-csharp/": page})
+        c = {"id": "log-on", "name": "Log-On", "feed_url": "https://b.x.com/feed/?post_type=job", "desc_selector": "div.job"}
+        [j] = Rss(http).list_jobs(c)
+        self.assertEqual((j.job_id, j.title, j.date_kind), ("20632", "דרוש/ה מפתח/ת C# ג’וניור", "published"))
+        self.assertEqual(j.posted_at.isoformat(), "2026-10-25T14:13:28+00:00")
+        self.assertEqual(Rss(http).enrich(j, c).description, "• עד שנתיים ניסיון ב-C#")
 
     def test_manatal(self):
         data = {"next": None, "results": [{"id": 1, "hash": "QWR35XXW", "position_name": "Full Stack Engineer",
