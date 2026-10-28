@@ -16,9 +16,10 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 8
-# v8: "N+ years" above MAX_PLAUSIBLE_YEARS is company history, not a requirement (KLA "over 40 years of ... experience")
-RECHECK_NOTES = r"^requires (1[6-9]|[2-9]\d|\d{3,})\+ years$"
+FILTERS_VERSION = 9
+# v9: new role titles ("מהנדס תוכנה" without ת, Software Development Engineer, Offensive Researcher, Software
+# Quality Engineer, Development Operations)
+RECHECK_NOTES = r"^title not in role families$"
 # No posting asks for more than this; a larger number next to "experience" describes the company
 MAX_PLAUSIBLE_YEARS = 15
 

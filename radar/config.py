@@ -42,7 +42,10 @@ DEFAULTS: dict = {
             # QA / test automation (software only: industrial "automation engineer" and silicon validation are not)
             r"\bqa\b", r"quality\s+assurance", r"\b(software|sw)\s+(test|testing|validation|verification)",
             r"\btest(ing)?\s+(engineer|automation|developer)", r"(qa|test)\s+automation", r"automation\s+developer", r"\bsdet\b",
-            r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן)\s*תוכנה",
+            # "Software Development Engineer" (SDE), "Software Quality Engineer", "Offensive Researcher", "Development Operations"
+            r"\b(software|sw)\s+development\s+engineer", r"\b(software|sw)\s+quality\s+(engineer|assurance)",
+            r"\boffensive\b", r"development\s+operations",
+            r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
             r"בודק[./]?ת?\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
         ],
         "role_exclude": [
@@ -67,6 +70,10 @@ DEFAULTS: dict = {
             r"wordpress",
             # 👎 Oct 2026: lecturer at Shenkar, CNC programmer, BI developer (data), propulsion (aerospace hardware)
             r"lectur", r"מרצה", r"\bcnc\b", r"numerical\s+control", r"\bbi\s+(developer|analyst|engineer)", r"propulsion",
+            # out of scope: teaching gigs (CYBERLABS "מדריכ/ה סייבר לבני נוער"), IT / help desk / NOC (Nexxen "IT Systems Engineer")
+            # (not "NOC" / "IT Operations" alone: "SOC / NOC Analyst" and "NOC Engineer / SRE" are in scope)
+            r"מדריכ", r"\binstructor", r"\bit\s+(systems?\s+(engineer|administrator)|support|technician|administrator)",
+            r"help\s*desk",
         ],
         # Companies the user asked never to see (InfinityLabs career-path programs: "תוכנית זבל", Oct 2026)
         "company_exclude": [r"infinity\s*labs"],
@@ -124,20 +131,21 @@ DEFAULTS: dict = {
         ],
         "role_core": [
             r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",
-            r"full[\s-]?stack", r"front[\s-]?end", r"מפתח", r"מפתחת", r"הנדס(ת|ן)\s*תוכנה",
+            r"full[\s-]?stack", r"front[\s-]?end", r"מפתח", r"מפתחת", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
+            r"\b(software|sw)\s+development\s+engineer",
         ],
         "seniority_exclude": [
             r"\bsenior\b", r"\bsr\b\.?", r"\bstaff\b", r"\bprincipal\b", r"\blead\b", r"\bhead\b",
             r"\bdirector\b", r"\bvp\b", r"vice\s+president", r"\bchief\b", r"\bmanager\b", r"\barchitect\b",
             r"\bdistinguished\b", r"\bfellow\b", r"\bexperienced\b", r"\bexpert\b", r"\bfounding\b", r"\biii\b", r"\biv\b", r"\blevel\s*[3-9]\b", r"\bl[4-9]\b",
-            r"בכיר", r"בכירה", r"ראש\s+צוות", r"מנהל", r"מנהלת", r"ארכיטקט",
+            r"בכיר", r"בכירה", r"ראש\s+צוות", r"מנהל", r"מנהלת", r"ארכיטקט", r"מנוס(ה|ים|ות)",
         ],
         "entry_signals": [
             r"\bjunior\b", r"\bjr\b\.?", r"\bgraduates?\b", r"\bgrads?\b", r"new[\s-]?grad", r"entry[\s-]?level",
             r"early[\s-]?career", r"\btrainee\b", r"\bapprentice\b", r"\bcadet\b", r"university\s+hire",
             r"ג['׳]?ו?ניור", r"בוגר", r"בוגרת", r"בוגרי", r"ללא\s+ניסיון", r"מתחיל", r"\bטרי\b",
         ],
-        "internship_signals": [r"\bintern(ship)?s?\b", r"התמחות", r"מתמחה", r"מתמחים", r"\bco-?op\b"],
+        "internship_signals": [r"\bintern(ship)?s?\b", r"(?<!עם\s)(?<!ב)התמחות(?!\s*ב)", r"מתמחה", r"מתמחים", r"\bco-?op\b"],
         "student_signals": [r"\bstudents?\b", r"סטודנט", r"סטודנטית", r"משרת\s+סטודנט"],
         "desc_entry_signals": [
             r"no\s+(prior\s+)?(professional\s+|work\s+)?experience\s+(is\s+)?(required|needed|necessary)",

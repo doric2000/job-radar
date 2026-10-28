@@ -319,6 +319,25 @@ class TestClassifier(unittest.TestCase):
                   url="http://x", location="Tel Aviv, Israel", description="")
         self.assertEqual(self.c.classify(job).reject_reason.split(":")[0], "company excluded")
 
+    def test_specialization_is_not_internship(self):
+        # Log-On: "עם התמחות ב-OpenShift" means specialization, not an internship
+        v = self.c.classify(J("איש/אשת DevOps עם התמחות ב-OpenShift", loc="תל אביב", desc="3 שנות ניסיון"))
+        self.assertNotIn("internship", v.tags)
+        self.assertFalse(v.accept)
+        self.assertIn("internship", self.c.classify(J("משרת התמחות - מפתח/ת Backend", loc="תל אביב")).tags)
+
+    def test_missed_role_titles_oct_28(self):
+        for t in ["מהנדס/ת תוכנה RealTime + אפליקציות", "מהנדס תוכנה", "מהנדס.ת תוכנה", "Software Development Engineer",
+                  "Offensive Researcher", "Software Quality Engineer", "Development Operations Engineer"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        self.assertEqual(self.c.stage1(J("מהנדס/ת תוכנה מנוסה")).reject_reason.split(":")[0], "seniority")
+
+    def test_teaching_and_it_roles_excluded(self):
+        for title in ["מדריכ/ה סייבר לבני נוער", "Cyber Security Instructor", "IT Systems Engineer II",
+                      "IT Support Specialist", "Help Desk Technician"]:
+            self.assertFalse(self.c.classify(J(title, desc="Junior, 1 year")).accept, title)
+        self.assertTrue(self.c.stage1(J("SOC / NOC Analyst")).accept)
+
     def test_source_level_senior_rejected(self):
         v = self.c.classify(J("Software Engineer", level="Mid-Senior level", desc="1 year"))
         self.assertFalse(v.accept)
