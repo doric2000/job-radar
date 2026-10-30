@@ -332,6 +332,9 @@ class TestClassifier(unittest.TestCase):
             self.assertTrue(self.c.stage1(J(t)).accept, t)
         self.assertEqual(self.c.stage1(J("מהנדס/ת תוכנה מנוסה")).reject_reason.split(":")[0], "seniority")
 
+    def test_hebrew_qa_automation_title(self):
+        self.assertTrue(self.c.stage1(J("בודק/ת אוטומציה")).accept)
+
     def test_teaching_and_it_roles_excluded(self):
         for title in ["מדריכ/ה סייבר לבני נוער", "Cyber Security Instructor", "IT Systems Engineer II",
                       "IT Support Specialist", "Help Desk Technician"]:

@@ -16,9 +16,10 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 9
+FILTERS_VERSION = 10
 # v9: new role titles ("מהנדס תוכנה" without ת, Software Development Engineer, Offensive Researcher, Software
 # Quality Engineer, Development Operations)
+# v10: "בודק/ת אוטומציה" (QA automation) title
 RECHECK_NOTES = r"^title not in role families$"
 # No posting asks for more than this; a larger number next to "experience" describes the company
 MAX_PLAUSIBLE_YEARS = 15
