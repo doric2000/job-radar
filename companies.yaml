@@ -206,6 +206,7 @@
 - {name: "High Sec Labs", domain: highseclabs.com, cat: cyber, tier: 1, ats: wordpress, host: highseclabs.com, rest_base: jobs}
 - {name: "UCL Group", domain: ucl-group.co.il, cat: tech, tier: 1, ats: wordpress, host: ucl-group.co.il, rest_base: jobs, dates: false}   # staffing; many junior roles at client companies. Posts are re-dated in bulk (added 2026-10-24 from the user's example)
 - {name: "Log-On", domain: log-on.com, cat: tech, tier: 1, ats: rss, feed_url: "https://b.log-on.com/feed/?post_type=job", pages: 3, desc_selector: div.job}   # staffing (government, banks, defense). Old posts stay on the site, so only the RSS feed (newest first, real dates) is read (added 2026-10-26)
+- {name: "Logica IT", domain: logica-it.com, cat: tech, tier: 1, ats: htmllinks, list_url: "https://logica-it.com/jobs/", link_pattern: '/jobs/(\d+)/?$', title_drop: span.metas, desc_selector: div.job_text}   # staffing, ~210 open jobs on one page (the job-listings REST type only holds 2024-25 posts). Added 2026-10-30
 - {name: "Draftt", domain: draftt.io, cat: tech, tier: 1}
 - {name: "Unframe", domain: unframe.ai, cat: tech, tier: 1}
 - {name: "Milestone", domain: mstone.ai, cat: tech, tier: 1, ats: htmllinks, list_url: "https://mstone.ai/careers/", link_pattern: "/job-offer/([^/]+)/?$"}

@@ -111,6 +111,11 @@ class TestCompanySites(unittest.TestCase):
         c = {"id": "m", "name": "M", "list_url": "https://m.ai/careers/", "link_pattern": "/job-offer/([^/]+)/?$"}
         [j] = HtmlLinks(FakeHttp({"m.ai/careers": page})).list_jobs(c)
         self.assertEqual((j.job_id, j.title, j.url), ("full-stack", "Full-Stack Engineer", "https://m.ai/job-offer/full-stack/"))
+        # Logica: category and area sit inside the link in <span class="metas">
+        page = '<a href="https://l.com/jobs/21184/">Junior Full Stack Developer <span class="metas"><span>פיתוח</span> גוש דן</span></a>'
+        c = {"id": "l", "name": "L", "list_url": "https://l.com/jobs/", "link_pattern": r"/jobs/(\d+)/?$", "title_drop": "span.metas"}
+        [j] = HtmlLinks(FakeHttp({"l.com/jobs/": page})).list_jobs(c)
+        self.assertEqual((j.job_id, j.title), ("21184", "Junior Full Stack Developer"))
 
     def test_topmatch(self):
         data = {"positions": [{"compPositionID": 199462, "jobTitleText": "מפתח.ת AI ג׳וניור ", "activationDate": "2026-10-21T09:29:15.23",

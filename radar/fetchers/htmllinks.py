@@ -11,7 +11,9 @@ from ..models import Job
 class HtmlLinks:
     """Small career sites that list jobs as plain links: `list_url` + `link_pattern` (a regex on the href,
     whose first group is used as the job id). The title is the link text (the first non-empty one per job),
-    falling back to the job page's <h1>. No dates, so new jobs alert once the baseline exists."""
+    falling back to the job page's <h1>. No dates, so new jobs alert once the baseline exists.
+    `title_drop`: a CSS selector removed from the link before reading its text (Logica puts the
+    category and area in <span class="metas"> inside the link)."""
 
     name = "htmllinks"
 
@@ -26,6 +28,9 @@ class HtmlLinks:
             m = rx.search(a["href"])
             if not m:
                 continue
+            if c.get("title_drop"):
+                for junk in a.select(c["title_drop"]):
+                    junk.decompose()
             jid, text = m.group(1), a.get_text(" ", strip=True)
             if jid in out:
                 if text and not out[jid].title:
