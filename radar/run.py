@@ -226,7 +226,8 @@ class Radar:
             fetcher, out = self.fetchers.get(c["ats"]), []
             try:
                 jobs = fetcher.list_jobs(c)
-            except Exception:  # noqa: BLE001
+            except Exception as e:  # noqa: BLE001
+                print(f"backlog: {c['name']} skipped: {e.__class__.__name__}: {e}"[:200])
                 return []
             for j in jobs:
                 k = st["jobs"].get(j.job_id)
@@ -238,7 +239,8 @@ class Radar:
                     if not j.description:
                         j = fetcher.enrich(j, c)
                     v = self.clf.classify(j)
-                except Exception:  # noqa: BLE001
+                except Exception as e:  # noqa: BLE001
+                    print(f"backlog: {c['name']} / {j.title}: {e.__class__.__name__}: {e}"[:200])
                     continue
                 if v.accept:  # still listed = still open, however long ago it was first published
                     out.append((j, v, c))
