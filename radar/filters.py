@@ -317,6 +317,8 @@ class Classifier:
         self.clearance = _compile(m["clearance_signals"])
         self.hw_desc = _compile(m["hardware_desc_signals"])
         self.hw_titles = _compile(m["hardware_check_titles"])
+        self.ambiguous = _compile(m["ambiguous_titles"])
+        self.ambiguous_desc = _compile(m["ambiguous_desc_signals"])
         self.senior_desc = _compile(m["senior_desc_signals"])
         self.experienced_intro = _compile(m["experienced_intro_signals"])
         self.freelance = _compile(m["freelance_signals"])
@@ -333,7 +335,7 @@ class Classifier:
             return Verdict(False, reject_reason=f"role excluded: {hit}", stage=1)
         if (hit := _any(self.role_exc_soft, t)) and not _any(self.role_core, t):
             return Verdict(False, reject_reason=f"role excluded: {hit}", stage=1)
-        if not _any(self.role_inc, t):
+        if not _any(self.role_inc, t) and not _any(self.ambiguous, t):
             return Verdict(False, reject_reason="title not in role families", stage=1)
         entry_hit = _any(self.entry, t)
         intern_hit = _any(self.intern, t)
@@ -374,8 +376,12 @@ class Classifier:
             if region:
                 v.region, v.warnings = region, warns
 
+        if not _any(self.role_inc, t) and not _any(self.ambiguous_desc, desc):
+            v.accept, v.reject_reason = False, "title not in role families"
+            return v
+
         if _any(self.hw_titles, t) and not _any(self.role_core, t):
-            hw = {rx.pattern for rx in self.hw_desc if rx.search(desc)}
+            hw ={rx.pattern for rx in self.hw_desc if rx.search(desc)}
             if len(hw) >= 2:
                 v.accept, v.reject_reason = False, "hardware/electronics role"
                 return v

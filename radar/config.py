@@ -95,6 +95,11 @@ DEFAULTS: dict = {
             r"communications?\s+systems",
             r"טילים", r"כלי\s+טיס", r"מוטס", r"תעופתי", r"אוויוניקה", r"מכ\"?ם",
         ],
+        # A bare "Research Analyst" is usually market/finance research; it passes the title stage and is
+        # kept only when the description is about security (Upwind's entry-level Research Analyst)
+        "ambiguous_titles": [r"\bresearch\s+analyst\b"],
+        "ambiguous_desc_signals": [r"\bsecurity\b", r"\bcyber", r"\bthreats?\b", r"vulnerabilit", r"\bsoc\b", r"malware",
+                                   r"סייבר", r"אבטחת\s+מידע"],
         # defense "System Engineer" is usually multidisciplinary hardware systems engineering
         "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification",
                                   r"\bsystems?\s+engineer"],

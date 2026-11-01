@@ -209,6 +209,12 @@ class TestClassifier(unittest.TestCase):
         for t in ["Experienced Backend Engineer", "Expert Frontend Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
 
+    def test_research_analyst_needs_a_security_description(self):
+        sec = "Join our research group in an entry-level role to investigate emerging threats in cloud security."
+        self.assertTrue(self.c.classify(J("Research Analyst", desc=sec)).accept)
+        v = self.c.classify(J("Research Analyst", desc="Market research on consumer trends and pricing."))
+        self.assertEqual(v.reject_reason, "title not in role families")
+
     def test_hebrew_and_ops_titles(self):
         for t in ["בודק/ת תוכנה DIGITAL", "איש/אשת SecOps", "AI FDE", "מפתח/ת תוכנה Full Stack ג'וניור"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
