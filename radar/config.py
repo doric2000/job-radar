@@ -143,7 +143,7 @@ DEFAULTS: dict = {
         "entry_signals": [
             r"\bjunior\b", r"\bjr\b\.?", r"\bgraduates?\b", r"\bgrads?\b", r"new[\s-]?grad", r"entry[\s-]?level",
             r"early[\s-]?career", r"\btrainee\b", r"\bapprentice\b", r"\bcadet\b", r"university\s+hire",
-            r"ג['׳]?ו?ניור", r"בוגר", r"בוגרת", r"בוגרי", r"ללא\s+ניסיון", r"מתחיל", r"\bטרי\b",
+            r"ג['׳’‘]?ו?ניור", r"בוגר", r"בוגרת", r"בוגרי", r"ללא\s+ניסיון", r"מתחיל", r"\bטרי\b",
         ],
         "internship_signals": [r"\bintern(ship)?s?\b", r"(?<!עם\s)(?<!ב)התמחות(?!\s*ב)", r"מתמחה", r"מתמחים", r"\bco-?op\b"],
         "student_signals": [r"\bstudents?\b", r"סטודנט", r"סטודנטית", r"משרת\s+סטודנט"],
@@ -158,7 +158,7 @@ DEFAULTS: dict = {
             r"(welcome|encourage)s?\s+(applications\s+from\s+)?[^.]{0,30}\b(graduates?|juniors?)\b",
             r"suitable\s+for\s+(recent\s+)?(graduates?|juniors?)",
             r"\bor\s+an?\s+(?:strong\s+|recent\s+|talented\s+|exceptional\s+)?(?:graduate|student)",
-            r"מתאים\s+(גם\s+)?ל(בוגרים|ג['׳]?וניורים|מתחילים)", r"ג['׳]?וניורים\s+(מוזמנים|יתקבלו)",
+            r"מתאים\s+(גם\s+)?ל(בוגרים|ג['׳’‘]?וניורים|מתחילים)", r"ג['׳’‘]?וניורים\s+(מוזמנים|יתקבלו)",
         ],
         "clearance_signals": [
             r"security\s+clearance", r"\bclearance\b", r"סיווג\s*(ביטחוני|בטחוני)?", r"אישור\s+(ביטחוני|בטחוני)",

@@ -1,7 +1,7 @@
 import unittest
 
 from radar.config import load_config
-from radar.filters import Classifier, extract_experience, extract_requirements, extract_summary
+from radar.filters import Classifier, _any, extract_experience, extract_requirements, extract_summary
 from radar.models import Job
 
 
@@ -213,6 +213,8 @@ class TestClassifier(unittest.TestCase):
         for t in ["בודק/ת תוכנה DIGITAL", "איש/אשת SecOps", "AI FDE", "מפתח/ת תוכנה Full Stack ג'וניור"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
         self.assertFalse(self.c.stage1(J("מפתח/ת הדרכה ולמידה דיגיטלית")).accept)
+        # Matrix writes the typographic apostrophe
+        self.assertEqual(_any(self.c.entry, "מפתח/ת JAVA ג’וניור לחברה פיננסית גדולה"), "ג’וניור")
 
     def test_sw_abbreviation(self):
         for t in ["Junior SW Engineer - Virtual Platforms", "SW Engineer - Enterprise Browser team"]:
