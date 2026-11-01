@@ -126,7 +126,7 @@
 - {name: "Sapiens", domain: sapiens.com, cat: tech, tier: 2}
 - {name: "Amdocs", domain: amdocs.com, cat: tech, tier: 2, ats: eightfold, host: jobs.amdocs.com}
 - {name: "NICE", domain: nice.com, cat: tech, tier: 2}
-- {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 2}
+- {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 1, ats: rss, feed_url: "https://www.matrix.co.il/jobs/feed/?post_type=job", pages: 70, dates: false, desc_selector: div.job-item}   # staffing/IT services, ~530 jobs. The feed re-dates every job at each daily import, so dates are ignored and all pages are read (2026-11-01)
 - {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}   # malamteam.com is behind a Cloudflare bot challenge; not scraped. Its jobs arrive via LinkedIn only.
 - {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3, ats: ashby, token: lemonade}
 - {name: "Nayax", domain: nayax.com, cat: tech, tier: 3}

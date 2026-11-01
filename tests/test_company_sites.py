@@ -99,6 +99,18 @@ class TestCompanySites(unittest.TestCase):
         self.assertEqual((j.job_id, j.title, j.date_kind), ("20632", "דרוש/ה מפתח/ת C# ג’וניור", "published"))
         self.assertEqual(j.posted_at.isoformat(), "2026-10-25T14:13:28+00:00")
         self.assertEqual(Rss(http).enrich(j, c).description, "• עד שנתיים ניסיון ב-C#")
+        # Matrix re-imports every job daily, so its pubDate is ignored
+        [j] = Rss(http).list_jobs({**c, "dates": False})
+        self.assertEqual((j.posted_at, j.date_kind), (None, "unknown"))
+        # Matrix's feed carries the job text; its job pages are not read
+        item = ("<item><title>מפתח/ת Java</title><link>https://m.co.il/jobs/x/</link><guid>/jobs/x/</guid>"
+                "<description><![CDATA[לחברה פיננסית]]></description>"
+                "<content:encoded><![CDATA[<p>שנה ניסיון ב-Java<br />\nאנגלית</p>]]></content:encoded></item>")
+        [j] = Rss(FakeHttp({"feed/": f"<rss>{item}</rss>"})).list_jobs({**c, "dates": False})
+        self.assertEqual(j.job_id, "x")
+        self.assertIn("לחברה פיננסית", j.description)
+        self.assertIn("שנה ניסיון ב-Java", j.description)
+        self.assertIs(Rss(FakeHttp({})).enrich(j, c), j)
 
     def test_manatal(self):
         data = {"next": None, "results": [{"id": 1, "hash": "QWR35XXW", "position_name": "Full Stack Engineer",
