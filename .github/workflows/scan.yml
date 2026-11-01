@@ -13,6 +13,10 @@ on:
         description: "Send one digest of already-open jobs that fit the current rules"
         type: boolean
         default: false
+      alert:
+        description: "Full alerts for chosen jobs: company_id:title text, ; separated"
+        type: string
+        default: ""
 
 permissions:
   contents: write            # needed only to store state.json on the `state` branch
@@ -50,7 +54,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python -m radar.run --state state/state.json ${{ inputs.all && '--all' || '' }} ${{ inputs.backlog && '--backlog' || '' }}
+          ALERT: ${{ inputs.alert }}
+        run: python -m radar.run --state state/state.json ${{ inputs.all && '--all' || '' }} ${{ inputs.backlog && '--backlog' || '' }} --alert "$ALERT"
 
       - name: Save state
         env:

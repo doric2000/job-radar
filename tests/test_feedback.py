@@ -120,6 +120,15 @@ class TestBacklog(unittest.TestCase):
         self.assertIn("Backend Engineer", tg.sent[1][0])
         self.assertNotIn("Junior", tg.sent[1][0])
 
+    def test_alert_jobs_sends_chosen_titles_once(self):
+        tg = FakeTg()
+        r = Radar(load_config(None), [dict(COMPANY)], State(), FakeHttp({"/jobs/": lambda u: GH_DETAIL[u.rsplit("/", 1)[1]],
+                                                                        "/jobs": GH_LIST}), notifier=tg, now=NOW)
+        title = GH_LIST["jobs"][0]["title"]
+        self.assertEqual(r.alert_jobs([f"{COMPANY['id']}:{title.lower()}"]), 1)
+        self.assertIn(f"<b>{title}</b>", tg.sent[0][0])
+        self.assertEqual(r.alert_jobs([f"{COMPANY['id']}:{title}"]), 0)  # already sent
+
 
 if __name__ == "__main__":
     unittest.main()

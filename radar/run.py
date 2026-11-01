@@ -214,6 +214,30 @@ class Radar:
             feedback.record_sent(self.state.d["meta"], sid, j, v, mid, self.now)
             time.sleep(0.4)
 
+    def alert_jobs(self, specs: list[str]) -> int:
+        """Full alerts for jobs picked by hand ("company_id:title text"), e.g. backlog list lines the
+        user wants as alerts. Only open jobs that fit the rules and were not sent as a full alert."""
+        n = 0
+        for spec in specs:
+            cid, _, needle = spec.partition(":")
+            c = next((x for x in self.companies if x["id"] == cid.strip()), None)
+            if not c or not needle.strip():
+                print(f"alert: no company '{cid}' or no title text")
+                continue
+            fetcher = self.fetchers.get(c["ats"])
+            for j in fetcher.list_jobs(c):
+                if norm(needle) not in norm(j.title) or feedback.sent_id(j) in self.state.d["meta"].get("sent", {}):
+                    continue
+                if not j.description:
+                    j = fetcher.enrich(j, c)
+                v = self.clf.classify(j)
+                if not v.accept:
+                    print(f"alert: {c['name']} / {j.title}: does not fit ({v.reasons[-1:]})")
+                    continue
+                self._send_alert(j, v, c)
+                n += 1
+        return n
+
     # ---------------------------------------------------------------- backlog
     def backlog(self) -> list[tuple[Job, Verdict, dict]]:
         """Jobs recorded by a company's first (baseline) scan are never alerted, so postings that were
@@ -358,6 +382,7 @@ def main(argv=None) -> int:
     ap.add_argument("--only", default="", help="comma separated company ids")
     ap.add_argument("--healthcheck", action="store_true")
     ap.add_argument("--backlog", action="store_true", help="one digest of already-open jobs that fit the current rules")
+    ap.add_argument("--alert", default="", help="full alerts for chosen jobs: 'company_id:title text', ';' separated")
     a = ap.parse_args(argv)
 
     cfg = load_config(a.config)
@@ -390,6 +415,11 @@ def main(argv=None) -> int:
         removed = feedback.remove_old_buttons(state.d["meta"], notifier)
         if removed:
             print(f"feedback: removed buttons from {removed} old alert(s)")
+    if a.alert:
+        print(f"alert: {radar.alert_jobs([x for x in a.alert.split(';') if x.strip()])} job(s) sent")
+        if not a.dry_run:
+            state.save(a.state)
+        return 0
     if a.backlog:
         items = radar.backlog()
         radar.send_backlog(items)
