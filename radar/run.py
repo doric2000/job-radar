@@ -235,6 +235,7 @@ class Radar:
                     print(f"alert: {c['name']} / {j.title}: does not fit ({v.reasons[-1:]})")
                     continue
                 self._send_alert(j, v, c)
+                self.state.add_alerted(dedupe_key(j), self.now)
                 n += 1
         return n
 
