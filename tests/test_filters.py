@@ -356,3 +356,18 @@ class TestClassifier(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class TestRemoteCountryAndYearsOf(unittest.TestCase):
+    def setUp(self):
+        self.c = Classifier(load_config(None))
+
+    def test_plus_years_of_software_engineering(self):
+        self.assertEqual(extract_experience("What you bring 4+ years of software engineering, with strong Python and Linux")[0], 4)
+
+    def test_remote_job_located_in_india_rejected(self):
+        v = self.c.classify(J("SOC Analyst (Remote)", loc="Mumbai (Remote)", remote=True, desc="Entry-level SOC analyst"))
+        self.assertFalse(v.accept)
+
+    def test_remote_without_country_still_ok(self):
+        from radar.filters import classify_location
+        self.assertEqual(classify_location(J("Dev", loc="Remote", remote=True), load_config(None))[0], "remote")

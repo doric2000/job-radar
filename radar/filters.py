@@ -16,7 +16,7 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 10
+FILTERS_VERSION = 11
 # v9: new role titles ("מהנדס תוכנה" without ת, Software Development Engineer, Offensive Researcher, Software
 # Quality Engineer, Development Operations)
 # v10: "בודק/ת אוטומציה" (QA automation) title
@@ -51,6 +51,14 @@ ISRAEL_TERMS = re.compile(
     re.I | re.U,
 )
 REMOTE_TERMS = re.compile(r"\bremote\b|work\s+from\s+home|\bwfh\b|anywhere|distributed|מרחוק|עבודה\s+מהבית", re.I | re.U)
+# a remote job whose own location field names a foreign country/city is for people living there
+# (Cynet's "Soc Analyst (Remote)" was Pune/Mumbai/Hyderabad, India)
+FOREIGN_LOC_TERMS = re.compile(
+    r"\b(india|pune|mumbai|hyderabad|bangalore|bengaluru|chennai|delhi|gurgaon|noida|pakistan|philippines|manila|"
+    r"brazil|argentina|colombia|mexico|ukraine|poland|romania|serbia|vietnam|indonesia|nigeria|egypt|"
+    r"germany|france|spain|italy|portugal|netherlands|ireland|united\s+kingdom|uk|usa|u\.s\.a?\.|united\s+states|canada)\b",
+    re.I | re.U,
+)
 RELOCATION_TERMS = re.compile(r"relocat|visa\s+sponsor|sponsorship|work\s+permit|רילוקיישן|רילוקיישן", re.I | re.U)
 
 
@@ -68,6 +76,8 @@ def classify_location(job: Job, cfg: dict) -> tuple[str, list]:
     if is_israel and lc["israel"]:
         return "israel", warnings
     if is_remote and lc["remote"]:
+        if FOREIGN_LOC_TERMS.search(loc):
+            return "", [f"remote in another country: {loc.strip()[:40]}"]
         scope_text = f"{loc} {desc_head[:400]}"
         hit = _any(remote_rx, scope_text)
         if hit:
@@ -112,7 +122,8 @@ _HE_YEARS = re.compile(
 )
 _EXP_CONTEXT = re.compile(
     r"experience|exp\.|ניסיון|hands[\s-]?on|background|proven|track\s+record|working\s+(?:with|as|in)|"
-    r"developing|development|building|professional|worked|work\s+in|in\s+(?:a\s+)?(?:role|field|position)",
+    r"developing|development|building|professional|worked|work\s+in|in\s+(?:a\s+)?(?:role|field|position)|"
+    r"\d\s*\+\s*years?\s+of|years?\s+of\s+(?:software|engineering|programming|coding|professional|industry|relevant|practical)",
     re.I | re.U,
 )
 _OPTIONAL = re.compile(
