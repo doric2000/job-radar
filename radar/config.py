@@ -25,7 +25,14 @@ DEFAULTS: dict = {
             r"secur", r"cyber", r"appsec", r"\bsoc\b", r"threat", r"vulnerab", r"penetration",
             r"pen[\s-]?test", r"red[\s-]?team", r"\bdfir\b", r"incident\s+response", r"malware",
             r"reverse\s+engineer", r"exploit", r"\bcrypto", r"\bdevsecops\b",
-            r"systems?\s+(engineer|programmer|developer|software)", r"low[\s-]?level", r"kernel",
+            # malware / detection / forensics research (Nov 2026: the user asked for malware analyst/researcher and similar)
+            r"נוזק", r"\bdetection\b", r"incident\s+respond", r"forensic", r"פורנזי",
+            r"\bcti\b", r"threat\s+(intel|hunt)", r"\bioc\b", r"sandbox\s+(researcher|engineer)", r"\bedr\b", r"\bxdr\b",
+            r"חוקר[./]?ת?\s+(סייבר|נוזקות|איומים|חולשות|אבטחה)", r"מחקר\s+(סייבר|איומים|נוזקות)",
+            # not bare "System(s) Engineer": IT/infrastructure or hardware systems engineering, 👎 on all 6 sent
+            # (Bynet, Elbit, Flex, Triarii, QualityAI HMS); Intel's liked "System Validation and Integration
+            # Engineer" still passes as an integration engineer
+            r"systems?\s+(programmer|developer|software)", r"low[\s-]?level", r"kernel",
             r"infrastructure\s+(software\s+)?engineer", r"platform\s+engineer",
             r"front[\s-]?end", r"\breact\b", r"\bangular\b", r"\bvue(\.?js)?\b", r"web\s+(developer|engineer)",
             r"\bc\+\+", r"\bgolang\b", r"\brust\b", r"\bpython\b", r"\bjava\b", r"\.net\b", r"\bnode(\.?js)?\b",
@@ -74,6 +81,17 @@ DEFAULTS: dict = {
             # (not "NOC" / "IT Operations" alone: "SOC / NOC Analyst" and "NOC Engineer / SRE" are in scope)
             r"מדריכ", r"\binstructor", r"\bit\s+(systems?\s+(engineer|administrator)|support|technician|administrator)",
             r"help\s*desk",
+            # Nov 2026 review of 126 alerts (user: "many jobs unrelated to CS"): security officers (Elbit/Rafael
+            # "ממונה ביטחון"), GIS training, AI content, chip design, MRI protocols, production test, power-plant
+            # I&C, railway commissioning, food-QA technologist, pharmacovigilance
+            r"ממונה\s+ביטחון", r"קצין\s+ביטחון", r"security\s+officer", r"content\s+specialist",
+            r"chip\s+design", r"\bmri\b", r"production\s+test", r"\bi&c\b", r"commissioning", r"technologist",
+            r"pharmacovigilance", r"employee\s+experience",
+            # Wix "Full stack organic growth marketer", Howden "Cyber Claims Executive", CYBERLABS office admin,
+            # IAI "מפתח/ת מערכות אופטיות"
+            r"\bmarketer", r"אדמין", r"ניהול\s+משרד", r"אופטי", r"\boptical\b",
+            # "Full Stack Developer - Mid Level" (👎); "Junior - Mid Level ..." still passes
+            r"^(?!.*junior).*\bmid[\s-]?level",
         ],
         # Companies the user asked never to see (InfinityLabs career-path programs: "תוכנית זבל", Oct 2026)
         "company_exclude": [r"infinity\s*labs"],
@@ -94,6 +112,9 @@ DEFAULTS: dict = {
             r"\b(ic|asic|fpga)\b",
             r"communications?\s+systems",
             r"טילים", r"כלי\s+טיס", r"מוטס", r"תעופתי", r"אוויוניקה", r"מכ\"?ם",
+            # QA of medical devices, drugs and food is product quality, not software (Medinol, SK Pharma 👎)
+            r"medical\s+devices?", r"\bfda\b", r"iso[\s-]?13485", r"\bgmp\b", r"\bcapa\b", r"pharma", r"clinical",
+            r"\bfood\b", r"raw\s+materials?", r"production\s+line", r"\bmanufacturing\s+(process|floor|line)",
         ],
         # A bare "Research Analyst" is usually market/finance research; it passes the title stage and is
         # kept only when the description is about security (Upwind's entry-level Research Analyst)
@@ -101,7 +122,7 @@ DEFAULTS: dict = {
         "ambiguous_desc_signals": [r"\bsecurity\b", r"\bcyber", r"\bthreats?\b", r"vulnerabilit", r"\bsoc\b", r"malware",
                                    r"סייבר", r"אבטחת\s+מידע"],
         # defense "System Engineer" is usually multidisciplinary hardware systems engineering
-        "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"test", r"validation", r"verification",
+        "hardware_check_titles": [r"integrat", r"implementation", r"\bqa\b", r"quality\s+assurance", r"test", r"validation", r"verification",
                                   r"\bsystems?\s+engineer"],
         # When a posting states no years, senior wording still gives it away (Clover Security's "Security
         # Researcher": "strong ... expertise", "a track record of owning research end-to-end"). At least
@@ -124,7 +145,7 @@ DEFAULTS: dict = {
             r"(דרוש|מחפשים|מגייסים|מחפשת|מגייסת)[^.\n]{0,25}(מנוסה|מנוסים|בכיר|בכירה)",
         ],
         # freelance / hourly consulting is not a job; "contract role" stays (two liked Alignerr roles were contracts)
-        "freelance_signals": [r"\bfreelance(r)?\b", r"פרילנס"],
+        "freelance_signals": [r"\bfreelance(r)?\b", r"פרילנס"],  # checked in the title and the description
         # Adjacent fields: excluded only when the title names no core development role, so
         # "Software developer and DevOps engineer" passes while "DevOps Engineer" does not.
         "role_exclude_soft": [
@@ -133,6 +154,13 @@ DEFAULTS: dict = {
             r"manual\s+(qa|test)",
             # network administration (switches/routers) is IT, not software
             r"\bnetwork(ing)?\s+(engineer|administrator|admin|specialist|technician)", r"תקשורת",
+            # 👎 on every one so far: "Network Security Engineer" (firewall administration, 2/2), consultants
+            # (security / implementation / offensive consultant, 6/6), administrators (Kyndryl network & security)
+            r"network\s+security\s+(engineer|administrator|specialist)", r"\bconsultant\b", r"administrator",
+            # "GIS Training & Implementation Specialist"; "Software Engineer (AI Training)" still passes (liked Alignerr roles)
+            r"\btraining\b",
+            # Howden "Cyber Claims Executive" (insurance); "Claims Automation Developer" still passes
+            r"\bclaims?\b",
         ],
         "role_core": [
             r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",

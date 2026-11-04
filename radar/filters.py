@@ -397,7 +397,7 @@ class Classifier:
                 v.accept, v.reject_reason = False, "hardware/electronics role"
                 return v
 
-        if (hit := _any(self.freelance, desc)):
+        if (hit := _any(self.freelance, t + "\n" + desc)):
             v.accept, v.reject_reason = False, f"freelance: {hit}"
             return v
         if not _any(self.entry, t) and "internship" not in v.tags and (hit := _any(self.experienced_intro, desc)):

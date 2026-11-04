@@ -209,6 +209,19 @@ class TestClassifier(unittest.TestCase):
         for t in ["Experienced Backend Engineer", "Expert Frontend Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
 
+    def test_nov_2026_review_titles(self):
+        for t in ["System Engineer", "Information Security Consultant", "Network Security Engineer", "ממונה ביטחון אבטחת מידע",
+                  "Quality Assurance Technologist", "GIS Training & Implementation Specialist", "AI Research Engineer - Chip Design",
+                  "Freelance DevOps", "Full stack organic growth marketer", "Cyber Claims Executive",
+                  "Full Stack Developer - Mid Level"]:
+            self.assertFalse(self.c.classify(J(t, desc="Python, cloud and security work.")).accept, t)
+        for t in ["Malware Analyst", "Junior Malware Researcher", "חוקר/ת נוזקות", "Detection Engineer", "מהנדס/ת Detection Engineering",
+                  "Incident Responder", "Forensics Analyst", "CTI Analyst", "System Validation and Integration Engineer",
+                  "Software Engineer (AI Training)", "Claims Automation Developer", "Junior - Mid Level Full Stack Developer"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        qa = "QA of medical devices under FDA and ISO 13485 regulations, CAPA and validation protocols."
+        self.assertFalse(self.c.classify(J("Quality Assurance Engineer", desc=qa)).accept)
+
     def test_research_analyst_needs_a_security_description(self):
         sec = "Join our research group in an entry-level role to investigate emerging threats in cloud security."
         self.assertTrue(self.c.classify(J("Research Analyst", desc=sec)).accept)
@@ -259,6 +272,8 @@ class TestClassifier(unittest.TestCase):
     def test_hardware_system_engineer_rejected(self):
         desc = "System engineering for naval electronic warfare suites: antenna arrays, RF receivers and airborne sensors."
         v = self.c.classify(J("System Engineer - Naval Systems", desc=desc))
+        self.assertFalse(v.accept)  # a bare "System Engineer" title is no longer in the role families
+        v = self.c.classify(J("System Integration Engineer", desc=desc))
         self.assertEqual((v.accept, v.reject_reason), (False, "hardware/electronics role"))
         self.assertFalse(self.c.stage1(J("Flight Test Engineer")).accept)
 
