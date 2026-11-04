@@ -159,6 +159,13 @@ class TestRun(unittest.TestCase):
         self.assertTrue(r._is_dup(job("Haifa", mes, "3")))                  # same job, another city
         self.assertTrue(r._is_dup(job("Migdal Tefen", "Reposted! " + mes, "4")))
         self.assertTrue(r._is_dup(job("Migdal Tefen", "", "5")))            # no description to tell them apart
+        # the same job under another company name: legal suffix (amazon.jobs) or a staffing agency's repost
+        ltd = Job(company_id="amazon", company="ISCAR Ltd.", job_id="6", title="Software Engineer", url="u", description=mes)
+        agency = Job(company_id="li", company="Matrix", job_id="7", title="Software Engineer", url="u", description=mes)
+        other = Job(company_id="li", company="Matrix", job_id="8", title="Software Engineer", url="u", description=ai)
+        self.assertTrue(r._is_dup(ltd))
+        self.assertTrue(r._is_dup(agency))
+        self.assertFalse(r._is_dup(other))  # a different job of that title at the agency
 
 
 class TestFetchers(unittest.TestCase):

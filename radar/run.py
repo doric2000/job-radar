@@ -32,14 +32,20 @@ def dedupe_key(job: Job) -> str:
     first_loc = (job.location or "").split(",")[0].split("|")[0]
     # LinkedIn writes "Tel Aviv-Yafo" where company boards write "Tel Aviv"
     first_loc = re.sub(r"[\s-]*(yafo|jaffa)\s*$", "", first_loc, flags=re.I)
-    return f"{norm(job.company)}|{norm(job.title)[:80]}|{norm(first_loc)[:20]}"
+    return f"{company_key(job.company)}|{norm(job.title)[:80]}|{norm(first_loc)[:20]}"
+
+
+def company_key(name: str) -> str:
+    """"Annapurna Labs Ltd." (amazon.jobs) and "Annapurna Labs" (LinkedIn) are one company."""
+    return re.sub(r"(ltd|limited|inc|llc|corp|corporation|gmbh|plc|בעמ)$", "", norm(name)) or norm(name)
 
 
 def role_key(job: Job) -> str:
-    return f"{norm(job.company)}|{norm(job.title)[:80]}"
+    return f"{company_key(job.company)}|{norm(job.title)[:80]}"
 
 
 SAME_JOB = 0.5  # description signature agreement: reposts/copies score 0.75+, different jobs ~0.1
+SAME_TEXT = 0.75  # across companies only a near-identical text counts (an agency reposting the job)
 
 
 class Radar:
@@ -208,6 +214,12 @@ class Radar:
         in another city (Cynet's SOC Analyst went out three times, once per city) - unless both descriptions
         are known and differ (ISCAR had two different "Software Engineer" jobs open in Migdal Tefen)."""
         sig, old = text_sig(j.description), self.state.role_sigs(role_key(j))
+        # a staffing agency reposting a company's job under its own name (Matrix with ISCAR's "Software
+        # Engineer"): same title and nearly the same text
+        title = role_key(j).split("|", 1)[1]
+        if sig and any(k.endswith("|" + title) and o and sig_similarity(sig, o) >= SAME_TEXT
+                       for k in self.state.d["meta"].get("roles", {}) for o in self.state.role_sigs(k)):
+            return True
         if not old:  # alerts from before signatures were stored are matched by company+title+city
             return self.state.was_alerted(dedupe_key(j))
         return any(not sig or not o or sig_similarity(sig, o) >= SAME_JOB for o in old)
