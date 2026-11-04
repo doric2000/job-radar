@@ -108,6 +108,13 @@ class State:
     def add_alerted(self, key: str, now: datetime) -> None:
         self.d["meta"].setdefault("alerted", {})[key] = iso(now)
 
+    def role_sigs(self, key: str) -> list[str]:
+        """Description signatures of alerted jobs with this company+title ("" = description unknown)."""
+        return [e["sig"] for e in self.d["meta"].get("roles", {}).get(key, [])]
+
+    def add_role(self, key: str, sig: str, now: datetime) -> None:
+        self.d["meta"].setdefault("roles", {}).setdefault(key, []).append({"ts": iso(now), "sig": sig})
+
     # -- housekeeping ----------------------------------------------------------------
     def prune(self, now: datetime, job_days: int = 45, alert_days: int = 30) -> None:
         cut = iso(now - timedelta(days=job_days))
@@ -116,3 +123,5 @@ class State:
         cut2 = iso(now - timedelta(days=alert_days))
         al = self.d["meta"].get("alerted", {})
         self.d["meta"]["alerted"] = {k: v for k, v in al.items() if v >= cut2}
+        roles = {k: [e for e in v if e["ts"] >= cut2] for k, v in self.d["meta"].get("roles", {}).items()}
+        self.d["meta"]["roles"] = {k: v for k, v in roles.items() if v}

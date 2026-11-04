@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 from radar.config import load_config
 from radar.discover import candidates_from_html, slug_variants
 from radar.http import HttpError
+from radar.models import Job
 from radar.notify import format_alert
 from radar.run import Radar
 from radar.state import State
@@ -140,6 +141,24 @@ class TestRun(unittest.TestCase):
         http = FakeHttp({"boards-api.greenhouse.io": gh_route, "api.lever.co": lever})
         s = self.mk(http, companies=[a, b]).run(0)
         self.assertEqual(len([x for x in s["alerts"] if x[0].title == "Junior Backend Engineer"]), 1)
+
+    def test_same_title_dedupe_uses_the_description(self):
+        r = self.mk(FakeHttp({}))
+        mes = ("Software Engineer for manufacturing and quality systems. Develop business applications, analyze "
+               "requirements, work with production, quality and engineering teams. Requirements: degree in computer "
+               "science, knowledge of C# and .NET, SQL and relational databases, object oriented programming, good English. "
+               "Advantages: ASP.NET Core, WPF, MVVM, REST APIs, SQL Server, Git, CI/CD and Docker.")
+        ai = ("Build the AI platforms that turn our SDLC into an ADLC, creating the agents that write code, run tests "
+              "and deliver modern .NET services. You will work with React or Angular, Azure Kubernetes Service and SQL "
+              "databases with AI enabled development tools. Bachelor degree in computer science is mandatory here. "
+              "If you think in systems and love explaining your design decisions, own what you ship end to end.")
+        job = lambda loc, desc, jid: Job(company_id="li", company="ISCAR", job_id=jid, title="Software Engineer", url="u",  # noqa: E731
+                                         location=loc, description=desc)
+        r._remember(job("Migdal Tefen", mes, "1"))
+        self.assertFalse(r._is_dup(job("Migdal Tefen", ai, "2")))           # different job, same title
+        self.assertTrue(r._is_dup(job("Haifa", mes, "3")))                  # same job, another city
+        self.assertTrue(r._is_dup(job("Migdal Tefen", "Reposted! " + mes, "4")))
+        self.assertTrue(r._is_dup(job("Migdal Tefen", "", "5")))            # no description to tell them apart
 
 
 class TestFetchers(unittest.TestCase):

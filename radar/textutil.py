@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import hashlib
 import html
+import random
 import re
 from datetime import datetime, timedelta, timezone
 from typing import Optional
@@ -86,3 +88,25 @@ def parse_relative_en(s: str, now: Optional[datetime] = None) -> tuple[Optional[
 
 def norm(s: str) -> str:
     return re.sub(r"[^a-z0-9֐-׿]+", "", (s or "").lower())
+
+
+# ----------------------------------------------------------------------------- description signatures
+_P = (1 << 61) - 1
+_MH = [(random.Random(i).randrange(1, _P), random.Random(i + 1000).randrange(_P)) for i in range(32)]
+
+
+def text_sig(text: str) -> str:
+    """MinHash of the description's word 3-grams (32 x 16 bits, hex). Two signatures agree in about the
+    share of 3-grams the texts have in common, so a repost or the same job on another board scores high
+    and two different jobs with the same generic title score low. "" when the text is too short to judge."""
+    words = re.findall(r"\w+", (text or "").lower())
+    if len(words) < 40:
+        return ""
+    grams = {int.from_bytes(hashlib.blake2b(" ".join(words[i:i + 3]).encode(), digest_size=8).digest(), "big")
+             for i in range(len(words) - 2)}
+    return "".join(f"{min((a * g + b) % _P for g in grams) & 0xFFFF:04x}" for a, b in _MH)
+
+
+def sig_similarity(a: str, b: str) -> float:
+    pa, pb = [a[i:i + 4] for i in range(0, len(a), 4)], [b[i:i + 4] for i in range(0, len(b), 4)]
+    return sum(x == y for x, y in zip(pa, pb)) / max(len(pa), 1)

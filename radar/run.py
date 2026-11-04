@@ -21,7 +21,7 @@ from .models import Job, Verdict
 from .notify import Telegram, format_alert
 from .registry import load_registry
 from .state import State
-from .textutil import norm
+from .textutil import norm, sig_similarity, text_sig
 
 DATED_KINDS = {"published", "created", "relative", "message"}
 TIER_RANK = {"A": 0, "B": 1, "C": 2}
@@ -33,6 +33,13 @@ def dedupe_key(job: Job) -> str:
     # LinkedIn writes "Tel Aviv-Yafo" where company boards write "Tel Aviv"
     first_loc = re.sub(r"[\s-]*(yafo|jaffa)\s*$", "", first_loc, flags=re.I)
     return f"{norm(job.company)}|{norm(job.title)[:80]}|{norm(first_loc)[:20]}"
+
+
+def role_key(job: Job) -> str:
+    return f"{norm(job.company)}|{norm(job.title)[:80]}"
+
+
+SAME_JOB = 0.5  # description signature agreement: reposts/copies score 0.75+, different jobs ~0.1
 
 
 class Radar:
@@ -173,11 +180,11 @@ class Radar:
                     continue
                 batch = []
                 for j, v, alert, note in r["items"]:
-                    if alert and self.state.was_alerted(dedupe_key(j)):
+                    if alert and self._is_dup(j):
                         alert, note = False, "dup"
                     self.state.record(c["id"], self.now, j.job_id, j.title, alert, note or "ok")
                     if alert:
-                        self.state.add_alerted(dedupe_key(j), self.now)
+                        self._remember(j)
                         batch.append((j, v, c))
                 self.state.ensure_company(c["id"], self.now)
                 self.state.mark_ok(c["id"], self.now, r["present"])
@@ -194,6 +201,20 @@ class Radar:
         alerts.sort(key=lambda a: (TIER_RANK.get(a[1].tier, 9), REGION_RANK.get(a[1].region, 9), a[2].get("tier", 2)))
         self.state.prune(self.now)
         return {"scanned": len(todo), "ok": ok, "errors": errors, "alerts": alerts, "new_jobs": new_jobs}
+
+    # ---------------------------------------------------------------- dedupe
+    def _is_dup(self, j: Job) -> bool:
+        """Same company and title alerted in the last 30 days: a repost, or the same job on another board or
+        in another city (Cynet's SOC Analyst went out three times, once per city) - unless both descriptions
+        are known and differ (ISCAR had two different "Software Engineer" jobs open in Migdal Tefen)."""
+        sig, old = text_sig(j.description), self.state.role_sigs(role_key(j))
+        if not old:  # alerts from before signatures were stored are matched by company+title+city
+            return self.state.was_alerted(dedupe_key(j))
+        return any(not sig or not o or sig_similarity(sig, o) >= SAME_JOB for o in old)
+
+    def _remember(self, j: Job) -> None:
+        self.state.add_role(role_key(j), text_sig(j.description), self.now)
+        self.state.add_alerted(dedupe_key(j), self.now)
 
     # ---------------------------------------------------------------- notify
     def _notify(self, alerts) -> None:
@@ -215,18 +236,21 @@ class Radar:
             time.sleep(0.4)
 
     def alert_jobs(self, specs: list[str]) -> int:
-        """Full alerts for jobs picked by hand ("company_id:title text"), e.g. backlog list lines the
-        user wants as alerts. Only open jobs that fit the rules and were not sent as a full alert."""
+        """Full alerts for jobs picked by hand ("company_id:title text", or "linkedin:#job id"), e.g. backlog
+        list lines the user wants as alerts. Only open jobs that fit the rules and were not sent as a full alert."""
         n = 0
         for spec in specs:
             cid, _, needle = spec.partition(":")
-            c = next((x for x in self.companies if x["id"] == cid.strip()), None)
+            c = next((x for x in self.with_channels() if x["id"] == cid.strip()), None)
             if not c or not needle.strip():
                 print(f"alert: no company '{cid}' or no title text")
                 continue
+            by_id = needle.strip().startswith("#")
+            if by_id:  # LinkedIn: fetched by id, not through the last-hour searches
+                c = {**c, "queries": [], "recheck_ids": [needle.strip()[1:]]}
             fetcher = self.fetchers.get(c["ats"])
             for j in fetcher.list_jobs(c):
-                if norm(needle) not in norm(j.title) or feedback.sent_id(j) in self.state.d["meta"].get("sent", {}):
+                if (j.job_id != needle.strip()[1:] if by_id else norm(needle) not in norm(j.title)) or feedback.sent_id(j) in self.state.d["meta"].get("sent", {}):
                     continue
                 if not j.description:
                     j = fetcher.enrich(j, c)
@@ -235,7 +259,7 @@ class Radar:
                     print(f"alert: {c['name']} / {j.title}: does not fit ({v.reasons[-1:]})")
                     continue
                 self._send_alert(j, v, c)
-                self.state.add_alerted(dedupe_key(j), self.now)
+                self._remember(j)
                 n += 1
         return n
 
@@ -278,10 +302,10 @@ class Radar:
         for j, v, c in found:
             self.state.company(c["id"])["jobs"][j.job_id].update({"a": 1, "r": "backlog"})
             same = (norm(j.company), norm(j.title))  # one line per role, not per location
-            if self.state.was_alerted(dedupe_key(j)) or same in seen:
+            if self._is_dup(j) or same in seen:
                 continue
             seen.add(same)
-            self.state.add_alerted(dedupe_key(j), self.now)
+            self._remember(j)
             fresh.append((j, v, c))
         fresh.sort(key=lambda a: (TIER_RANK.get(a[1].tier, 9), a[0].company))
         return fresh
