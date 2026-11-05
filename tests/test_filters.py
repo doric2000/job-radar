@@ -358,6 +358,13 @@ class TestClassifier(unittest.TestCase):
     def test_hebrew_qa_automation_title(self):
         self.assertTrue(self.c.stage1(J("בודק/ת אוטומציה")).accept)
 
+    def test_review_nov_5(self):
+        for t in ("Business Intelligence Developer Qlik Sense", "מפתח/ת BI", "Junior BI / ETL Developer",
+                  "Clinical AI Specialist", "מומחה.ית סייבר בעולמות שרשרת האספקה", "מומחה/ית אבטחת מידע"):
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        for t in ("Clinical Software Engineer", "מהנדס/ת אינטגרציית תוכנה ושילובים"):
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+
     def test_teaching_and_it_roles_excluded(self):
         for title in ["מדריכ/ה סייבר לבני נוער", "Cyber Security Instructor", "IT Systems Engineer II",
                       "IT Support Specialist", "Help Desk Technician"]:

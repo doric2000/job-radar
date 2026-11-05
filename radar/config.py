@@ -53,7 +53,7 @@ DEFAULTS: dict = {
             r"\b(software|sw)\s+development\s+engineer", r"\b(software|sw)\s+quality\s+(engineer|assurance)",
             r"\boffensive\b", r"development\s+operations",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
-            r"בודק[./]?ת?\s+(תוכנה|אוטומציה)", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
+            r"בודק[./]?ת?\s+(תוכנה|אוטומציה)", r"אינטגרציי?ת\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
         ],
         "role_exclude": [
             r"\bsales\b", r"account\s+(executive|manager)", r"marketing", r"recruit", r"talent\s+acqui",
@@ -76,7 +76,9 @@ DEFAULTS: dict = {
             r"servicenow", r"\bpriority\b", r"sharepoint", r"outsystems", r"\brpg\b", r"cobol", r"magento", r"oracle\s+forms",
             r"wordpress",
             # 👎 Oct 2026: lecturer at Shenkar, CNC programmer, BI developer (data), propulsion (aerospace hardware)
-            r"lectur", r"מרצה", r"\bcnc\b", r"numerical\s+control", r"\bbi\s+(developer|analyst|engineer)", r"propulsion",
+            r"lectur", r"מרצה", r"\bcnc\b", r"numerical\s+control", r"propulsion",
+            # BI in any wording (Nogamy "Business Intelligence Developer Qlik Sense" 👎 slipped past "BI Developer")
+            r"\bbi\b", r"business\s+intelligence", r"qlik",
             # out of scope: teaching gigs (CYBERLABS "מדריכ/ה סייבר לבני נוער"), IT / help desk / NOC (Nexxen "IT Systems Engineer")
             # (not "NOC" / "IT Operations" alone: "SOC / NOC Analyst" and "NOC Engineer / SRE" are in scope)
             r"מדריכ", r"\binstructor", r"\bit\s+(systems?\s+(engineer|administrator)|support|technician|administrator)",
@@ -161,6 +163,8 @@ DEFAULTS: dict = {
             r"\btraining\b",
             # Howden "Cyber Claims Executive" (insurance); "Claims Automation Developer" still passes
             r"\bclaims?\b",
+            # Viz.ai "Clinical AI Specialist" 👎 (medical annotation); "Clinical Software Engineer" still passes
+            r"\bclinical\b",
         ],
         "role_core": [
             r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",
@@ -172,6 +176,8 @@ DEFAULTS: dict = {
             r"\bdirector\b", r"\bvp\b", r"vice\s+president", r"\bchief\b", r"\bmanager\b", r"\barchitect\b",
             r"\bdistinguished\b", r"\bfellow\b", r"\bexperienced\b", r"\bexpert\b", r"\bfounding\b", r"\biii\b", r"\biv\b", r"\blevel\s*[3-9]\b", r"\bl[4-9]\b",
             r"בכיר", r"בכירה", r"ראש\s+צוות", r"מנהל", r"מנהלת", r"ארכיטקט", r"מנוס(ה|ים|ות)",
+            # Hebrew for "Expert": 4 👎 and no 👍; Elbit's asks for a year as a cyber architect
+            r"מומח(ה|ית|ים)",
         ],
         "entry_signals": [
             r"\bjunior\b", r"\bjr\b\.?", r"\bgraduates?\b", r"\bgrads?\b", r"new[\s-]?grad", r"entry[\s-]?level",
