@@ -22,7 +22,7 @@ DEFAULTS: dict = {
         "role_include": [
             r"back[\s-]?end", r"full[\s-]?stack", r"\b(software|sw)\s+(engineer|developer|dev)\b",
             r"\bdeveloper\b", r"\bsde\b", r"\bprogrammer\b",
-            r"secur", r"cyber", r"appsec", r"\bsoc\b", r"threat", r"vulnerab", r"penetration",
+            r"secur", r"cyber", r"appsec", r"\bapp\s+sec\b", r"\bx?soar\b", r"חדירות", r"\bsoc\b", r"threat", r"vulnerab", r"penetration",
             r"pen[\s-]?test", r"red[\s-]?team", r"\bdfir\b", r"incident\s+response", r"malware",
             r"reverse\s+engineer", r"exploit", r"\bcrypto", r"\bdevsecops\b",
             # malware / detection / forensics research (Nov 2026: the user asked for malware analyst/researcher and similar)
@@ -123,6 +123,15 @@ DEFAULTS: dict = {
         # A bare "Research Analyst" is usually market/finance research; it passes the title stage and is
         # kept only when the description is about security (Upwind's entry-level Research Analyst)
         "ambiguous_titles": [r"\bresearch\s+analyst\b"],
+        # Bare "Automation Engineer": the user wants it at software companies (2026-11-06), but the title also means
+        # industrial automation, so the description decides
+        "automation_titles": [r"\bautomation\s+engineer"],
+        "automation_desc_signals": [
+            r"selenium", r"playwright", r"cypress", r"appium", r"pytest", r"\bpython\b", r"\bjava\b", r"javascript", r"typescript",
+            r"\bc#", r"\bgolang\b", r"ci/cd", r"jenkins", r"terraform", r"ansible", r"rest\s+api", r"\bqa\b",
+            r"test\s+(automation|framework|script|plan|case)", r"automated\s+test", r"automation\s+(framework|test)",
+        ],
+        "automation_desc_exclude": [r"\bplcs?\b", r"\bscada\b", r"\bhmi\b", r"industrial\s+automation", r"\bmanufacturing\b", r"production\s+line"],
         "ambiguous_desc_signals": [r"\bsecurity\b", r"\bcyber", r"\bthreats?\b", r"vulnerabilit", r"\bsoc\b", r"malware",
                                    r"סייבר", r"אבטחת\s+מידע"],
         # defense "System Engineer" is usually multidisciplinary hardware systems engineering
@@ -172,6 +181,8 @@ DEFAULTS: dict = {
             r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",
             r"full[\s-]?stack", r"front[\s-]?end", r"מפתח", r"מפתחת", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
             r"\b(software|sw)\s+development\s+engineer",
+            # security research on a platform: "Mobile Security Researcher", "Android Vulnerability Researcher"
+            r"\b(security|vulnerability|malware|threat)\s+research",
         ],
         "seniority_exclude": [
             r"\bsenior\b", r"\bsr\b\.?", r"\bstaff\b", r"\bprincipal\b", r"\blead\b", r"\bhead\b",
@@ -180,6 +191,8 @@ DEFAULTS: dict = {
             r"בכיר", r"בכירה", r"ראש\s+צוות", r"מנהל", r"מנהלת", r"ארכיטקט", r"מנוס(ה|ים|ות)",
             # Hebrew for "Expert": 4 👎 and no 👍; Elbit's asks for a year as a cyber architect
             r"מומח(ה|ית|ים)",
+            # SOC above Tier 1 (the user wants T1); "Tier 1/2" and "L1/L2" stay
+            r"\bsoc\b.*(?<!/)\b(tier|t|l)[\s-]?[23]\b", r"(?<!/)\b(tier|t|l)[\s-]?[23]\b.*\bsoc\b",
         ],
         "entry_signals": [
             r"\bjunior\b", r"\bjr\b\.?", r"\bgraduates?\b", r"\bgrads?\b", r"new[\s-]?grad", r"entry[\s-]?level",
@@ -256,6 +269,7 @@ DEFAULTS: dict = {
                 {"keywords": "full stack OR fullstack OR frontend OR front end"},
                 {"keywords": "developer"},
                 {"keywords": "security OR cyber OR SOC OR penetration"},
+                {"keywords": "malware OR appsec OR \"application security\" OR \"reverse engineering\" OR SOAR"},
                 {"keywords": "embedded OR firmware OR C++ OR Linux"},
                 {"keywords": "python OR java OR node OR golang"},
                 {"keywords": "react OR angular OR mobile OR iOS"},

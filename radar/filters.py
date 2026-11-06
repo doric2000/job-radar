@@ -16,13 +16,14 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 13
+FILTERS_VERSION = 14
 # v9: new role titles ("מהנדס תוכנה" without ת, Software Development Engineer, Offensive Researcher, Software
 # Quality Engineer, Development Operations)
 # v10: "בודק/ת אוטומציה" (QA automation) title
 # v12: "אינטגרציית תוכנה" (software integration) title
 # v13: "Software Automation" titles
-RECHECK_NOTES = r"^title not in role families$"
+# v14: bare "Automation Engineer" by description, SOAR, App Sec, Hebrew penetration testing, mobile security research
+RECHECK_NOTES = r"^title not in role families$|^role excluded: (mobile|android|ios)$"
 # No posting asks for more than this; a larger number next to "experience" describes the company
 MAX_PLAUSIBLE_YEARS = 15
 
@@ -332,6 +333,9 @@ class Classifier:
         self.hw_titles = _compile(m["hardware_check_titles"])
         self.ambiguous = _compile(m["ambiguous_titles"])
         self.ambiguous_desc = _compile(m["ambiguous_desc_signals"])
+        self.auto_titles = _compile(m["automation_titles"])
+        self.auto_desc = _compile(m["automation_desc_signals"])
+        self.auto_desc_exc = _compile(m["automation_desc_exclude"])
         self.senior_desc = _compile(m["senior_desc_signals"])
         self.experienced_intro = _compile(m["experienced_intro_signals"])
         self.freelance = _compile(m["freelance_signals"])
@@ -348,7 +352,7 @@ class Classifier:
             return Verdict(False, reject_reason=f"role excluded: {hit}", stage=1)
         if (hit := _any(self.role_exc_soft, t)) and not _any(self.role_core, t):
             return Verdict(False, reject_reason=f"role excluded: {hit}", stage=1)
-        if not _any(self.role_inc, t) and not _any(self.ambiguous, t):
+        if not _any(self.role_inc, t) and not _any(self.ambiguous, t) and not _any(self.auto_titles, t):
             return Verdict(False, reject_reason="title not in role families", stage=1)
         entry_hit = _any(self.entry, t)
         intern_hit = _any(self.intern, t)
@@ -389,9 +393,14 @@ class Classifier:
             if region:
                 v.region, v.warnings = region, warns
 
-        if not _any(self.role_inc, t) and not _any(self.ambiguous_desc, desc):
-            v.accept, v.reject_reason = False, "title not in role families"
-            return v
+        if not _any(self.role_inc, t):
+            if _any(self.auto_titles, t):
+                fits = _any(self.auto_desc, desc) and not _any(self.auto_desc_exc, desc)
+            else:
+                fits = _any(self.ambiguous_desc, desc)
+            if not fits:
+                v.accept, v.reject_reason = False, "title not in role families"
+                return v
 
         if _any(self.hw_titles, t) and not _any(self.role_core, t):
             hw ={rx.pattern for rx in self.hw_desc if rx.search(desc)}

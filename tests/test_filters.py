@@ -261,7 +261,7 @@ class TestClassifier(unittest.TestCase):
     def test_hardware_integrators_excluded(self):
         for t in ["System Integrator", "Network & Linux Integrator", "Field Engineering and Integration",
                   "אינטגרטור.ית בתחום האלקטרוניקה", "Embedded Integrator - Temporary", "Silicon Validation Engineer",
-                  "Automation Engineer", "PCIe System Integration Engineer", "SoC Clocks Design Automation Engineer",
+                  "PCIe System Integration Engineer", "SoC Clocks Design Automation Engineer",
                   "Signal Processing & AI Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         self.assertTrue(self.c.stage1(J("Junior SOC Analyst")).accept)
@@ -391,7 +391,23 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
     def test_software_automation_titles(self):
         for t in ["Software Automation Engineer", "SW Automation Engineer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
-        for t in ["Automation Engineer", "Manufacturing Automation Engineer"]:
+
+    def test_bare_automation_engineer_decided_by_description(self):
+        sw = "Build test frameworks in Python and Playwright for our SaaS platform. 1 year of experience in automation."
+        for t in ["Automation Engineer", "Automation Engineer, CX (Playwright)", "Network Automation Engineer"]:
+            self.assertTrue(self.c.classify(J(t, desc=sw)).accept, t)
+        for d in ["Program PLC controllers on the factory floor.", "Python scripts for PLC and SCADA lines.", ""]:
+            self.assertFalse(self.c.classify(J("Automation Engineer", desc=d)).accept, d)
+        self.assertFalse(self.c.classify(J("Senior Automation Engineer", desc=sw)).accept)
+
+    def test_cyber_focus_titles(self):
+        for t in ["Malware Analyst", "Malware Researcher", "AppSec Engineer", "App Sec Engineer", "Application Security Engineer",
+                  "SOC Automation Engineer", "SOAR Engineer", "XSOAR Developer", "SOC Analyst T1", "Tier 1 SOC Analyst",
+                  "SOC Analyst Tier 1/2", "SOC Analyst L1/L2", "בודק/ת חדירות", "Mobile Security Researcher",
+                  "Android Vulnerability Researcher", "SOC Analyst Level 2 Clearance"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        for t in ["SOC Analyst Tier 2", "SOC Analyst T3", "SOC Analyst (L2/L3)", "Tier 2 SOC Analyst", "SOC Analyst Tier 2/3",
+                  "Mobile Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
 
     def test_plus_years_of_software_engineering(self):
