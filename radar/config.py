@@ -49,6 +49,8 @@ DEFAULTS: dict = {
             # QA / test automation (software only: industrial "automation engineer" and silicon validation are not)
             r"\bqa\b", r"quality\s+assurance", r"\b(software|sw)\s+(test|testing|validation|verification)",
             r"\btest(ing)?\s+(engineer|automation|developer)", r"(qa|test)\s+automation", r"automation\s+developer", r"\bsdet\b",
+            # "Software Automation Engineer" is test automation (Medtronic, Cognyte); bare "Automation Engineer" stays out
+            r"\b(software|sw)\s+automation",
             # "Software Development Engineer" (SDE), "Software Quality Engineer", "Offensive Researcher", "Development Operations"
             r"\b(software|sw)\s+development\s+engineer", r"\b(software|sw)\s+quality\s+(engineer|assurance)",
             r"\boffensive\b", r"development\s+operations",

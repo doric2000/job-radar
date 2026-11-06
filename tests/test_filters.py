@@ -383,6 +383,17 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
     def setUp(self):
         self.c = Classifier(load_config(None))
 
+    def test_plus_years_in_a_field(self):
+        # Guardz "Support Operations & AI Automation Engineer" alerted as "no years stated"
+        self.assertEqual(extract_experience("Requirements: 4+ years in support, escalation or software engineering.")[0], 4)
+        self.assertIsNone(extract_experience("A stable company with 12+ years in business.")[0])
+
+    def test_software_automation_titles(self):
+        for t in ["Software Automation Engineer", "SW Automation Engineer"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        for t in ["Automation Engineer", "Manufacturing Automation Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+
     def test_plus_years_of_software_engineering(self):
         self.assertEqual(extract_experience("What you bring 4+ years of software engineering, with strong Python and Linux")[0], 4)
 

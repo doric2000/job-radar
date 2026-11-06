@@ -16,11 +16,12 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 12
+FILTERS_VERSION = 13
 # v9: new role titles ("מהנדס תוכנה" without ת, Software Development Engineer, Offensive Researcher, Software
 # Quality Engineer, Development Operations)
 # v10: "בודק/ת אוטומציה" (QA automation) title
 # v12: "אינטגרציית תוכנה" (software integration) title
+# v13: "Software Automation" titles
 RECHECK_NOTES = r"^title not in role families$"
 # No posting asks for more than this; a larger number next to "experience" describes the company
 MAX_PLAUSIBLE_YEARS = 15
@@ -124,7 +125,7 @@ _HE_YEARS = re.compile(
 _EXP_CONTEXT = re.compile(
     r"experience|exp\.|ניסיון|hands[\s-]?on|background|proven|track\s+record|working\s+(?:with|as|in)|"
     r"developing|development|building|professional|worked|work\s+in|in\s+(?:a\s+)?(?:role|field|position)|"
-    r"\d\s*\+\s*years?\s+of|years?\s+of\s+(?:software|engineering|programming|coding|professional|industry|relevant|practical)",
+    r"\d\s*\+\s*years?\s+of|\d\s*\+\s*years?\s+in\s+(?!business\b|the\s+(?:market|business)\b)|years?\s+of\s+(?:software|engineering|programming|coding|professional|industry|relevant|practical)",
     re.I | re.U,
 )
 _OPTIONAL = re.compile(
