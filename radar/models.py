@@ -22,6 +22,7 @@ class Job:
     employment: str = ""  # e.g. "Full-time", "Intern" as reported by the source
     level: str = ""  # experience level label reported by the source, if any
     source: str = ""  # ats name
+    reposted: str = ""  # ISO time this job was first alerted, when it is now reposted after REPOST_DAYS
 
     @property
     def key(self) -> str:

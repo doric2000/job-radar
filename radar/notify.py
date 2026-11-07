@@ -59,6 +59,9 @@ def format_alert(job: Job, v: Verdict, company: dict, now: datetime, tz: str = "
         tags.append("🔗 LinkedIn")
     if tags:
         lines.append(" · ".join(tags))
+    if job.reposted:
+        first = datetime.fromisoformat(job.reposted.replace("Z", "+00:00")).astimezone(ZoneInfo(tz))
+        lines.append(f"🔁 פורסמה מחדש · נשלחה לראשונה ב-{first.strftime('%d/%m')}. בדוק אם השתנו דרישות או דרך ההגשה")
     for w in v.warnings:
         lines.append(f"⚠️ {e(w)}")
     summary = extract_summary(job.description)

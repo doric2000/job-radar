@@ -20,7 +20,7 @@ from .leads import TgChannel
 from .models import Job, Verdict
 from .notify import Telegram, format_alert
 from .registry import load_registry
-from .state import State
+from .state import State, iso
 from .textutil import norm, sig_similarity, text_sig
 
 DATED_KINDS = {"published", "created", "relative", "message"}
@@ -46,6 +46,7 @@ def role_key(job: Job) -> str:
 
 SAME_JOB = 0.5  # description signature agreement: reposts/copies score 0.75+, different jobs ~0.1
 SAME_TEXT = 0.75  # across companies only a near-identical text counts (an agency reposting the job)
+REPOST_DAYS = 10  # a match older than this is a reopened job: alerted again, marked as a repost
 
 
 class Radar:
@@ -209,20 +210,37 @@ class Radar:
         return {"scanned": len(todo), "ok": ok, "errors": errors, "alerts": alerts, "new_jobs": new_jobs}
 
     # ---------------------------------------------------------------- dedupe
-    def _is_dup(self, j: Job) -> bool:
-        """Same company and title alerted in the last 30 days: a repost, or the same job on another board or
-        in another city (Cynet's SOC Analyst went out three times, once per city) - unless both descriptions
-        are known and differ (ISCAR had two different "Software Engineer" jobs open in Migdal Tefen)."""
-        sig, old = text_sig(j.description), self.state.role_sigs(role_key(j))
+    def _last_alert(self, j: Job) -> str | None:
+        """When the same job was last alerted (ISO), if it was: same company and title - a repost, or the
+        same job on another board or in another city (Cynet's SOC Analyst went out three times, once per
+        city) - unless both descriptions are known and differ (ISCAR had two different "Software Engineer"
+        jobs open in Migdal Tefen)."""
+        sig, rk = text_sig(j.description), role_key(j)
+        roles = self.state.d["meta"].get("roles", {})
+        title = rk.split("|", 1)[1]
         # a staffing agency reposting a company's job under its own name (Matrix with ISCAR's "Software
         # Engineer"): same title and nearly the same text
-        title = role_key(j).split("|", 1)[1]
-        if sig and any(k.endswith("|" + title) and o and sig_similarity(sig, o) >= SAME_TEXT
-                       for k in self.state.d["meta"].get("roles", {}) for o in self.state.role_sigs(k)):
+        hits = [e["ts"] for k, es in roles.items() if k.endswith("|" + title) for e in es
+                if sig and e["sig"] and sig_similarity(sig, e["sig"]) >= SAME_TEXT]
+        old = roles.get(rk, [])
+        if old:
+            hits += [e["ts"] for e in old if not sig or not e["sig"] or sig_similarity(sig, e["sig"]) >= SAME_JOB]
+        else:  # alerts from before signatures were stored are matched by company+title+city
+            ts = self.state.d["meta"].get("alerted", {}).get(dedupe_key(j))
+            if ts:
+                hits.append(ts)
+        return max(hits, default=None)
+
+    def _is_dup(self, j: Job) -> bool:
+        """Alerted in the last REPOST_DAYS. An older match is a reopened job (The Vault reposted its closed
+        Junior Backend & DevOps job two weeks later with a new way to apply): sent again, marked as a repost."""
+        ts = self._last_alert(j)
+        if not ts:
+            return False
+        if ts >= iso(self.now - timedelta(days=REPOST_DAYS)):
             return True
-        if not old:  # alerts from before signatures were stored are matched by company+title+city
-            return self.state.was_alerted(dedupe_key(j))
-        return any(not sig or not o or sig_similarity(sig, o) >= SAME_JOB for o in old)
+        j.reposted = ts
+        return False
 
     def _remember(self, j: Job) -> None:
         self.state.add_role(role_key(j), text_sig(j.description), self.now)

@@ -5,9 +5,9 @@ from datetime import datetime, timedelta, timezone
 from radar.config import load_config
 from radar.discover import candidates_from_html, slug_variants
 from radar.http import HttpError
-from radar.models import Job
+from radar.models import Job, Verdict
 from radar.notify import format_alert
-from radar.run import Radar
+from radar.run import Radar, dedupe_key
 from radar.state import State
 from radar.textutil import html_to_text, parse_relative_en
 
@@ -166,6 +166,20 @@ class TestRun(unittest.TestCase):
         self.assertTrue(r._is_dup(ltd))
         self.assertTrue(r._is_dup(agency))
         self.assertFalse(r._is_dup(other))  # a different job of that title at the agency
+
+    def test_reopened_job_is_sent_again_as_repost(self):
+        r = self.mk(FakeHttp({}))
+        job = lambda jid: Job(company_id="li", company="The Vault", job_id=jid, title="Junior Backend & DevOps Engineer",  # noqa: E731
+                              url="u", location="Israel")
+        r.state.add_alerted(dedupe_key(job("1")), NOW - timedelta(days=14))  # an alert from before signatures
+        fresh = job("2")
+        self.assertFalse(r._is_dup(fresh))
+        self.assertTrue(fresh.reposted)
+        self.assertIn("פורסמה מחדש", format_alert(fresh, Verdict(accept=True, tier="A"), {}, NOW))
+        r._remember(fresh)
+        again = job("3")
+        self.assertTrue(r._is_dup(again))  # within REPOST_DAYS of the last alert
+        self.assertFalse(again.reposted)
 
 
 class TestFetchers(unittest.TestCase):
