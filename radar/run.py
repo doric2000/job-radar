@@ -46,7 +46,7 @@ def role_key(job: Job) -> str:
 
 SAME_JOB = 0.5  # description signature agreement: reposts/copies score 0.75+, different jobs ~0.1
 SAME_TEXT = 0.75  # across companies only a near-identical text counts (an agency reposting the job)
-REPOST_DAYS = 10  # a match older than this is a reopened job: alerted again, marked as a repost
+REPOST_DAYS = 14  # the user wants a repost only when the first alert is two weeks old or more; sooner is noise
 
 
 class Radar:
@@ -237,7 +237,7 @@ class Radar:
         ts = self._last_alert(j)
         if not ts:
             return False
-        if ts >= iso(self.now - timedelta(days=REPOST_DAYS)):
+        if ts > iso(self.now - timedelta(days=REPOST_DAYS)):
             return True
         j.reposted = ts
         return False

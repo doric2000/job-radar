@@ -180,6 +180,10 @@ class TestRun(unittest.TestCase):
         again = job("3")
         self.assertTrue(r._is_dup(again))  # within REPOST_DAYS of the last alert
         self.assertFalse(again.reposted)
+        # reposted 13 days after the first alert: still noise, not sent
+        r2 = self.mk(FakeHttp({}))
+        r2.state.add_alerted(dedupe_key(job("1")), NOW - timedelta(days=13))
+        self.assertTrue(r2._is_dup(job("4")))
 
 
 class TestFetchers(unittest.TestCase):
