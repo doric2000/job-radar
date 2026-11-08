@@ -121,7 +121,7 @@
 - {name: "Redis", domain: redis.io, cat: tech, tier: 2, ats: ashby, token: redis}
 - {name: "VAST Data", domain: vastdata.com, cat: tech, tier: 2, ats: comeet, uid: "43.001", token: 34110453411D4968234168209C31D49}   # slug probe matched an unrelated 'vast' board
 - {name: "DriveNets", domain: drivenets.com, cat: tech, tier: 2, ats: comeet, uid: "72.006", token: 2769D81626762C4E762762C4EC4E1626}
-- {name: "Coralogix", domain: coralogix.com, cat: tech, tier: 2}
+- {name: "Coralogix", domain: coralogix.com, cat: tech, tier: 2, ats: comeet, uid: "06.004", token: 604241801E141E1460430200604604}
 - {name: "Mend.io", domain: mend.io, cat: tech, tier: 2}
 - {name: "Sapiens", domain: sapiens.com, cat: tech, tier: 2}
 - {name: "Amdocs", domain: amdocs.com, cat: tech, tier: 2, ats: eightfold, host: jobs.amdocs.com}
@@ -131,7 +131,7 @@
 - {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3, ats: ashby, token: lemonade}
 - {name: "Nayax", domain: nayax.com, cat: tech, tier: 3, ats: comeet, uid: "13.009", token: 319F7D319C641BE11BE131963231915AF}
 - {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3}
-- {name: "Papaya Global", domain: papayaglobal.com, cat: tech, tier: 3}
+- {name: "Papaya Global", domain: papayaglobal.com, cat: tech, tier: 3, ats: comeet, uid: "16.005", token: 615247E02A931E6930A81E691E691E6936BD}
 - {name: "Yotpo", domain: yotpo.com, cat: tech, tier: 3}
 - {name: "Lusha", domain: lusha.com, cat: tech, tier: 1, ats: comeet, uid: "73.00B", token: 37B11676F61F53DEC6F606F61BD8185D}
 - {name: "Via", domain: ridewithvia.com, cat: tech, tier: 3}
@@ -149,7 +149,7 @@
 - {name: "Pliops", domain: pliops.com, cat: tech, tier: 3}
 - {name: "Ceragon", domain: ceragon.com, cat: tech, tier: 3}
 - {name: "Gilat", domain: gilat.com, cat: tech, tier: 3}
-- {name: "Camtek", domain: camtek.com, cat: tech, tier: 3}
+- {name: "Camtek", domain: camtek.com, cat: tech, tier: 3, ats: comeet, uid: "F4.00D", token: 4FD18F122EB00EF7EF722EB13F418F1}
 - {name: "Nova", domain: novami.com, cat: tech, tier: 3, ats: comeet, uid: "A5.007", token: 5A71C4332DFB4E10F532DFB4E32DF0B4E}
 - {name: "Moon Active", domain: moonactive.com, cat: tech, tier: 3}
 - {name: "Plarium", domain: plarium.com, cat: tech, tier: 3}
@@ -253,3 +253,26 @@
 - {name: "Classiq", domain: classiq.io, cat: tech, tier: 2, ats: comeet, uid: "F7.008", token: 7F82FD01FE03FC037C87F87F82FD017E847B8}
 - {name: "Aeronautics", domain: aeronautics-sys.com, cat: tech, tier: 2, ats: comeet, uid: "72.002", token: 2729C816027564E4111EEAC111E4E40}
 - {name: "BeyondTrust", domain: beyondtrust.com, cat: cyber, tier: 2, ats: greenhouse, token: beyondtrust}   # added from the user's example
+- {name: "GeoEdge", domain: geoedge.com, cat: cyber, tier: 2, ats: comeet, uid: "82.00A", token: 28AA2816DAF3C11C600A28A281450}
+- {name: "Surecomp", domain: surecomp.com, cat: tech, tier: 2, ats: comeet, uid: "24.00E", token: 42E14E610B8259E217021701D420014E6}
+- {name: "Genpact", domain: genpact.com, cat: tech, tier: 2, ats: comeet, uid: "B9.008", token: 9B8440813709B84DC01D283A501D2826E026E0}
+- {name: "Xsight Labs", domain: xsightlabs.com, cat: tech, tier: 2, ats: comeet, uid: "46.00C", token: 64C25C864C12E41930326064C25C801930}
+- {name: "Majestic Labs", domain: majesticlabs.com, cat: tech, tier: 2, ats: comeet, uid: "AA.004", token: AA44A7C35345FC44A7C5FC4055205FC42A90}
+- {name: "Quantum Machines", domain: quantummachines.com, cat: tech, tier: 2, ats: comeet, uid: "D6.000", token: 6D028E0DA022106D01470221036803D502210}
+- {name: "Port", domain: port.com, cat: tech, tier: 2, ats: comeet, uid: "59.004", token: 954414C02550414C4AA01BFC12A81BFC2550}
+- {name: "SolarEdge", domain: solaredge.com, cat: tech, tier: 2, ats: comeet, uid: "71.00A", token: 17A5E8762BD08DC46E46E46E046E}
+- {name: "Appcharge", domain: appcharge.com, cat: tech, tier: 2, ats: comeet, uid: "9A.00B", token: A9B4A3D35074A3D3507A9B2A6CA9BA9BA9B}
+- {name: "Pango", domain: pango.com, cat: tech, tier: 2, ats: comeet, uid: "59.002", token: 952413E0254895295253E295237EC53E2}
+- {name: "Notch", domain: notch.com, cat: tech, tier: 2, ats: comeet, uid: "CA.003", token: AC34B5540922B0C4B5535CF35CFAC32B0C2B0C}
+- {name: "Cyberillium", domain: cyberillium.com, cat: cyber, tier: 2, ats: comeet, uid: "58.004", token: 85431F831F818FC029A442A031F818FC4AF4}
+- {name: "INFINIDAT", domain: infinidat.com, cat: tech, tier: 2, ats: comeet, uid: "D6.003", token: 6D328F2DA6221F221F221F221F002FC5}
+- {name: "Immunai", domain: immunai.com, cat: tech, tier: 2, ats: comeet, uid: "37.009", token: 7392B5615AB1CE42B5615AB328F039C81CE4}
+- {name: "Webbing", domain: webbing.com, cat: tech, tier: 2, ats: comeet, uid: "46.00E", token: 64E25D464E12EA25D41F86193838BE38BE12EA}
+- {name: "Lumenis", domain: lumenis.com, cat: tech, tier: 2, ats: comeet, uid: "A1.00C", token: 1AC6B0A08F0C6B085C85CD60F0C1AC}
+- {name: "abra Web \u0026 Mobile", domain: abra-web-mobile.com, cat: tech, tier: 2, ats: comeet, uid: "D3.004", token: 3D41324F503D4B7C3D416F816F8B7C0}
+- {name: "LiveU", domain: liveu.com, cat: tech, tier: 2, ats: comeet, uid: "90.00C", token: 9C2709C1D43A827030C3A82709C}
+- {name: "Skai", domain: skai.com, cat: tech, tier: 2, ats: comeet, uid: "22.00A", token: 22A8A81150454CFC115022AAD2F26137A}
+- {name: "Guesty", domain: guesty.com, cat: tech, tier: 2, ats: comeet, uid: "10.000", token: 1030901050040401080}
+- {name: "ScyllaDB", domain: scylladb.com, cat: tech, tier: 2, ats: comeet, uid: "E4.006", token: 4E6187E1D64224A0013984E60187E}
+- {name: "AudioCodes", domain: audiocodes.com, cat: tech, tier: 2, ats: comeet, uid: "85.004", token: 5841B942C2058431A4108C269C108C0108C}
+- {name: "A.S HR Services", domain: as_hrservices.com, cat: tech, tier: 2, ats: comeet, uid: "79.004", token: 974422C04BA038B897438B897455145514}
