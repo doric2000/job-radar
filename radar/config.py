@@ -201,6 +201,13 @@ DEFAULTS: dict = {
         ],
         "internship_signals": [r"\bintern(ship)?s?\b", r"(?<!עם\s)(?<!ב)התמחות(?!\s*ב)", r"מתמחה", r"מתמחים", r"\bco-?op\b"],
         "student_signals": [r"\bstudents?\b", r"סטודנט", r"סטודנטית", r"משרת\s+סטודנט"],
+        # internships open only to people still studying: the user has graduated (Microsoft Security Research 👎, Nov 2026)
+        "current_student_signals": [
+            r"currently\s+(?:pursuing|enrolled|studying)(?![^.\n]{0,60}\b(?:recent(?:ly)?|completed|graduated)\b)",
+            r"\bcurrent\s+(?:university\s+|college\s+)?students?\b", r"\bstudent\s+position\b",
+            r"must\s+be\s+(?:a\s+|an\s+)?(?:\w+\s+)?student\b", r"upon\s+completion\s+of\s+the\s+academic\s+degree",
+            r"סטודנט\S*\s+(?:פעיל|לתואר|בשנה|בשנת)",
+        ],
         "desc_entry_signals": [
             r"no\s+(prior\s+)?(professional\s+|work\s+)?experience\s+(is\s+)?(required|needed|necessary)",
             r"fresh(ly)?\s+graduates?", r"recent\s+graduates?", r"new\s+graduates?", r"0\s*[-–to]+\s*1\s+years?",

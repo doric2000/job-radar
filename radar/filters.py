@@ -328,6 +328,7 @@ class Classifier:
         self.entry = _compile(m["entry_signals"])
         self.intern = _compile(m["internship_signals"])
         self.student = _compile(m["student_signals"])
+        self.current_student = _compile(m["current_student_signals"])
         self.desc_entry = _compile(m["desc_entry_signals"])
         self.clearance = _compile(m["clearance_signals"])
         self.hw_desc = _compile(m["hardware_desc_signals"])
@@ -425,12 +426,17 @@ class Classifier:
         v.req_years, v.exp_snippet = years, snippet
 
         title_entry = _any(self.entry, t)
-        level_entry = bool(re.search(r"entry|junior|intern|graduate|student|trainee", job.level or "", re.I))
-        employment_intern = bool(re.search(r"intern", job.employment or "", re.I))
+        # \b: Comeet's "Internal Staff" level is not an internship (Deloitte DevOps, 3+ years, went out as tier A)
+        level_entry = bool(re.search(r"entry|junior|\bintern(ship)?\b|graduate|student|trainee", job.level or "", re.I))
+        employment_intern = bool(re.search(r"\bintern(ship)?\b", job.employment or "", re.I))
         desc_entry = _any(self.desc_entry, desc)
 
         if employment_intern and "internship" not in v.tags and m["include_internships"]:
             v.tags.append("internship")
+
+        if "internship" in v.tags and not desc_entry and (hit := _any(self.current_student, desc)):
+            v.accept, v.reject_reason = False, f"current students only: {hit}"[:60]
+            return v
 
         if title_entry or level_entry or "internship" in v.tags:
             v.tier = "A"

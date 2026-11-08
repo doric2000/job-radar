@@ -300,6 +300,22 @@ class TestClassifier(unittest.TestCase):
         self.assertTrue(v.accept)
         self.assertIn("internship", v.tags)
 
+    def test_internship_for_current_students_only_rejected(self):
+        for desc in ("Qualifications: Currently pursuing a Bachelor's degree in Computer Science, with an expected graduation in 2028.",
+                     "This student position is structured as a one-and-a-half-year role, concluding upon completion of the academic degree.",
+                     "דרישות: סטודנט/ית לתואר במדעי המחשב"):
+            self.assertFalse(self.c.classify(J("Security Research Intern", desc=desc)).accept, desc)
+
+    def test_internship_open_to_graduates_kept(self):
+        for desc in ("Currently pursuing or recently completed a degree in Computer Science.",
+                     "Current students and recent graduates are welcome."):
+            self.assertTrue(self.c.classify(J("Software Engineer Intern", desc=desc)).accept, desc)
+
+    def test_internal_staff_level_is_not_entry(self):
+        v = self.c.classify(J("DevOps Engineer", desc="3+ years of experience in a DevOps role.", level="Internal Staff"))
+        self.assertFalse(v.accept)
+        self.assertEqual(v.reject_reason, "requires 3+ years")
+
     def test_student_parttime_excluded_by_default(self):
         self.assertFalse(self.c.classify(J("Backend Developer - Student Position")).accept)
         # open to graduates too
