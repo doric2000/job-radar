@@ -2,32 +2,32 @@
  "companies": {
   "activefence": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:52Z",
+   "checked_at": "2026-11-08T10:14:01Z",
    "evidence": "link on https://activefence.com/careers",
    "fail_count": 0,
-   "israel_jobs": 27,
-   "jobs": 49,
+   "israel_jobs": 22,
+   "jobs": 43,
    "name": "ActiveFence",
    "status": "ok",
    "token": "5D51D29347D2EA828D3347DBAA2EA85D522FE",
    "uid": "D5.005"
   },
   "akamai": {
-   "checked_at": "2026-11-01T10:25:30Z",
+   "checked_at": "2026-11-08T10:15:47Z",
    "evidence": "",
    "name": "Akamai",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "allot": {
-   "checked_at": "2026-11-01T10:25:35Z",
+   "checked_at": "2026-11-08T10:15:56Z",
    "evidence": "",
    "name": "Allot",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "amd-israel": {
-   "checked_at": "2026-11-01T10:27:47Z",
+   "checked_at": "2026-11-08T10:17:44Z",
    "evidence": "",
    "name": "AMD Israel",
    "note": "no ATS found (custom careers site?)",
@@ -35,7 +35,7 @@
   },
   "apiiro": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:41Z",
+   "checked_at": "2026-11-08T10:13:50Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 4,
@@ -45,7 +45,7 @@
    "token": "apiiro"
   },
   "apple-israel": {
-   "checked_at": "2026-11-01T10:27:45Z",
+   "checked_at": "2026-11-08T10:17:38Z",
    "evidence": "",
    "name": "Apple Israel",
    "note": "no ATS found (custom careers site?)",
@@ -53,28 +53,28 @@
   },
   "appsflyer": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:56Z",
+   "checked_at": "2026-11-08T10:14:06Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 23,
-   "jobs": 50,
+   "israel_jobs": 27,
+   "jobs": 53,
    "name": "AppsFlyer",
    "status": "ok",
    "token": "appsflyer"
   },
   "armis": {
    "ats": "smartrecruiters",
-   "checked_at": "2026-11-01T10:23:36Z",
+   "checked_at": "2026-11-08T10:13:48Z",
    "evidence": "link on https://armis.com/careers",
    "fail_count": 0,
    "israel_jobs": 23,
-   "jobs": 731,
+   "jobs": 745,
    "name": "Armis",
    "status": "ok",
    "token": "ServiceNow"
   },
   "astrix-security": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "Astrix Security",
    "note": "no ATS found (custom careers site?)",
@@ -82,18 +82,18 @@
   },
   "axonius": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:40Z",
+   "checked_at": "2026-11-08T10:13:49Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 6,
-   "jobs": 22,
+   "israel_jobs": 7,
+   "jobs": 21,
    "name": "Axonius",
    "status": "ok",
    "token": "axonius"
   },
   "backslash-security": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:45Z",
+   "checked_at": "2026-11-08T10:13:53Z",
    "evidence": "link on https://backslash.security/careers",
    "fail_count": 0,
    "israel_jobs": 3,
@@ -104,21 +104,21 @@
    "uid": "98.004"
   },
   "bank-hapoalim": {
-   "checked_at": "2026-11-01T10:28:22Z",
+   "checked_at": "2026-11-08T10:18:09Z",
    "evidence": "",
    "name": "Bank Hapoalim",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "bank-leumi": {
-   "checked_at": "2026-11-01T10:28:13Z",
+   "checked_at": "2026-11-08T10:18:07Z",
    "evidence": "",
    "name": "Bank Leumi",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "bezeq": {
-   "checked_at": "2026-11-01T10:29:21Z",
+   "checked_at": "2026-11-08T10:19:13Z",
    "evidence": "",
    "name": "Bezeq",
    "note": "no ATS found (custom careers site?)",
@@ -126,7 +126,7 @@
   },
   "brainpop": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:05Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 1,
@@ -137,8 +137,9 @@
   },
   "bringg": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:26:35Z",
+   "checked_at": "2026-11-08T10:14:07Z",
    "evidence": "link on https://bringg.com/careers",
+   "fail_count": 0,
    "israel_jobs": 0,
    "jobs": 2,
    "name": "Bringg",
@@ -146,14 +147,14 @@
    "token": "bringg"
   },
   "bynet": {
-   "checked_at": "2026-11-01T10:26:44Z",
+   "checked_at": "2026-11-08T10:16:49Z",
    "evidence": "",
    "name": "Bynet",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "camtek": {
-   "checked_at": "2026-11-01T10:27:29Z",
+   "checked_at": "2026-11-08T10:17:24Z",
    "evidence": "",
    "name": "Camtek",
    "note": "no ATS found (custom careers site?)",
@@ -161,24 +162,24 @@
   },
   "cato-networks": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:32Z",
+   "checked_at": "2026-11-08T10:13:45Z",
    "evidence": "link on https://catonetworks.com/careers",
    "fail_count": 0,
-   "israel_jobs": 32,
-   "jobs": 106,
+   "israel_jobs": 35,
+   "jobs": 117,
    "name": "Cato Networks",
    "status": "ok",
    "token": "catonetworks"
   },
   "cellcom": {
-   "checked_at": "2026-11-01T10:29:05Z",
+   "checked_at": "2026-11-08T10:18:54Z",
    "evidence": "",
    "name": "Cellcom",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "cellebrite": {
-   "checked_at": "2026-11-01T10:25:09Z",
+   "checked_at": "2026-11-08T10:15:28Z",
    "evidence": "",
    "name": "Cellebrite",
    "note": "no ATS found (custom careers site?)",
@@ -186,18 +187,18 @@
   },
   "ceragon": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:24:03Z",
+   "checked_at": "2026-11-08T10:14:09Z",
    "evidence": "link on https://ceragon.com/careers",
    "fail_count": 0,
-   "israel_jobs": 11,
-   "jobs": 42,
+   "israel_jobs": 12,
+   "jobs": 39,
    "name": "Ceragon",
    "status": "ok",
    "token": "3D3131FF4C01AC57A61AC51E98131FF4C",
    "uid": "D3.003"
   },
   "check-point": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "Check Point",
    "note": "no ATS found (custom careers site?)",
@@ -205,18 +206,18 @@
   },
   "checkmarx": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:43Z",
+   "checked_at": "2026-11-08T10:13:51Z",
    "evidence": "link on https://checkmarx.com/careers",
    "fail_count": 0,
-   "israel_jobs": 6,
-   "jobs": 37,
+   "israel_jobs": 4,
+   "jobs": 40,
    "name": "Checkmarx",
    "status": "ok",
    "token": "C8320190002581902584B0708",
    "uid": "C0.008"
   },
   "clal-insurance": {
-   "checked_at": "2026-11-01T10:29:00Z",
+   "checked_at": "2026-11-08T10:18:49Z",
    "evidence": "",
    "name": "Clal Insurance",
    "note": "no ATS found (custom careers site?)",
@@ -224,18 +225,18 @@
   },
   "cloudinary": {
    "ats": "lever",
-   "checked_at": "2026-11-01T10:24:00Z",
+   "checked_at": "2026-11-08T10:14:06Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 7,
-   "jobs": 11,
+   "israel_jobs": 5,
+   "jobs": 9,
    "name": "Cloudinary",
    "status": "ok",
    "token": "cloudinary"
   },
   "cognyte": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:53Z",
+   "checked_at": "2026-11-08T10:14:03Z",
    "evidence": "link on https://cognyte.com/careers",
    "fail_count": 0,
    "israel_jobs": 12,
@@ -247,52 +248,52 @@
   },
   "connecteam": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:05Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 18,
-   "jobs": 65,
+   "israel_jobs": 19,
+   "jobs": 66,
    "name": "Connecteam",
    "status": "ok",
    "token": "connecteam"
   },
   "conntour": {
-   "checked_at": "2026-11-01T10:29:21Z",
+   "checked_at": "2026-11-08T10:19:14Z",
    "evidence": "",
    "name": "Conntour",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "coralogix": {
-   "checked_at": "2026-11-01T10:26:09Z",
+   "checked_at": "2026-11-08T10:16:21Z",
    "evidence": "",
    "name": "Coralogix",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "cyberark": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "CyberArk",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "cyberbit": {
-   "checked_at": "2026-11-01T10:24:56Z",
+   "checked_at": "2026-11-08T10:15:05Z",
    "evidence": "",
    "name": "Cyberbit",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "cybereason": {
-   "checked_at": "2026-11-01T10:24:46Z",
+   "checked_at": "2026-11-08T10:14:57Z",
    "evidence": "",
    "name": "Cybereason",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "cyberint": {
-   "checked_at": "2026-11-01T10:25:39Z",
+   "checked_at": "2026-11-08T10:15:56Z",
    "evidence": "",
    "name": "Cyberint",
    "note": "no ATS found (custom careers site?)",
@@ -300,7 +301,7 @@
   },
   "cycode": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:44Z",
+   "checked_at": "2026-11-08T10:13:52Z",
    "evidence": "link on https://cycode.com/careers",
    "fail_count": 0,
    "israel_jobs": 2,
@@ -312,11 +313,11 @@
   },
   "cycognito": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:52Z",
+   "checked_at": "2026-11-08T10:14:00Z",
    "evidence": "link on https://cycognito.com/company/careers",
    "fail_count": 0,
    "israel_jobs": 0,
-   "jobs": 1,
+   "jobs": 0,
    "name": "CyCognito",
    "status": "ok",
    "token": "41A148210681CB61CB68341CB624EAC4E1482",
@@ -324,11 +325,11 @@
   },
   "cyera": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:40Z",
+   "checked_at": "2026-11-08T10:13:49Z",
    "evidence": "link on https://cyera.io/careers",
    "fail_count": 0,
-   "israel_jobs": 35,
-   "jobs": 257,
+   "israel_jobs": 32,
+   "jobs": 255,
    "name": "Cyera",
    "status": "ok",
    "token": "7182A90154871823783FD838C031A802378",
@@ -336,43 +337,43 @@
   },
   "cymulate": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:45Z",
+   "checked_at": "2026-11-08T10:13:52Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 4,
-   "jobs": 14,
+   "israel_jobs": 2,
+   "jobs": 11,
    "name": "Cymulate",
    "status": "ok",
    "token": "cymulate"
   },
   "cynet": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:42Z",
+   "checked_at": "2026-11-08T10:13:50Z",
    "evidence": "link on https://cynet.com/careers",
    "fail_count": 0,
    "israel_jobs": 2,
-   "jobs": 12,
+   "jobs": 15,
    "name": "Cynet",
    "status": "ok",
    "token": "33D103133D19E8136E1D25103133D10311D25",
    "uid": "33.00D"
   },
   "cyolo": {
-   "checked_at": "2026-11-01T10:24:38Z",
+   "checked_at": "2026-11-08T10:14:43Z",
    "evidence": "",
    "name": "Cyolo",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "deep-instinct": {
-   "checked_at": "2026-11-01T10:24:54Z",
+   "checked_at": "2026-11-08T10:15:03Z",
    "evidence": "",
    "name": "Deep Instinct",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "draftt": {
-   "checked_at": "2026-11-01T10:29:28Z",
+   "checked_at": "2026-11-08T10:19:17Z",
    "evidence": "",
    "name": "Draftt",
    "note": "no ATS found (custom careers site?)",
@@ -380,7 +381,7 @@
   },
   "entro-security": {
    "ats": "workday",
-   "checked_at": "2026-11-01T10:23:47Z",
+   "checked_at": "2026-11-08T10:13:55Z",
    "evidence": "link on https://entro.security/careers",
    "fail_count": 0,
    "host": "sailpoint.wd1.myworkdayjobs.com",
@@ -393,18 +394,18 @@
   },
   "etoro": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:24:01Z",
+   "checked_at": "2026-11-08T10:14:07Z",
    "evidence": "link on https://etoro.com/careers",
    "fail_count": 0,
    "israel_jobs": 2,
-   "jobs": 15,
+   "jobs": 9,
    "name": "eToro",
    "status": "ok",
    "token": "14952452466D3DB7B61495240B91",
    "uid": "41.009"
   },
   "eureka-security": {
-   "checked_at": "2026-11-01T10:24:22Z",
+   "checked_at": "2026-11-08T10:14:39Z",
    "evidence": "",
    "name": "Eureka Security",
    "note": "no ATS found (custom careers site?)",
@@ -412,7 +413,7 @@
   },
   "f5": {
    "ats": "workday",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "link on https://f5.com/careers",
    "fail_count": 0,
    "host": "ffive.wd5.myworkdayjobs.com",
@@ -425,7 +426,7 @@
   },
   "fireblocks": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "link on https://fireblocks.com/careers",
    "fail_count": 0,
    "israel_jobs": 0,
@@ -435,7 +436,7 @@
    "token": "fireblocks"
   },
   "first-international-bank": {
-   "checked_at": "2026-11-01T10:28:39Z",
+   "checked_at": "2026-11-08T10:18:30Z",
    "evidence": "",
    "name": "First International Bank",
    "note": "no ATS found (custom careers site?)",
@@ -443,7 +444,7 @@
   },
   "fiverr": {
    "ats": "smartrecruiters",
-   "checked_at": "2026-11-01T10:25:42Z",
+   "checked_at": "2026-11-08T10:16:00Z",
    "evidence": "slug probe",
    "israel_jobs": 0,
    "jobs": 3,
@@ -454,24 +455,24 @@
   },
   "forter": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:01Z",
+   "checked_at": "2026-11-08T10:14:07Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 5,
-   "jobs": 22,
+   "israel_jobs": 9,
+   "jobs": 25,
    "name": "Forter",
    "status": "ok",
    "token": "forter"
   },
   "gambit-security": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "Gambit Security",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "gilat": {
-   "checked_at": "2026-11-01T10:27:28Z",
+   "checked_at": "2026-11-08T10:17:22Z",
    "evidence": "",
    "name": "Gilat",
    "note": "no ATS found (custom careers site?)",
@@ -479,18 +480,18 @@
   },
   "global-e": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:56Z",
+   "checked_at": "2026-11-08T10:14:06Z",
    "evidence": "link on https://global-e.com/careers",
    "fail_count": 0,
-   "israel_jobs": 20,
-   "jobs": 50,
+   "israel_jobs": 18,
+   "jobs": 48,
    "name": "Global-e",
    "status": "ok",
    "token": "262988131015727264C41572E4C10AE10AE",
    "uid": "62.002"
   },
   "google-israel": {
-   "checked_at": "2026-11-01T10:27:41Z",
+   "checked_at": "2026-11-08T10:17:37Z",
    "evidence": "",
    "name": "Google Israel",
    "note": "no ATS found (custom careers site?)",
@@ -498,11 +499,11 @@
   },
   "guardio": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:45Z",
+   "checked_at": "2026-11-08T10:13:52Z",
    "evidence": "link on https://guard.io/careers",
    "fail_count": 0,
-   "israel_jobs": 19,
-   "jobs": 19,
+   "israel_jobs": 15,
+   "jobs": 15,
    "name": "Guardio",
    "status": "ok",
    "token": "7502BE015F0249041D01D40EA03A801D40EA0",
@@ -510,24 +511,24 @@
   },
   "guardz": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:51Z",
+   "checked_at": "2026-11-08T10:14:00Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 2,
-   "jobs": 3,
+   "jobs": 2,
    "name": "Guardz",
    "status": "ok",
    "token": "guardz"
   },
   "hailo": {
-   "checked_at": "2026-11-01T10:27:31Z",
+   "checked_at": "2026-11-08T10:17:34Z",
    "evidence": "",
    "name": "Hailo",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "harel": {
-   "checked_at": "2026-11-01T10:28:47Z",
+   "checked_at": "2026-11-08T10:18:38Z",
    "evidence": "",
    "name": "Harel",
    "note": "no ATS found (custom careers site?)",
@@ -535,7 +536,7 @@
   },
   "hibob": {
    "ats": "smartrecruiters",
-   "checked_at": "2026-11-01T10:25:54Z",
+   "checked_at": "2026-11-08T10:16:14Z",
    "evidence": "slug probe",
    "israel_jobs": 0,
    "jobs": 1,
@@ -545,7 +546,7 @@
    "token": "hibob"
   },
   "hilan": {
-   "checked_at": "2026-11-01T10:26:42Z",
+   "checked_at": "2026-11-08T10:16:47Z",
    "evidence": "",
    "name": "Hilan",
    "note": "no ATS found (custom careers site?)",
@@ -553,7 +554,7 @@
   },
   "hub-security": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:53Z",
+   "checked_at": "2026-11-08T10:14:02Z",
    "evidence": "link on https://www.hubsecurity.com/careers",
    "fail_count": 0,
    "israel_jobs": 0,
@@ -564,14 +565,14 @@
    "uid": "07.00F"
   },
   "ibm-israel": {
-   "checked_at": "2026-11-01T10:27:55Z",
+   "checked_at": "2026-11-08T10:17:53Z",
    "evidence": "",
    "name": "IBM Israel",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "imperva": {
-   "checked_at": "2026-11-01T10:25:19Z",
+   "checked_at": "2026-11-08T10:15:40Z",
    "evidence": "",
    "name": "Imperva",
    "note": "no ATS found (custom careers site?)",
@@ -579,11 +580,11 @@
   },
   "innoviz": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:24:04Z",
+   "checked_at": "2026-11-08T10:14:10Z",
    "evidence": "link on https://innoviz.tech/join-us",
    "fail_count": 0,
    "israel_jobs": 3,
-   "jobs": 3,
+   "jobs": 4,
    "name": "Innoviz",
    "status": "ok",
    "token": "25495012A0104C012A0104C6FCBA40",
@@ -591,28 +592,28 @@
   },
   "island": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:40Z",
+   "checked_at": "2026-11-08T10:13:49Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 10,
-   "jobs": 36,
+   "israel_jobs": 11,
+   "jobs": 37,
    "name": "Island",
    "status": "ok",
    "token": "island"
   },
   "israel-aerospace-industries": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:28:06Z",
+   "checked_at": "2026-11-08T10:18:00Z",
    "evidence": "slug probe",
    "israel_jobs": 0,
-   "jobs": 5,
+   "jobs": 1,
    "name": "Israel Aerospace Industries",
    "note": "board has no job located in Israel - confirm it is the right company",
    "status": "review",
    "token": "iai"
   },
   "israel-discount-bank": {
-   "checked_at": "2026-11-01T10:28:32Z",
+   "checked_at": "2026-11-08T10:18:17Z",
    "evidence": "",
    "name": "Israel Discount Bank",
    "note": "no ATS found (custom careers site?)",
@@ -620,7 +621,7 @@
   },
   "israel-national-cyber-directorate": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:28:06Z",
+   "checked_at": "2026-11-08T10:18:03Z",
    "evidence": "slug probe",
    "israel_jobs": 0,
    "jobs": 2,
@@ -630,7 +631,7 @@
    "token": "national"
   },
   "israel-security-agency": {
-   "checked_at": "2026-11-01T10:28:08Z",
+   "checked_at": "2026-11-08T10:18:04Z",
    "evidence": "",
    "name": "Israel Security Agency",
    "note": "no ATS found (custom careers site?)",
@@ -638,17 +639,17 @@
   },
   "jfrog": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 21,
+   "israel_jobs": 22,
    "jobs": 74,
    "name": "JFrog",
    "status": "ok",
    "token": "jfrog"
   },
   "jit": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "Jit",
    "note": "no ATS found (custom careers site?)",
@@ -656,7 +657,7 @@
   },
   "kaltura": {
    "ats": "smartrecruiters",
-   "checked_at": "2026-11-01T10:24:02Z",
+   "checked_at": "2026-11-08T10:14:08Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 3,
@@ -666,7 +667,7 @@
    "token": "kalturainc"
   },
   "karamba-security": {
-   "checked_at": "2026-11-01T10:25:01Z",
+   "checked_at": "2026-11-08T10:15:17Z",
    "evidence": "",
    "name": "Karamba Security",
    "note": "no ATS found (custom careers site?)",
@@ -674,7 +675,7 @@
   },
   "lightrun": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:02Z",
+   "checked_at": "2026-11-08T10:14:08Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 1,
@@ -685,7 +686,7 @@
   },
   "linx-security": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:24:05Z",
+   "checked_at": "2026-11-08T10:14:11Z",
    "evidence": "link on https://linx.security/careers",
    "fail_count": 0,
    "israel_jobs": 5,
@@ -696,7 +697,7 @@
    "uid": "99.00C"
   },
   "malam-team": {
-   "checked_at": "2026-11-01T10:26:15Z",
+   "checked_at": "2026-11-08T10:16:27Z",
    "evidence": "",
    "name": "Malam Team",
    "note": "no ATS found (custom careers site?)",
@@ -704,7 +705,7 @@
   },
   "melio": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 0,
@@ -714,7 +715,7 @@
    "token": "melio"
   },
   "memcyco": {
-   "checked_at": "2026-11-01T10:24:40Z",
+   "checked_at": "2026-11-08T10:14:44Z",
    "evidence": "",
    "name": "Memcyco",
    "note": "no ATS found (custom careers site?)",
@@ -722,17 +723,17 @@
   },
   "mend-io": {
    "ats": "ashby",
-   "checked_at": "2026-11-01T10:24:01Z",
+   "checked_at": "2026-11-08T10:14:07Z",
    "evidence": "link on https://mend.io/careers",
    "fail_count": 0,
-   "israel_jobs": 2,
+   "israel_jobs": 3,
    "jobs": 9,
    "name": "Mend.io",
    "status": "ok",
    "token": "mend-io"
   },
   "migdal": {
-   "checked_at": "2026-11-01T10:28:54Z",
+   "checked_at": "2026-11-08T10:18:45Z",
    "evidence": "",
    "name": "Migdal",
    "note": "no ATS found (custom careers site?)",
@@ -740,7 +741,7 @@
   },
   "mitiga": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:44Z",
+   "checked_at": "2026-11-08T10:13:52Z",
    "evidence": "link on https://mitiga.io/careers",
    "fail_count": 0,
    "israel_jobs": 2,
@@ -751,7 +752,7 @@
    "uid": "26.00B"
   },
   "mizrahi-tefahot": {
-   "checked_at": "2026-11-01T10:28:34Z",
+   "checked_at": "2026-11-08T10:18:28Z",
    "evidence": "",
    "name": "Mizrahi Tefahot",
    "note": "no ATS found (custom careers site?)",
@@ -759,29 +760,29 @@
   },
   "moon-active": {
    "ats": "ashby",
-   "checked_at": "2026-11-01T10:24:03Z",
+   "checked_at": "2026-11-08T10:14:09Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 25,
-   "jobs": 34,
+   "israel_jobs": 23,
+   "jobs": 31,
    "name": "Moon Active",
    "status": "ok",
    "token": "moonactive"
   },
   "nagomi-security": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:48Z",
+   "checked_at": "2026-11-08T10:13:56Z",
    "evidence": "link on https://nagomisecurity.com/careers",
    "fail_count": 0,
-   "israel_jobs": 5,
-   "jobs": 6,
+   "israel_jobs": 3,
+   "jobs": 4,
    "name": "Nagomi Security",
    "status": "ok",
    "token": "98B42CD98B98B4C5855E3262C262C262C3942",
    "uid": "89.00B"
   },
   "nayax": {
-   "checked_at": "2026-11-01T10:26:21Z",
+   "checked_at": "2026-11-08T10:16:28Z",
    "evidence": "",
    "name": "Nayax",
    "note": "no ATS found (custom careers site?)",
@@ -789,7 +790,7 @@
   },
   "ness-technologies": {
    "ats": "smartrecruiters",
-   "checked_at": "2026-11-01T10:24:04Z",
+   "checked_at": "2026-11-08T10:14:11Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 1,
@@ -799,14 +800,14 @@
    "token": "nesstechnologies"
   },
   "newcore": {
-   "checked_at": "2026-11-01T10:29:39Z",
+   "checked_at": "2026-11-08T10:19:20Z",
    "evidence": "",
    "name": "NewCore",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "next-insurance": {
-   "checked_at": "2026-11-01T10:26:21Z",
+   "checked_at": "2026-11-08T10:16:39Z",
    "evidence": "",
    "name": "Next Insurance",
    "note": "no ATS found (custom careers site?)",
@@ -814,24 +815,24 @@
   },
   "nice": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:01Z",
+   "checked_at": "2026-11-08T10:14:07Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 18,
-   "jobs": 172,
+   "israel_jobs": 12,
+   "jobs": 118,
    "name": "NICE",
    "status": "ok",
    "token": "nice"
   },
   "nokod-security": {
-   "checked_at": "2026-11-01T10:25:07Z",
+   "checked_at": "2026-11-08T10:15:23Z",
    "evidence": "",
    "name": "Nokod Security",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "noma-security": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "Noma Security",
    "note": "no ATS found (custom careers site?)",
@@ -839,11 +840,11 @@
   },
   "novee-security": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:24:04Z",
+   "checked_at": "2026-11-08T10:14:11Z",
    "evidence": "link on https://novee.security/careers",
    "fail_count": 0,
    "israel_jobs": 8,
-   "jobs": 19,
+   "jobs": 18,
    "name": "Novee Security",
    "status": "ok",
    "token": "AA84A983FF0002AA01FF8155035483FF0",
@@ -851,7 +852,7 @@
   },
   "oasis-security": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:46Z",
+   "checked_at": "2026-11-08T10:13:53Z",
    "evidence": "link on https://oasis.security/careers",
    "fail_count": 0,
    "israel_jobs": 0,
@@ -861,7 +862,7 @@
    "token": "oasissecurity"
   },
   "one1": {
-   "checked_at": "2026-11-01T10:26:43Z",
+   "checked_at": "2026-11-08T10:16:49Z",
    "evidence": "",
    "name": "One1",
    "note": "no ATS found (custom careers site?)",
@@ -869,17 +870,17 @@
   },
   "optimove": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:02Z",
+   "checked_at": "2026-11-08T10:14:08Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 1,
-   "jobs": 8,
+   "jobs": 6,
    "name": "Optimove",
    "status": "ok",
    "token": "optimove"
   },
   "oracle-israel": {
-   "checked_at": "2026-11-01T10:27:51Z",
+   "checked_at": "2026-11-08T10:17:45Z",
    "evidence": "",
    "name": "Oracle Israel",
    "note": "no ATS found (custom careers site?)",
@@ -887,18 +888,18 @@
   },
   "orca-security": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:40Z",
+   "checked_at": "2026-11-08T10:13:49Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 2,
-   "jobs": 9,
+   "israel_jobs": 4,
+   "jobs": 13,
    "name": "Orca Security",
    "status": "ok",
    "token": "orcasecurity"
   },
   "orchid-security": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:46Z",
+   "checked_at": "2026-11-08T10:13:54Z",
    "evidence": "link on https://orchid.security/careers",
    "fail_count": 0,
    "israel_jobs": 1,
@@ -910,22 +911,22 @@
   },
   "otorio": {
    "ats": "smartrecruiters",
-   "checked_at": "2026-11-01T10:23:51Z",
+   "checked_at": "2026-11-08T10:14:00Z",
    "evidence": "link on https://otorio.com/careers",
    "fail_count": 0,
    "israel_jobs": 23,
-   "jobs": 731,
+   "jobs": 745,
    "name": "Otorio",
    "status": "ok",
    "token": "ServiceNow"
   },
   "ox-security": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:41Z",
+   "checked_at": "2026-11-08T10:13:50Z",
    "evidence": "link on https://ox.security/careers",
    "fail_count": 0,
    "israel_jobs": 7,
-   "jobs": 40,
+   "jobs": 36,
    "name": "OX Security",
    "status": "ok",
    "token": "8F635C447B035C42CCE2CCE23D83EBA35C48F6",
@@ -933,23 +934,23 @@
   },
   "pagaya": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "link on https://pagaya.com/careers",
    "fail_count": 0,
    "israel_jobs": 0,
-   "jobs": 15,
+   "jobs": 14,
    "name": "Pagaya",
    "status": "ok",
    "token": "pagaya"
   },
   "palo-alto-networks": {
    "ats": "workday",
-   "checked_at": "2026-11-01T10:23:32Z",
+   "checked_at": "2026-11-08T10:13:45Z",
    "evidence": "link on https://jobs.paloaltonetworks.com",
    "fail_count": 0,
    "host": "paloaltonetworks.wd5.myworkdayjobs.com",
-   "israel_jobs": 124,
-   "jobs": 125,
+   "israel_jobs": 114,
+   "jobs": 115,
    "name": "Palo Alto Networks",
    "site": "panwexternalcareers",
    "status": "ok",
@@ -957,7 +958,7 @@
   },
   "panorays": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:43Z",
+   "checked_at": "2026-11-08T10:13:51Z",
    "evidence": "link on https://panorays.com/careers",
    "fail_count": 0,
    "israel_jobs": 1,
@@ -968,14 +969,14 @@
    "uid": "97.00D"
   },
   "papaya-global": {
-   "checked_at": "2026-11-01T10:26:22Z",
+   "checked_at": "2026-11-08T10:16:40Z",
    "evidence": "",
    "name": "Papaya Global",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "partner": {
-   "checked_at": "2026-11-01T10:29:06Z",
+   "checked_at": "2026-11-08T10:18:58Z",
    "evidence": "",
    "name": "Partner",
    "note": "no ATS found (custom careers site?)",
@@ -983,52 +984,52 @@
   },
   "payoneer": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 25,
-   "jobs": 104,
+   "israel_jobs": 22,
+   "jobs": 99,
    "name": "Payoneer",
    "status": "ok",
    "token": "payoneer"
   },
   "perception-point": {
-   "checked_at": "2026-11-01T10:24:45Z",
+   "checked_at": "2026-11-08T10:14:44Z",
    "evidence": "",
    "name": "Perception Point",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "pillar-security": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "Pillar Security",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "plarium": {
-   "checked_at": "2026-11-01T10:27:30Z",
+   "checked_at": "2026-11-08T10:17:27Z",
    "evidence": "",
    "name": "Plarium",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "playtika": {
-   "checked_at": "2026-11-01T10:25:46Z",
+   "checked_at": "2026-11-08T10:16:09Z",
    "evidence": "",
    "name": "Playtika",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "pliops": {
-   "checked_at": "2026-11-01T10:26:55Z",
+   "checked_at": "2026-11-08T10:17:06Z",
    "evidence": "",
    "name": "Pliops",
    "note": "comeet uid=05.004 found but token not found - add manually",
    "status": "none"
   },
   "plus500": {
-   "checked_at": "2026-11-01T10:26:37Z",
+   "checked_at": "2026-11-08T10:16:45Z",
    "evidence": "",
    "name": "Plus500",
    "note": "no ATS found (custom careers site?)",
@@ -1036,10 +1037,10 @@
   },
   "quantum-art": {
    "ats": "ashby",
-   "checked_at": "2026-11-01T10:29:24Z",
+   "checked_at": "2026-11-08T10:19:15Z",
    "evidence": "slug probe",
    "israel_jobs": 0,
-   "jobs": 17,
+   "jobs": 16,
    "name": "Quantum Art",
    "note": "board has no job located in Israel - confirm it is the right company",
    "status": "review",
@@ -1047,39 +1048,39 @@
   },
   "quicklizard": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:24:05Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "link on https://quicklizard.com/careers",
    "fail_count": 0,
-   "israel_jobs": 7,
-   "jobs": 8,
+   "israel_jobs": 6,
+   "jobs": 7,
    "name": "Quicklizard",
    "status": "ok",
    "token": "9C4445C13881D4C1D4C445C57E43A98445C1388",
    "uid": "C9.004"
   },
   "radware": {
-   "checked_at": "2026-11-01T10:25:29Z",
+   "checked_at": "2026-11-08T10:15:46Z",
    "evidence": "",
    "name": "Radware",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "rafael": {
-   "checked_at": "2026-11-01T10:28:04Z",
+   "checked_at": "2026-11-08T10:17:59Z",
    "evidence": "",
    "name": "Rafael",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "rapid7": {
-   "checked_at": "2026-11-01T10:25:25Z",
+   "checked_at": "2026-11-08T10:15:40Z",
    "evidence": "",
    "name": "Rapid7",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "rapyd": {
-   "checked_at": "2026-11-01T10:25:51Z",
+   "checked_at": "2026-11-08T10:16:13Z",
    "evidence": "",
    "name": "Rapyd",
    "note": "no ATS found (custom careers site?)",
@@ -1087,7 +1088,7 @@
   },
   "reco": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:46Z",
+   "checked_at": "2026-11-08T10:13:54Z",
    "evidence": "link on https://reco.ai/careers",
    "fail_count": 0,
    "israel_jobs": 1,
@@ -1099,10 +1100,10 @@
   },
   "riskified": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 15,
+   "israel_jobs": 13,
    "jobs": 37,
    "name": "Riskified",
    "status": "ok",
@@ -1110,7 +1111,7 @@
   },
   "safebreach": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:45Z",
+   "checked_at": "2026-11-08T10:13:52Z",
    "evidence": "link on https://safebreach.com/careers",
    "fail_count": 0,
    "israel_jobs": 3,
@@ -1121,24 +1122,24 @@
   },
   "salt-security": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:48Z",
+   "checked_at": "2026-11-08T10:13:55Z",
    "evidence": "link on https://salt.security/careers",
    "fail_count": 0,
-   "israel_jobs": 1,
-   "jobs": 10,
+   "israel_jobs": 2,
+   "jobs": 12,
    "name": "Salt Security",
    "status": "ok",
    "token": "saltsecurity"
   },
   "sap-israel": {
-   "checked_at": "2026-11-01T10:27:54Z",
+   "checked_at": "2026-11-08T10:17:46Z",
    "evidence": "",
    "name": "SAP Israel",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "sapiens": {
-   "checked_at": "2026-11-01T10:26:14Z",
+   "checked_at": "2026-11-08T10:16:23Z",
    "evidence": "",
    "name": "Sapiens",
    "note": "no ATS found (custom careers site?)",
@@ -1146,11 +1147,11 @@
   },
   "secondnature": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "link on https://secondnature.ai/careers",
    "fail_count": 0,
-   "israel_jobs": 5,
-   "jobs": 5,
+   "israel_jobs": 4,
+   "jobs": 4,
    "name": "SecondNature",
    "status": "ok",
    "token": "AFC4CE44CE4AFC20F4AFC36EC57E057E057E0",
@@ -1158,62 +1159,62 @@
   },
   "semperis": {
    "ats": "ashby",
-   "checked_at": "2026-11-01T10:23:46Z",
+   "checked_at": "2026-11-08T10:13:53Z",
    "evidence": "link on https://semperis.com/careers/",
    "fail_count": 0,
-   "israel_jobs": 5,
-   "jobs": 27,
+   "israel_jobs": 4,
+   "jobs": 24,
    "name": "Semperis",
    "status": "ok",
    "token": "semperis"
   },
   "sentinelone": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:40Z",
+   "checked_at": "2026-11-08T10:13:49Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 20,
-   "jobs": 290,
+   "jobs": 264,
    "name": "SentinelOne",
    "status": "ok",
    "token": "sentinellabs"
   },
   "similarweb": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "link on https://similarweb.com/careers",
    "fail_count": 0,
-   "israel_jobs": 27,
-   "jobs": 61,
+   "israel_jobs": 26,
+   "jobs": 58,
    "name": "Similarweb",
    "status": "ok",
    "token": "similarweb"
   },
   "sisense": {
    "ats": "ashby",
-   "checked_at": "2026-11-01T10:24:02Z",
+   "checked_at": "2026-11-08T10:14:08Z",
    "evidence": "link on https://sisense.com/careers",
    "fail_count": 0,
-   "israel_jobs": 2,
-   "jobs": 5,
+   "israel_jobs": 1,
+   "jobs": 4,
    "name": "Sisense",
    "status": "ok",
    "token": "sisense"
   },
   "snyk": {
    "ats": "ashby",
-   "checked_at": "2026-11-01T10:23:40Z",
+   "checked_at": "2026-11-08T10:13:50Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 1,
-   "jobs": 37,
+   "jobs": 39,
    "name": "Snyk",
    "status": "ok",
    "token": "snyk"
   },
   "source-defense": {
    "ats": "lever",
-   "checked_at": "2026-11-01T10:25:02Z",
+   "checked_at": "2026-11-08T10:15:21Z",
    "evidence": "slug probe",
    "israel_jobs": 0,
    "jobs": 3,
@@ -1223,7 +1224,7 @@
    "token": "source"
   },
   "spera-security": {
-   "checked_at": "2026-11-01T10:24:31Z",
+   "checked_at": "2026-11-08T10:14:40Z",
    "evidence": "",
    "name": "Spera Security",
    "note": "no ATS found (custom careers site?)",
@@ -1231,42 +1232,42 @@
   },
   "sweet-security": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:44Z",
+   "checked_at": "2026-11-08T10:13:52Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 2,
-   "jobs": 6,
+   "jobs": 7,
    "name": "Sweet Security",
    "status": "ok",
    "token": "sweetsecurity"
   },
   "taboola": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:55Z",
+   "checked_at": "2026-11-08T10:14:04Z",
    "evidence": "slug probe",
    "fail_count": 0,
    "israel_jobs": 29,
-   "jobs": 89,
+   "jobs": 87,
    "name": "Taboola",
    "status": "ok",
    "token": "taboola"
   },
   "teads": {
-   "checked_at": "2026-11-01T10:25:43Z",
+   "checked_at": "2026-11-08T10:16:00Z",
    "evidence": "",
    "name": "Teads",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "team8": {
-   "checked_at": "2026-11-01T10:24:57Z",
+   "checked_at": "2026-11-08T10:15:12Z",
    "evidence": "",
    "name": "Team8",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "the-phoenix": {
-   "checked_at": "2026-11-01T10:28:50Z",
+   "checked_at": "2026-11-08T10:18:40Z",
    "evidence": "",
    "name": "The Phoenix",
    "note": "no ATS found (custom careers site?)",
@@ -1274,10 +1275,10 @@
   },
   "tipalti": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:01Z",
+   "checked_at": "2026-11-08T10:14:06Z",
    "evidence": "link on https://tipalti.com/jobs",
    "fail_count": 0,
-   "israel_jobs": 8,
+   "israel_jobs": 7,
    "jobs": 11,
    "name": "Tipalti",
    "status": "ok",
@@ -1285,7 +1286,7 @@
   },
   "token-security": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:46Z",
+   "checked_at": "2026-11-08T10:13:53Z",
    "evidence": "link on https://token.security/company/careers",
    "fail_count": 0,
    "israel_jobs": 3,
@@ -1296,28 +1297,28 @@
   },
   "torq": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:43Z",
+   "checked_at": "2026-11-08T10:13:50Z",
    "evidence": "link on https://torq.io/careers",
    "fail_count": 0,
-   "israel_jobs": 2,
-   "jobs": 20,
+   "israel_jobs": 1,
+   "jobs": 15,
    "name": "Torq",
    "status": "ok",
    "token": "torq"
   },
   "transmit-security": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:41Z",
+   "checked_at": "2026-11-08T10:13:50Z",
    "evidence": "link on https://transmitsecurity.com/careers",
    "fail_count": 0,
-   "israel_jobs": 9,
-   "jobs": 10,
+   "israel_jobs": 7,
+   "jobs": 8,
    "name": "Transmit Security",
    "status": "ok",
    "token": "transmitsecurity"
   },
   "tufin": {
-   "checked_at": "2026-11-01T10:25:05Z",
+   "checked_at": "2026-11-08T10:15:23Z",
    "evidence": "",
    "name": "Tufin",
    "note": "no ATS found (custom careers site?)",
@@ -1325,17 +1326,17 @@
   },
   "unframe": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:05Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "link on https://unframe.ai/careers",
    "fail_count": 0,
-   "israel_jobs": 13,
-   "jobs": 35,
+   "israel_jobs": 10,
+   "jobs": 31,
    "name": "Unframe",
    "status": "ok",
    "token": "unframe"
   },
   "varonis": {
-   "checked_at": "2026-11-01T10:24:06Z",
+   "checked_at": "2026-11-08T10:14:12Z",
    "evidence": "",
    "name": "Varonis",
    "note": "no ATS found (custom careers site?)",
@@ -1343,31 +1344,31 @@
   },
   "vast-data": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:26:00Z",
+   "checked_at": "2026-11-08T10:16:21Z",
    "evidence": "slug probe",
    "israel_jobs": 0,
-   "jobs": 192,
+   "jobs": 205,
    "name": "VAST Data",
    "note": "board has no job located in Israel - confirm it is the right company",
    "status": "review",
    "token": "vast"
   },
   "verbit": {
-   "checked_at": "2026-11-01T10:27:30Z",
+   "checked_at": "2026-11-08T10:17:33Z",
    "evidence": "",
    "name": "Verbit",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "verint": {
-   "checked_at": "2026-11-01T10:26:41Z",
+   "checked_at": "2026-11-08T10:16:45Z",
    "evidence": "",
    "name": "Verint",
    "note": "no ATS found (custom careers site?)",
    "status": "none"
   },
   "veriti": {
-   "checked_at": "2026-11-01T10:24:20Z",
+   "checked_at": "2026-11-08T10:14:33Z",
    "evidence": "",
    "name": "Veriti",
    "note": "no ATS found (custom careers site?)",
@@ -1375,17 +1376,17 @@
   },
   "via": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:02Z",
+   "checked_at": "2026-11-08T10:14:07Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 10,
-   "jobs": 176,
+   "israel_jobs": 12,
+   "jobs": 177,
    "name": "Via",
    "status": "ok",
    "token": "via"
   },
   "weka": {
-   "checked_at": "2026-11-01T10:26:52Z",
+   "checked_at": "2026-11-08T10:16:57Z",
    "evidence": "",
    "name": "WEKA",
    "note": "no ATS found (custom careers site?)",
@@ -1393,44 +1394,44 @@
   },
   "wiz": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:23:30Z",
+   "checked_at": "2026-11-08T10:13:43Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 25,
-   "jobs": 115,
+   "israel_jobs": 27,
+   "jobs": 112,
    "name": "Wiz",
    "status": "ok",
    "token": "wizinc"
   },
   "yotpo": {
    "ats": "greenhouse",
-   "checked_at": "2026-11-01T10:24:02Z",
+   "checked_at": "2026-11-08T10:14:07Z",
    "evidence": "slug probe",
    "fail_count": 0,
-   "israel_jobs": 6,
-   "jobs": 18,
+   "israel_jobs": 7,
+   "jobs": 19,
    "name": "Yotpo",
    "status": "ok",
    "token": "yotpo"
   },
   "zafran": {
    "ats": "ashby",
-   "checked_at": "2026-11-01T10:23:44Z",
+   "checked_at": "2026-11-08T10:13:51Z",
    "evidence": "link on https://zafran.io/careers",
    "fail_count": 0,
-   "israel_jobs": 9,
-   "jobs": 29,
+   "israel_jobs": 11,
+   "jobs": 32,
    "name": "Zafran",
    "status": "ok",
    "token": "zafran-security"
   },
   "zenity": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:41Z",
+   "checked_at": "2026-11-08T10:13:50Z",
    "evidence": "link on https://zenity.io/careers",
    "fail_count": 0,
-   "israel_jobs": 13,
-   "jobs": 30,
+   "israel_jobs": 12,
+   "jobs": 29,
    "name": "Zenity",
    "status": "ok",
    "token": "9103660519012202D5024401B3091024403660",
@@ -1438,16 +1439,16 @@
   },
   "zero-networks": {
    "ats": "comeet",
-   "checked_at": "2026-11-01T10:23:46Z",
+   "checked_at": "2026-11-08T10:13:53Z",
    "evidence": "link on https://zeronetworks.com/careers",
    "fail_count": 0,
-   "israel_jobs": 5,
-   "jobs": 11,
+   "israel_jobs": 6,
+   "jobs": 14,
    "name": "Zero Networks",
    "status": "ok",
    "token": "93F40B9001BBD49F824FC49F824FC377A",
    "uid": "39.00F"
   }
  },
- "generated_at": "2026-11-01T10:42:15.618082+00:00"
+ "generated_at": "2026-11-08T10:32:02.939894+00:00"
 }
