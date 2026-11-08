@@ -16,14 +16,15 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 14
+FILTERS_VERSION = 15
 # v9: new role titles ("מהנדס תוכנה" without ת, Software Development Engineer, Offensive Researcher, Software
 # Quality Engineer, Development Operations)
 # v10: "בודק/ת אוטומציה" (QA automation) title
 # v12: "אינטגרציית תוכנה" (software integration) title
 # v13: "Software Automation" titles
 # v14: bare "Automation Engineer" by description, SOAR, App Sec, Hebrew penetration testing, mobile security research
-RECHECK_NOTES = r"^title not in role families$|^role excluded: (mobile|android|ios)$"
+# v15: "Full-time or Student" and "Junior / Student" titles are open to graduates
+RECHECK_NOTES = r"^title not in role families$|^role excluded: (mobile|android|ios)$|^student/part-time position$"
 # No posting asks for more than this; a larger number next to "experience" describes the company
 MAX_PLAUSIBLE_YEARS = 15
 
@@ -362,7 +363,9 @@ class Classifier:
         if (lvl := (job.level or "").lower()) and re.search(r"senior|lead|manager|director|executive|mid[\s-]?senior|principal", lvl):
             return Verdict(False, reject_reason=f"source level: {job.level}", stage=1)
         student_hit = _any(self.student, t)
-        if student_hit and not m["include_student_parttime"] and not intern_hit:
+        # "Software Developer (Full-time or Student, min. 50%)" and "Junior / Student" are open to graduates
+        open_to_grads = entry_hit or re.search(r"full[\s-]?time|משרה\s+מלאה", t, re.I)
+        if student_hit and not m["include_student_parttime"] and not intern_hit and not open_to_grads:
             return Verdict(False, reject_reason="student/part-time position", stage=1)
         if intern_hit and not m["include_internships"]:
             return Verdict(False, reject_reason="internship excluded", stage=1)

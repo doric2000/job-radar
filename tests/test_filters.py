@@ -302,6 +302,10 @@ class TestClassifier(unittest.TestCase):
 
     def test_student_parttime_excluded_by_default(self):
         self.assertFalse(self.c.classify(J("Backend Developer - Student Position")).accept)
+        # open to graduates too
+        self.assertTrue(self.c.classify(J("Software Developer (Full-time or Student, min. 50%)", loc="Tel Aviv",
+                                          desc="Requirements: B.Sc in Computer Science, 0-1 years of experience")).accept)
+        self.assertTrue(self.c.classify(J("Junior / Student Backend Developer", loc="Tel Aviv")).accept)
 
     def test_clearance_tag(self):
         v = self.c.classify(J("Junior Software Engineer", desc="Candidates must hold a security clearance"))
