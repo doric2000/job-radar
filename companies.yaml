@@ -9,7 +9,7 @@
 # environment. The "discover" workflow checks each one against live services and writes data/resolved.json
 # plus data/discovery_report.md (resolved / needs review / not found). Fix or add entries freely.
 
-- {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1}   # careers.checkpoint.com answers 403 to GitHub runners; radar/fetchers/checkpoint.py works from a home connection (ats: checkpoint). Covered via LinkedIn meanwhile.
+- {name: "Check Point", domain: checkpoint.com, cat: cyber, tier: 1, ats: smartrecruiters, token: CheckPointSoftwareTechnologies2}   # careers.checkpoint.com answers 403 to GitHub runners; radar/fetchers/checkpoint.py works from a home connection (ats: checkpoint). Covered via LinkedIn meanwhile.
 - {name: "CyberArk", domain: cyberark.com, cat: cyber, tier: 1}   # acquired by Palo Alto Networks: jobs appear on the Palo Alto board
 - {name: "Wiz", domain: wiz.io, cat: cyber, tier: 1, slugs: [wizinc, wiz]}
 - {name: "Palo Alto Networks", domain: paloaltonetworks.com, cat: cyber, tier: 1}
@@ -130,7 +130,7 @@
 - {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}   # malamteam.com is behind a Cloudflare bot challenge; not scraped. Its jobs arrive via LinkedIn only.
 - {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3, ats: ashby, token: lemonade}
 - {name: "Nayax", domain: nayax.com, cat: tech, tier: 3, ats: comeet, uid: "13.009", token: 319F7D319C641BE11BE131963231915AF}
-- {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3}
+- {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3, ats: greenhouse, token: nextinsurance66}
 - {name: "Papaya Global", domain: papayaglobal.com, cat: tech, tier: 3, ats: comeet, uid: "16.005", token: 615247E02A931E6930A81E691E691E6936BD}
 - {name: "Yotpo", domain: yotpo.com, cat: tech, tier: 3}
 - {name: "Lusha", domain: lusha.com, cat: tech, tier: 1, ats: comeet, uid: "73.00B", token: 37B11676F61F53DEC6F606F61BD8185D}
@@ -276,3 +276,32 @@
 - {name: "ScyllaDB", domain: scylladb.com, cat: tech, tier: 2, ats: comeet, uid: "E4.006", token: 4E6187E1D64224A0013984E60187E}
 - {name: "AudioCodes", domain: audiocodes.com, cat: tech, tier: 2, ats: comeet, uid: "85.004", token: 5841B942C2058431A4108C269C108C0108C}
 - {name: "A.S HR Services", domain: as_hrservices.com, cat: tech, tier: 2, ats: comeet, uid: "79.004", token: 974422C04BA038B897438B897455145514}
+
+# Boards found through "site:<job platform> <role> Israel" searches, scanned directly (added 2026-11-08)
+- {name: "Figma", domain: figma.com, cat: tech, tier: 2, ats: greenhouse, token: figma}
+- {name: "At-Bay", domain: atbay.com, cat: cyber, tier: 2, ats: greenhouse, token: atbayjobs}
+- {name: "DoiT", domain: doit.com, cat: tech, tier: 2, ats: greenhouse, token: doitintl}
+- {name: "Aidoc", domain: aidoc.com, cat: tech, tier: 2, ats: greenhouse, token: aidocmedical}
+- {name: "Venn", domain: venn.com, cat: tech, tier: 2, ats: greenhouse, token: venncity}
+- {name: "WeDev", domain: wedev.com, cat: tech, tier: 2, ats: greenhouse, token: wedev}
+- {name: "Tenable", domain: tenable.com, cat: cyber, tier: 2, ats: greenhouse, token: tenableinc}
+- {name: "Zscaler", domain: zscaler.com, cat: cyber, tier: 2, ats: greenhouse, token: zscaler}
+- {name: "BigID", domain: bigid.com, cat: cyber, tier: 2, ats: greenhouse, token: bigid}
+- {name: "Pontera", domain: pontera.com, cat: tech, tier: 2, ats: greenhouse, token: pontera}
+- {name: "OPSWAT", domain: opswat.com, cat: cyber, tier: 2, ats: greenhouse, token: opswat}
+- {name: "Traild", domain: traild.com, cat: tech, tier: 2, ats: lever, token: traildsoftware}
+- {name: "WalkMe", domain: walkme.com, cat: tech, tier: 2, ats: lever, token: walkme}
+- {name: "Zadara", domain: zadara.com, cat: tech, tier: 2, ats: lever, token: Zadara}
+- {name: "Lendbuzz", domain: lendbuzz.com, cat: tech, tier: 2, ats: lever, token: lendbuzz}
+- {name: "CYE", domain: cye.com, cat: cyber, tier: 2, ats: lever, token: CYE}
+- {name: "Tavily", domain: tavily.com, cat: tech, tier: 2, ats: ashby, token: tavily}
+- {name: "HUMAN Security", domain: humansecurity.com, cat: cyber, tier: 2, ats: ashby, token: human}
+- {name: "Irregular", domain: irregular.com, cat: cyber, tier: 2, ats: ashby, token: Irregular}
+- {name: "Singular", domain: singular.com, cat: tech, tier: 2, ats: ashby, token: singular}
+- {name: "Matia", domain: matia.com, cat: tech, tier: 2, ats: ashby, token: matia}
+- {name: "Pi Security", domain: pisecurity.com, cat: cyber, tier: 2, ats: ashby, token: pi-security}
+- {name: "myTeam", domain: myteam.com, cat: cyber, tier: 2, ats: workable, token: myteam}
+- {name: "Risco Group", domain: riscogroup.com, cat: tech, tier: 2, ats: workable, token: risco}
+- {name: "Nodeworthy", domain: nodeworthy.com, cat: tech, tier: 2, ats: recruitee, token: nodeworthy}
+- {name: "IB1", domain: ib1.com, cat: tech, tier: 2, ats: recruitee, token: ib1}
+- {name: "Aikido Security", domain: aikidosecurity.com, cat: cyber, tier: 2, ats: recruitee, token: aikidosecurity}
