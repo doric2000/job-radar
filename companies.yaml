@@ -27,7 +27,7 @@
 - {name: "Snyk", domain: snyk.io, cat: cyber, tier: 1}
 - {name: "Upwind", domain: upwind.io, cat: cyber, tier: 1, ats: comeet, uid: "49.004", token: 94440DC0944094401BCC12882510}
 - {name: "Zenity", domain: zenity.io, cat: cyber, tier: 1}
-- {name: "Noma Security", domain: noma.security, cat: cyber, tier: 1}
+- {name: "Noma Security", domain: noma.security, cat: cyber, tier: 1, ats: comeet, uid: "3A.005", token: A35477328D4001E9F146A5BDD146A28D4}
 - {name: "Oligo Security", domain: oligo.security, cat: cyber, tier: 1, ats: ashby, token: oligo}
 - {name: "OX Security", domain: ox.security, cat: cyber, tier: 1}
 - {name: "Legit Security", domain: legitsecurity.com, cat: cyber, tier: 1, ats: comeet, uid: "37.004", token: 7342B38159C159C40D41CD0073440D42404}
@@ -77,7 +77,7 @@
 - {name: "Deep Instinct", domain: deepinstinct.com, cat: cyber, tier: 2}
 - {name: "Cyberbit", domain: cyberbit.com, cat: cyber, tier: 2}
 - {name: "Sygnia", domain: sygnia.co, cat: cyber, tier: 2, ats: comeet, uid: "78.00A", token: 87A32DC3B5687A196E2A6210F43B5610F43B56}
-- {name: "Team8", domain: team8.vc, cat: cyber, tier: 2}
+- {name: "Team8", domain: team8.vc, cat: cyber, tier: 2, ats: comeet, uid: "61.003", token: 16358C6EF2C61631639B558C0429}
 - {name: "ActiveFence", domain: activefence.com, cat: cyber, tier: 2}
 - {name: "Karamba Security", domain: karambasecurity.com, cat: cyber, tier: 2}
 - {name: "Source Defense", domain: sourcedefense.com, cat: cyber, tier: 2}   # slug probe matched an unrelated 'source' board
@@ -119,7 +119,7 @@
 - {name: "Forter", domain: forter.com, cat: tech, tier: 2}
 - {name: "Elementor", domain: elementor.com, cat: tech, tier: 2, ats: comeet, uid: "A3.00F", token: 3AF126BB0D161A3AF161A00B0D126B}
 - {name: "Redis", domain: redis.io, cat: tech, tier: 2, ats: ashby, token: redis}
-- {name: "VAST Data", domain: vastdata.com, cat: tech, tier: 2}   # slug probe matched an unrelated 'vast' board
+- {name: "VAST Data", domain: vastdata.com, cat: tech, tier: 2, ats: comeet, uid: "43.001", token: 34110453411D4968234168209C31D49}   # slug probe matched an unrelated 'vast' board
 - {name: "DriveNets", domain: drivenets.com, cat: tech, tier: 2, ats: comeet, uid: "72.006", token: 2769D81626762C4E762762C4EC4E1626}
 - {name: "Coralogix", domain: coralogix.com, cat: tech, tier: 2}
 - {name: "Mend.io", domain: mend.io, cat: tech, tier: 2}
@@ -129,7 +129,7 @@
 - {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 1, ats: rss, feed_url: "https://www.matrix.co.il/jobs/feed/?post_type=job", pages: 70, dates: false, desc_selector: div.job-item}   # staffing/IT services, ~530 jobs. The feed re-dates every job at each daily import, so dates are ignored and all pages are read (2026-11-01)
 - {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}   # malamteam.com is behind a Cloudflare bot challenge; not scraped. Its jobs arrive via LinkedIn only.
 - {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3, ats: ashby, token: lemonade}
-- {name: "Nayax", domain: nayax.com, cat: tech, tier: 3}
+- {name: "Nayax", domain: nayax.com, cat: tech, tier: 3, ats: comeet, uid: "13.009", token: 319F7D319C641BE11BE131963231915AF}
 - {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3}
 - {name: "Papaya Global", domain: papayaglobal.com, cat: tech, tier: 3}
 - {name: "Yotpo", domain: yotpo.com, cat: tech, tier: 3}
@@ -220,3 +220,36 @@
 - {name: "Bar-Ilan University", domain: biu.ac.il, cat: gov, tier: 2, ats: topmatch, token: D8D6FFC7-31E2-46C1-94B4-985C99B9A913, site: biu}
 - {name: "Bank Yahav", domain: bank-yahav.co.il, cat: bank, tier: 2, ats: topmatch, token: 776224a4-40cc-4875-b130-1bafee686c91, site: yahav}
 - {name: "Intuit", domain: intuit.com, cat: multinational, tier: 1, ats: radancy, host: jobs.intuit.com}   # Petah Tikva R&D
+
+# Comeet boards found through "site:comeet.com/jobs <role> Israel" searches, scanned directly (added 2026-11-08)
+- {name: "evoke (888)", domain: evokeplc.com, cat: tech, tier: 2, ats: comeet, uid: "E2.001", token: 2E1E65019E98A3E6519E98A311461427}
+- {name: "HyperGuest", domain: hyperguest.com, cat: tech, tier: 2, ats: comeet, uid: "09.00B", token: 90B3642516390B1B2148583F4D242C90B0}
+- {name: "BioCatch", domain: biocatch.com, cat: cyber, tier: 2, ats: comeet, uid: "03.00E", token: 30EF4630E92A1562156292A92A61C92A}
+- {name: "Israel Tech Guard", domain: israeltechguard.org, cat: cyber, tier: 2, ats: comeet, uid: "29.009", token: 92936F65271401F125212521B7B929527136F6}
+- {name: "Ryze Beyond", domain: ryzebeyond.com, cat: tech, tier: 2, ats: comeet, uid: "37.006", token: 7362B4415A21CD87360736327A240E2B44}
+- {name: "Deloitte Israel", domain: deloitte.co.il, cat: tech, tier: 2, ats: comeet, uid: "F7.00B", token: 7FB2FE21FEC3FD847D33FD8FF603FD81FEC}
+- {name: "AT&T Israel", domain: att.com, cat: tech, tier: 2, ats: comeet, uid: "38.00A", token: 83A315C29223996399641D039963996107418AE}
+- {name: "Be The Bank", domain: bethebank.co.il, cat: tech, tier: 2, ats: comeet, uid: "78.00B", token: 87B32E23B5D87B19712A6721EC197187B3B5D}
+- {name: "Bagira", domain: bagirasystems.com, cat: tech, tier: 2, ats: comeet, uid: "47.006", token: 7462BA415D2245E2BA432EA3A302BA44176245E}
+- {name: "Mize", domain: mize.tech, cat: tech, tier: 2, ats: comeet, uid: "88.000", token: 88033003B801100198011003B808802A804400}
+- {name: "Fullpath", domain: fullpath.com, cat: tech, tier: 2, ats: comeet, uid: "54.002", token: 452159A159A8A4CF61E3E229019EC26E21148}
+- {name: "Morphisec", domain: morphisec.com, cat: cyber, tier: 2, ats: comeet, uid: "65.00C", token: 56C1B1C2B600208825F42B601B1C0AD8}
+- {name: "Minimus", domain: minimus.io, cat: cyber, tier: 2, ats: comeet, uid: "19.00B", token: 91B36A251F31B5148D81B513FBD51F301B51}
+- {name: "AlgoSec", domain: algosec.com, cat: cyber, tier: 2, ats: comeet, uid: "71.006", token: 1765D874E8C4BB05D82ECA3AA3A176}
+- {name: "AllCloud", domain: allcloud.io, cat: tech, tier: 2, ats: comeet, uid: "71.008", token: 1785E0758A482F01785E01782F05E0}
+- {name: "Dream", domain: dream.security, cat: cyber, tier: 2, ats: comeet, uid: "99.002", token: 99242FE9921CB6042FE396C42FE132442FE}
+- {name: "KPMG Israel", domain: kpmg.co.il, cat: tech, tier: 2, ats: comeet, uid: "F3.007", token: 3F713D3FDCFDC17CA3F713D3BE57EEBE5}
+- {name: "Paragon", domain: paragon.com, cat: cyber, tier: 2, ats: comeet, uid: "76.006", token: 67626C46762D3A33B02D3A204E26C4676676}
+- {name: "Discount Bank", domain: discountbank.co.il, cat: tech, tier: 2, ats: comeet, uid: "F8.004", token: 8F435B847A035B802CC42CC4509447A035B8}
+- {name: "CommIT", domain: comm-it.co.il, cat: tech, tier: 2, ats: comeet, uid: "76.008", token: 67826D067833C0CF002D48020581368}
+- {name: "CodeValue", domain: codevalue.net, cat: tech, tier: 2, ats: comeet, uid: "81.009", token: 1896249367AD189DD1C48ABFDD1189}
+- {name: "Abra IT", domain: abra-it.com, cat: tech, tier: 2, ats: comeet, uid: "12.003", token: 21384C109806394262131098213426}
+- {name: "Abra R&D", domain: abra-rd.com, cat: tech, tier: 2, ats: comeet, uid: "15.007", token: 517197323A1A2E1973A2E145CA2E0A2E}
+- {name: "Kela Technologies", domain: kela.tech, cat: cyber, tier: 2, ats: comeet, uid: "2A.007", token: A2747111E755B5F0513847114711A274711}
+- {name: "Airobotics", domain: airobotics.co.il, cat: tech, tier: 2, ats: comeet, uid: "AA.005", token: AA54A8335395FCD5FCD01FEF1FEF2A94154A}
+- {name: "Optibus", domain: optibus.com, cat: tech, tier: 2, ats: comeet, uid: "D1.00C", token: 1DC770D04770594B281DC3B83B81DC}
+- {name: "Exodigo", domain: exodigo.com, cat: tech, tier: 2, ats: comeet, uid: "89.005", token: 98542A398504C28391E130A391E391E2614}
+- {name: "UVeye", domain: uveye.com, cat: tech, tier: 2, ats: comeet, uid: "92.00F", token: 29FA7C17971797FBA179753E53E0A7C}
+- {name: "Classiq", domain: classiq.io, cat: tech, tier: 2, ats: comeet, uid: "F7.008", token: 7F82FD01FE03FC037C87F87F82FD017E847B8}
+- {name: "Aeronautics", domain: aeronautics-sys.com, cat: tech, tier: 2, ats: comeet, uid: "72.002", token: 2729C816027564E4111EEAC111E4E40}
+- {name: "BeyondTrust", domain: beyondtrust.com, cat: cyber, tier: 2, ats: greenhouse, token: beyondtrust}   # added from the user's example
