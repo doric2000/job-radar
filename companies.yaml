@@ -305,3 +305,6 @@
 - {name: "Nodeworthy", domain: nodeworthy.com, cat: tech, tier: 2, ats: recruitee, token: nodeworthy}
 - {name: "IB1", domain: ib1.com, cat: tech, tier: 2, ats: recruitee, token: ib1}
 - {name: "Aikido Security", domain: aikidosecurity.com, cat: cyber, tier: 2, ats: recruitee, token: aikidosecurity}
+- {name: "Dialog Software", domain: dialog.co.il, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.dialog.co.il/high-tech/jobs/software", link_pattern: '^/high-tech/jobs/jobpage\?positionId=(\d+)$', desc_selector: div.job_box}   # Hebrew high-tech staffing agency; page 1 holds the 20 newest. Added 2026-11-09
+- {name: "Dialog QA", domain: dialog.co.il, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.dialog.co.il/high-tech/jobs/qa", link_pattern: '^/high-tech/jobs/jobpage\?positionId=(\d+)$', desc_selector: div.job_box}
+- {name: "Dialog DevOps and Security", domain: dialog.co.il, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.dialog.co.il/high-tech/jobs/system", link_pattern: '^/high-tech/jobs/jobpage\?positionId=(\d+)$', desc_selector: div.job_box}
