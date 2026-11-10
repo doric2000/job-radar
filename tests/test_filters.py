@@ -429,6 +429,11 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
             self.assertFalse(self.c.classify(J("Junior Engineer", desc=d)).accept, d)
         self.assertFalse(self.c.classify(J("Engineer", desc=sw)).accept)
 
+    def test_misspelled_devops_titles(self):
+        for t in ["Junior Devope Engineer", "Junior Dev Ops Engineer", "DevOp Engineer", "Junior DevOps Engineer"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        self.assertFalse(self.c.stage1(J("Junior Developmental Psychologist")).accept)
+
     def test_cyber_focus_titles(self):
         for t in ["Malware Analyst", "Malware Researcher", "AppSec Engineer", "App Sec Engineer", "Application Security Engineer",
                   "SOC Automation Engineer", "SOAR Engineer", "XSOAR Developer", "SOC Analyst T1", "Tier 1 SOC Analyst",

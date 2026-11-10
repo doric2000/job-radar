@@ -44,8 +44,8 @@ DEFAULTS: dict = {
             r"\bai\s+(solutions?|engineer|developer|specialist|implementation)",
             # any AI/LLM/agent role title: "AI Productivity Engineer", "AI Automation Developer", "LLM Agents Engineer"
             r"\b(?:ai|llm|genai|gen[\s-]?ai|agentic)\b[\w\s&/,.-]{0,30}\b(?:engineer|developer|specialist)\b",
-            # DevOps / cloud
-            r"\bdevops\b", r"\bcloud\s+(engineer|developer|specialist)", r"\bsre\b", r"site\s+reliability",
+            # DevOps / cloud (also misspelled "Devope" / "Dev Ops": LSports, Nov 2026)
+            r"\bdev[\s-]?op(e|p)?s?\b", r"\bcloud\s+(engineer|developer|specialist)", r"\bsre\b", r"site\s+reliability",
             # QA / test automation (software only: industrial "automation engineer" and silicon validation are not)
             r"\bqa\b", r"quality\s+assurance", r"\b(software|sw)\s+(test|testing|validation|verification)",
             r"\btest(ing)?\s+(engineer|automation|developer)", r"(qa|test)\s+automation", r"automation\s+developer", r"\bsdet\b",
