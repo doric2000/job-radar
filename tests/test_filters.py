@@ -420,6 +420,15 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
             self.assertFalse(self.c.classify(J("Automation Engineer", desc=d)).accept, d)
         self.assertFalse(self.c.classify(J("Senior Automation Engineer", desc=sw)).accept)
 
+    def test_junior_title_without_field_decided_by_description(self):
+        sw = "Build backend microservices and APIs in Python for our cloud platform. Junior engineers welcome."
+        for t in ["Junior-Mid Engineer", "Junior Engineer", "Graduate Engineer"]:
+            self.assertTrue(self.c.classify(J(t, desc=sw)).accept, t)
+        hw = "Design PCB boards, analog circuits and RF modules; lab work with oscilloscopes."
+        for d in [hw, ""]:
+            self.assertFalse(self.c.classify(J("Junior Engineer", desc=d)).accept, d)
+        self.assertFalse(self.c.classify(J("Engineer", desc=sw)).accept)
+
     def test_cyber_focus_titles(self):
         for t in ["Malware Analyst", "Malware Researcher", "AppSec Engineer", "App Sec Engineer", "Application Security Engineer",
                   "SOC Automation Engineer", "SOAR Engineer", "XSOAR Developer", "SOC Analyst T1", "Tier 1 SOC Analyst",

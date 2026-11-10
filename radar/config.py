@@ -131,6 +131,15 @@ DEFAULTS: dict = {
             r"\bc#", r"\bgolang\b", r"ci/cd", r"jenkins", r"terraform", r"ansible", r"rest\s+api", r"\bqa\b",
             r"test\s+(automation|framework|script|plan|case)", r"automated\s+test", r"automation\s+(framework|test)",
         ],
+        # A junior title that names no field ("Junior-Mid Engineer" at Backslash Security, Nov 2026): the description
+        # decides, so it passes only when it reads as software work and not hardware/electronics. Only fully bare
+        # titles: "Junior Verification/DFT/RTL Engineer" name a (chip) field and stay out
+        "junior_generic_titles": [r"^\W*(junior|jr\.?|graduates?|new[\s-]?grads?|entry[\s-]?level)(\s*[-/–]\s*mid(\s*level)?)?\s+(engineer|developer)\b\W*$"],
+        "junior_generic_desc_signals": [
+            r"back[\s-]?end", r"front[\s-]?end", r"full[\s-]?stack", r"micro[\s-]?services?", r"\bapis?\b", r"software\s+(engineer|develop)",
+            r"\bpython\b", r"\bjava\b", r"typescript", r"javascript", r"\bnode(\.?js)?\b", r"\bgolang\b", r"\bc#", r"\breact\b",
+            r"kubernetes", r"\bdocker\b", r"ci/cd", r"\bcloud\b", r"\bsaas\b",
+        ],
         "automation_desc_exclude": [r"\bplcs?\b", r"\bscada\b", r"\bhmi\b", r"industrial\s+automation", r"\bmanufacturing\b", r"production\s+line"],
         "ambiguous_desc_signals": [r"\bsecurity\b", r"\bcyber", r"\bthreats?\b", r"vulnerabilit", r"\bsoc\b", r"malware",
                                    r"סייבר", r"אבטחת\s+מידע"],
