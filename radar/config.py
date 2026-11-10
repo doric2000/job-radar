@@ -187,6 +187,8 @@ DEFAULTS: dict = {
             r"\bclaims?\b",
             # Viz.ai "Clinical AI Specialist" 👎 (medical annotation); "Clinical Software Engineer" still passes
             r"\bclinical\b",
+            # EY "מתמחה לתחום הביקורת החקירתית ... Forensics" 👎 (accounting degree required; matched "Forensic")
+            r"ביקורת\s+ה?חקירתית|forensic\s+(accounting|audit)|financial\s+forensic",
         ],
         "role_core": [
             r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",

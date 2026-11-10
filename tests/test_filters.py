@@ -393,6 +393,11 @@ class TestClassifier(unittest.TestCase):
         for t in ("Clinical Software Engineer", "מהנדס/ת אינטגרציית תוכנה ושילובים"):
             self.assertTrue(self.c.stage1(J(t)).accept, t)
 
+    def test_forensic_accounting_excluded(self):
+        self.assertFalse(self.c.stage1(J("מתמחה לתחום הביקורת החקירתית למחלקת ה- Forensics")).accept)
+        self.assertFalse(self.c.stage1(J("Forensic Accounting Intern")).accept)
+        self.assertTrue(self.c.stage1(J("Junior Digital Forensics Analyst")).accept)
+
     def test_teaching_and_it_roles_excluded(self):
         for title in ["מדריכ/ה סייבר לבני נוער", "Cyber Security Instructor", "IT Systems Engineer II",
                       "IT Support Specialist", "Help Desk Technician"]:
