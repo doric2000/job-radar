@@ -139,6 +139,14 @@ class TestClassifier(unittest.TestCase):
         v = c.classify(J("Software Engineer (AI Training)", desc="This is a contract role, fully remote within Israel."))
         self.assertTrue(v.accept, v.reject_reason)
 
+    def test_youre_a_senior_engineer_rejected(self):
+        cfg = load_config(None)
+        cfg["match"]["include_unspecified_experience"] = True
+        c = Classifier(cfg)
+        d = "You’re a fit if\n* You’re a senior React and React Native engineer who has shipped both to production."
+        v = c.classify(J("Full Stack Engineer", desc=d))
+        self.assertFalse(v.accept)
+
     def test_platform_specific_titles_excluded(self):
         for t in ["Junior Salesforce Developer", "ERP developer", "Microsoft Copilot Studio Developer", "Cobol Developer",
                   "מפתח/ת Dynamics CRM", "SAP Implementation Specialist", "Founding Software Engineer"]:

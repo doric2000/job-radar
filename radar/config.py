@@ -163,6 +163,8 @@ DEFAULTS: dict = {
         # "CodeValue is looking for an experienced Cybersecurity Consultant": an opening that asks for an experienced /
         # senior person rejects the job (6 past alerts matched: 2 marked 👎, none 👍)
         "experienced_intro_signals": [
+            # "You're a fit if: You're a senior React engineer who has shipped..." (Robotic Imaging full stack, 👎)
+            r"\byou(?:'|’)?re\s+(?:a|an)\s+(?:senior|staff|principal)\b", r"\byou\s+are\s+(?:a|an)\s+(?:senior|staff|principal)\b",
             r"(looking\s+for|seeking|hiring|searching\s+for|in\s+search\s+of)\s+(an?\s+)?(highly\s+|very\s+)?(experienced|senior|seasoned)\b",
             r"(דרוש|מחפשים|מגייסים|מחפשת|מגייסת)[^.\n]{0,25}(מנוסה|מנוסים|בכיר|בכירה)",
         ],
