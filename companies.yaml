@@ -309,3 +309,4 @@
 - {name: "Dialog QA", domain: dialog.co.il, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.dialog.co.il/high-tech/jobs/qa", link_pattern: '^/high-tech/jobs/jobpage\?positionId=(\d+)$', desc_selector: div.job_box}
 - {name: "Dialog DevOps and Security", domain: dialog.co.il, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.dialog.co.il/high-tech/jobs/system", link_pattern: '^/high-tech/jobs/jobpage\?positionId=(\d+)$', desc_selector: div.job_box}
 - {name: "IBI Investment House", domain: ibi.co.il, cat: bank, tier: 2, ats: htmllinks, list_url: "https://www.ibi.co.il/career/", link_pattern: '^https://www\.ibi\.co\.il/career/([^/]+)/$', desc_selector: div.details}   # all jobs on one page; the career post type is not in the WordPress REST API. Added 2026-11-10
+- {name: "ONE ZERO Digital Bank", domain: onezerobank.com, cat: bank, tier: 1, ats: comeet, uid: "36.00A", token: 63A255C63A63A18E831D063A31D063A1F22}   # added 2026-11-11
