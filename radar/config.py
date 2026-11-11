@@ -301,6 +301,21 @@ DEFAULTS: dict = {
                 {"keywords": '"Israel Aerospace Industries" OR Elta'},
                 {"keywords": '"Malam Team" OR MalamTeam'},
             ],
+            # Catch-up: a job missed in its first hour (a 429 block, or LinkedIn indexing it late) never comes
+            # back in the last-hour window. Once an hour the junior-relevant queries also read the last 6 hours;
+            # jobs already in state are skipped, so only missed ones alert. A Junior Full Stack job (Nov 2026)
+            # was never seen by the hourly searches. 6h: a 24h window held 190-475 results per query.
+            "catchup": {
+                "every_n_runs": 12,     # runs are 5 minutes apart: hourly
+                "time_window": "r21600",
+                "pages": 10,
+                "queries": [
+                    {"keywords": 'junior OR graduate OR "entry level" OR student OR intern'},
+                    {"keywords": "full stack OR fullstack OR frontend OR front end"},
+                    {"keywords": "backend OR back end"},
+                    {"keywords": "software engineer OR software developer"},
+                ],
+            },
         },
     },
 }

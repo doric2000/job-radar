@@ -70,12 +70,18 @@ class Radar:
                 out.append(c)
         return out
 
-    def with_channels(self) -> list[dict]:
+    def with_channels(self, run_index: int | None = None) -> list[dict]:
         extra = [{"id": f"tg-{h}", "name": f"טלגרם · {h}", "ats": "tgchannel", "token": h, "tier": 1, "cat": "lead"}
                  for h in self.cfg["leads"]["telegram_channels"]]
         li = self.cfg["leads"].get("linkedin") or {}
         if li.get("enabled"):
-            extra.append({**li, "id": "linkedin", "name": "LinkedIn", "ats": "linkedin", "cat": "lead",
+            queries = list(li.get("queries") or [])
+            cu = li.get("catchup") or {}
+            if run_index is not None and cu.get("queries") and run_index % max(1, int(cu.get("every_n_runs", 12))) == 0:
+                # after the regular queries, so fresh jobs are still sent first
+                queries += [{"time_window": cu.get("time_window", "r21600"), "pages": cu.get("pages", 10), **q}
+                            for q in cu["queries"]]
+            extra.append({**li, "queries": queries, "id": "linkedin", "name": "LinkedIn", "ats": "linkedin", "cat": "lead",
                           "recheck_ids": self.state.d["meta"].get("li_recheck", [])})
         return self.companies + extra
 
@@ -150,7 +156,7 @@ class Radar:
 
     # ---------------------------------------------------------------- whole run
     def run(self, run_index: int, force_all: bool = False, only: set[str] | None = None) -> dict:
-        pool = self.with_channels()
+        pool = self.with_channels(run_index)
         if only:
             pool = [c for c in pool if c["id"] in only]
         todo = self.due(pool, run_index, force_all)

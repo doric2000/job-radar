@@ -95,7 +95,8 @@ class LinkedIn:
         now = datetime.now(timezone.utc)
         out: dict[str, Job] = {}
         for q in c["queries"]:
-            params = {"keywords": q["keywords"], "geoId": c.get("geo_id", "101620260"), "f_TPR": c.get("time_window", "r86400"),
+            params = {"keywords": q["keywords"], "geoId": c.get("geo_id", "101620260"),
+                      "f_TPR": q.get("time_window") or c.get("time_window", "r86400"),
                       "sortBy": "DD"}
             for k in ("f_E", "f_WT", "f_JT"):
                 if q.get(k):

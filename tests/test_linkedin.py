@@ -81,6 +81,23 @@ class TestLinkedIn(unittest.TestCase):
         self.assertEqual([(j.job_id, j.title, j.company) for j in jobs], [("77", "Junior Professional Services Engineer", "MazeBolt")])
         self.assertIn("BSc in Computer Science", jobs[0].description)
 
+    def test_query_time_window_overrides_source(self):
+        http = FakeHttp({"seeMoreJobPostings": ""})
+        LinkedIn(http).list_jobs(dict(LI, time_window="r3600", queries=[{"keywords": "a"}, {"keywords": "b", "time_window": "r21600"}]))
+        self.assertIn("f_TPR=r3600", http.calls[0])
+        self.assertIn("f_TPR=r21600", http.calls[1])
+
+    def test_catchup_queries_added_hourly_after_regular_ones(self):
+        cfg = load_config(None)
+        cfg["leads"]["linkedin"].update(enabled=True, queries=[{"keywords": "x"}],
+                                        catchup={"every_n_runs": 12, "time_window": "r21600", "pages": 10,
+                                                 "queries": [{"keywords": "junior"}]})
+        r = Radar(cfg, [], State(), FakeHttp({}), now=NOW, dry_run=True)
+        li = lambda i: next(c for c in r.with_channels(i) if c["id"] == "linkedin")  # noqa: E731
+        self.assertEqual(li(13)["queries"], [{"keywords": "x"}])
+        self.assertEqual(li(24)["queries"], [{"keywords": "x"}, {"keywords": "junior", "time_window": "r21600", "pages": 10}])
+        self.assertEqual(li(None)["queries"], [{"keywords": "x"}])
+
     def test_run_alerts_junior_and_tags_linkedin(self):
         http = FakeHttp({
             "keywords=backend": card(1, "Junior Backend Engineer") + card(2, "Senior Backend Engineer"),
@@ -88,7 +105,7 @@ class TestLinkedIn(unittest.TestCase):
             "jobPosting/1": DETAIL,
         })
         cfg = load_config(None)
-        cfg["leads"]["linkedin"].update(enabled=True, gap_seconds=0, cooldown_seconds=0, queries=LI["queries"])
+        cfg["leads"]["linkedin"].update(enabled=True, gap_seconds=0, cooldown_seconds=0, queries=LI["queries"], catchup={})
         r = Radar(cfg, [], State(), http, now=NOW, dry_run=True)
         out = r.run(0)
         self.assertEqual([a[0].job_id for a in out["alerts"]], ["1"])
@@ -100,7 +117,7 @@ class TestLinkedIn(unittest.TestCase):
 
     def radar(self, http, notifier=None):
         cfg = load_config(None)
-        cfg["leads"]["linkedin"].update(enabled=True, gap_seconds=0, cooldown_seconds=0, queries=LI["queries"])
+        cfg["leads"]["linkedin"].update(enabled=True, gap_seconds=0, cooldown_seconds=0, queries=LI["queries"], catchup={})
         return Radar(cfg, [], State(), http, notifier=notifier, now=NOW, dry_run=notifier is None)
 
     def test_each_query_alerts_before_the_next_is_read(self):
