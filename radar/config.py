@@ -300,6 +300,7 @@ DEFAULTS: dict = {
                 {"keywords": '"Rafael Advanced Defense Systems"'},
                 {"keywords": '"Israel Aerospace Industries" OR Elta'},
                 {"keywords": '"Malam Team" OR MalamTeam'},
+                {"keywords": "Revolut"},    # opening in Israel (Nov 2026); revolut.com/careers is behind Cloudflare
             ],
             # Catch-up: a job missed in its first hour (a 429 block, or LinkedIn indexing it late) never comes
             # back in the last-hour window. Once an hour the junior-relevant queries also read the last 6 hours;

@@ -128,6 +128,7 @@
 - {name: "NICE", domain: nice.com, cat: tech, tier: 2}
 - {name: "Matrix IT", domain: matrix.co.il, cat: tech, tier: 1, ats: rss, feed_url: "https://www.matrix.co.il/jobs/feed/?post_type=job", pages: 70, dates: false, desc_selector: div.job-item}   # staffing/IT services, ~530 jobs. The feed re-dates every job at each daily import, so dates are ignored and all pages are read (2026-11-01)
 - {name: "Malam Team", domain: malamteam.com, cat: tech, tier: 2}   # malamteam.com is behind a Cloudflare bot challenge; not scraped. Its jobs arrive via LinkedIn only.
+- {name: "Revolut", domain: revolut.com, cat: bank, tier: 1}   # revolut.com/careers is behind a Cloudflare bot challenge; not scraped. Its Israel jobs arrive via the LinkedIn "Revolut" query.
 - {name: "Lemonade", domain: lemonade.com, cat: tech, tier: 3, ats: ashby, token: lemonade}
 - {name: "Nayax", domain: nayax.com, cat: tech, tier: 3, ats: comeet, uid: "13.009", token: 319F7D319C641BE11BE131963231915AF}
 - {name: "Next Insurance", domain: nextinsurance.com, cat: tech, tier: 3, ats: greenhouse, token: nextinsurance66}
