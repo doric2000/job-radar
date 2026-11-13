@@ -91,6 +91,9 @@ DEFAULTS: dict = {
             r"ממונה\s+ביטחון", r"קצין\s+ביטחון", r"security\s+officer", r"content\s+specialist",
             r"chip\s+design", r"\bmri\b", r"production\s+test", r"\bi&c\b", r"commissioning", r"technologist",
             r"pharmacovigilance", r"employee\s+experience",
+            # physical security guards: "secur" / "אבטחת" match them (Brink's "Lobby Security", Team 3 "דרושה מאבטחת" 👎:
+            # "we secure cyber, not lobbies")
+            r"\blobby\b", r"מאבטח", r"security\s+patrol", r"concierge",
             # Wix "Full stack organic growth marketer", Howden "Cyber Claims Executive", CYBERLABS office admin,
             # IAI "מפתח/ת מערכות אופטיות"
             r"\bmarketer", r"אדמין", r"ניהול\s+משרד", r"אופטי", r"\boptical\b",

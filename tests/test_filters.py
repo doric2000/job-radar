@@ -213,6 +213,13 @@ class TestClassifier(unittest.TestCase):
                   "Junior Data Scientist", "Security Guard", "Manual QA Tester"]:
             self.assertFalse(self.c.classify(J(t)).accept, t)
 
+    def test_physical_security_guards_excluded(self):
+        # Nov 2026 👎: Brink's "Lobby Security", Team 3 "דרושה מאבטחת למוסד חינוכי"
+        for t in ["Lobby Security", "דרושה מאבטחת למוסד חינוכי בכפר סבא", "מאבטח/ת לקניון", "Security Patrol Officer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        for t in ["מיישם/ת הגנת סייבר ואבטחת מידע", "Junior Security Researcher", "SOC Analyst Tier 1"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+
     def test_experienced_and_expert_titles_are_senior(self):
         for t in ["Experienced Backend Engineer", "Expert Frontend Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
