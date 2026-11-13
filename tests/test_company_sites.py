@@ -129,6 +129,18 @@ class TestCompanySites(unittest.TestCase):
         [j] = HtmlLinks(FakeHttp({"l.com/jobs/": page})).list_jobs(c)
         self.assertEqual((j.job_id, j.title), ("21184", "Junior Full Stack Developer"))
 
+    def test_htmllinks_card_title_and_inline_requirements(self):
+        # Moveo: the link is a "View Details" button; the title sits in the card
+        page = ('<div class="w-dropdown"><div class="job-titel">Data Developer</div><nav><p>Ramat Gan</p>'
+                '<a href="/jobs/data-dev">View Details</a></nav></div>')
+        c = {"id": "mv", "name": "Moveo", "list_url": "https://mv.com/", "link_pattern": r"^/jobs/([^/?#]+)$",
+             "card": "div.w-dropdown", "card_title": ".job-titel"}
+        http = FakeHttp({"mv.com/jobs/data-dev": '<main><ul><li><strong>3+ years</strong> of experience with SQL</li></ul></main>',
+                         "mv.com/": page})
+        [j] = HtmlLinks(http).list_jobs(c)
+        self.assertEqual((j.job_id, j.title, j.url), ("data-dev", "Data Developer", "https://mv.com/jobs/data-dev"))
+        self.assertEqual(HtmlLinks(http).enrich(j, c).description, "3+ years of experience with SQL")
+
     def test_topmatch(self):
         data = {"positions": [{"compPositionID": 199462, "jobTitleText": "מפתח.ת AI ג׳וניור ", "activationDate": "2026-10-21T09:29:15.23",
                                "description": "<p>Python, SQL</p>", "displayLocation": "איכילוב"}], "responseStatus": 1}
