@@ -128,11 +128,13 @@ DEFAULTS: dict = {
         "ambiguous_titles": [r"\bresearch\s+analyst\b"],
         # Bare "Automation Engineer": the user wants it at software companies (2026-11-06), but the title also means
         # industrial automation, so the description decides
-        "automation_titles": [r"\bautomation\s+engineer"],
+        # Hebrew "מהנדס/ת אוטומציה" too (Comblack test-automation posts for a defense client, Nov 2026)
+        "automation_titles": [r"\bautomation\s+engineer", r"מהנדס[./]?ת?\s+אוטומציה"],
         "automation_desc_signals": [
             r"selenium", r"playwright", r"cypress", r"appium", r"pytest", r"\bpython\b", r"\bjava\b", r"javascript", r"typescript",
             r"\bc#", r"\bgolang\b", r"ci/cd", r"jenkins", r"terraform", r"ansible", r"rest\s+api", r"\bqa\b",
             r"test\s+(automation|framework|script|plan|case)", r"automated\s+test", r"automation\s+(framework|test)",
+            r"אוטומציה\s+לבדיקות", r"בדיקות\s+(תוכנה|אוטומטיות)",
         ],
         # A junior title that names no field ("Junior-Mid Engineer" at Backslash Security, Nov 2026): the description
         # decides, so it passes only when it reads as software work and not hardware/electronics. Only fully bare
@@ -143,7 +145,8 @@ DEFAULTS: dict = {
             r"\bpython\b", r"\bjava\b", r"typescript", r"javascript", r"\bnode(\.?js)?\b", r"\bgolang\b", r"\bc#", r"\breact\b",
             r"kubernetes", r"\bdocker\b", r"ci/cd", r"\bcloud\b", r"\bsaas\b",
         ],
-        "automation_desc_exclude": [r"\bplcs?\b", r"\bscada\b", r"\bhmi\b", r"industrial\s+automation", r"\bmanufacturing\b", r"production\s+line"],
+        "automation_desc_exclude": [r"\bplcs?\b", r"\bscada\b", r"\bhmi\b", r"industrial\s+automation", r"\bmanufacturing\b", r"production\s+line",
+                                    r"בקרים", r"קווי?\s+ייצור"],
         "ambiguous_desc_signals": [r"\bsecurity\b", r"\bcyber", r"\bthreats?\b", r"vulnerabilit", r"\bsoc\b", r"malware",
                                    r"סייבר", r"אבטחת\s+מידע"],
         # defense "System Engineer" is usually multidisciplinary hardware systems engineering

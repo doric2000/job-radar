@@ -440,6 +440,14 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
             self.assertFalse(self.c.classify(J("Automation Engineer", desc=d)).accept, d)
         self.assertFalse(self.c.classify(J("Senior Automation Engineer", desc=sw)).accept)
 
+    def test_hebrew_automation_engineer_decided_by_description(self):
+        # Comblack "מהנדס/ת אוטומציה" (test automation, no years) was rejected as "title not in role families"
+        sw = ("דרוש/ה מהנדס/ת אוטומציה לבדיקות לתעשייה ביטחונית.\nדרישות:\n▪ תואר רלוונטי / הסבה לאוטומציה\n"
+              "▪ ניסיון של שנה לפחות בבדיקות\n▪ ניסיון ב־Python / C# / Java\n▪ היכרות עם REST API")
+        for t in ["מהנדס/ת אוטומציה", "מהנדס אוטומציה", "מהנדסת אוטומציה"]:
+            self.assertTrue(self.c.classify(J(t, desc=sw)).accept, t)
+        self.assertFalse(self.c.classify(J("מהנדס/ת אוטומציה", desc="תכנות בקרים וקווי ייצור במפעל.")).accept)
+
     def test_junior_title_without_field_decided_by_description(self):
         sw = "Build backend microservices and APIs in Python for our cloud platform. Junior engineers welcome."
         for t in ["Junior-Mid Engineer", "Junior Engineer", "Graduate Engineer"]:
