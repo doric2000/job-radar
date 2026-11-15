@@ -51,6 +51,11 @@ DEFAULTS: dict = {
             r"\btest(ing)?\s+(engineer|automation|developer)", r"(qa|test)\s+automation", r"automation\s+developer", r"\bsdet\b",
             # "Software Automation Engineer" is test automation (Medtronic, Cognyte); bare "Automation Engineer" stays out
             r"\b(software|sw)\s+automation",
+            # "Software Engineering Intern" (Microsoft, OPSWAT), "Software/Firmware Engineering Intern" (Marvell),
+            # "Software Embedded / Systems / Performance / Design Engineer" (Cisco, NVIDIA): word orders the patterns above miss
+            r"\b(software|sw)\s*(/\s*firmware\s+)?engineering\b",
+            r"\b(software|sw)\s+(embedded|firmware|systems?|performance|design)\s+engineer",
+            r"observability\s+engineer",
             # "Software Development Engineer" (SDE), "Software Quality Engineer", "Offensive Researcher", "Development Operations"
             r"\b(software|sw)\s+development\s+engineer", r"\b(software|sw)\s+quality\s+(engineer|assurance)",
             r"\boffensive\b", r"development\s+operations",
@@ -83,7 +88,7 @@ DEFAULTS: dict = {
             r"\bbi\b", r"business\s+intelligence", r"qlik",
             # out of scope: teaching gigs (CYBERLABS "מדריכ/ה סייבר לבני נוער"), IT / help desk / NOC (Nexxen "IT Systems Engineer")
             # (not "NOC" / "IT Operations" alone: "SOC / NOC Analyst" and "NOC Engineer / SRE" are in scope)
-            r"מדריכ", r"\binstructor", r"\bit\s+(systems?\s+(engineer|administrator)|support|technician|administrator)",
+            r"מדריכ", r"\binstructor", r"\bit\s+(systems?\b|infrastructure|support|technician|administrator)",
             r"help\s*desk",
             # Nov 2026 review of 126 alerts (user: "many jobs unrelated to CS"): security officers (Elbit/Rafael
             # "ממונה ביטחון"), GIS training, AI content, chip design, MRI protocols, production test, power-plant
@@ -99,6 +104,8 @@ DEFAULTS: dict = {
             r"\bmarketer", r"אדמין", r"ניהול\s+משרד", r"אופטי", r"\boptical\b",
             # "Full Stack Developer - Mid Level" (👎); "Junior - Mid Level ..." still passes
             r"^(?!.*junior).*\bmid[\s-]?level",
+            # coordination / project-management roles (CYE "Cybersecurity Project Coordinator" 👎, Nov 2026)
+            r"\bcoordinator\b", r"project\s+management",
         ],
         # Companies the user asked never to see (InfinityLabs career-path programs: "תוכנית זבל", Oct 2026)
         "company_exclude": [r"infinity\s*labs"],

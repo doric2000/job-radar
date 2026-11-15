@@ -8,7 +8,7 @@ from radar.http import HttpError
 from radar.models import Job, Verdict
 from radar.notify import format_alert
 from radar.run import Radar, dedupe_key
-from radar.state import State
+from radar.state import State, iso
 from radar.textutil import html_to_text, parse_relative_en
 
 NOW = datetime(2026, 10, 19, 12, 0, tzinfo=timezone.utc)
@@ -166,6 +166,18 @@ class TestRun(unittest.TestCase):
         self.assertTrue(r._is_dup(ltd))
         self.assertTrue(r._is_dup(agency))
         self.assertFalse(r._is_dup(other))  # a different job of that title at the agency
+
+    def test_same_posting_url_under_new_id_is_dup(self):
+        # UCL Group re-lists its WordPress jobs with new ids and lightly edited text: the same page went out twice
+        r = self.mk(FakeHttp({}))
+        url = "https://ucl-group.co.il/jobs/qa-life-insurance/"
+        r.state.d["meta"]["sent"] = {"a1": {"ts": iso(NOW - timedelta(hours=6)), "t": "QA Tester Life Insurance",
+                                            "co": "UCL Group", "url": url}}
+        mk = lambda jid, u, t="QA Tester Life Insurance": Job(company_id="ucl", company="UCL Group", job_id=jid,  # noqa: E731
+                                                              title=t, url=u, description="edited text")
+        self.assertTrue(r._is_dup(mk("2", url)))
+        self.assertFalse(r._is_dup(mk("3", "https://ucl-group.co.il/jobs/other/")))
+        self.assertFalse(r._is_dup(mk("4", url, "Backend Developer")))  # a shared listing page, another job
 
     def test_reopened_job_is_sent_again_as_repost(self):
         r = self.mk(FakeHttp({}))

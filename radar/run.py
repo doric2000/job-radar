@@ -235,6 +235,11 @@ class Radar:
             ts = self.state.d["meta"].get("alerted", {}).get(dedupe_key(j))
             if ts:
                 hits.append(ts)
+        # the same posting page under a new job id (UCL Group's WordPress board re-lists its jobs with new ids
+        # and the text slightly edited, so the signatures drifted below SAME_JOB and the alert went out twice)
+        if j.url:
+            hits += [s["ts"] for s in self.state.d["meta"].get("sent", {}).values()
+                     if s.get("url") == j.url and f"{company_key(s.get('co', ''))}|{norm(s.get('t', ''))[:80]}" == rk]
         return max(hits, default=None)
 
     def _is_dup(self, j: Job) -> bool:

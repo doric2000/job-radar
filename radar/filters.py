@@ -16,7 +16,9 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 18
+FILTERS_VERSION = 19
+# v19: "Software Engineering Intern", "Software/Firmware Engineering", "Software Embedded/Systems Engineer",
+# "Observability Engineer" titles
 # v18: Hebrew "מהנדס/ת אוטומציה", decided by the description like "Automation Engineer"
 # v9: new role titles ("מהנדס תוכנה" without ת, Software Development Engineer, Offensive Researcher, Software
 # Quality Engineer, Development Operations)

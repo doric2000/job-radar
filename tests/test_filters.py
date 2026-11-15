@@ -407,9 +407,21 @@ class TestClassifier(unittest.TestCase):
 
     def test_teaching_and_it_roles_excluded(self):
         for title in ["מדריכ/ה סייבר לבני נוער", "Cyber Security Instructor", "IT Systems Engineer II",
-                      "IT Support Specialist", "Help Desk Technician"]:
+                      "IT Support Specialist", "Help Desk Technician", "IT Systems & Infrastructure Engineer"]:
             self.assertFalse(self.c.classify(J(title, desc="Junior, 1 year")).accept, title)
         self.assertTrue(self.c.stage1(J("SOC / NOC Analyst")).accept)
+
+    def test_coordinator_roles_excluded(self):
+        for title in ["Cybersecurity Project Coordinator", "Quality Assurance Coordinator",
+                      "Project Management | Business Processes & AI Implementation"]:
+            self.assertFalse(self.c.stage1(J(title)).accept, title)
+
+    def test_software_engineering_word_orders(self):
+        for title in ["Software Engineering INTERN", "Software Engineering Intern - MetaDefender Cloud",
+                      "Software/Firmware Engineering Intern", "Software Embedded Engineer", "Software Systems Engineer",
+                      "Observability Engineer"]:
+            self.assertTrue(self.c.stage1(J(title)).accept, title)
+        self.assertFalse(self.c.stage1(J("Software Engineering Manager")).accept)
 
     def test_source_level_senior_rejected(self):
         v = self.c.classify(J("Software Engineer", level="Mid-Senior level", desc="1 year"))
