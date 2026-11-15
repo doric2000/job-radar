@@ -107,7 +107,7 @@
 - {name: "Riskified", domain: riskified.com, cat: tech, tier: 2}
 - {name: "Payoneer", domain: payoneer.com, cat: tech, tier: 2}
 - {name: "Pagaya", domain: pagaya.com, cat: tech, tier: 2}
-- {name: "Melio", domain: melio.com, cat: tech, tier: 2}
+- {name: "Melio", domain: melio.com, cat: tech, tier: 2, ats: ashby, token: Melio-payments}
 - {name: "Rapyd", domain: rapyd.net, cat: tech, tier: 2}
 - {name: "Global-e", domain: global-e.com, cat: tech, tier: 2}
 - {name: "Lightricks", domain: lightricks.com, cat: tech, tier: 2, ats: greenhouse, token: ltx}
@@ -142,7 +142,7 @@
 - {name: "Hilan", domain: hilan.co.il, cat: tech, tier: 3}
 - {name: "One1", domain: one1.co.il, cat: tech, tier: 3}
 - {name: "Bynet", domain: bynet.co.il, cat: tech, tier: 3}
-- {name: "Kaltura", domain: kaltura.com, cat: tech, tier: 3}
+- {name: "Kaltura", domain: kaltura.com, cat: tech, tier: 3, ats: comeet, uid: "E2.00D", token: 2EDEA12ED017688C7147B1A555DA2ED}
 - {name: "Optimove", domain: optimove.com, cat: tech, tier: 3}
 - {name: "Sisense", domain: sisense.com, cat: tech, tier: 3}
 - {name: "Lightrun", domain: lightrun.com, cat: tech, tier: 3}
@@ -312,3 +312,19 @@
 - {name: "Moveo Source", domain: moveosource.com, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.moveosource.com/", link_pattern: '^/jobs/([^/?#]+)$', card: div.w-dropdown, card_title: .job-titel}
 - {name: "IBI Investment House", domain: ibi.co.il, cat: bank, tier: 2, ats: htmllinks, list_url: "https://www.ibi.co.il/career/", link_pattern: '^https://www\.ibi\.co\.il/career/([^/]+)/$', desc_selector: div.details}   # all jobs on one page; the career post type is not in the WordPress REST API. Added 2026-11-10
 - {name: "ONE ZERO Digital Bank", domain: onezerobank.com, cat: bank, tier: 1, ats: comeet, uid: "36.00A", token: 63A255C63A63A18E831D063A31D063A1F22}   # added 2026-11-11
+- {name: "Applift", domain: applift.com, cat: tech, tier: 2, ats: comeet, uid: "39.00A", token: 93A375C530A530A49D049D02E22024E824E8}   # added 2026-11-15
+- {name: "Ceva", domain: ceva-ip.com, cat: tech, tier: 2, ats: comeet, uid: "76.005", token: 67526BE6752D332D33026BE135F033A8}   # added 2026-11-15
+- {name: "Mine", domain: saymine.com, cat: cyber, tier: 2, ats: comeet, uid: "39.003", token: 933373252CB4998499824CC2DFF01B990}   # added 2026-11-15
+- {name: "Vectorious Medical Technologies", domain: vectoriousmedtech.com, cat: tech, tier: 2, ats: comeet, uid: "68.003", token: 8633252325232523AB504318192904B7B}   # added 2026-11-15
+- {name: "Rapid Medical", domain: rapid-medical.com, cat: tech, tier: 2, ats: comeet, uid: "5A.003", token: A534845294C339F294C01EF95CEB1EF914A6}   # added 2026-11-15
+- {name: "Descope", domain: descope.com, cat: cyber, tier: 2, ats: greenhouse, token: descope}   # added 2026-11-15
+- {name: "Datarails", domain: datarails.com, cat: tech, tier: 2, ats: greenhouse, token: datarails}   # added 2026-11-15
+- {name: "GitLab", domain: gitlab.com, cat: tech, tier: 2, ats: greenhouse, token: gitlab}   # added 2026-11-15
+- {name: "Bluevine", domain: bluevine.com, cat: tech, tier: 2, ats: greenhouse, token: bluevineisrael}   # added 2026-11-15
+- {name: "Ebury", domain: ebury.com, cat: tech, tier: 2, ats: greenhouse, token: ebury}   # added 2026-11-15
+- {name: "Tonkean", domain: tonkean.com, cat: tech, tier: 2, ats: lever, token: tonkean}   # added 2026-11-15
+- {name: "Omnea", domain: omnea.co, cat: tech, tier: 2, ats: ashby, token: omnea}   # added 2026-11-15
+- {name: "Artemis", domain: artemis.security, cat: cyber, tier: 2, ats: ashby, token: artemis}   # added 2026-11-15
+- {name: "Nexar", domain: getnexar.com, cat: tech, tier: 2, ats: smartrecruiters, token: NexarInc}   # added 2026-11-15
+- {name: "White Hat", domain: whitehat.co.il, cat: cyber, tier: 2, ats: smartrecruiters, token: WhiteHat1}   # added 2026-11-15
+- {name: "Litt", domain: litt.ai, cat: cyber, tier: 2, ats: recruitee, token: litt}   # added 2026-11-15
