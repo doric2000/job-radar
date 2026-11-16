@@ -318,8 +318,18 @@ class TestClassifier(unittest.TestCase):
     def test_internship_for_current_students_only_rejected(self):
         for desc in ("Qualifications: Currently pursuing a Bachelor's degree in Computer Science, with an expected graduation in 2028.",
                      "This student position is structured as a one-and-a-half-year role, concluding upon completion of the academic degree.",
-                     "דרישות: סטודנט/ית לתואר במדעי המחשב"):
+                     "דרישות: סטודנט/ית לתואר במדעי המחשב",
+                     "Top Computer Sciences undergraduate student, with a GPA of 85 or higher and at least two years of studies remaining.",
+                     "דרישות: סטודנט/ית למדעי המחשב, לפחות שנה וחצי לסיום התואר"):
             self.assertFalse(self.c.classify(J("Security Research Intern", desc=desc)).accept, desc)
+
+    def test_crypto_ops_and_ai_tools_admin_excluded(self):
+        # cryptocurrency operations and AI SaaS administration are not software/cyber roles
+        for t in ["Crypto & Payments Officer", "AI Tools Operations Specialist", "AI Support Operations Specialist"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        for t in ["Cryptography Engineer", "Junior Crypto Engineer", "Artificial Intelligence Engineer",
+                  "AI Solutions Specialist"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
 
     def test_internship_open_to_graduates_kept(self):
         for desc in ("Currently pursuing or recently completed a degree in Computer Science.",

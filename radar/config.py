@@ -24,7 +24,9 @@ DEFAULTS: dict = {
             r"\bdeveloper\b", r"\bsde\b", r"\bprogrammer\b",
             r"secur", r"cyber", r"appsec", r"\bapp\s+sec\b", r"\bx?soar\b", r"חדירות", r"\bsoc\b", r"threat", r"vulnerab", r"penetration",
             r"pen[\s-]?test", r"red[\s-]?team", r"\bdfir\b", r"incident\s+response", r"malware",
-            r"reverse\s+engineer", r"exploit", r"\bcrypto", r"\bdevsecops\b",
+            r"reverse\s+engineer", r"exploit", r"\bdevsecops\b",
+            # cryptography, not cryptocurrency operations (iFOR "Crypto & Payments Officer" 👎, Nov 2026)
+            r"\bcrypto(?!\s*(?:&|and)\s*payments?\b)(?!currenc)",
             # malware / detection / forensics research (Nov 2026: the user asked for malware analyst/researcher and similar)
             r"נוזק", r"\bdetection\b", r"incident\s+respond", r"forensic", r"פורנזי",
             r"\bcti\b", r"threat\s+(intel|hunt)", r"\bioc\b", r"sandbox\s+(researcher|engineer)", r"\bedr\b", r"\bxdr\b",
@@ -43,7 +45,7 @@ DEFAULTS: dict = {
             r"\b(software|api|saas|data|cloud|platform|backend|crm|erp)\s+integration", r"implementation",
             r"\bai\s+(solutions?|engineer|developer|specialist|implementation)",
             # any AI/LLM/agent role title: "AI Productivity Engineer", "AI Automation Developer", "LLM Agents Engineer"
-            r"\b(?:ai|llm|genai|gen[\s-]?ai|agentic)\b[\w\s&/,.-]{0,30}\b(?:engineer|developer|specialist)\b",
+            r"\b(?:ai|llm|genai|gen[\s-]?ai|agentic|artificial\s+intelligence)\b[\w\s&/,.-]{0,30}\b(?:engineer|developer|specialist)\b",
             # DevOps / cloud (also misspelled "Devope" / "Dev Ops": LSports, Nov 2026)
             r"\bdev[\s-]?op(e|p)?s?\b", r"\bcloud\s+(engineer|developer|specialist)", r"\bsre\b", r"site\s+reliability",
             # QA / test automation (software only: industrial "automation engineer" and silicon validation are not)
@@ -96,6 +98,9 @@ DEFAULTS: dict = {
             r"ממונה\s+ביטחון", r"קצין\s+ביטחון", r"security\s+officer", r"content\s+specialist",
             r"chip\s+design", r"\bmri\b", r"production\s+test", r"\bi&c\b", r"commissioning", r"technologist",
             r"pharmacovigilance", r"employee\s+experience",
+            # IT administration of AI SaaS tools (Copilot/ChatGPT licences): "AI Tools Operations Specialist" 👎
+            # (MatchPointIT, Nov 2026; also posted by Sela, INGIMA, Mertens), "AI Support Operations Specialist"
+            r"\bai\s+(?:tools?|support)\s+operations?\b",
             # physical security guards: "secur" / "אבטחת" match them (Brink's "Lobby Security", Team 3 "דרושה מאבטחת" 👎:
             # "we secure cyber, not lobbies")
             r"\blobby\b", r"מאבטח", r"security\s+patrol", r"concierge",
@@ -233,6 +238,11 @@ DEFAULTS: dict = {
             r"\bcurrent\s+(?:university\s+|college\s+)?students?\b", r"\bstudent\s+position\b",
             r"must\s+be\s+(?:a\s+|an\s+)?(?:\w+\s+)?student\b", r"upon\s+completion\s+of\s+the\s+academic\s+degree",
             r"סטודנט\S*\s+(?:פעיל|לתואר|בשנה|בשנת)",
+            # HPE "Backend Intern" 👎 ("for students, filter it"): "undergraduate student ... with at least two
+            # years of studies remaining"
+            r"\b(?:undergraduate|b\.?sc\.?|m\.?sc\.?|bachelor'?s|master'?s|ph\.?d\.?)\s+students?\b",
+            r"\b(?:years?|semesters?)\s+of\s+(?:studies|study|the\s+degree|degree)\s+(?:remaining|left)\b",
+            r"(?:נותר\S*|לפחות)\s+(?:\S+\s+){0,3}(?:ל|עד\s+)?סיום\s+ה?תואר", r"יתרת\s+לימודים",
         ],
         "desc_entry_signals": [
             r"no\s+(prior\s+)?(professional\s+|work\s+)?experience\s+(is\s+)?(required|needed|necessary)",
