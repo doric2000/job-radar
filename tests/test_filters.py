@@ -486,6 +486,19 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
         self.assertEqual((v.accept, v.tier), (True, "C"))
         self.assertFalse(self.c.classify(J("R&D Software Development", desc=req + ".")).accept)
 
+    def test_app_dev_and_integration_validation_titles(self):
+        for t in ["Applications Dev Engineer", "Application Development Engineer", "Integration & Validation Engineer 245443",
+                  "Integration and Verification Engineer"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+        v = self.c.classify(J("Applications Dev Engineer", desc="0-2+ years of experience with Java or a similar OO language."))
+        self.assertTrue(v.accept)
+
+    def test_cx_and_hw_titles_excluded(self):
+        for t in ["CX Operations & AI Automation Specialist - Maternity leave cover", "Customer Experience AI Specialist",
+                  "HW Test Engineer-1", "HW Integration Engineer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        self.assertTrue(self.c.stage1(J("SW/HW Integration Engineer")).accept)
+
     def test_misspelled_devops_titles(self):
         for t in ["Junior Devope Engineer", "Junior Dev Ops Engineer", "DevOp Engineer", "Junior DevOps Engineer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)

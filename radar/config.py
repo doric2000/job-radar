@@ -63,6 +63,12 @@ DEFAULTS: dict = {
             r"\boffensive\b", r"development\s+operations",
             # title ending in "Software Development" (Broadcom "R&D Software Development", Nov 2026)
             r"\b(software|sw)\s+development\W*$",
+            # "Applications Dev Engineer" (ServiceNow, 0-2 years Java/React, Nov 2026); semiconductor "Application
+            # Development Engineer" posts ask 5+ years and fall to the experience check
+            r"\bapplications?\s+(dev|development)\s+engineer",
+            # "Integration & Validation Engineer" (Experis: CI/CD, Jenkins, build & release); hardware ones are
+            # caught by hardware_check_titles
+            r"integration\s*(&|and|/)\s*(validation|verification|test(ing)?)\s+engineer",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
             r"בודק[./]?ת?\s+(תוכנה|אוטומציה)", r"אינטגרציי?ת\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
         ],
@@ -113,6 +119,11 @@ DEFAULTS: dict = {
             r"^(?!.*junior).*\bmid[\s-]?level",
             # coordination / project-management roles (CYE "Cybersecurity Project Coordinator" 👎, Nov 2026)
             r"\bcoordinator\b", r"project\s+management",
+            # customer-experience operations (Lupa "CX Operations & AI Automation Specialist" 👎, Nov 2026)
+            # (engineer/developer titles such as "Automation Engineer, CX (Playwright)" still pass)
+            r"^(?!.*\b(engineer|developer)\b).*\b(cx|customer\s+experience)\b",
+            # "HW" is hardware (Flex "HW Test Engineer-1", Nov 2026); "SW/HW ..." titles still pass
+            r"^(?!.*\b(sw|software)\b).*\bhw\b",
         ],
         # Companies the user asked never to see (InfinityLabs career-path programs: "תוכנית זבל", Oct 2026)
         "company_exclude": [r"infinity\s*labs"],
