@@ -164,6 +164,7 @@
 - {name: "Cisco Israel", domain: cisco.com, cat: multinational, tier: 3, ats: workday, host: cisco.wd5.myworkdayjobs.com, tenant: cisco, site: Cisco_Careers, search: Israel}
 - {name: "Qualcomm Israel", domain: qualcomm.com, cat: multinational, tier: 3, ats: eightfold, host: careers.qualcomm.com}
 - {name: "Marvell Israel", domain: marvell.com, cat: multinational, tier: 3, ats: workday, host: marvell.wd1.myworkdayjobs.com, tenant: marvell, site: MarvellCareers, search: Israel}
+- {name: "Broadcom Israel", domain: broadcom.com, cat: multinational, tier: 2, ats: workday, host: broadcom.wd1.myworkdayjobs.com, tenant: broadcom, site: external_career, search: ISR}   # locations are named "ISR-Tel Aviv University" (Dune R&D)
 - {name: "KLA Israel", domain: kla.com, cat: multinational, tier: 2, ats: workday, host: kla.wd1.myworkdayjobs.com, tenant: kla, site: search, search: Israel}   # Migdal HaEmek + Yavne (added 2026-10-23 from the user's example)
 - {name: "Medtronic Israel", domain: medtronic.com, cat: multinational, tier: 2, ats: workday, host: medtronic.wd1.myworkdayjobs.com, tenant: medtronic, site: MedtronicCareers, search: Israel}   # Kfar Saba, Herzliya, Caesarea (added 2026-10-23 from the user's example; "redeployment..." is the internal-transfer copy of the same board)
 - {name: "AMD Israel", domain: amd.com, cat: multinational, tier: 3}

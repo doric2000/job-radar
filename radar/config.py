@@ -61,6 +61,8 @@ DEFAULTS: dict = {
             # "Software Development Engineer" (SDE), "Software Quality Engineer", "Offensive Researcher", "Development Operations"
             r"\b(software|sw)\s+development\s+engineer", r"\b(software|sw)\s+quality\s+(engineer|assurance)",
             r"\boffensive\b", r"development\s+operations",
+            # title ending in "Software Development" (Broadcom "R&D Software Development", Nov 2026)
+            r"\b(software|sw)\s+development\W*$",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
             r"בודק[./]?ת?\s+(תוכנה|אוטומציה)", r"אינטגרציי?ת\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
         ],
@@ -211,7 +213,7 @@ DEFAULTS: dict = {
         "role_core": [
             r"\b(software|sw)\s+(engineer|developer|dev)\b", r"\bdeveloper\b", r"\bprogrammer\b", r"back[\s-]?end",
             r"full[\s-]?stack", r"front[\s-]?end", r"מפתח", r"מפתחת", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
-            r"\b(software|sw)\s+development\s+engineer",
+            r"\b(software|sw)\s+development\s+engineer", r"\b(software|sw)\s+development\W*$",
             # security research on a platform: "Mobile Security Researcher", "Android Vulnerability Researcher"
             r"\b(security|vulnerability|malware|threat)\s+research",
         ],
@@ -243,6 +245,13 @@ DEFAULTS: dict = {
             r"\b(?:undergraduate|b\.?sc\.?|m\.?sc\.?|bachelor'?s|master'?s|ph\.?d\.?)\s+students?\b",
             r"\b(?:years?|semesters?)\s+of\s+(?:studies|study|the\s+degree|degree)\s+(?:remaining|left)\b",
             r"(?:נותר\S*|לפחות)\s+(?:\S+\s+){0,3}(?:ל|עד\s+)?סיום\s+ה?תואר", r"יתרת\s+לימודים",
+        ],
+        # An explicit exception for graduates next to a years requirement: "3+ years ... (exceptional recent
+        # graduates will also be considered)" (Broadcom, Nov 2026). Such jobs pass as tier C with a note.
+        "grad_exception_signals": [
+            r"\b(recent|new|fresh|exceptional|outstanding|strong|talented)\s+(\w+\s+)?graduates?\b[^.\n]{0,30}\b(will|may|can)\s+(also\s+)?be\s+considered",
+            r"\bgraduates?\b[^.\n]{0,20}\b(are|is)\s+also\s+(welcome|considered)",
+            r"(בוגרים|בוגרי\s+תואר)\s+(מצטיינים\s+)?(ייבחנו|יישקלו|יתקבלו)\s+גם",
         ],
         "desc_entry_signals": [
             r"no\s+(prior\s+)?(professional\s+|work\s+)?experience\s+(is\s+)?(required|needed|necessary)",

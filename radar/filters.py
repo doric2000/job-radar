@@ -336,6 +336,7 @@ class Classifier:
         self.student = _compile(m["student_signals"])
         self.current_student = _compile(m["current_student_signals"])
         self.desc_entry = _compile(m["desc_entry_signals"])
+        self.grad_exception = _compile(m.get("grad_exception_signals") or [])
         self.clearance = _compile(m["clearance_signals"])
         self.hw_desc = _compile(m["hardware_desc_signals"])
         self.hw_titles = _compile(m["hardware_check_titles"])
@@ -464,6 +465,10 @@ class Classifier:
             if years <= self.max_years:
                 v.tier = "C"
                 v.reasons.append(f"דורש {years} שנות ניסיון")
+                return v
+            if _any(self.grad_exception, desc):
+                v.tier = "C"
+                v.reasons.append(f"דורש {years} שנות ניסיון, אבל כתוב שבוגרים מצטיינים ייבחנו גם כן")
                 return v
             v.accept = False
             v.reject_reason = f"requires {years}+ years"

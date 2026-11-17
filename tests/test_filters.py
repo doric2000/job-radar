@@ -479,6 +479,13 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
             self.assertFalse(self.c.classify(J("Junior Engineer", desc=d)).accept, d)
         self.assertFalse(self.c.classify(J("Engineer", desc=sw)).accept)
 
+    def test_graduate_exception_keeps_three_year_job(self):
+        self.assertTrue(self.c.stage1(J("R&D Software Development")).accept)
+        req = "3+ years of hands-on experience in C/C++ software development"
+        v = self.c.classify(J("R&D Software Development", desc=req + " (exceptional recent graduates will also be considered)."))
+        self.assertEqual((v.accept, v.tier), (True, "C"))
+        self.assertFalse(self.c.classify(J("R&D Software Development", desc=req + ".")).accept)
+
     def test_misspelled_devops_titles(self):
         for t in ["Junior Devope Engineer", "Junior Dev Ops Engineer", "DevOp Engineer", "Junior DevOps Engineer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
