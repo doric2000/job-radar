@@ -517,6 +517,14 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
     def test_plus_years_of_software_engineering(self):
         self.assertEqual(extract_experience("What you bring 4+ years of software engineering, with strong Python and Linux")[0], 4)
 
+    def test_year_range_abbreviated_yrs_in(self):
+        # CommIT Security Operations Engineer went out as "no years stated"
+        txt = ("Must-haves (weights)\n• 15% — Security event investigation and alert triage (log correlation, "
+               "timeline reconstruction); 3–5 yrs in security operations / security engineering / IT")
+        self.assertEqual(extract_experience(txt)[0], 3)
+        self.assertEqual(extract_experience("2-4 years in backend development")[0], 2)
+        self.assertIsNone(extract_experience("We have grown 3-5 years in the market")[0])
+
     def test_remote_job_located_in_india_rejected(self):
         v = self.c.classify(J("SOC Analyst (Remote)", loc="Mumbai (Remote)", remote=True, desc="Entry-level SOC analyst"))
         self.assertFalse(v.accept)

@@ -134,7 +134,9 @@ _HE_YEARS = re.compile(
 _EXP_CONTEXT = re.compile(
     r"experience|exp\.|ניסיון|hands[\s-]?on|background|proven|track\s+record|working\s+(?:with|as|in)|"
     r"developing|development|building|professional|worked|work\s+in|in\s+(?:a\s+)?(?:role|field|position)|"
-    r"\d\s*\+\s*years?\s+of|\d\s*\+\s*years?\s+in\s+(?!business\b|the\s+(?:market|business)\b)|years?\s+of\s+(?:software|engineering|programming|coding|professional|industry|relevant|practical)",
+    # "3+ years in", and ranges / "yrs": CommIT's "3–5 yrs in security operations"
+    r"\d\s*(?:\+|[-–—]\s*\d{1,2})\s*(?:years?|yrs?)\s+(?:of|in)\s+(?!business\b|the\s+(?:market|business)\b)|"
+    r"\d\s*\+\s*years?\s+of|years?\s+of\s+(?:software|engineering|programming|coding|professional|industry|relevant|practical)",
     re.I | re.U,
 )
 _OPTIONAL = re.compile(
