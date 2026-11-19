@@ -197,6 +197,29 @@ class TestRun(unittest.TestCase):
         r2.state.add_alerted(dedupe_key(job("1")), NOW - timedelta(days=13))
         self.assertTrue(r2._is_dup(job("4")))
 
+    def test_linkedin_ad_published_again_under_new_id(self):
+        r = self.mk(FakeHttp({}))
+        job = lambda jid: Job(company_id="linkedin", company="Confidental", job_id=jid, title="Junior Java Developer",  # noqa: E731
+                              url=f"https://www.linkedin.com/jobs/view/{jid}/", location="Israel", source="linkedin")
+        first = job("1")
+        r._remember(first)
+        r.state.d["meta"].setdefault("sent", {})["a"] = {"ts": iso(NOW - timedelta(days=3)), "t": first.title,
+                                                          "co": first.company, "url": first.url, "src": "linkedin"}
+        for es in r.state.d["meta"]["roles"].values():
+            for e in es:
+                e["ts"] = iso(NOW - timedelta(days=3))
+        self.assertTrue(r._is_dup(job("1")))   # the same ad (LinkedIn refreshed it)
+        again = job("2")
+        self.assertFalse(r._is_dup(again))     # the employer published it again
+        self.assertTrue(again.reposted)
+        r.state.d["meta"]["sent"]["a"]["ts"] = iso(NOW - timedelta(hours=5))
+        for es in r.state.d["meta"]["roles"].values():
+            for e in es:
+                e["ts"] = iso(NOW - timedelta(hours=5))
+        self.assertTrue(r._is_dup(job("3")))   # same day: another city's copy
+        board = Job(company_id="ucl", company="Confidental", job_id="9", title="Junior Java Developer", url="u9", source="comeet")
+        self.assertTrue(r._is_dup(board))      # company boards keep the 14-day rule
+
 
 class TestFetchers(unittest.TestCase):
     def run_one(self, ats, payload, extra=None, url_key=None):

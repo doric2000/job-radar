@@ -47,6 +47,7 @@ def role_key(job: Job) -> str:
 SAME_JOB = 0.5  # description signature agreement: reposts/copies score 0.75+, different jobs ~0.1
 SAME_TEXT = 0.75  # across companies only a near-identical text counts (an agency reposting the job)
 REPOST_DAYS = 14  # the user wants a repost only when the first alert is two weeks old or more; sooner is noise
+LI_REPOST_DAYS = 3  # ...except an employer publishing a LinkedIn ad again under a new id (user, 2026-11-19)
 
 
 class Radar:
@@ -249,9 +250,22 @@ class Radar:
         if not ts:
             return False
         if ts > iso(self.now - timedelta(days=REPOST_DAYS)):
+            # LinkedIn: a new job id for a job alerted from LinkedIn is the employer publishing the ad again
+            # (Confidental's "Junior Java Developer", 3 days later, Nov 2026), not LinkedIn refreshing it (same
+            # id, never re-alerted). Same-day copies are other cities. Company boards that re-list every job
+            # daily under new ids (Comblack, UCL) keep the REPOST_DAYS rule.
+            if j.source == "linkedin" and ts <= iso(self.now - timedelta(days=LI_REPOST_DAYS)) and self._li_new_id(j):
+                j.reposted = ts
+                return False
             return True
         j.reposted = ts
         return False
+
+    def _li_new_id(self, j: Job) -> bool:
+        rk = role_key(j)
+        sent = [s for s in self.state.d["meta"].get("sent", {}).values()
+                if s.get("src") == "linkedin" and f"{company_key(s.get('co', ''))}|{norm(s.get('t', ''))[:80]}" == rk]
+        return bool(sent) and all(s.get("url") != j.url for s in sent)
 
     def _remember(self, j: Job) -> None:
         self.state.add_role(role_key(j), text_sig(j.description), self.now)
