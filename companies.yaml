@@ -16,7 +16,7 @@
 - {name: "Cato Networks", domain: catonetworks.com, cat: cyber, tier: 1}
 - {name: "Armis", domain: armis.com, cat: cyber, tier: 1}
 - {name: "Cyera", domain: cyera.io, cat: cyber, tier: 1}
-- {name: "Island", domain: island.io, cat: cyber, tier: 1}
+- {name: "Island", domain: island.io, cat: cyber, tier: 1, ats: comeet, uid: "09.00A", token: 90A363C515A03F4601B1E2D32515A2D32}
 - {name: "Silverfort", domain: silverfort.com, cat: cyber, tier: 1, ats: comeet, uid: "54.007", token: 45715B315B38AE22B8D051A0A457D051E61}
 - {name: "Axonius", domain: axonius.com, cat: cyber, tier: 1}
 - {name: "Orca Security", domain: orca.security, cat: cyber, tier: 1}
@@ -329,3 +329,15 @@
 - {name: "Nexar", domain: getnexar.com, cat: tech, tier: 2, ats: smartrecruiters, token: NexarInc}   # added 2026-11-15
 - {name: "White Hat", domain: whitehat.co.il, cat: cyber, tier: 2, ats: smartrecruiters, token: WhiteHat1}   # added 2026-11-15
 - {name: "Litt", domain: litt.ai, cat: cyber, tier: 2, ats: recruitee, token: litt}   # added 2026-11-15
+- {name: "groundcover", domain: groundcover.com, cat: tech, tier: 2, ats: comeet, uid: "88.008", token: 88833303BB81998222022202220044403330}   # added 2026-11-22
+- {name: "Buildots", domain: buildots.com, cat: tech, tier: 2, ats: comeet, uid: "36.004", token: 6342538634037D42B6C129C18D0129CC68}   # added 2026-11-22
+- {name: "Directeam", domain: directeam.com, cat: tech, tier: 2, ats: comeet, uid: "29.008", token: 92836F05268401812501250092836F00}   # added 2026-11-22
+- {name: "Bet Shemesh Engines", domain: bsel.co.il, cat: tech, tier: 2, ats: comeet, uid: "1A.002", token: A12467E1E363C6C03C6C2848A12325A1424}   # added 2026-11-22
+- {name: "Palantir", domain: palantir.com, cat: tech, tier: 2, ats: lever, token: palantir}   # added 2026-11-22
+- {name: "Ora Labs", domain: ora.ai, cat: tech, tier: 2, ats: ashby, token: ora}   # added 2026-11-22
+- {name: "Harmony", domain: harmony.io, cat: tech, tier: 2, ats: ashby, token: harmony}   # added 2026-11-22
+- {name: "ClickHouse", domain: clickhouse.com, cat: tech, tier: 2, ats: ashby, token: clickhouse}   # added 2026-11-22
+- {name: "Chainalysis", domain: chainalysis.com, cat: cyber, tier: 2, ats: ashby, token: chainalysis-careers}   # added 2026-11-22
+- {name: "Origin", domain: originhq.com, cat: cyber, tier: 2, ats: ashby, token: originhq}   # added 2026-11-22
+- {name: "Nuvei", domain: nuvei.com, cat: tech, tier: 2, ats: workable, token: nuvei}   # added 2026-11-22
+- {name: "Regatta", domain: regatta.dev, cat: tech, tier: 2, ats: workable, token: regatta-3}   # added 2026-11-22
