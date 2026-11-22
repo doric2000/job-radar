@@ -215,7 +215,8 @@ class TestClassifier(unittest.TestCase):
 
     def test_physical_security_guards_excluded(self):
         # Nov 2026 👎: Brink's "Lobby Security", Team 3 "דרושה מאבטחת למוסד חינוכי"
-        for t in ["Lobby Security", "דרושה מאבטחת למוסד חינוכי בכפר סבא", "מאבטח/ת לקניון", "Security Patrol Officer"]:
+        for t in ["Lobby Security", "דרושה מאבטחת למוסד חינוכי בכפר סבא", "מאבטח/ת לקניון", "Security Patrol Officer",
+                  "Customer Service & Personal Security Agent (Multilingual)", "Customer Service Representative"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         for t in ["מיישם/ת הגנת סייבר ואבטחת מידע", "Junior Security Researcher", "SOC Analyst Tier 1"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)

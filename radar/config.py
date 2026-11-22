@@ -112,6 +112,9 @@ DEFAULTS: dict = {
             # physical security guards: "secur" / "אבטחת" match them (Brink's "Lobby Security", Team 3 "דרושה מאבטחת" 👎:
             # "we secure cyber, not lobbies")
             r"\blobby\b", r"מאבטח", r"security\s+patrol", r"concierge",
+            # Bond "Customer Service & Personal Security Agent (Multilingual)" (Nov 2026): customer service and
+            # bodyguard work; "שירות לקוחות" was already out, the English wording was not
+            r"customer\s+service", r"personal\s+security",
             # Wix "Full stack organic growth marketer", Howden "Cyber Claims Executive", CYBERLABS office admin,
             # IAI "מפתח/ת מערכות אופטיות"
             r"\bmarketer", r"אדמין", r"ניהול\s+משרד", r"אופטי", r"\boptical\b",
