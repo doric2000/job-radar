@@ -252,6 +252,11 @@ class TestFetchers(unittest.TestCase):
                                   extra={"uid": "U1"})
         self.assertEqual(jobs[0].level, "Entry level")
         self.assertEqual(jobs[0].date_kind, "updated")
+        # 44 Ventures names its locations after brands: the city and country are added
+        jobs, _, _ = self.run_one("comeet", [{"uid": "27.576", "name": "Junior Developer", "time_updated": "2026-10-19T09:00:00Z",
+                                              "location": {"name": "ProgrammaticX", "city": "Herzliya", "country": "IL"}}],
+                                  extra={"uid": "U1"})
+        self.assertEqual(jobs[0].location, "ProgrammaticX, Herzliya, Israel")
 
     def test_smartrecruiters_paging(self):
         calls = []

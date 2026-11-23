@@ -311,6 +311,7 @@
 - {name: "Dialog QA", domain: dialog.co.il, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.dialog.co.il/high-tech/jobs/qa", link_pattern: '^/high-tech/jobs/jobpage\?positionId=(\d+)$', desc_selector: div.job_box}
 - {name: "Dialog DevOps and Security", domain: dialog.co.il, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.dialog.co.il/high-tech/jobs/system", link_pattern: '^/high-tech/jobs/jobpage\?positionId=(\d+)$', desc_selector: div.job_box}
 - {name: "Moveo Source", domain: moveosource.com, cat: staffing, tier: 1, ats: htmllinks, list_url: "https://www.moveosource.com/", link_pattern: '^/jobs/([^/?#]+)$', card: div.w-dropdown, card_title: .job-titel}
+- {name: "44 Ventures", domain: 44ventures.com, cat: tech, tier: 1, ats: comeet, uid: "18.001", token: "8113066285581118334088408803877811"}   # ad-tech group: ProgrammaticX, Boldwin, MindAd (locations are named after the brands)
 - {name: "IBI Investment House", domain: ibi.co.il, cat: bank, tier: 2, ats: htmllinks, list_url: "https://www.ibi.co.il/career/", link_pattern: '^https://www\.ibi\.co\.il/career/([^/]+)/$', desc_selector: div.details}   # all jobs on one page; the career post type is not in the WordPress REST API. Added 2026-11-10
 - {name: "ONE ZERO Digital Bank", domain: onezerobank.com, cat: bank, tier: 1, ats: comeet, uid: "36.00A", token: 63A255C63A63A18E831D063A31D063A1F22}   # added 2026-11-11
 - {name: "Applift", domain: applift.com, cat: tech, tier: 2, ats: comeet, uid: "39.00A", token: 93A375C530A530A49D049D02E22024E824E8}   # added 2026-11-15

@@ -27,7 +27,13 @@ class Comeet:
             if not uid:
                 continue
             loc = p.get("location") or {}
-            location = loc.get("name") or ", ".join(x for x in (loc.get("city"), loc.get("country")) if x)
+            # the location's name may be an office or brand ("ProgrammaticX" at 44 Ventures), so the city and
+            # country are added when the name does not already say them
+            country = {"IL": "Israel"}.get(loc.get("country") or "", loc.get("country") or "")
+            location = loc.get("name") or ""
+            for x in (loc.get("city"), country):
+                if x and x.lower() not in location.lower():
+                    location = f"{location}, {x}" if location else x
             parts = []
             for d in p.get("details") or []:
                 parts.append(f"{d.get('name', '')}\n{html_to_text(d.get('value'))}")
