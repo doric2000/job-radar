@@ -166,6 +166,11 @@ class TestRun(unittest.TestCase):
         self.assertTrue(r._is_dup(ltd))
         self.assertTrue(r._is_dup(agency))
         self.assertFalse(r._is_dup(other))  # a different job of that title at the agency
+        # the same company re-publishing the same text under an edited title
+        renamed = Job(company_id="li", company="ISCAR", job_id="9", title="Software Engineer | MES", url="u", description=mes)
+        self.assertTrue(r._is_dup(renamed))
+        renamed_other = Job(company_id="li", company="ISCAR", job_id="10", title="AI Software Engineer", url="u", description=ai)
+        self.assertFalse(r._is_dup(renamed_other))  # another title with different text is another job
 
     def test_same_posting_url_under_new_id_is_dup(self):
         # UCL Group re-lists its WordPress jobs with new ids and lightly edited text: the same page went out twice

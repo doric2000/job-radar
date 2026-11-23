@@ -46,6 +46,7 @@ def role_key(job: Job) -> str:
 
 SAME_JOB = 0.5  # description signature agreement: reposts/copies score 0.75+, different jobs ~0.1
 SAME_TEXT = 0.75  # across companies only a near-identical text counts (an agency reposting the job)
+SAME_TEXT_RENAMED = 0.95  # same company, edited title: only an identical text (VAST's QA Automation and QA Performance share 0.91)
 REPOST_DAYS = 14  # the user wants a repost only when the first alert is two weeks old or more; sooner is noise
 LI_REPOST_DAYS = 3  # ...except an employer publishing a LinkedIn ad again under a new id (user, 2026-11-19)
 
@@ -227,8 +228,12 @@ class Radar:
         title = rk.split("|", 1)[1]
         # a staffing agency reposting a company's job under its own name (Matrix with ISCAR's "Software
         # Engineer"): same title and nearly the same text
-        hits = [e["ts"] for k, es in roles.items() if k.endswith("|" + title) for e in es
-                if sig and e["sig"] and sig_similarity(sig, e["sig"]) >= SAME_TEXT]
+        # and the same company re-publishing the same text under an edited title (hms's "Junior Forward
+        # Deployed Engineer" came back 22 hours later as "... | AI Agents" with an identical description)
+        company = rk.split("|", 1)[0]
+        hits = [e["ts"] for k, es in roles.items() for e in es if sig and e["sig"]
+                and ((k.endswith("|" + title) and sig_similarity(sig, e["sig"]) >= SAME_TEXT)
+                     or (k.startswith(company + "|") and sig_similarity(sig, e["sig"]) >= SAME_TEXT_RENAMED))]
         old = roles.get(rk, [])
         if old:
             hits += [e["ts"] for e in old if not sig or not e["sig"] or sig_similarity(sig, e["sig"]) >= SAME_JOB]
