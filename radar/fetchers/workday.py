@@ -80,9 +80,15 @@ class Workday:
                 seen.add(path)
                 fresh += 1
                 when, exact = parse_relative_en(p.get("postedOn", ""))
+                location = p.get("locationsText") or ""
+                # a job in several places is listed as "2 Locations"; the path names the first one
+                # ("/job/Caesarea-Israel/..."), which the title filter needs before the detail call (Cisco)
+                parts = path.split("/")
+                if re.fullmatch(r"\d+\s+Locations?", location.strip(), re.I) and len(parts) > 2 and parts[1] == "job":
+                    location = f"{location} | {parts[2].replace('-', ' ')}"
                 out.append(Job(
                     company_id=c["id"], company=c["name"], job_id=path, title=(p.get("title") or "").strip(),
-                    url=f"https://{host}/{site}{path}", location=p.get("locationsText") or "",
+                    url=f"https://{host}/{site}{path}", location=location,
                     posted_at=when if exact else None, date_kind="relative" if exact else "unknown",
                     date_source=f"workday.postedOn='{p.get('postedOn', '')}'", source=self.name,
                 ))

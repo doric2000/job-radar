@@ -283,6 +283,13 @@ class TestFetchers(unittest.TestCase):
         self.assertEqual(jobs[1].date_kind, "unknown")
         self.assertIsNone(jobs[1].posted_at)
 
+    def test_workday_several_locations_named_from_path(self):
+        payload = {"total": 1, "jobPostings": [
+            {"title": "Software Embedded Engineer", "externalPath": "/job/Caesarea-Israel/Software-Embedded-Engineer_2029925",
+             "locationsText": "2 Locations", "postedOn": "Posted Today"}]}
+        jobs, _, _ = self.run_one("workday", payload, extra={"host": "x.wd5.myworkdayjobs.com", "tenant": "x", "site": "S"})
+        self.assertEqual(jobs[0].location, "2 Locations | Caesarea Israel")
+
     def test_workday_uses_israel_facet_and_reads_every_page(self):
         from radar.fetchers.workday import Workday
         facets = [{"facetParameter": "locationMainGroup", "values": [{"facetParameter": "locations", "values": [
