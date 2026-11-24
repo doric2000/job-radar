@@ -181,6 +181,12 @@ class TestClassifier(unittest.TestCase):
         self.assertFalse(v.accept)
         self.assertIn("seniority", v.reject_reason)
 
+    def test_degree_named_graduate_title(self):
+        desc = "מטריקס צפון מגייסת בוגרי/בוגרות תואר מדמ\"ח. פיתוח כלי בדיקות אוטומציה בשילוב AI. התפקיד כולל הכשרה."
+        self.assertTrue(self.c.classify(J("Computer Science graduate", desc=desc)).accept)
+        self.assertTrue(self.c.classify(J("בוגר/ת תואר מדמ\"ח", desc=desc)).accept)
+        self.assertFalse(self.c.classify(J("Graduate Student", desc="Join our NLP research lab.")).accept)
+
     def test_generic_title_with_one_year(self):
         v = self.c.classify(J("Software Engineer", desc="Requirements:\n• 1+ years of experience in Python"))
         self.assertTrue(v.accept)

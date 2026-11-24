@@ -58,6 +58,10 @@ DEFAULTS: dict = {
             r"\b(software|sw)\s*(/\s*firmware\s+)?engineering\b",
             r"\b(software|sw)\s+(embedded|firmware|systems?|performance|design)\s+engineer",
             r"observability\s+engineer",
+            # a degree-named graduate track: "Computer Science graduate" (Matrix North, automation tools
+            # training, Nov 2026); bare "Graduate Student" (research labs) stays out
+            r"\b(?:computer\s+science|cs|software\s+engineering|computer\s+engineering)\s+(?:graduates?|grads?)\b",
+            r"בוגר[/.]?ת?\s+(?:תואר\s+)?(?:מדמ[\"״']?ח|מדעי\s+המחשב|הנדסת\s+(?:תוכנה|מחשבים))",
             # "Software Development Engineer" (SDE), "Software Quality Engineer", "Offensive Researcher", "Development Operations"
             r"\b(software|sw)\s+development\s+engineer", r"\b(software|sw)\s+quality\s+(engineer|assurance)",
             r"\boffensive\b", r"development\s+operations",
