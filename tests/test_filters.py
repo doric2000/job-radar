@@ -506,6 +506,15 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         self.assertTrue(self.c.stage1(J("SW/HW Integration Engineer")).accept)
 
+    def test_learning_content_developer_excluded(self):
+        for t in ["מפתח/ת למידה", "מפתחת למידה", "Learning Experience Designer", "E-Learning Developer", "Instructional Designer"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        for t in ["Machine Learning Developer", "Junior Deep Learning Developer", "מפתח/ת תוכנה"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+
+    def test_fronted_typo_title(self):
+        self.assertTrue(self.c.stage1(J("Fronted Engineer – AI Datacenter Orchestration Platform")).accept)
+
     def test_misspelled_devops_titles(self):
         for t in ["Junior Devope Engineer", "Junior Dev Ops Engineer", "DevOp Engineer", "Junior DevOps Engineer"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)

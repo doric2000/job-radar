@@ -36,6 +36,8 @@ DEFAULTS: dict = {
             # Engineer" still passes as an integration engineer
             r"systems?\s+(programmer|developer|software)", r"low[\s-]?level", r"kernel",
             r"infrastructure\s+(software\s+)?engineer", r"platform\s+engineer",
+            # "Fronted Engineer" (typo for Frontend: "Fronted Engineer – AI Datacenter Orchestration Platform", Nov 2026)
+            r"\bfronted\s+(engineer|developer)",
             r"front[\s-]?end", r"\breact\b", r"\bangular\b", r"\bvue(\.?js)?\b", r"web\s+(developer|engineer)",
             r"\bc\+\+", r"\bgolang\b", r"\brust\b", r"\bpython\b", r"\bjava\b", r"\.net\b", r"\bnode(\.?js)?\b",
             # software integration / implementation (incl. AI solutions); hardware integrators are excluded below
@@ -131,6 +133,10 @@ DEFAULTS: dict = {
             r"^(?!.*\b(engineer|developer)\b).*\b(cx|customer\s+experience)\b",
             # "HW" is hardware (Flex "HW Test Engineer-1", Nov 2026); "SW/HW ..." titles still pass
             r"^(?!.*\b(sw|software)\b).*\bhw\b",
+            # learning-content / instructional design ("מפתח/ת למידה" at CET 👎, Nov 2026: Storyline, pedagogy);
+            # "Machine Learning Developer" still passes
+            r"מפתח[/.]?ת?\s+(למידה|לומדות|תוכן|הדרכה)", r"\binstructional\b", r"\be-?learning\b",
+            r"^(?!.*\b(machine|deep|reinforcement|robot)\s+learning).*\blearning\s+(experience\s+)?(developer|designer)",
         ],
         # Companies the user asked never to see (InfinityLabs career-path programs: "תוכנית זבל", Oct 2026)
         "company_exclude": [r"infinity\s*labs"],

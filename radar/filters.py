@@ -16,7 +16,8 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 22
+FILTERS_VERSION = 23
+# v23: "Fronted Engineer" (typo) titles; learning-content developers ("מפתח/ת למידה") excluded
 # v21: "Applications Dev Engineer" and "Integration & Validation Engineer" titles
 # v20: "Artificial Intelligence Engineer" titles; "Crypto & Payments" no longer counts as cryptography
 # v19: "Software Engineering Intern", "Software/Firmware Engineering", "Software Embedded/Systems Engineer",
