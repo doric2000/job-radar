@@ -79,6 +79,8 @@ DEFAULTS: dict = {
             r"integration\s*(&|and|/)\s*(validation|verification|test(ing)?)\s+engineer",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
             r"בודק[./]?ת?\s+(תוכנה|אוטומציה)", r"אינטגרציי?ת\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
+            # "SQA Engineer" (VB Spine, Nov 2026: software quality assurance)
+            r"\bsqa\b",
         ],
         "role_exclude": [
             r"\bsales\b", r"account\s+(executive|manager)", r"marketing", r"recruit", r"talent\s+acqui",
@@ -127,6 +129,8 @@ DEFAULTS: dict = {
             # IAI "מפתח/ת מערכות אופטיות"
             r"\bmarketer", r"אדמין", r"ניהול\s+משרד", r"אופטי", r"\boptical\b",
             # "Full Stack Developer - Mid Level" (👎); "Junior - Mid Level ..." still passes
+            # Hebrew cyber risk management / policy (GRC): Peak Innovation "איש/ת ניהול סיכוני סייבר ואבטחת מידע" 👎
+            r"ניהול\s+סיכונ", r"סיכוני\s+סייבר",
             r"^(?!.*junior).*\bmid[\s-]?level",
             # coordination / project-management roles (CYE "Cybersecurity Project Coordinator" 👎, Nov 2026)
             r"\bcoordinator\b", r"project\s+management",

@@ -514,6 +514,12 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
         for t in ["Machine Learning Developer", "Junior Deep Learning Developer", "מפתח/ת תוכנה"]:
             self.assertTrue(self.c.stage1(J(t)).accept, t)
 
+    def test_sqa_title_and_hebrew_cyber_risk_excluded(self):
+        self.assertTrue(self.c.stage1(J("SQA Engineer")).accept)
+        for t in ["איש/ת ניהול סיכוני סייבר ואבטחת מידע", "מנהל/ת סיכוני סייבר"]:
+            self.assertFalse(self.c.stage1(J(t)).accept, t)
+        self.assertTrue(self.c.stage1(J("מיישם/ת אבטחת מידע וסייבר")).accept)
+
     def test_fronted_typo_title(self):
         self.assertTrue(self.c.stage1(J("Fronted Engineer – AI Datacenter Orchestration Platform")).accept)
 
