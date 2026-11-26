@@ -262,6 +262,16 @@ class TestFetchers(unittest.TestCase):
                                               "location": {"name": "ProgrammaticX", "city": "Herzliya", "country": "IL"}}],
                                   extra={"uid": "U1"})
         self.assertEqual(jobs[0].location, "ProgrammaticX, Herzliya, Israel")
+        # Team8: the "active page" is the general careers page when the job is not on the company site
+        jobs, _, _ = self.run_one("comeet", [{"uid": "3E.578", "name": "AI Engineer", "time_updated": "2026-10-19T09:00:00Z",
+                                              "url_active_page": "https://team8.vc/careers/", "url_detected_page": None,
+                                              "url_comeet_hosted_page": "https://www.comeet.com/jobs/team8/61.003/ai-engineer/3E.578"},
+                                             {"uid": "C4.471", "name": "AI Engineer B", "time_updated": "2026-10-19T09:00:00Z",
+                                              "url_active_page": "https://team8.vc/career/b/ai/", "url_detected_page": "https://team8.vc/career/b/ai/",
+                                              "url_comeet_hosted_page": "https://www.comeet.com/jobs/team8/61.003/ai-b/C4.471"}],
+                                  extra={"uid": "U1"})
+        self.assertEqual({j.job_id: j.url for j in jobs}, {"3E.578": "https://www.comeet.com/jobs/team8/61.003/ai-engineer/3E.578",
+                                                           "C4.471": "https://team8.vc/career/b/ai/"})
 
     def test_smartrecruiters_paging(self):
         calls = []

@@ -42,7 +42,11 @@ class Comeet:
             out.append(Job(
                 company_id=c["id"], company=c["name"], job_id=str(uid),
                 title=(p.get("name") or "").strip(),
-                url=p.get("url_active_page") or p.get("url_comeet_hosted_page") or p.get("position_url") or "",
+                # url_active_page can be the company's general careers page when the job is not on its site
+                # (Team8 "Cyber Stealth Startup - AI Engineer" -> team8.vc/careers/); url_detected_page is set
+                # only when Comeet found the job's own page there. Otherwise Comeet's page for the job.
+                url=p.get("url_detected_page") or p.get("url_comeet_hosted_page") or p.get("url_active_page")
+                or p.get("position_url") or "",
                 location=location or "", description="\n".join(parts),
                 posted_at=parse_iso(p.get("time_updated")), date_kind="updated", date_source="comeet.time_updated",
                 remote=True if wt == "remote" else None,
