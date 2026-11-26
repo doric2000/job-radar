@@ -342,3 +342,4 @@
 - {name: "Origin", domain: originhq.com, cat: cyber, tier: 2, ats: ashby, token: originhq}   # added 2026-11-22
 - {name: "Nuvei", domain: nuvei.com, cat: tech, tier: 2, ats: workable, token: nuvei}   # added 2026-11-22
 - {name: "Regatta", domain: regatta.dev, cat: tech, tier: 2, ats: workable, token: regatta-3}   # added 2026-11-22
+- {name: "Nanit", domain: nanit.com, cat: tech, tier: 2, ats: greenhouse, token: nanit}   # added 2026-11-26
