@@ -42,6 +42,8 @@ DEFAULTS: dict = {
             r"\bc\+\+", r"\bgolang\b", r"\brust\b", r"\bpython\b", r"\bjava\b", r"\.net\b", r"\bnode(\.?js)?\b",
             # software integration / implementation (incl. AI solutions); hardware integrators are excluded below
             r"integration\s+(engineer|specialist|developer|consultant)",
+            # "Junior Software Integrator" (Quality AI: SW release installs, XML config, scripts); bare "Integrator" stays out
+            r"\b(software|sw)\s+integrator\b",
             # customer-facing technical delivery at software/cyber companies (deploy, configure, integrate)
             r"professional\s+services\s+(engineer|consultant|specialist)", r"(deployment|onboarding|technical\s+services)\s+engineer",
             r"\b(software|api|saas|data|cloud|platform|backend|crm|erp)\s+integration", r"implementation",
@@ -87,7 +89,7 @@ DEFAULTS: dict = {
             r"pre[\s-]?sales", r"technical\s+writer", r"security\s+guard", r"\bguard\b", r"\bgrc\b", r"compliance",
             r"mechanical", r"electrical", r"hardware", r"\bfpga\b", r"\basic\b", r"physical\s+security",
             # hardware / electronics (the user is after computer-science roles only)
-            r"\bintegrator\b", r"electronic", r"\bpcb\b", r"\brf\b", r"avionic", r"silicon", r"physical\s+design",
+            r"(?<!software\s)(?<!sw\s)\bintegrator\b", r"electronic", r"\bpcb\b", r"\brf\b", r"avionic", r"silicon", r"physical\s+design",
             r"field\s+(service\s+)?engineer", r"\bplc\b", r"\bpcie\b", r"\bddr\b", r"\bclocks?\b", r"design\s+automation",
             r"\bradar\b", r"lidar", r"camera\s+system", r"\bgtm\b", r"go[\s-]to[\s-]market", r"strategist",
             r"flight\s+test", r"\besm\b",

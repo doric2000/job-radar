@@ -141,6 +141,17 @@ class TestCompanySites(unittest.TestCase):
         self.assertEqual((j.job_id, j.title, j.url), ("data-dev", "Data Developer", "https://mv.com/jobs/data-dev"))
         self.assertEqual(HtmlLinks(http).enrich(j, c).description, "3+ years of experience with SQL")
 
+    def test_htmllinks_more_pages_and_title_strip(self):
+        # Quality AI (SuccessFactors search, 25 per page): later pages are read too; a missing one ends the list
+        p1 = '<a href="/job/Petach-_-Tikva-24344-Junior-Software-Integrator/61739144/">24344 - Junior Software Integrator</a>'
+        p2 = '<a href="/job/Petach-_-Tikva-24502-Full-Stack-Developer/61802544/">24502 - Full Stack Developer</a>'
+        c = {"id": "q", "name": "Quality AI", "list_url": "https://q.com/p1", "more_urls": ["https://q.com/p2", "https://q.com/p3"],
+             "link_pattern": r"^/job/[^/]+/(\d+)/$", "title_strip": r"^\d+\s*-\s*"}
+        jobs = HtmlLinks(FakeHttp({"q.com/p1": p1, "q.com/p2": p2})).list_jobs(c)
+        self.assertEqual([(j.job_id, j.title) for j in jobs],
+                         [("61739144", "Junior Software Integrator"), ("61802544", "Full Stack Developer")])
+        self.assertEqual(jobs[1].url, "https://q.com/job/Petach-_-Tikva-24502-Full-Stack-Developer/61802544/")
+
     def test_topmatch(self):
         data = {"positions": [{"compPositionID": 199462, "jobTitleText": "מפתח.ת AI ג׳וניור ", "activationDate": "2026-10-21T09:29:15.23",
                                "description": "<p>Python, SQL</p>", "displayLocation": "איכילוב"}], "responseStatus": 1}

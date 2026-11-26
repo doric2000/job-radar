@@ -287,6 +287,8 @@ class TestClassifier(unittest.TestCase):
                   "Signal Processing & AI Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         self.assertTrue(self.c.stage1(J("Junior SOC Analyst")).accept)
+        for t in ["Junior Software Integrator", "SW Integrator"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
         for t in ["מומחה/ית תקשורת ואבטחת מידע", "Network Engineer"]:
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         self.assertTrue(self.c.stage1(J("Network Security Researcher")).accept)

@@ -16,7 +16,9 @@ class HtmlLinks:
     `title_drop`: a CSS selector removed from the link before reading its text (Logica puts the
     category and area in <span class="metas"> inside the link).
     `card` + `card_title`: when the link text is only a button ("View Details", Moveo), the title is read
-    from `card_title` inside the link's closest ancestor matching `card`."""
+    from `card_title` inside the link's closest ancestor matching `card`.
+    `more_urls`: further list pages read after `list_url` (Quality AI's SuccessFactors search shows 25 per page).
+    `title_strip`: a regex removed from the title ("24344 - " requisition numbers at Quality AI)."""
 
     name = "htmllinks"
 
@@ -25,8 +27,21 @@ class HtmlLinks:
 
     def list_jobs(self, c: dict) -> list[Job]:
         rx = re.compile(c["link_pattern"])
-        soup = BeautifulSoup(self.http.get_text(c["list_url"]), "html.parser")
         out: dict[str, Job] = {}
+        for i, url in enumerate([c["list_url"], *(c.get("more_urls") or [])]):
+            try:
+                soup = BeautifulSoup(self.http.get_text(url), "html.parser")
+            except Exception:  # noqa: BLE001 - a later page can be missing once fewer jobs are open
+                if i == 0:
+                    raise
+                break
+            self._links(soup, url, rx, c, out)
+        if c.get("title_strip"):
+            for j in out.values():
+                j.title = re.sub(c["title_strip"], "", j.title).strip()
+        return list(out.values())
+
+    def _links(self, soup, base, rx, c, out):
         for a in soup.find_all("a", href=True):
             m = rx.search(a["href"])
             if not m:
@@ -44,8 +59,7 @@ class HtmlLinks:
                     out[jid].title = text
                 continue
             out[jid] = Job(company_id=c["id"], company=c["name"], job_id=jid, title=text,
-                           url=urljoin(c["list_url"], a["href"]), location=c.get("location", "Israel"), source=self.name)
-        return list(out.values())
+                           url=urljoin(base, a["href"]), location=c.get("location", "Israel"), source=self.name)
 
     def enrich(self, job: Job, c: dict) -> Job:
         soup = BeautifulSoup(self.http.get_text(job.url), "html.parser")
