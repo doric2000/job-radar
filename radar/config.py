@@ -78,6 +78,9 @@ DEFAULTS: dict = {
             # caught by hardware_check_titles
             r"integration\s*(&|and|/)\s*(validation|verification|test(ing)?)\s+engineer",
             r"מפתח", r"מפתחת", r"אבטחת", r"סייבר", r"בק[\s-]?אנד", r"פולסטאק", r"הנדס(ת|ן|[/.]ת)?\s*תוכנה",
+            # "תוכניתן/ית ממשקים" (Logica IT, Nov 2026: integration programmer, training given);
+            # "Test Development Engineer" (Island QA group, Nov 2026)
+            r"תוכנית[ןנ]", r"\btest\s+development\s+engineer",
             r"בודק[./]?ת?\s+(תוכנה|אוטומציה)", r"אינטגרציי?ת\s+תוכנה", r"אוטומציה\s+(qa|בדיקות)", r"\bsecops\b", r"\bfde\b", r"forward[\s-]deployed",
             # "SQA Engineer" (VB Spine, Nov 2026: software quality assurance)
             r"\bsqa\b",
@@ -95,7 +98,8 @@ DEFAULTS: dict = {
             r"field\s+(service\s+)?engineer", r"\bplc\b", r"\bpcie\b", r"\bddr\b", r"\bclocks?\b", r"design\s+automation",
             r"\bradar\b", r"lidar", r"camera\s+system", r"\bgtm\b", r"go[\s-]to[\s-]market", r"strategist",
             r"flight\s+test", r"\besm\b",
-            r"\bsoc\s+(design|verification|validation|architect)", r"signal\s+processing", r"\bdsp\b",
+            # also with a word in between: "SOC Functional Validation Engineer" (Intel system-on-chip, Nov 2026)
+            r"\bsoc\s+(\w+\s+)?(design|verification|validation|architect)", r"signal\s+processing", r"\bdsp\b",
             r"מכירות", r"שיווק", r"גיוס", r"משאבי\s+אנוש", r"שירות\s+לקוחות", r"מנהל\s+מוצר",
             r"אינטגרטור", r"אלקטרוניקה", r"חשמל", r"הדרכה",
             # platform-specific enterprise roles (not general software engineering; Dynamics/COBOL got 👎)

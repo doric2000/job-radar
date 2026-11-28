@@ -520,6 +520,15 @@ class TestRemoteCountryAndYearsOf(unittest.TestCase):
             self.assertFalse(self.c.stage1(J(t)).accept, t)
         self.assertTrue(self.c.stage1(J("מיישם/ת אבטחת מידע וסייבר")).accept)
 
+    def test_programmer_hebrew_and_test_development_titles(self):
+        for t in ["תוכניתן/ית ממשקים", "Test Development Engineer - Israel"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+
+    def test_soc_chip_validation_excluded(self):
+        self.assertFalse(self.c.stage1(J("SOC Functional Validation Engineer")).accept)
+        for t in ["SOC Analyst", "SOC Automation Engineer", "Junior SOC Analyst Tier 1"]:
+            self.assertTrue(self.c.stage1(J(t)).accept, t)
+
     def test_fronted_typo_title(self):
         self.assertTrue(self.c.stage1(J("Fronted Engineer – AI Datacenter Orchestration Platform")).accept)
 

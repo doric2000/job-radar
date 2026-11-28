@@ -16,7 +16,8 @@ from .models import Job, Verdict
 
 # Bump when the match rules change: the next scan then re-evaluates jobs rejected in the last 72h
 # whose reject note matches RECHECK_NOTES (the rejections the change can flip).
-FILTERS_VERSION = 24
+FILTERS_VERSION = 25
+# v25: Hebrew "תוכניתן/ית" and "Test Development Engineer" titles; "SOC <word> Validation" (chip) excluded
 # v24: "SQA Engineer" titles; Hebrew cyber-risk-management (GRC) titles excluded
 # v23: "Fronted Engineer" (typo) titles; learning-content developers ("מפתח/ת למידה") excluded
 # v21: "Applications Dev Engineer" and "Integration & Validation Engineer" titles
